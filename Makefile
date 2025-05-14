@@ -3,24 +3,20 @@ NAME = minishell
 
 INCLUDE = -Iincludes
 
-BUILTINS_FILES =	ft_pwd.c\
-					ft_env.c\
-					ft_exit.c\
-					ft_echo.c\
-					ft_cd.c\
-					ft_export.c\
-					ft_unset.c\
-					exec_builtins.c\
-					main_builtins.c
+ENV_DIR = env/
 
-UTILS =
+ENV_FILES = env.c\
+			lst_utils_env.c
+				
+
+UTILS = main.c
 
 MAKEFLAGS += --no-print-directory
 
 CC	= cc
 CFLAGS	= -Wall -Wextra -Werror -MMD -g3
 
-FILE =	$(BUILTINS_FILES)\
+FILE =	$(addprefix $(ENV_DIR), $(ENV_FILES))\
 		$(UTILS)
 		
 OBJ_DIR = obj/
