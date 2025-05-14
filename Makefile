@@ -34,8 +34,18 @@ LIBFT = $(LIBFT_DIR)/libft.a
 all: banner lib $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
+	@echo "                 $(BLUE)============================================$(RESET)"
+	@echo "                 $(BLUE)|             $(BOLD_GREEN)$(NAME) $(BOLD_WHITE)program            $(BLUE)|$(RESET)"
+	@echo "                 $(BLUE)|         $(YELLOW)Compilation in progress...       $(BLUE)|$(RESET)"
+	@echo "                 $(BLUE)============================================\n$(RESET)"
+	@start_time=$$(date +%s); \
+	for file in $(notdir $(SRCS)); do \
+		echo "$(GREEN)⚙️ $(YELLOW)Compiling... $(CYAN)$$file$(RESET)"; \
+		done;
 		$(CC) $(CFLAGS) -lreadline $(OBJ) -o $(NAME) $(LIBFT)
-		@echo "$(PURPLE)👾 Minishell compilation done ! $(RESET)"
+			end_time=$$(date +%s); \
+	duration=$$((end_time - start_time)); \
+	printf "\n                             $(GREEN)== SUCCESS ✅ ==\n\n $(GREEN) The $(NAME) program has been compiled successfully in $(RED)%02d:%02d $(CYAN)(min:sec)\n\n$(RESET)" $$((duration / 60)) $$((duration % 60))
 
 $(OBJ_DIR)%.o: %.c Makefile
 			@mkdir -p $(dir $@)
@@ -56,24 +66,28 @@ fclean:	clean
 	rm -f $(NAME)      
 
 lib:
-	@echo "$(GREEN)🦀 Compiling libft in progress... $(RESET)"
-	$(MAKE) -C $(LIBFT_DIR)
-	@echo "$(GREEN)🦀 Libft compilation done ! $(RESET)"
-	@echo "$(PURPLE)👾 Compiling Minishell in progress ... $(RESET)"
-
+	@echo "                 $(BLUE)============================================$(RESET)"
+	@echo "                 $(BLUE)|             $(BOLD_GREEN)LIBFT $(BOLD_WHITE)library                $(BLUE)|$(RESET)"
+	@echo "                 $(BLUE)|         $(YELLOW)Compilation in progress...       $(BLUE)|$(RESET)"
+	@echo "                 $(BLUE)============================================\n$(RESET)"
+	@start_time=$$(date +%s); \
+	make -C $(LIBFT_DIR); \
+	end_time=$$(date +%s); \
+	duration=$$((end_time - start_time)); \
+	printf "\n                             $(GREEN)== SUCCESS ✅ ==\n\n$(GREEN) The LIBFT library has been compiled successfully in $(RED)%02d:%02d $(CYAN)(min:sec)\n\n$(RESET)" $$((duration / 60)) $$((duration % 60))
 re: fclean all
 
 banner:
 	@clear
-	@echo "$(GREEN_DARKER)▐▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▌$(RESET)"
-	@echo "$(GREEN_DARKER)▐                                                      ▌$(RESET)"
-	@echo "$(GREEN_DARKER)▐    $(GREEN_LIGHT)• ▌ ▄ ·. ▪   ▐ ▄ ▪  .▄▄ ·  ▄ .▄▄▄▄ .▄▄▌  ▄▄▌     $(GREEN_DARKER) ▌$(RESET)"
-	@echo "$(GREEN_DARKER)▐    $(GREEN_LIGHT)·██ ▐███▪██ •█▌▐███ ▐█ ▀. ██▪▐█▀▄.▀·██•  ██•     $(GREEN_DARKER) ▌$(RESET)"
-	@echo "$(GREEN_DARKER)▐    $(GREEN_LIGHT)▐█ ▌▐▌▐█·▐█·▐█▐▐▌▐█·▄▀▀▀█▄██▀▐█▐▀▀▪▄██▪  ██▪     $(GREEN_DARKER) ▌$(RESET)"
-	@echo "$(GREEN_DARKER)▐    $(GREEN_LIGHT)██ ██▌▐█▌▐█▌██▐█▌▐█▌▐█▄▪▐███▌▐▀▐█▄▄▌▐█▌▐▌▐█▌▐▌   $(GREEN_DARKER) ▌$(RESET)"
-	@echo "$(GREEN_DARKER)▐    $(GREEN_LIGHT)▀▀  █▪▀▀▀▀▀▀▀▀ █▪▀▀▀ ▀▀▀▀ ▀▀▀ · ▀▀▀ .▀▀▀ .▀▀▀    $(GREEN_DARKER) ▌$(RESET)"
-	@echo "$(GREEN_DARKER)▐                                                      ▌$(RESET)"
-	@echo "$(GREEN_DARKER)▐▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▌$(RESET)"
+	@echo "	   $(GREEN_DARKER)▐▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▌$(RESET)"
+	@echo "           $(GREEN_DARKER)▐                                                      ▌$(RESET)"
+	@echo "           $(GREEN_DARKER)▐    $(GREEN_LIGHT)• ▌ ▄ ·. ▪   ▐ ▄ ▪  .▄▄ ·  ▄ .▄▄▄▄ .▄▄▌  ▄▄▌     $(GREEN_DARKER) ▌$(RESET)"
+	@echo "           $(GREEN_DARKER)▐    $(GREEN_LIGHT)·██ ▐███▪██ •█▌▐███ ▐█ ▀. ██▪▐█▀▄.▀·██•  ██•     $(GREEN_DARKER) ▌$(RESET)"
+	@echo "           $(GREEN_DARKER)▐    $(GREEN_LIGHT)▐█ ▌▐▌▐█·▐█·▐█▐▐▌▐█·▄▀▀▀█▄██▀▐█▐▀▀▪▄██▪  ██▪     $(GREEN_DARKER) ▌$(RESET)"
+	@echo "           $(GREEN_DARKER)▐    $(GREEN_LIGHT)██ ██▌▐█▌▐█▌██▐█▌▐█▌▐█▄▪▐███▌▐▀▐█▄▄▌▐█▌▐▌▐█▌▐▌   $(GREEN_DARKER) ▌$(RESET)"
+	@echo "           $(GREEN_DARKER)▐    $(GREEN_LIGHT)▀▀  █▪▀▀▀▀▀▀▀▀ █▪▀▀▀ ▀▀▀▀ ▀▀▀ · ▀▀▀ .▀▀▀ .▀▀▀    $(GREEN_DARKER) ▌$(RESET)"
+	@echo "           $(GREEN_DARKER)▐                                                      ▌$(RESET)"
+	@echo "           $(GREEN_DARKER)▐▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▌$(RESET)\n"
 
 .PHONY: all clean fclean re lib banner
 

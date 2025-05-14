@@ -5,7 +5,7 @@ long long    ft_atoll(const char *str)
 {
     int            i;
     int            sign;
-    long long    result;
+    long long int   result;
 
     i = 0;
     sign = 1;
@@ -26,19 +26,27 @@ long long    ft_atoll(const char *str)
     return (result * (long long)sign);
 }
 
-static bool isnumber(char *str)
+static bool isnumber(char *str) /// Condition impossible car long long est deja en INT64 MAX ou INT64 MIN
 {
 	int i = 0;
+	long long  int value;
+	
+	value = ft_atoll(str);
+	if(!str || !*str)
+		return(false);
+	if (str[0] == '+' || str[0] == '-')
+		i++;
 	while(str && str[i])
 	{
-		if (str[0] == '+' || str[0] == '-')
-			i++;
 		if (!ft_isdigit(str[i]) && i > 0)
 			return(false);
 		i++;
 	}
-	if (ft_atoll(str) > (INT64_MAX) || ft_atoll(str) < (INT64_MIN))
+	if (value > (INT64_MAX) || (value) < (INT64_MIN))
+	{
+		printf("OKKKKKKKKK");
 		return (false);
+	}
 	return (true);
 }
 
@@ -49,7 +57,7 @@ int ft_exit(char **str) //prototypage qui sera changer par la suite
 	nb = 0;
 	if (str[1])
 	{
-		if (isnumber(str[1]))
+		if (isnumber(str[1]) == true)
 		{
 			nb = ft_atoll(str[1]);
 			if (str[2])
