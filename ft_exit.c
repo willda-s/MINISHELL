@@ -104,12 +104,12 @@ int ft_exit(char **args)
 
 
 
-/* 1er cas : "exit jhdsjhfdsjhf dsjhfdsjfjdsfhds"
-bash: exit: jhdsjhfdsjhf: numeric argument required
+/* 1er cas : "exit jhdsjhfdsjhf dsjhfdsjfjdsfhds"      : OK DONE 
+bash: exit: jhdsjhfdsjhf: numeric argument required 
 echo $? =2
 */
 
-/* 2eme cas : "exit 15 fdfds"
+/* 2eme cas : "exit 15 fdfds"     :   OK DONE MAINTENANT IL EXIT
 exit
 bash: exit: too many arguments 
 N'EXIT PAS
@@ -120,7 +120,7 @@ exit
 echo $? = [nbr]
 */
 
-//9223372036854775807 = int64_MAX
+//9223372036854775807 = int64_MAX                                  : OK DONE C'EST REGLER
 /*4eme cas : exit [nbr > 64-bit signed integer ou nbr < 64-bit signed integer]
 exit
 bash: exit: 4444444444444444444444444444: numeric argument required
