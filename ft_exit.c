@@ -26,80 +26,113 @@ long long ft_atoll(const char *str)
     }
     return (result * sign);
 }
-bool check_isdigit(const char *nb) /// verifie que c'est bien un digit 
+bool skip_white_spaces(const char *str, int *i)
 {
-
-	int j;
-	j = 0;
-	while(nb[j]) 
-	{
-		if (!ft_isdigit(nb[j]))
-			return false;
-		j++;
-	}
-	return true;
+    while (str[*i] == ' ' || (str[*i] >= 9 && str[*i] <= 13)) // skip les white spaces
+        (*i)++;
+    return (true);
 }
-bool isnumber(const char *str) //////// A NORMER
+
+int get_sign(const char *str, int *i) //SKIP LES SIGNES ET VERIFIE LE SIGN
+{
+    int sign;
+
+    sign = 1;
+    if (str[*i] == '+' || str[*i] == '-') // skip si il y a un + ou un -
+    {
+        if (str[*i] == '-')
+            sign = -1;
+        (*i)++;
+    }
+    return (sign);
+}
+
+bool only_digits(const char *str, int start)
 {
     int i;
+
+    i = start;
+    if (!ft_isdigit(str[i])) // SECU: doit commencer par un chiffre
+        return (false);
+    while (str[i]) // il ne doit y avoir que des digits
+    {
+        if (!ft_isdigit(str[i]))
+            return (false);
+        i++;
+    }
+    return (true);
+}
+
+const char *skip_zero(const char *nb)
+{
+    while (*nb == '0' && nb[1] != '\0') // skip les zéros, mais garde un seul zéro si que ça
+        nb++;
+    return (nb);
+}
+
+bool check_len_and_limits(const char *nb, int sign)
+{
+    int nb_len;
+
+    nb_len = 0;
+    while (ft_isdigit(nb[nb_len])) // calcule la longueur
+        nb_len++;
+    if (nb_len > 19) // trop long pour un long long
+        return (false);
+    if (nb_len == 19) // si pile la taille d’un long long il verifie que ca n'overflow pas dans un long long int min ou max
+    {
+        if (sign == 1 && ft_strncmp(nb, INT64_MAX_STR, 19) > 0)
+            return (false);
+        if (sign == -1 && ft_strncmp(nb, INT64_MIN_STR, 19) > 0)
+            return (false);
+    }
+    return (true);
+}
+
+bool isnumber(const char *str)// CHECK SI LE NOMBRE EST VALIDE
+{
+    int i;
+    int nb_start;
     int sign;
-    const char *nb;
 
     i = 0;
-    sign = 1;
-
-    if (!str || !*str) //// securiter de str NULL
+    if (!str || !*str) // secu de str == NULL
         return false;
-    while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)) /// skip  des white spaces
-        i++;
-    if (str[i] == '-' || str[i] == '+') /// comme dans atoll si + ou - ... 
-    {
-        if (str[i] == '-')
-            sign = -1;
-        i++;
-    }
-    nb = &str[i];
-    while (*nb == '0') ///// gere les 0 au debut du nombre et les skip
-        nb++;
-    int nb_count;
-	nb_count = 0;
-    while (ft_isdigit(nb[nb_count]))//// calcule la len de nb
-        nb_count++;
-    if (nb_count == 0) /// si la len de nb vaut 0, alors return false
+    skip_white_spaces(str, &i);
+    sign = get_sign(str, &i);
+    nb_start = i; // point de départ du nombre
+    if (!only_digits(str, nb_start)) // check si tout est digit
         return (false);
-    if (nb_count > 19) /// si elle est supprerieur a 19 alors elle overflow
+    const char *nb;
+    nb = &str[nb_start];
+    nb = skip_zero(nb); // skip les 0 devant
+    if (!check_len_and_limits(nb, sign)) // check taille et valeur max/min
         return (false);
-    if (nb_count == 19) /// si elle est egale a 19 alors, on verifie que le nombre noverflow pas en int max et int min 
-    {
-        if (sign == 1 && ft_strncmp(nb, INT64_MAX_STR, 19) > 0) /// si le int et positif alors, on vefie que elle noverflow pas en la comparant au int64 max
-            return (false);
-        if (sign == -1 && ft_strncmp(nb, INT64_MIN_STR, 19) > 0)/// si le int et negatif alors, on vefie que elle noverflow pas en la comparant au int64 min
-            return (false);
-    }
-	return (check_isdigit(nb));
+    return (true);
 }
 
 int ft_exit(char **args)
 {
-    long long nb = 0;
+    long long nb;
 
     if (args[1])
     {
-        if (isnumber(args[1]))
+        if (!isnumber(args[1]))
         {
-            nb = ft_atoll(args[1]);
-            if (args[2])
-            {
-                printf("bash: exit: too many arguments\n");
-                return (-12);
-            }
-            return (nb); // comportement bash : exit code = n % 256
+            printf("bash: exit: %s: numeric argument required\n", args[1]);
+            return (2); //retour en priorite si l'argument n'est pas numeric
         }
-        printf("bash: exit: %s: numeric argument required\n", args[1]);
-        return (2);
+        if (args[2])
+        {
+            printf("bash: exit: too many arguments\n");
+            return (-12); // trop  d'arguments
+        }
+        nb = ft_atoll(args[1]);
+        return (nb); // sort avec la valeur parser 
     }
-    return (errno); // ou 0 selon ton design
+    return (errno);
 }
+
 
 
 
