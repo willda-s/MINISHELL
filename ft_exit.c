@@ -38,7 +38,7 @@ int get_sign(const char *str, int *i) //SKIP LES SIGNES ET VERIFIE LE SIGN
     int sign;
 
     sign = 1;
-    if (str[*i] == '+' || str[*i] == '-') // skip si il y a un + ou un -
+    if (str[*i] == '+' || str[*i] == '-') // skip si il y a un + ou un - est avance sur la string en decalent le pointeur de i pour l'avoir a la bonne position
     {
         if (str[*i] == '-')
             sign = -1;
@@ -47,7 +47,7 @@ int get_sign(const char *str, int *i) //SKIP LES SIGNES ET VERIFIE LE SIGN
     return (sign);
 }
 
-bool only_digits(const char *str, int start)
+bool check_if_only_digits(const char *str, int start)
 {
     int i;
 
@@ -63,7 +63,7 @@ bool only_digits(const char *str, int start)
     return (true);
 }
 
-const char *skip_zero(const char *nb)
+const char *skip_zero_at_begining(const char *nb)
 {
     while (*nb == '0' && nb[1] != '\0') // skip les zéros, mais garde un seul zéro si suivis d'un '\0'
         nb++;
@@ -102,10 +102,10 @@ bool isnumber(const char *str)// CHECK SI LE NOMBRE EST VALIDE
     skip_white_spaces(str, &i);
     sign = get_sign(str, &i);
     nb_start = i; // point de départ du nombre
-    if (!only_digits(str, nb_start)) // check si tout est digit
+    if (!check_if_only_digits(str, nb_start)) // check si tout est digit
         return (false);
     nb = &str[nb_start]; 
-    nb = skip_zero(nb); // skip les 0 devant
+    nb = skip_zero_at_begining(nb); // skip les 0 devant
     if (!check_len_and_limits(nb, sign)) // check taille et valeur max/min
         return (false);
     return (true);
@@ -134,6 +134,7 @@ int ft_exit(char **args)
 }
 
 
+////IL Y A 8 FONCTIONS, IL FAUT ECLATER LES UTILS DE EXIT EN ft_exit_utils.c
 
 
 
