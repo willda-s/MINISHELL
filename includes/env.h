@@ -9,12 +9,13 @@ typedef struct s_env
 
 }					t_env;
 
-////////////INIT///////////
+////////////LST_ENV///////////
 
 int					add_back_env(t_env **envd);
 t_env				*ft_lstlast_env(t_env *envd);
 int					lstsize_env(t_env *envd);
 int				free_lst_env(t_env **envd);
+void				print_lst_env(t_env *envd);
 
 //////////////////////////////
 

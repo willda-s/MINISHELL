@@ -1,7 +1,6 @@
 
 #include "../includes/env.h"
 
-
 int	lstsize_env(t_env *envd)
 {
 	int		i;
@@ -37,7 +36,7 @@ int	free_lst_env(t_env **envd)
 		free(*envd);
 		*envd = tmp;
 	}
-	exit(1);
+	exit(0);
 }
 
 t_env	*ft_lstlast_env(t_env *envd)
@@ -66,4 +65,13 @@ int	add_back_env(t_env **envd)
 		tmp->next = node;
 	}
 	return (0);
+}
+
+void print_lst_env(t_env *envd)
+{
+	while(envd)
+	{
+		printf("%s%s\n", envd->key, envd->value);
+		envd = envd->next;
+	}
 }

@@ -7,9 +7,16 @@ ENV_DIR = env/
 
 ENV_FILES = env.c\
 			lst_utils_env.c
-				
 
-UTILS = main.c
+PARSING_DIR = parsing/
+
+PARSING_FILES = init_data_and_pars.c\
+				lst_utils_pars.c\
+				split_quotes.c\
+				utils_tab_free.c\
+				type.c
+
+UTILS = main.c\
 
 MAKEFLAGS += --no-print-directory
 
@@ -17,6 +24,7 @@ CC	= cc
 CFLAGS	= -Wall -Wextra -Werror -MMD -g3
 
 FILE =	$(addprefix $(ENV_DIR), $(ENV_FILES))\
+		$(addprefix $(PARSING_DIR), $(PARSING_FILES))\
 		$(UTILS)
 		
 OBJ_DIR = obj/
@@ -35,7 +43,6 @@ $(NAME): $(OBJ) $(LIBFT)
 
 $(OBJ_DIR)%.o: %.c Makefile
 			@mkdir -p $(dir $@)
-			@echo "$(YELLOW) Compiling ... $(BLUE)$(notdir $<) $(RESET)"
 			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 -include $(DEPD)
