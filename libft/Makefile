@@ -35,7 +35,7 @@ $(NAME): $(OBJS)
 
 $(OBJ_DIR)%.o : %.c $(HEADER) Makefile
 	@mkdir -p $(OBJ_DIR)
-	@echo "$(YELLOW) Compiling ... $(BLUE)$(notdir $<) $(RESET)"
+	@echo "$(GREEN)⚙️$(YELLOW) Compiling ... $(CYAN)$(notdir $<) $(RESET)"
 	@$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
@@ -49,7 +49,7 @@ re:	fclean $(NAME)
 
 .PHONY: all clean fclean re
 
-
+CYAN       = \033[36m
 BLUE = \033[34m
 GREEN = \033[32m
 RED = \033[31m
