@@ -65,7 +65,7 @@ bool only_digits(const char *str, int start)
 
 const char *skip_zero(const char *nb)
 {
-    while (*nb == '0' && nb[1] != '\0') // skip les zéros, mais garde un seul zéro si que ça
+    while (*nb == '0' && nb[1] != '\0') // skip les zéros, mais garde un seul zéro si suivis d'un '\0'
         nb++;
     return (nb);
 }
@@ -93,6 +93,7 @@ bool isnumber(const char *str)// CHECK SI LE NOMBRE EST VALIDE
 {
     int i;
     int nb_start;
+    const char *nb;
     int sign;
 
     i = 0;
@@ -103,8 +104,7 @@ bool isnumber(const char *str)// CHECK SI LE NOMBRE EST VALIDE
     nb_start = i; // point de départ du nombre
     if (!only_digits(str, nb_start)) // check si tout est digit
         return (false);
-    const char *nb;
-    nb = &str[nb_start];
+    nb = &str[nb_start]; 
     nb = skip_zero(nb); // skip les 0 devant
     if (!check_len_and_limits(nb, sign)) // check taille et valeur max/min
         return (false);
