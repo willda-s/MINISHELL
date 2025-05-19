@@ -7,12 +7,13 @@ INCLUDE = -Iincludes
 BUILTINS_FILES =	ft_pwd.c\
 					ft_env.c\
 					ft_exit.c\
+					ft_exit_is_number_utils.c\
 					ft_echo.c\
 					ft_cd.c\
 					ft_export.c\
 					ft_unset.c\
 					exec_builtins.c\
-					main_builtins.c
+					main_builtins.c \
 
 UTILS =
 
@@ -97,7 +98,7 @@ lib:
 banner:
 	@clear
 	@echo "	   $(GREEN_DARKER)▐▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▌$(RESET)"
-	@echo "           $(GREEN_DARKER)▐                                                      ▌$(RESET)"w
+	@echo "           $(GREEN_DARKER)▐                                                      ▌$(RESET)"
 	@echo "           $(GREEN_DARKER)▐    $(GREEN_LIGHT)• ▌ ▄ ·. ▪   ▐ ▄ ▪  .▄▄ ·  ▄ .▄▄▄▄ .▄▄▌  ▄▄▌     $(GREEN_DARKER) ▌$(RESET)"
 	@echo "           $(GREEN_DARKER)▐    $(GREEN_LIGHT)·██ ▐███▪██ •█▌▐███ ▐█ ▀. ██▪▐█▀▄.▀·██•  ██•     $(GREEN_DARKER) ▌$(RESET)"
 	@echo "           $(GREEN_DARKER)▐    $(GREEN_LIGHT)▐█ ▌▐▌▐█·▐█·▐█▐▐▌▐█·▄▀▀▀█▄██▀▐█▐▀▀▪▄██▪  ██▪     $(GREEN_DARKER) ▌$(RESET)"
