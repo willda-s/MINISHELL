@@ -17,9 +17,17 @@ void		ft_pwd(void);
 void		ft_env(char **env);
 
 ///////////////////////// EXIT /////////////////////////
+
+/*EXIT*/
 int			ft_exit(char **str);
 
-////////EXIT_UTILS////////
+/*ATOLL*/
+long long ft_atoll(const char *str);
+
+/*IS_NUMBER*/
+bool isnumber(const char *str);
+
+////////EXIT_IS_NUMBER_UTILS////////
 
 /*SKIP WHITE SPACES*/
 

@@ -1,14 +1,23 @@
 
 #include "builtins.h"
 
-int ft_cd(char **str) // Prototypage qui sera changer par la suite. SECURE A FAIRE
+int ft_cd(char **str) // Prototypage qui sera changer par la suite. SECURE A FAIRE //
 {
     char *path;
     int ret;
 	size_t limit;
+    int i;
 
+    i = 0;
     limit = 255;
-    if (str[1] == NULL || ft_strncmp(str[1], "~", 1) == 0)
+    while(str[1] && str[1][i] == ' ')
+        i++;
+    if(str[2] != NULL)
+    {
+        printf("cd: too many arguments\n");
+        return (1);
+    }
+    if (str[1] == NULL || ft_strncmp(str[1], "~", 1) == 0  || (ft_strncmp(str[1], "~/", 2 ) == 0)) // gere le ~ comme argument et ~/ pour aller  vers home
     {
         path = getenv("HOME");
         if (path == NULL)
@@ -29,3 +38,10 @@ int ft_cd(char **str) // Prototypage qui sera changer par la suite. SECURE A FAI
     }
     return (0);
 }
+
+//  1 - si on ecrit cd et plains d'espaces, la fonction est sence executer cd et renvoyer sur home.
+//  2 - le deuxieme argument est vide mais plains d'espaces, alors, prendre en compte que cd. 
+//  3 - Si ecrit cd                                                  ~ retour sur home.
+//  4 - Si ecrit cd                                                    ~/ retour sur home. 
+//  5 - Gerer le cd .. ? 
+
