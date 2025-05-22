@@ -1,25 +1,21 @@
 
 #include "env.h"
 
+#define METACHARS "|<> \t"
+
 typedef enum s_type
 {
 	NUL,
 	WORD,
-	COMMANDS,
-	ARGUMENT,
-	REDIRECTION,
-	REDIRFILES,
-	PIPE,
-	SMPL_QUOTE,
-	DBL_QUOTE,
-	VAR_ENV,
-	CARAC_SPE
+	NAME,
+	METACHAR,
+	OPERATOR,
 }					t_type;
 
 typedef struct s_pars
 {
 	t_type			type;
-	char *word;
+	char 			*word;
 	struct s_pars	*next;
 }					t_pars;
 
