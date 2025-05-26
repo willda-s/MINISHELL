@@ -4,10 +4,11 @@
 #include <sys/wait.h>
 #include <string.h>
 #include <errno.h>
+#include "exec.h"
 
 //char **env_lst_to_array(t_env *env)
 // get_
-void	exec(node)
+void	exec(key)
 {
 	if (node->next->type == PIPE)
 		handle_pipe;
@@ -16,5 +17,7 @@ void	exec(node)
 }
 int main_exec(int argc, char **argv, char **envp) 
 {
+	envp = 
+	init_duplicate_env(t_env **envd, char **envp);
 	execve()
 }

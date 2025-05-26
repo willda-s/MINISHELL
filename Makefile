@@ -23,8 +23,7 @@ BUILTINS_FILES =	ft_pwd.c\
 
 # Nouvelle liste des fichiers exec (à compléter avec tes fichiers .c exec)
 EXEC_FILES =  exec.c\
-			#   exec_utils.c\
-			#   exec_fork.c
+			  lst.c\
 
 # Regroupement des fichiers
 FILE = $(BUILTINS_FILES) $(EXEC_FILES)
