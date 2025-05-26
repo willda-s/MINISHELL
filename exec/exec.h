@@ -15,17 +15,18 @@ typedef enum s_type
 	NAME,
 	METACHAR,
 	OPERATOR,
-
+	COMMAND,
 }		t_type;
 
 typedef struct s_data
 {
 	t_env *env;
-	t_pars *pars;
+	char *cmd;
+	// t_pars *pars;
 
 }		t_data;
 
-typedef struct s_pars
+typedef struct s_lst
 {
 	t_type 	type;
 	char *word;
@@ -52,6 +53,7 @@ void				print_lst_env(t_env *envd);
 //////////////////////////////
 
 void				init_duplicate_env(t_env **envd, char **env);
+int main_exec(int ac, char **av, char **env);
 
 
 
