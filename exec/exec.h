@@ -33,3 +33,11 @@ typedef struct s_pars
 }	t_pars;
 
 int main_exec(int argc, char **argv, char **envp);
+
+
+
+
+
+
+
+
