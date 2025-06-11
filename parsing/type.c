@@ -52,7 +52,6 @@ void init_token(t_pars **pars)
 		tmp = tmp->next;
 	}
 }
-//X_OK POUR LES COMMANDES ?? <-- a l'exec
 
 //Comment interpreter les parentheses ?
 

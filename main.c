@@ -26,6 +26,7 @@ int main(int ac, char **av, char **env)
 		if (init_data(&data, &envd, dst) == 1)
 			free_all(&data, dst);
 		init_token(&data.pars);
+		handle_quotes(&data);
 		print_lst_pars(data.pars);
 		free_all(&data, dst);
 	}

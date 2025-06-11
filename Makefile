@@ -14,6 +14,8 @@ PARSING_FILES = init_data_and_pars.c\
 				lst_utils_pars.c\
 				split_quotes.c\
 				utils_tab_free.c\
+				expand.c\
+				expand_utils.c\
 				type.c
 
 UTILS = main.c\
