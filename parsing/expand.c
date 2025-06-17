@@ -35,8 +35,8 @@ static int	handle_quotes_loop(t_data *data, char *word, size_t len, char *res)//
             && is_var_start(word[i + 1]))
             j = handle_expand(res, j, word, (int *)&i, data->env);
         else
-            res[j++] = word[i++];
-    }
+			res[j++] = word[i++];
+	}
     if (quote)
         exit(2);
     res[j] = '\0';
@@ -60,7 +60,7 @@ void	handle_quotes(t_data *data) //fonction principale
     tmp = data->pars;
     while (tmp)
     {
-        if (tmp->type == WORD && tmp->word)
+        if (tmp->type)
         {
             len = ft_strlen(tmp->word);
             new_word = remove_quotes_and_expand(data, tmp->word, len);

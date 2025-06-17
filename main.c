@@ -25,10 +25,10 @@ int main(int ac, char **av, char **env)
 			free_lst_env(&envd);
 		if (init_data(&data, &envd, dst) == 1)
 			free_all(&data, dst);
-		init_token(&data.pars);
+		token_main(&data.pars);
 		handle_quotes(&data);
 		print_lst_pars(data.pars);
-		free_all(&data, dst);
+		// free_all(&data, dst);
 	}
 }
 
@@ -36,3 +36,10 @@ int main(int ac, char **av, char **env)
 //MODIFIER FREE_ENV POUR EVITER D'EXIT DEDANS
 //Initialiser t_pars dans la fonction init_data ?? 
 //gerer les quotes ouvert fermes + expand ce qui ya dedans
+
+//Le premier mot entre chaque pipe est forcement une commande
+
+
+
+
+//                       HEREDOC A FAIRE /////

@@ -1,15 +1,27 @@
 
 #include "env.h"
 
-#define METACHARS "|<> \t"
+#define NOTINTERPRET "\\;||&&*()"
 
 typedef enum s_type
 {
-	NUL,
-	WORD,
-	NAME,
-	METACHAR,
-	OPERATOR,
+	NUL, //a garder
+	WORD = 58, 
+	NAME = 1 << 0,
+	PIPE = 1 << 1, //a garder
+	HEREDOC = 1 << 2, //a garder
+	REDIR_APPEND = 1 << 3, //a garder
+	REDIR_TRUNC = 1 << 4, //a garder
+	REDIR_IN = 1 << 5, //a garder
+	SIMP_QUOTES = 1 << 6,
+	DBL_QUOTES = 1 << 7,
+	VAR_ENV = 1 << 8,
+	COMMANDS = 1 << 9, //a garder
+	ARGS = 1 << 10, //a garder
+	BUILTINS = 1 << 11, //a garder
+	SYNTERR = 1 << 12,
+	TARGETS = 1 << 13, //a garder
+	REDIR = REDIR_IN | REDIR_APPEND | REDIR_TRUNC | HEREDOC
 }					t_type;
 
 typedef struct s_pars
@@ -54,7 +66,7 @@ void				free_tab(char **dst);
 
 ////////////////////TOKEN/////////////////
 
-void				init_token(t_pars **pars);
+void				token_main(t_pars **pars);
 
 ////////////////HANDLE QUOTES AND EXPAND////////////////////
 
