@@ -1,38 +1,39 @@
+#include "exec.h"
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+#include <string.h>
 #include <sys/wait.h>
-#include <string.h>
-#include <errno.h>
-#include "exec.h"
-
-
-#include <stdlib.h>
-#include <string.h>
+#include <unistd.h>
 
 int	env_size(t_env *env)
 {
-	int size = 0;
+	int	size;
+
+	size = 0;
 	while (env)
 	{
 		size++;
 		env = env->next;
 	}
-	return size;
+	return (size);
 }
 
 char	**env_to_envp(t_env *env)
 {
-	int		size = env_size(env);
-	char	**envp = malloc(sizeof(char *) * (size + 1));
+	int		size;
+	char	**envp;
 	char	*entry;
-	int		i = 0;
+	int		i;
 
+	size = env_size(env);
+	envp = malloc(sizeof(char *) * (size + 1));
+	i = 0;
 	while (env)
 	{
-		entry = malloc(strlen(env->key) + strlen(env->value) + 2); // + '=' + '\0'
+		entry = malloc(strlen(env->key) + strlen(env->value) + 2); // + '='+ '\0'
 		if (!entry)
-			return NULL;
+			return (NULL);
 		strcpy(entry, env->key);
 		strcat(entry, "=");
 		strcat(entry, env->value);
@@ -46,9 +47,10 @@ void	exec_cmd(char **argv, t_env *env)
 {
 	pid_t	pid;
 	int		status;
-	char	**envp = env_to_envp(env);
-	printf("%s", envp);
+	char	**envp;
 
+	envp = env_to_envp(env);
+	printf("%s", envp);
 	pid = fork();
 	if (pid == 0)
 	{
@@ -65,24 +67,27 @@ void	exec_cmd(char **argv, t_env *env)
 	else
 		waitpid(pid, &status, 0);
 }
-t_pars *create_node(t_type type, const char *word)
+t_pars	*create_node(t_type type, const char *word)
 {
-	t_pars *node = malloc(sizeof(t_pars));
+	t_pars	*node;
+
+	node = malloc(sizeof(t_pars));
 	if (!node)
-		return NULL;
+		return (NULL);
 	node->type = type;
 	node->word = strdup(word);
 	node->next = NULL;
-	return node;
+	return (node);
 }
 
-void add_pars_back(t_pars **lst, t_pars *new_node)
+void	add_pars_back(t_pars **lst, t_pars *new_node)
 {
-	t_pars *tmp;
+	t_pars	*tmp;
+
 	if (!*lst)
 	{
 		*lst = new_node;
-		return;
+		return ;
 	}
 	tmp = *lst;
 	while (tmp->next)
@@ -90,7 +95,7 @@ void add_pars_back(t_pars **lst, t_pars *new_node)
 	tmp->next = new_node;
 }
 
-void print_pars_list(t_pars *lst)
+void	print_pars_list(t_pars *lst)
 {
 	while (lst)
 	{
@@ -99,9 +104,10 @@ void print_pars_list(t_pars *lst)
 	}
 }
 
-void free_pars_list(t_pars **lst)
+void	free_pars_list(t_pars **lst)
 {
-	t_pars *tmp;
+	t_pars	*tmp;
+
 	while (*lst)
 	{
 		tmp = (*lst)->next;
@@ -110,7 +116,6 @@ void free_pars_list(t_pars **lst)
 		*lst = tmp;
 	}
 }
-
 
 // tester une commande
 void	parsing(t_data *data, t_pars *lst)
@@ -124,44 +129,50 @@ void	parsing(t_data *data, t_pars *lst)
 // afficher liste;
 // free list;
 
-int main(int ac, char **av, char **envp)
+int	main(int ac, char **av, char **envp)
 {
+	t_env	*env;
+	t_pars	*cmds;
+	int		count;
+	t_pars	*tmp;
+	char	**argv;
+	t_pars	*tmp;
+	int		i;
+
 	(void)ac;
 	(void)av;
-
-	t_env *env = NULL;
-	t_pars *cmds = NULL;
-
+	env = NULL;
+	cmds = NULL;
 	init_duplicate_env(&env, envp);
-
 	// simulate parsing of: /bin/ls -l
 	add_pars_back(&cmds, create_node(COMMAND, "/bin/ls"));
-	add_pars_back(&cmds, create_node(ARGUMENT, "-l"));
-
+	add_pars_back(&cmds, create_node(WORD, "-l"));
 	printf("=== Liste des commandes ===\n");
 	print_pars_list(cmds);
-
 	// convert t_pars to char **argv
-	int count = 0;
-	for (t_pars *tmp = cmds; tmp; tmp = tmp->next)
+	count = 0;
+	tmp = cmds;
+	while (tmp = tmp->next)
 		count++;
-
-	char **argv = malloc(sizeof(char *) * (count + 1));
-	t_pars *tmp = cmds;
-	for (int i = 0; i < count; i++, tmp = tmp->next)
+	argv = malloc(sizeof(char *) * (count + 1));
+	tmp = cmds;
+	i = 0;
+	while (i < count)
+	{
+		tmp = tmp->next;
 		argv[i] = tmp->word;
+		i++;
+	}
 	argv[count] = NULL;
-
 	printf("=== Execution de exec_cmd ===\n");
-	exec_cmd(argv, env);  // ton execve fonctionne ici
-
+	exec_cmd(argv, env); // ton execve fonctionne ici
 	free(argv);
 	free_pars_list(&cmds);
 	free_lst_env(&env);
-	return 0;
+	return (0);
 }
 
-//char **env_lst_to_array(t_env *env)
+// char **env_lst_to_array(t_env *env)
 // get_
 // void	exec(key)
 // {

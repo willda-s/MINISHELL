@@ -44,4 +44,4 @@ int ft_cd(char **str) // Prototypage qui sera changer par la suite. SECURE A FAI
 //  3 - Si ecrit cd                                                  ~ retour sur home.
 //  4 - Si ecrit cd                                                    ~/ retour sur home. 
 //  5 - Gerer le cd .. ? 
-
+//  6 - gerer le cd ~\      | ouvre un heredoc et verifie si le directory ~EOF existe | Exemple : cd ~\   > yo  ==> bash: cd: ~yo: No such file or directory

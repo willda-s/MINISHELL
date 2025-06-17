@@ -1,4 +1,4 @@
-// minishell_exec.c
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,7 +14,7 @@ typedef struct s_env
 	char *key;
 	char *value;
 	struct s_env *next;
-} t_env;
+} 	t_env;
 
 typedef enum s_type
 {
@@ -24,25 +24,26 @@ typedef enum s_type
 	METACHAR,
 	OPERATOR,
 	COMMAND,
-} t_type;
+} 	t_type;
 
 typedef struct s_lst
 {
 	t_type type;
 	char *word;
 	struct s_lst *next;
-} t_pars;
+} 	t_pars;
 
-typedef struct s_cmd {
+typedef struct s_cmd 
+{
 	char **argv;
 	char *infile;
 	char *outfile;
 	int append;
 	int heredoc;
 	struct s_cmd *next;
-} t_cmd;
+} 	t_cmd;
 
-// ==== Helpers ====
+/// UTILS POUR L'EXEC///
 
 int ft_strcmp(const char *s1, const char *s2)
 {
@@ -60,7 +61,7 @@ char *ft_strdup(const char *s)
 	char *dup = malloc(len + 1);
 	if (!dup) return NULL;
 	strcpy(dup, s);
-	return dup;
+	return (dup);
 }
 
 void add_to_argv(t_cmd *cmd, char *word)
@@ -99,10 +100,12 @@ t_cmd *build_cmd_list(t_pars *tokens)
 		if (!current)
 		{
 			current = malloc(sizeof(t_cmd));
-			if (!current) exit(1);
+			if (!current) 
+				exit(1);
 			memset(current, 0, sizeof(t_cmd));
 			current->argv = calloc(MAX_ARGS, sizeof(char *));
-			if (!current->argv) exit(1);
+			if (!current->argv) 
+				exit(1);
 		}
 
 		if (tokens->type == WORD || tokens->type == COMMAND)
