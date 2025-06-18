@@ -11,6 +11,7 @@ ENV_FILES = env.c\
 PARSING_DIR = parsing/
 
 PARSING_FILES = init_data_and_pars.c\
+				lst_utils_fp.c\
 				lst_utils_pars.c\
 				split_quotes.c\
 				utils_tab_free.c\

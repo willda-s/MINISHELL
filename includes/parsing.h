@@ -1,7 +1,7 @@
 
 #include "env.h"
 
-#define NOTINTERPRET "\\;||&&*()"
+#define NOTINTERPRET "|| ; && * () : \\"
 
 typedef enum s_type
 {
@@ -18,11 +18,24 @@ typedef enum s_type
 	VAR_ENV = 1 << 8,
 	COMMANDS = 1 << 9, //a garder
 	ARGS = 1 << 10, //a garder
-	BUILTINS = 1 << 11, //a garder
+	BUILTINS = 1 << 11,
 	SYNTERR = 1 << 12,
 	TARGETS = 1 << 13, //a garder
-	REDIR = REDIR_IN | REDIR_APPEND | REDIR_TRUNC | HEREDOC
+	REDIRIN = REDIR_IN | HEREDOC,
+	REDIROUT = REDIR_APPEND | REDIR_TRUNC,
+	REDIR = REDIRIN | REDIROUT
 }					t_type;
+
+typedef struct s_finalpars
+{
+	char	*unit;
+	char	**arg;
+	char 	*fdin_filename;
+	int		fdin;
+	int		fdout;
+	char	*fdout_filename;
+	struct s_finalpars *next;
+}			t_finalpars;
 
 typedef struct s_pars
 {
@@ -35,6 +48,7 @@ typedef struct s_data
 {
 	t_env			*env;
 	t_pars			*pars;
+	t_finalpars		*fp;
 }					t_data;
 
 /////////////SPLIT/////////////////////
@@ -58,6 +72,18 @@ void				print_lst_pars(t_pars *pars);
 int					init_lst_pars(t_pars **pars, char **dst);
 
 int					init_data(t_data *data, t_env **envd, char **dst);
+
+///////////INIT_FD/////////////////////
+
+void init_lst_fp(t_finalpars **fp, t_pars *pars);
+
+int	lstsize_fp(t_finalpars *fp);
+
+t_finalpars	*ft_lstlast_fp(t_finalpars *fp);
+
+int	add_back_fp(t_finalpars **fp);
+
+void print_lst_fp(t_finalpars *fp);
 
 ///////////////FREE/////////////////////
 

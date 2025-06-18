@@ -27,19 +27,19 @@ int main(int ac, char **av, char **env)
 			free_all(&data, dst);
 		token_main(&data.pars);
 		handle_quotes(&data);
+		init_lst_fp(&data.fp, data.pars);
+		print_lst_fp(data.fp);
 		print_lst_pars(data.pars);
 		// free_all(&data, dst);
 	}
 }
 
-//TOUTES LES REMONTES D'ERREUR A REVERIFIER
-//MODIFIER FREE_ENV POUR EVITER D'EXIT DEDANS
-//Initialiser t_pars dans la fonction init_data ?? 
+//TOUTES LES REMONTES D'ERREUR A VERIFIER
 //gerer les quotes ouvert fermes + expand ce qui ya dedans
 
 //Le premier mot entre chaque pipe est forcement une commande
 
 
+//                       HEREDOC A FAIRE AU PARSING? /////
 
-
-//                       HEREDOC A FAIRE /////
+//
