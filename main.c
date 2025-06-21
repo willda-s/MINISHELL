@@ -27,8 +27,8 @@ int main(int ac, char **av, char **env)
 			free_all(&data, dst);
 		token_main(&data.pars);
 		handle_quotes(&data);
-		init_lst_fp(&data.fp, data.pars);
-		print_lst_fp(data.fp);
+		init_lst_exec(&data.exec, data.pars);
+		print_lst_exec(data.exec);
 		print_lst_pars(data.pars);
 		// free_all(&data, dst);
 	}

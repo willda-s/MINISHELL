@@ -4,10 +4,10 @@
 int init_data(t_data *data, t_env **envd, char **dst)
 {
 	t_pars *pars;
-	t_finalpars *fp;
+	t_exec *exec;
 
 	pars = NULL;
-	fp = NULL;
+	exec = NULL;
 	data->env = *envd;
 	if (init_lst_pars(&pars, dst) == 1)
 	{
@@ -16,7 +16,7 @@ int init_data(t_data *data, t_env **envd, char **dst)
 		free_lst_env(envd);
 	}
 	data->pars = pars;
-	data->fp = fp;
+	data->exec = exec;
 	return (0);
 }
 

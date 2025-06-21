@@ -63,11 +63,8 @@ void init_token(t_pars **pars)
 	tmp = *pars;
 	while(tmp)
 	{
-		if (tmp->type == NUL)
-		{
-			if (ft_strncmp(tmp->word, "|", ft_strlen(tmp->word)) == 0)
-				tmp->type = PIPE;
-		}
+		if (ft_strncmp(tmp->word, "|", ft_strlen(tmp->word)) == 0)
+			tmp->type = PIPE;
 		tmp = tmp->next;
 	}
 }
@@ -90,3 +87,9 @@ void token_main(t_pars **pars)
 	puisqu'ils ne sont pas detectes. C'EST OK ? OU PAS ?
 */
 
+
+// ls > | -l
+// WORD == ls |||||||||| TYPE == COMMANDS
+// WORD == > |||||||||| TYPE == REDIR_TRUNC
+// WORD == | |||||||||| TYPE == TARGET ??????????
+// WORD == -l |||||||||| TYPE == ARGS

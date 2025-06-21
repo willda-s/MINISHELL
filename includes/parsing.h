@@ -1,41 +1,47 @@
 
 #include "env.h"
 
-#define NOTINTERPRET "|| ; && * () : \\"
-
 typedef enum s_type
 {
-	NUL, //a garder
-	WORD = 58, 
+	NUL, // a garder
+	WORD = 58,
 	NAME = 1 << 0,
-	PIPE = 1 << 1, //a garder
-	HEREDOC = 1 << 2, //a garder
-	REDIR_APPEND = 1 << 3, //a garder
-	REDIR_TRUNC = 1 << 4, //a garder
-	REDIR_IN = 1 << 5, //a garder
+	PIPE = 1 << 1,         // a garder
+	HEREDOC = 1 << 2,      // a garder
+	REDIR_APPEND = 1 << 3, // a garder
+	REDIR_TRUNC = 1 << 4,  // a garder
+	REDIR_IN = 1 << 5,     // a garder
 	SIMP_QUOTES = 1 << 6,
 	DBL_QUOTES = 1 << 7,
 	VAR_ENV = 1 << 8,
-	COMMANDS = 1 << 9, //a garder
-	ARGS = 1 << 10, //a garder
+	COMMANDS = 1 << 9, // a garder
+	ARGS = 1 << 10,    // a garder
 	BUILTINS = 1 << 11,
 	SYNTERR = 1 << 12,
-	TARGETS = 1 << 13, //a garder
+	TARGETS = 1 << 13, // a garder
 	REDIRIN = REDIR_IN | HEREDOC,
 	REDIROUT = REDIR_APPEND | REDIR_TRUNC,
 	REDIR = REDIRIN | REDIROUT
 }					t_type;
 
-typedef struct s_finalpars
+
+typedef	struct s_redir
 {
-	char	*unit;
-	char	**arg;
-	char 	*fdin_filename;
-	int		fdin;
-	int		fdout;
-	char	*fdout_filename;
-	struct s_finalpars *next;
-}			t_finalpars;
+	t_type			token;
+	char			*filename; 
+	char			*delimiter;
+	struct s_redir	*next;
+}	t_redir;
+
+typedef struct s_exec
+{
+	char			**cmd;
+	char			*path; //j'y touche pas
+	int				fd_in; //j'y touche pas 
+	int				fd_out; //j'y touche pas 
+	struct s_redir	*redir;
+	struct s_exec	*next;
+}					t_exec;
 
 typedef struct s_pars
 {
@@ -46,9 +52,10 @@ typedef struct s_pars
 
 typedef struct s_data
 {
-	t_env			*env;
+	t_env			*env; // export unset 
 	t_pars			*pars;
-	t_finalpars		*fp;
+	t_exec			*exec;
+	char			**envp; //pour execve
 }					t_data;
 
 /////////////SPLIT/////////////////////
@@ -73,17 +80,26 @@ int					init_lst_pars(t_pars **pars, char **dst);
 
 int					init_data(t_data *data, t_env **envd, char **dst);
 
-///////////INIT_FD/////////////////////
+///////////INIT_EXEC/////////////////////
 
-void init_lst_fp(t_finalpars **fp, t_pars *pars);
+void				init_lst_exec(t_exec **exec, t_pars *pars);
 
-int	lstsize_fp(t_finalpars *fp);
+int					lstsize_exec(t_exec *exec);
 
-t_finalpars	*ft_lstlast_fp(t_finalpars *fp);
+t_exec				*ft_lstlast_exec(t_exec *exec);
 
-int	add_back_fp(t_finalpars **fp);
+int					add_back_exec(t_exec **exec);
 
-void print_lst_fp(t_finalpars *fp);
+void				print_lst_exec(t_exec *exec);
+
+
+//////////INIT_REDIR///////////////
+
+int	lstsize_redir(t_redir *redir);
+
+t_redir	*ft_lstlast_redir(t_redir *redir);
+
+int	add_back_redir(t_redir **redir);
 
 ///////////////FREE/////////////////////
 
