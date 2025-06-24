@@ -52,10 +52,10 @@ typedef struct s_pars
 
 typedef struct s_data
 {
-	t_env			*env; // export unset 
+	t_env			*env;
 	t_pars			*pars;
 	t_exec			*exec;
-	char			**envp; //pour execve
+	char			**envp;
 }					t_data;
 
 /////////////SPLIT/////////////////////

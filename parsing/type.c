@@ -81,15 +81,4 @@ void token_main(t_pars **pars)
 
 //prio des token ???? : 1. redirection 2. Pipe 3. commands et args ?
 
-//TO DO : faire en sorte d'exit si caractere non gere
-/*
-	le prblm ici est que ses caracteres speciaux vont etre consideres comme des args ou commands 
-	puisqu'ils ne sont pas detectes. C'EST OK ? OU PAS ?
-*/
 
-
-// ls > | -l
-// WORD == ls |||||||||| TYPE == COMMANDS
-// WORD == > |||||||||| TYPE == REDIR_TRUNC
-// WORD == | |||||||||| TYPE == TARGET ??????????
-// WORD == -l |||||||||| TYPE == ARGS

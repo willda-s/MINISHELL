@@ -39,7 +39,7 @@ int main(int ac, char **av, char **env)
 
 //Le premier mot entre chaque pipe est forcement une commande
 
-
-//                       HEREDOC A FAIRE AU PARSING? /////
-
-//
+/*TO DO : 
+	- Finir token avec builtins
+	- initialiser char **envp (t_data)
+*/

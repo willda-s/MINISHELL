@@ -78,7 +78,8 @@ int	add_back_exec(t_exec **exec)
 void print_lst_exec(t_exec *exec)
 {
 	int j = 0;
-	int i; 
+	int i;
+	t_redir *tmp;
 	while(exec)
 	{
 		i = 0;
@@ -88,12 +89,13 @@ void print_lst_exec(t_exec *exec)
 			printf("cmd[%d] = %s\n", i, exec->cmd[i]);
 			i++;
 		}
-		while(exec->redir)
+		tmp = exec->redir;
+		while(tmp)
 		{
-			printf("token = %u\n", exec->redir->token);
-			printf("file_in = %s\n", exec->redir->filename);
-			printf("file_out = %s\n", exec->redir->delimiter);
-			exec->redir = exec->redir->next;
+			printf("token = %u\n", tmp->token);
+			printf("file = %s\n", tmp->filename);
+			printf("delimiter = %s\n", tmp->delimiter);
+			tmp = tmp->next;
 		}
 		exec = exec->next;
 	}
@@ -151,30 +153,29 @@ char **init_cmds(t_pars *pars, t_exec **node)
 	return ((*node)->cmd);
 }
 
-void init_filename_and_token(t_redir *node, t_pars *tmp)
+void init_filename_and_token(t_redir **node, t_pars *tmp)
 {
 	if (tmp && tmp->type & REDIR)
 	{
-		printf("salut\n");
 		if (tmp->type == REDIR_IN && tmp->next)
 		{
-			node->filename = ft_strdup(tmp->next->word);
-			node->token = REDIR_IN;
+			(*node)->filename = ft_strdup(tmp->next->word);
+			(*node)->token = REDIR_IN;
 		}
-		else if (tmp->type == HEREDOC && tmp->next && node->token != HEREDOC)
+		else if (tmp->type == HEREDOC && tmp->next && (*node)->token != HEREDOC)
 		{
-			node->delimiter = ft_strdup(tmp->next->word);
-			node->token = HEREDOC;
+			(*node)->delimiter = ft_strdup(tmp->next->word);
+			(*node)->token = HEREDOC;
 		}
 		else if (tmp->type == REDIR_APPEND && tmp->next)
 		{
-			node->filename = ft_strdup(tmp->next->word);
-			node->token = REDIR_APPEND;
+			(*node)->filename = ft_strdup(tmp->next->word);
+			(*node)->token = REDIR_APPEND;
 		}
 		else if (tmp->type == REDIR_TRUNC && tmp->next)
 		{
-			node->filename = ft_strdup(tmp->next->word);
-			node->token = REDIR_TRUNC;
+			(*node)->filename = ft_strdup(tmp->next->word);
+			(*node)->token = REDIR_TRUNC;
 		}
 	}
 }
@@ -183,7 +184,6 @@ void init_lst_redir(t_exec **exec, t_pars *pars)
 	t_redir *node;
 
 	node = NULL;
-	(*exec)->redir = NULL;
 	if (pars && pars->type & REDIR)
 	{
 		if (add_back_redir(&(*exec)->redir) == 1)
@@ -191,7 +191,7 @@ void init_lst_redir(t_exec **exec, t_pars *pars)
 		node = ft_lstlast_redir((*exec)->redir);
 		if (!node)
 			return ;
-		init_filename_and_token(node, pars);
+		init_filename_and_token(&node, pars);
 	}
 }
 void init_lst_exec(t_exec **exec, t_pars *pars) 
@@ -212,7 +212,7 @@ void init_lst_exec(t_exec **exec, t_pars *pars)
 		{
 			if (!node->cmd)
 				node->cmd = init_cmds(pars, &node);
-			init_lst_redir(exec, pars);
+			init_lst_redir(&node, pars);
 			pars = pars->next;
 		}
 		if (pars && pars->type == PIPE)
