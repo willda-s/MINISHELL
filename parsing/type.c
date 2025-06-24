@@ -1,7 +1,21 @@
 
 #include "../includes/parsing.h"
 
-bool is_redirection(t_pars **tmp)
+void	is_builtins(t_pars **tmp)
+{
+	if (ft_strncmp((*tmp)->word, "cd", ft_strlen((*tmp)->word)) == 0
+		|| ft_strncmp((*tmp)->word, "echo", ft_strlen((*tmp)->word)) == 0
+		|| ft_strncmp((*tmp)->word, "pwd", ft_strlen((*tmp)->word)) == 0
+		|| ft_strncmp((*tmp)->word, "export", ft_strlen((*tmp)->word)) == 0
+		|| ft_strncmp((*tmp)->word, "unset", ft_strlen((*tmp)->word)) == 0
+		|| ft_strncmp((*tmp)->word, "env", ft_strlen((*tmp)->word)) == 0
+		|| ft_strncmp((*tmp)->word, "exit", ft_strlen((*tmp)->word)) == 0)
+	{
+		(*tmp)->type = BUILTINS;
+	}
+}
+
+bool	is_redirection(t_pars **tmp)
 {
 	if (ft_strncmp((*tmp)->word, ">", ft_strlen((*tmp)->word)) == 0)
 		(*tmp)->type = REDIR_TRUNC;
@@ -17,16 +31,17 @@ bool is_redirection(t_pars **tmp)
 		return (false);
 }
 
-void init_token_command(t_pars **pars)
+void	init_token_command(t_pars **pars)
 {
-	t_pars *tmp;
+	t_pars	*tmp;
 
 	tmp = *pars;
-	while(tmp)
+	while (tmp)
 	{
 		if (tmp->type == NUL)
 		{
 			tmp->type = COMMANDS;
+			is_builtins(&tmp);
 			while (tmp->next && tmp->next->type != PIPE)
 			{
 				tmp = tmp->next;
@@ -38,12 +53,12 @@ void init_token_command(t_pars **pars)
 	}
 }
 
-void init_token_redir(t_pars **pars)
+void	init_token_redir(t_pars **pars)
 {
-	t_pars *tmp;
+	t_pars	*tmp;
 
 	tmp = *pars;
-	while(tmp)
+	while (tmp)
 	{
 		if (tmp->type == NUL)
 		{
@@ -56,12 +71,12 @@ void init_token_redir(t_pars **pars)
 		tmp = tmp->next;
 	}
 }
-void init_token(t_pars **pars)
+void	init_token(t_pars **pars)
 {
-	t_pars *tmp;
+	t_pars	*tmp;
 
 	tmp = *pars;
-	while(tmp)
+	while (tmp)
 	{
 		if (ft_strncmp(tmp->word, "|", ft_strlen(tmp->word)) == 0)
 			tmp->type = PIPE;
@@ -69,16 +84,13 @@ void init_token(t_pars **pars)
 	}
 }
 
-void token_main(t_pars **pars)
+void	token_main(t_pars **pars)
 {
 	init_token_redir(pars);
 	init_token(pars);
 	init_token_command(pars);
-
 }
 
-//Autre chose a interpreter ?
+// Autre chose a interpreter ?
 
-//prio des token ???? : 1. redirection 2. Pipe 3. commands et args ?
-
-
+// prio des token ???? : 1. redirection 2. Pipe 3. commands et args ?

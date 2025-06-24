@@ -26,8 +26,8 @@ int main(int ac, char **av, char **env)
 		if (init_data(&data, &envd, dst) == 1)
 			free_all(&data, dst);
 		token_main(&data.pars);
-		handle_quotes(&data);
 		init_lst_exec(&data.exec, data.pars);
+		handle_quotes(&data);
 		print_lst_exec(data.exec);
 		print_lst_pars(data.pars);
 		// free_all(&data, dst);

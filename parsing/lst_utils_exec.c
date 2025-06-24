@@ -125,7 +125,7 @@ char **init_cmds(t_pars *pars, t_exec **node)
 	int i = 1;
 
 	ccmd = count_cmd(pars);
-	if (pars->type == COMMANDS)
+	if (pars->type == COMMANDS || pars->type == BUILTINS)
 	{
 		ccmd = count_cmd(pars);
 		(*node)->cmd = malloc(sizeof(char *) * (ccmd + 1));
