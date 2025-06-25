@@ -3,25 +3,18 @@
 
 typedef enum s_type
 {
-	NUL, // a garder
+	NUL,
 	WORD = 58,
-	NAME = 1 << 0,
-	PIPE = 1 << 1,         // a garder
-	HEREDOC = 1 << 2,      // a garder
-	REDIR_APPEND = 1 << 3, // a garder
-	REDIR_TRUNC = 1 << 4,  // a garder
-	REDIR_IN = 1 << 5,     // a garder
-	SIMP_QUOTES = 1 << 6,
-	DBL_QUOTES = 1 << 7,
-	VAR_ENV = 1 << 8,
-	COMMANDS = 1 << 9, // a garder
-	ARGS = 1 << 10,    // a garder
+	PIPE = 1 << 1,        
+	HEREDOC = 1 << 2,     
+	REDIR_APPEND = 1 << 3,
+	REDIR_TRUNC = 1 << 4, 
+	REDIR_IN = 1 << 5,    
+	COMMANDS = 1 << 9,
+	ARGS = 1 << 10,
 	BUILTINS = 1 << 11,
-	SYNTERR = 1 << 12,
-	TARGETS = 1 << 13, // a garder
-	REDIRIN = REDIR_IN | HEREDOC,
-	REDIROUT = REDIR_APPEND | REDIR_TRUNC,
-	REDIR = REDIRIN | REDIROUT
+	TARGETS = 1 << 13,
+	REDIR = REDIR_IN | HEREDOC | REDIR_APPEND | REDIR_TRUNC,
 }					t_type;
 
 

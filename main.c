@@ -31,6 +31,7 @@ int main(int ac, char **av, char **env)
 		expand_exec_list(data.exec, data.env);
 		print_lst_exec(data.exec);
 		print_lst_pars(data.pars);
+		// print_lst_env(data.env);
 		// free_all(&data, dst);
 	}
 }

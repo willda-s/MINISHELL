@@ -63,7 +63,7 @@ static char	*ft_expand_word(t_env *env, char *word)
             res[j++] = word[i++];
     }
     res[j] = '\0';
-    return (ft_strdup(res));
+    return (ft_strdup(res)); //a secure
 }
 
 void	expand_exec_list(t_exec *exec, t_env *env)
@@ -88,3 +88,8 @@ void	expand_exec_list(t_exec *exec, t_env *env)
     }
 }
 
+
+/*
+	- ne pas gerer $$ ($$HOME, $$, $$PWD ...)
+	- 
+*/

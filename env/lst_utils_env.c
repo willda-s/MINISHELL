@@ -71,7 +71,7 @@ void print_lst_env(t_env *envd)
 {
 	while(envd)
 	{
-		printf("%s%s\n", envd->key, envd->value);
+		printf("%s=%s\n", envd->key, envd->value);
 		envd = envd->next;
 	}
 }

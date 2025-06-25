@@ -14,7 +14,7 @@ void init_duplicate_env(t_env **envd, char **env)
 		node = ft_lstlast_env(*envd);
 		if (!node)
 			return ;
-		node->key = ft_strndup(env[i], ft_strchr(env[i], '=') - env[i] + 1);
+		node->key = ft_strndup(env[i], ft_strchr(env[i], '=') - env[i]);
 		if (!node->key)
 			free_lst_env(envd);
 		node->value = ft_strdup(ft_strchr(env[i], '=') + 1);
