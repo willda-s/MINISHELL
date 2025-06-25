@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: williamguerreiro <williamguerreiro@stud    +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 14:37:18 by willda-s          #+#    #+#             */
-/*   Updated: 2025/05/11 18:27:05 by williamguer      ###   ########.fr       */
+/*   Updated: 2025/05/16 19:18:40 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*ft_strndup(const char *str, size_t len)
 	return (dst);
 }
 
-static void	*ft_free(char **s, size_t len)
+void	*ft_free(char **s, size_t len)
 {
 	size_t	i;
 

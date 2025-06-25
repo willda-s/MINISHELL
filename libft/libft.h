@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: williamguerreiro <williamguerreiro@stud    +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:43:49 by willda-s          #+#    #+#             */
-/*   Updated: 2025/05/11 18:27:32 by williamguer      ###   ########.fr       */
+/*   Updated: 2025/05/16 19:47:08 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
 
 size_t				ft_strlen(const char *str);
+
+void				*ft_free(char **s, size_t len);
 
 size_t				count_word(char const *s, char c);
 

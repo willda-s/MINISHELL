@@ -1,15 +1,15 @@
 
 #include "builtins.h"
 
-void free_tab(char **str)
-{
-	int i;
+// void free_tab(char **str)
+// {
+// 	int i;
 
-	i = 0;
-	while(str && str[i])
-		free(str[i++]);
-	free(str);
-}
+// 	i = 0;
+// 	while(str && str[i])
+// 		free(str[i++]);
+// 	free(str);
+// }
 int main(int ac, char **av, char **env)
 {
 	(void)ac;

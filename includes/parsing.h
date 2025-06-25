@@ -1,0 +1,91 @@
+
+#include "env.h"
+
+#define NOTINTERPRET "\\;||&&*()"
+
+typedef enum s_type
+{
+	NUL, //a garder
+	WORD = 58, 
+	NAME = 1 << 0,
+	PIPE = 1 << 1, //a garder
+	HEREDOC = 1 << 2, //a garder == <<
+	REDIR_APPEND = 1 << 3, //a garder = >>
+	REDIR_TRUNC = 1 << 4, //a garder = > 
+	REDIR_IN = 1 << 5, //a garder = <
+	SIMP_QUOTES = 1 << 6,
+	DBL_QUOTES = 1 << 7,
+	VAR_ENV = 1 << 8,
+	COMMANDS = 1 << 9, //a garder
+	ARGS = 1 << 10, //a garder
+	BUILTINS = 1 << 11, //a garder
+	SYNTERR = 1 << 12,
+	TARGETS = 1 << 13, //a garder
+	REDIR = REDIR_IN | REDIR_APPEND | REDIR_TRUNC | HEREDOC
+}					t_type;
+
+typedef struct s_pars
+{
+	t_type			type; //son type 
+	char			*word; //mot 
+	struct s_pars	*next; // noeud d'apres
+	
+}					t_pars;
+
+typedef struct s_exec
+{
+    t_type			token; // le type d'argument
+    char            **cmd; //ls -l
+    char            *path;
+    char            *file_in;
+    char            *file_out;
+    int                fd_in;
+    int                fd_out;
+    struct s_exec    *next;
+}                    t_exec;
+
+typedef struct s_data
+{
+    t_env            *env; // export et unset 
+    t_pars            *pars;
+    t_exec            *exec; // lst a toi
+    char            **envp; //pour execve
+}               t_data;
+
+/////////////SPLIT/////////////////////
+
+char				**ft_split_with_quotes(char const *s, char c);
+
+////////////LST_PARS///////////////////
+
+int					add_back_pars(t_pars **pars);
+
+t_pars				*ft_lstlast_pars(t_pars *pars);
+
+int					lstsize_pars(t_pars *pars);
+
+void				free_lst_pars(t_pars **pars);
+
+void				print_lst_pars(t_pars *pars);
+
+///////////INIT_DATA////////////////////
+
+int					init_lst_pars(t_pars **pars, char **dst);
+
+int					init_data(t_data *data, t_env **envd, char **dst);
+
+///////////////FREE/////////////////////
+
+void				free_all(t_data *data, char **dst);
+void				free_tab(char **dst);
+
+////////////////////TOKEN/////////////////
+
+void				token_main(t_pars **pars);
+
+////////////////HANDLE QUOTES AND EXPAND////////////////////
+
+void				handle_quotes(t_data *data);
+char				*get_env_value(t_env *envd, char *key);
+int					is_var_start(char c);
+int					is_var_char(char c);
