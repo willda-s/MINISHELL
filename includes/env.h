@@ -19,4 +19,4 @@ void				print_lst_env(t_env *envd);
 
 //////////////////////////////
 
-void				init_duplicate_env(t_env **envd, char **env);
+void				init_lst_env(t_env **envd, char **env);

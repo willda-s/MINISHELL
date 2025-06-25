@@ -8,8 +8,9 @@ static int	ft_expand_var(char *res, int j, char *word, int *i, t_env *env)
 
     (*i)++;
     k = 0;
-    while (word[*i] && is_var_char(word[*i]) && word[*i] != '"' && word[*i] != '\'' && k < 255)
+    while (word[*i] && is_var_char(word[*i]) && word[*i] != '"' && word[*i] != '\'' && k < 255){
         var[k++] = word[(*i)++];
+	}
     var[k] = '\0';
     val = get_env_value(env, var);
     k = 0;
@@ -39,7 +40,11 @@ static int	ft_handle_dquotes(char *res, int j, char *word, int *i, t_env *env)
             res[j++] = word[(*i)++];
     }
     if (word[*i] == '"')
+	{
+		if (j == 0)
+			res[j++] = '$';
         (*i)++;
+	}
     return (j);
 }
 
@@ -57,12 +62,14 @@ static char	*ft_expand_word(t_env *env, char *word)
             j = ft_handle_squotes(res, j, word, &i);
         else if (word[i] == '"')
             j = ft_handle_dquotes(res, j, word, &i, env);
-        else if (word[i] == '$')
+		else if (word[i] == '$')
             j = ft_expand_var(res, j, word, &i, env);
         else
             res[j++] = word[i++];
     }
     res[j] = '\0';
+	if (j == 0)
+		res[j] = '$';
     return (ft_strdup(res)); //a secure
 }
 
@@ -91,5 +98,6 @@ void	expand_exec_list(t_exec *exec, t_env *env)
 
 /*
 	- ne pas gerer $$ ($$HOME, $$, $$PWD ...)
-	- 
+	- tout me semble ok, a refacto pour la norme
+	- exit sur quote pas fermer
 */

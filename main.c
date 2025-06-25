@@ -14,7 +14,7 @@ int main(int ac, char **av, char **env)
 	t_data	data;
 
 	envd = NULL;
-	init_duplicate_env(&envd, env);
+	init_lst_env(&envd, env);
 	while (1)
 	{
 		input = readline("> ");
@@ -27,11 +27,10 @@ int main(int ac, char **av, char **env)
 			free_all(&data, dst);
 		token_main(&data.pars);
 		init_lst_exec(&data.exec, data.pars);
-		// handle_quotes(&data);
 		expand_exec_list(data.exec, data.env);
+		// init_envp(&data); //TO DO
 		print_lst_exec(data.exec);
 		print_lst_pars(data.pars);
-		// print_lst_env(data.env);
 		// free_all(&data, dst);
 	}
 }
@@ -42,6 +41,5 @@ int main(int ac, char **av, char **env)
 //Le premier mot entre chaque pipe est forcement une commande
 
 /*TO DO : 
-	- Finir token avec builtins
 	- initialiser char **envp (t_data)
 */

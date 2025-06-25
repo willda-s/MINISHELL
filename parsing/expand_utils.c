@@ -22,5 +22,5 @@ int	is_var_start(char c)
 
 int	is_var_char(char c)
 {
-	return (ft_isalnum(c) || c == '_');
+	return (ft_isalnum(c) || c == '_' || c == '=');
 }
