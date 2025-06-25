@@ -116,3 +116,5 @@ void				handle_quotes(t_data *data);
 char				*get_env_value(t_env *envd, char *key);
 int					is_var_start(char c);
 int					is_var_char(char c);
+
+void	expand_exec_list(t_exec *exec, t_env *env);

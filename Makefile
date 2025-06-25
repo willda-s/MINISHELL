@@ -16,7 +16,7 @@ PARSING_FILES = init_data_and_pars.c\
 				lst_utils_redir.c\
 				split_quotes.c\
 				utils_tab_free.c\
-				expand.c\
+				expandf.c\
 				expand_utils.c\
 				type.c
 

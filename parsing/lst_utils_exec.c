@@ -197,9 +197,7 @@ void init_lst_redir(t_exec **exec, t_pars *pars)
 void init_lst_exec(t_exec **exec, t_pars *pars) 
 {
 	t_exec *node;
-	int i;
 
-	i = 1;
 	node = NULL;
 	while(pars)
 	{

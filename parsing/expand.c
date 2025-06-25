@@ -1,8 +1,24 @@
 #include "../includes/parsing.h"
 
-static int	handle_expand(char *res, int j, const char *word, int *i, t_env *envd) //gere l'expansion de la variable d'environnement
+static int is_valid_var(char *word, int i) {
+	int k = 0;
+
+	if (!is_var_start(word[i]))
+		return 0;
+
+	while (word[i + k] && is_var_char(word[i + k])) {
+		if (word[i + k] == '"' || word[i + k] == '\'')
+			return 0; // quote au milieu => invalide
+		k++;
+	}
+	return 1;
+}
+
+
+static int	write_var_if_exists(char *res, int j, char *word, int *i, t_env *env)
 {
     char	var[256];
+    char	*val;
     int		k;
 
     (*i)++;
@@ -10,19 +26,23 @@ static int	handle_expand(char *res, int j, const char *word, int *i, t_env *envd
     while (word[*i] && is_var_char(word[*i]) && k < 255)
         var[k++] = word[(*i)++];
     var[k] = '\0';
-    return (j + ft_strlcpy(res + j, get_env_value(envd, var), 4096 - j));
+    val = get_env_value(env, var);
+    k = 0;
+    while (val && val[k])
+        res[j++] = val[k++];
+    return (j);
 }
 
-static int	handle_quotes_loop(t_data *data, char *word, size_t len, char *res)// boucle pour gerer les quotes et l'expansion des variables d'environnement
+static int	expand_and_remove_quotes(char *res, char *word, t_env *env)
 {
-    size_t	i;
-    size_t	j;
+    int	i;
+    int	j;
     char	quote;
 
     i = 0;
     j = 0;
     quote = 0;
-    while (i < len)
+    while (word[i])
     {
         if (!quote && (word[i] == '\'' || word[i] == '"'))
             quote = word[i++];
@@ -31,39 +51,42 @@ static int	handle_quotes_loop(t_data *data, char *word, size_t len, char *res)//
             quote = 0;
             i++;
         }
-        else if ((quote == '"' || quote == 0) && word[i] == '$'
-            && is_var_start(word[i + 1]))
-            j = handle_expand(res, j, word, (int *)&i, data->env);
+        else if (word[i] == '$' && quote != '\'')
+        {
+            if (word[i + 1] == '\0' || word[i + 1] == '"' || word[i + 1] == '\'')
+                res[j++] = word[i++];
+            else if (is_valid_var(word, i + 1)) // << nouvelle condition
+                j = write_var_if_exists(res, j, word, &i, env);
+            else
+                res[j++] = word[i++];
+        }
+
         else
-			res[j++] = word[i++];
-	}
-    if (quote)
-        exit(2);
+            res[j++] = word[i++];
+    }
     res[j] = '\0';
     return (j);
 }
 
-static char	*remove_quotes_and_expand(t_data *data, char *word, size_t len) // fonction principale pour enlever les quotes et faire l'expansion des variables d'environnement
+char	*ft_expand(t_data *data, char *word)
 {
     char	res[4096];
 
-    handle_quotes_loop(data, word, len, res);
+    expand_and_remove_quotes(res, word, data->env);
     return (ft_strdup(res));
 }
 
-void	handle_quotes(t_data *data) //fonction principale
+void	handle_quotes(t_data *data)
 {
-    t_pars *tmp;
-    size_t len;
-    char *new_word;
+    t_pars	*tmp;
+    char	*new_word;
 
     tmp = data->pars;
     while (tmp)
     {
-        if (tmp->type)
+        if (tmp->word)
         {
-            len = ft_strlen(tmp->word);
-            new_word = remove_quotes_and_expand(data, tmp->word, len);
+            new_word = ft_expand(data, tmp->word);
             if (new_word)
             {
                 free(tmp->word);

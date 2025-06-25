@@ -27,7 +27,8 @@ int main(int ac, char **av, char **env)
 			free_all(&data, dst);
 		token_main(&data.pars);
 		init_lst_exec(&data.exec, data.pars);
-		handle_quotes(&data);
+		// handle_quotes(&data);
+		expand_exec_list(data.exec, data.env);
 		print_lst_exec(data.exec);
 		print_lst_pars(data.pars);
 		// free_all(&data, dst);
