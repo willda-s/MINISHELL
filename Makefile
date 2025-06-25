@@ -24,9 +24,9 @@ PARSING_FILES = init_data_and_pars.c\
 ######################### EXEC #########################
 EXEC_DIR = exec/
 
-BUILTINS_DIR = ../builtins/
-
 EXEC_FILES = exec.c
+
+BUILTINS_DIR = builtins/
 
 BUILTINS_FILES =	ft_pwd.c\
 					ft_env.c\
