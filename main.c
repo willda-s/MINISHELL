@@ -1,5 +1,5 @@
 
-#include "includes/builtins.h"
+#include "includes/parsing.h"
 #include "libft/libft.h"
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -20,41 +20,28 @@ int main(int ac, char **av, char **env)
 		input = readline("> ");
 		if (*input)
 			add_history(input);
-		dst = ft_split_with_quotes(input, ' '); //split classique qui gere les quotes
+		dst = ft_split_with_quotes(input, ' ');
 		if (!dst)
 			free_lst_env(&envd);
 		if (init_data(&data, &envd, dst) == 1)
 			free_all(&data, dst);
-		token_main(&data.pars); //tokenization
-		handle_quotes(&data); //expand
-		print_lst_pars(data.pars); // print
-		exec_builtins(dst, data.envp, input);
+		token_main(&data.pars);
+		init_lst_exec(&data.exec, data.pars);
+		// handle_quotes(&data);
+		expand_exec_list(data.exec, data.env);
+		print_lst_exec(data.exec);
+		print_lst_pars(data.pars);
+		// print_lst_env(data.env);
 		// free_all(&data, dst);
 	}
 }
 
-//TOUTES LES REMONTES D'ERREUR A REVERIFIER
-//MODIFIER FREE_ENV POUR EVITER D'EXIT DEDANS
-//Initialiser t_pars dans la fonction init_data ?? 
+//TOUTES LES REMONTES D'ERREUR A VERIFIER
 //gerer les quotes ouvert fermes + expand ce qui ya dedans
 
 //Le premier mot entre chaque pipe est forcement une commande
 
-
-
-
-//                       HEREDOC A FAIRE /////
-
-
-/*int main (int ac, char **av, char **env)
-
-include builtins.h
-
-1. Remplir ton char **cmd
-1. faire marcher : ls avec la structure
-2. faire marcher : ls | wc -l // // //
-3. faire marcher : ls | wc -l | pwd // // //
-4. les redir en + 
-
-
+/*TO DO : 
+	- Finir token avec builtins
+	- initialiser char **envp (t_data)
 */

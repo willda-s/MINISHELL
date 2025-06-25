@@ -1,5 +1,5 @@
 
-#include "builtins.h"
+#include "../builtins.h"
 
 static int strsearch(const char *str, int c)
 {

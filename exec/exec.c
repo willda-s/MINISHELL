@@ -82,7 +82,7 @@ char *handle_heredoc(char *delimiter)
 		free(line);
 	}
 	close(fd);
-	return heredoc_path); // retourne le fichier temporaire créé
+	return (heredoc_path); // retourne le fichier temporaire créé
 }
 
 //////////////////////////////////////////////

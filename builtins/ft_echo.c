@@ -1,5 +1,5 @@
 
-#include "builtins.h"
+#include "../builtins.h"
 
 size_t count_tab(char **str)
 {

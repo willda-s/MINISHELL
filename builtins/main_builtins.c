@@ -1,5 +1,5 @@
 
-#include "builtins.h"
+#include "../builtins.h"
 
 // void free_tab(char **str)
 // {
@@ -10,27 +10,27 @@
 // 		free(str[i++]);
 // 	free(str);
 // }
-int main(int ac, char **av, char **env)
-{
-	(void)ac;
-	(void)av;
-	char *input;
-	char **str;
+// int main(int ac, char **av, char **env)
+// {
+// 	(void)ac;
+// 	(void)av;
+// 	char *input;
+// 	char **str;
 	
-	while(1)
-	{
-		input = readline("> ");
-		if (*input)
-		add_history(input);
-		str = ft_split(input, ' ');
-		if (!str)
-			return (free(input), 0);
-		exec_builtins(str, env, input);
-		free(input);
-		free_tab(str);
-	}
-	return (0);
-}
+// 	while(1)
+// 	{
+// 		input = readline("> ");
+// 		if (*input)
+// 		add_history(input);
+// 		str = ft_split(input, ' ');
+// 		if (!str)
+// 			return (free(input), 0);
+// 		exec_builtins(str, env, input);
+// 		free(input);
+// 		free_tab(str);
+// 	}
+// 	return (0);
+// }
 
 /* pour le moment pwd marche, a revoir lorsqu'on aura le cd. Il faudra peut etre une fonction qui lancera
 tous les builtins pour eviter de saccager le main. ERRNO -12 permet de ne pas exit dans la fonction ft_exit.

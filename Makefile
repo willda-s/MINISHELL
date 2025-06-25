@@ -5,26 +5,28 @@ INCLUDE = -Iincludes
 
 ENV_DIR = env/
 
-EXEC_DIR = exec/
-
-PARSING_DIR = parsings/
-
-BUILTINS_DIR = ../builtins/
-
 ENV_FILES = env.c\
 			lst_utils_env.c
 
-EXEC_FILES = exec.c
+############################ PARSING #####################
+PARSING_DIR = parsing/
 
 PARSING_FILES = init_data_and_pars.c\
+				lst_utils_exec.c\
 				lst_utils_pars.c\
+				lst_utils_redir.c\
 				split_quotes.c\
 				utils_tab_free.c\
-				expand.c\
+				expandf.c\
 				expand_utils.c\
 				type.c
 
-UTILS = main.c\
+######################### EXEC #########################
+EXEC_DIR = exec/
+
+BUILTINS_DIR = ../builtins/
+
+EXEC_FILES = exec.c
 
 BUILTINS_FILES =	ft_pwd.c\
 					ft_env.c\
@@ -36,6 +38,9 @@ BUILTINS_FILES =	ft_pwd.c\
 					ft_unset.c\
 					exec_builtins.c\
 					main_builtins.c
+
+
+UTILS = main.c\
 
 MAKEFLAGS += --no-print-directory
 
