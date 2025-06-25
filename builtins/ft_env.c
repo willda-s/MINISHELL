@@ -1,7 +1,7 @@
 
-#include "../builtins.h"
+#include "../includes/builtins.h"
 
-static int strsearch(const char *str, int c)
+static int	strsearch(const char *str, int c)
 {
 	int				i;
 	unsigned char	tmp;
@@ -19,7 +19,8 @@ static int strsearch(const char *str, int c)
 	return (0);
 }
 
-void ft_env(char **env) //Pour le moment prototyper en void(char **env) <------- Surement a changer !
+void	ft_env(char **env)
+		// Pour le moment prototyper en void(char **env) <------- Surement a changer !
 {
 	int i = 0;
 	while (env && env[i])
@@ -30,4 +31,4 @@ void ft_env(char **env) //Pour le moment prototyper en void(char **env) <-------
 	}
 }
 
-//IL FAUDRA DUPLIQUER L'ENV PARENT ET TRAVAILLER DESSUS !
+// IL FAUDRA DUPLIQUER L'ENV PARENT ET TRAVAILLER DESSUS !
