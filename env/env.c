@@ -1,4 +1,3 @@
-
 #include "../includes/parsing.h"
 
 void init_lst_env(t_env **envd, char **env)
@@ -24,18 +23,42 @@ void init_lst_env(t_env **envd, char **env)
 	}
 }
 
-void init_envp(t_data *data)
+static int count_env(t_data *data)
 {
+    int		i;
+    t_env	*tmp;
+
+    i = 0;
+    tmp = data->env;
+    while (tmp)
+    {
+        i++;
+        tmp = tmp->next;
+    }
+	return (i);
+}
+
+void	init_envp(t_data *data)
+{
+	t_env *tmp;
 	int i;
 
-	i = 0;
-	data->envp = malloc(100);
-	while(data->env)
-	{
-		data->envp[i] = ft_strjoin(data->env->key, "=");
-		// if (!data->envp[i])
-		data->envp[i] = ft_strjoin(data->envp[i], data->env->value);
-		// if (!data->envp[i])
-		i++;
-	}
+	i = count_env(data);
+    data->envp = malloc(sizeof(char *) * (i + 1));
+    if (!data->envp)
+        return ;
+    i = 0;
+    tmp = data->env;
+    while (tmp)
+    {
+        data->envp[i] = ft_strjoin(tmp->key, "=");
+        if (!data->envp[i])
+            return ;
+        data->envp[i] = ft_strjoin(data->envp[i], tmp->value);
+        if (!data->envp[i])
+            return ;
+        i++;
+        tmp = tmp->next;
+    }
+    data->envp[i] = NULL;
 }

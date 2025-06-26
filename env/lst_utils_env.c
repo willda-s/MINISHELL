@@ -75,3 +75,13 @@ void print_lst_env(t_env *envd)
 		envd = envd->next;
 	}
 }
+
+void print_envp(char **envp)
+{
+	int i = 0;
+	while(envp[i])
+	{
+		printf("%s\n", envp[i]);
+		i++;
+	}
+}

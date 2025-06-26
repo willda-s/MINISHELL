@@ -28,18 +28,17 @@ int main(int ac, char **av, char **env)
 		token_main(&data.pars);
 		init_lst_exec(&data.exec, data.pars);
 		expand_exec_list(data.exec, data.env);
-		// init_envp(&data); //TO DO
+		init_envp(&data);
+		// print_envp(data.envp);
 		print_lst_exec(data.exec);
 		print_lst_pars(data.pars);
 		// free_all(&data, dst);
 	}
 }
 
-//TOUTES LES REMONTES D'ERREUR A VERIFIER
-//gerer les quotes ouvert fermes + expand ce qui ya dedans
 
-//Le premier mot entre chaque pipe est forcement une commande
-
-/*TO DO : 
-	- initialiser char **envp (t_data)
+/*TO DO :
+ 			-TOUTES LES REMONTES D'ERREUR A VERIFIER
+			-REFACTO EXPAND
+			
 */

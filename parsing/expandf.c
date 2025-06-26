@@ -1,6 +1,6 @@
 #include "../includes/parsing.h"
 
-static int	ft_expand_var(char *res, int j, char *word, int *i, t_env *env)
+static int	ft_expand_var(char *res, int j, char *word, int *i, t_env *env) //refacto
 {
     char	var[256];
     char	*val;
@@ -8,9 +8,8 @@ static int	ft_expand_var(char *res, int j, char *word, int *i, t_env *env)
 
     (*i)++;
     k = 0;
-    while (word[*i] && is_var_char(word[*i]) && word[*i] != '"' && word[*i] != '\'' && k < 255){
+    while (word[*i] && is_var_char(word[*i]) && word[*i] != '"' && word[*i] != '\'' && k < 255)
         var[k++] = word[(*i)++];
-	}
     var[k] = '\0';
     val = get_env_value(env, var);
     k = 0;
@@ -26,10 +25,12 @@ static int	ft_handle_squotes(char *res, int j, char *word, int *i)
         res[j++] = word[(*i)++];
     if (word[*i] == '\'')
         (*i)++;
+    else
+        printf("error squotes\n"); // a exit
     return (j);
 }
 
-static int	ft_handle_dquotes(char *res, int j, char *word, int *i, t_env *env)
+static int	ft_handle_dquotes(char *res, int j, char *word, int *i, t_env *env) //refacto
 {
     (*i)++;
     while (word[*i] && word[*i] != '"')
@@ -45,6 +46,8 @@ static int	ft_handle_dquotes(char *res, int j, char *word, int *i, t_env *env)
 			res[j++] = '$';
         (*i)++;
 	}
+    else
+        printf("error hquotes\n"); //a exit
     return (j);
 }
 

@@ -115,3 +115,4 @@ void	expand_exec_list(t_exec *exec, t_env *env);
 //////////////////////////
 
 void init_envp(t_data *data);
+void print_envp(char **envp);
