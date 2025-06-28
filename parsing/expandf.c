@@ -8,6 +8,11 @@ static int	ft_expand_var(char *res, int j, char *word, int *i, t_env *env) //ref
 
     (*i)++;
     k = 0;
+    if (!word[*i] || (!is_var_char(word[*i]) && word[*i] != '"' && word[*i] != '\''))
+    {
+        res[j++] = '$';
+        return (j);
+    }
     while (word[*i] && is_var_char(word[*i]) && word[*i] != '"' && word[*i] != '\'' && k < 255)
         var[k++] = word[(*i)++];
     var[k] = '\0';
@@ -71,8 +76,6 @@ static char	*ft_expand_word(t_env *env, char *word)
             res[j++] = word[i++];
     }
     res[j] = '\0';
-	if (j == 0)
-		res[j] = '$';
     return (ft_strdup(res)); //a secure
 }
 
@@ -100,7 +103,10 @@ void	expand_exec_list(t_exec *exec, t_env *env)
 
 
 /*
-	- ne pas gerer $$ ($$HOME, $$, $$PWD ...)
+	- ne pas gerer $$ ($$HOME, $$, $$PWD ...) OK 
 	- tout me semble ok, a refacto pour la norme
 	- exit sur quote pas fermer
+	- ne pas expand les strings de la value de variable OK
+	- dans le cas de : $fdjfds ls -> expand resulte d'un NULL et ls est considere comme l'argument, mais ls doit etre executer
+	                    CMD    ARGS
 */

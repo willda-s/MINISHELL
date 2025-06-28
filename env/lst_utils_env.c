@@ -18,25 +18,24 @@ int	lstsize_env(t_env *envd)
 	return (i);
 }
 
-int	free_lst_env(t_env **envd)
+void	free_lst_env(t_env **envd)
 {
 	t_env	*tmp;
 	int		size;
 
 	size = lstsize_env(*envd);
 	if (!(*envd))
-		return (1);
+		return ;
 	while (size--)
 	{
 		tmp = (*envd)->next;
-		if ((*envd)->key) //Necessaire ??
+		if ((*envd)->key)
 			free((*envd)->key);
-		if ((*envd)->value) // //
+		if ((*envd)->value)
 			free((*envd)->value);
 		free(*envd);
 		*envd = tmp;
 	}
-	exit(0);
 }
 
 t_env	*ft_lstlast_env(t_env *envd)

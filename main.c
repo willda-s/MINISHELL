@@ -32,7 +32,7 @@ int main(int ac, char **av, char **env)
 		// print_envp(data.envp);
 		print_lst_exec(data.exec);
 		print_lst_pars(data.pars);
-		// free_all(&data, dst);
+		free_all(&data, dst);
 	}
 }
 
@@ -40,5 +40,7 @@ int main(int ac, char **av, char **env)
 /*TO DO :
  			-TOUTES LES REMONTES D'ERREUR A VERIFIER
 			-REFACTO EXPAND
+			- SUPPRIMER LES NODES VIDES APRES L'EXPAND POUR POUVOIR RETOKENIZER
+			- 
 			
 */

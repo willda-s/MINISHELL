@@ -17,24 +17,26 @@ int	lstsize_redir(t_redir *redir)
 	return (i);
 }
 
-// void	free_lst_redir(t_redir **redir)
-// {
-// 	t_redir	*tmp;
-// 	int		size;
+void	free_lst_redir(t_redir **redir)
+{
+	t_redir	*tmp;
+	int		size;
 
-// 	size = lstsize_redir(*redir);
-// 	if (!(*redir))
-// 		return ;
-// 	while (size--)
-// 	{
-// 		tmp = (*redir)->next;
-// 		if ((*redir)->word)
-// 			free((*redir)->word);
-// 		free(*redir);
-// 		*redir = tmp;
-// 	}
+	size = lstsize_redir(*redir);
+	if (!(*redir))
+		return ;
+	while (size--)
+	{
+		tmp = (*redir)->next;
+		if ((*redir)->filename)
+			free((*redir)->filename);
+		if ((*redir)->delimiter)
+			free((*redir)->delimiter);
+		free(*redir);
+		*redir = tmp;
+	}
 	
-// }
+}
 
 t_redir	*ft_lstlast_redir(t_redir *redir)
 {

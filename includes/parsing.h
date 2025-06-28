@@ -21,17 +21,17 @@ typedef enum s_type
 typedef	struct s_redir
 {
 	t_type			token;
-	char			*filename; 
+	char			*filename; //
 	char			*delimiter;
 	struct s_redir	*next;
 }	t_redir;
 
 typedef struct s_exec
 {
-	char			**cmd;
-	char			*path; //j'y touche pas
-	int				fd_in; //j'y touche pas 
-	int				fd_out; //j'y touche pas 
+	char			**cmd; //malloc
+	char			*path; //malloc
+	int				fd_in;
+	int				fd_out; 
 	struct s_redir	*redir;
 	struct s_exec	*next;
 }					t_exec;
@@ -39,7 +39,7 @@ typedef struct s_exec
 typedef struct s_pars
 {
 	t_type			type;
-	char			*word;
+	char			*word; //malloc
 	struct s_pars	*next;
 }					t_pars;
 
@@ -48,7 +48,8 @@ typedef struct s_data
 	t_env			*env;
 	t_pars			*pars;
 	t_exec			*exec;
-	char			**envp;
+	char			**envp; //malloc
+	int				errcode;
 }					t_data;
 
 /////////////SPLIT/////////////////////
@@ -96,8 +97,10 @@ int	add_back_redir(t_redir **redir);
 
 ///////////////FREE/////////////////////
 
-void				free_all(t_data *data, char **dst);
+int				free_all(t_data *data, char **dst);
 void				free_tab(char **dst);
+void	free_lst_exec(t_exec **exec);
+void	free_lst_redir(t_redir **redir);
 
 ////////////////////TOKEN/////////////////
 

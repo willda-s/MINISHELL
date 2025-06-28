@@ -18,24 +18,28 @@ int	lstsize_exec(t_exec *exec)
 	return (i);
 }
 
-// void	free_lst_exec(t_exec **exec)
-// {
-// 	t_exec	*tmp;
-// 	int		size;
+void	free_lst_exec(t_exec **exec)
+{
+	t_exec	*tmp;
+	int		size;
 
-// 	size = lstsize_exec(*exec);
-// 	if (!(*exec))
-// 		return ;
-// 	while (size--)
-// 	{
-// 		tmp = (*exec)->next;
-// 		if ((*exec)->word)
-// 			free((*exec)->word);
-// 		free(*exec);
-// 		*exec = tmp;
-// 	}
+	size = lstsize_exec(*exec);
+	if (!(*exec))
+		return ;
+	while (size--)
+	{
+		tmp = (*exec)->next;
+		if ((*exec)->cmd)
+			free_tab((*exec)->cmd);
+		if ((*exec)->path)
+			free((*exec)->path);
+		if ((*exec)->redir)
+			free_lst_redir(&(*exec)->redir);
+		free(*exec);
+		*exec = tmp;
+	}
 	
-// }
+}
 
 t_exec	*ft_lstlast_exec(t_exec *exec)
 {

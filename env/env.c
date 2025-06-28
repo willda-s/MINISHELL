@@ -41,6 +41,7 @@ static int count_env(t_data *data)
 void	init_envp(t_data *data)
 {
 	t_env *tmp;
+	char *temp;
 	int i;
 
 	i = count_env(data);
@@ -51,12 +52,13 @@ void	init_envp(t_data *data)
     tmp = data->env;
     while (tmp)
     {
-        data->envp[i] = ft_strjoin(tmp->key, "=");
+        temp = ft_strjoin(tmp->key, "=");
         if (!data->envp[i])
             return ;
-        data->envp[i] = ft_strjoin(data->envp[i], tmp->value);
+        data->envp[i] = ft_strjoin(temp, tmp->value);
         if (!data->envp[i])
             return ;
+		free(temp);
         i++;
         tmp = tmp->next;
     }
