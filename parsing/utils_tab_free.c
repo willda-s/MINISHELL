@@ -26,18 +26,18 @@ void free_tab(char **dst)
 	free(dst);
 }
 
-int free_all(t_data *data, char **dst)
+int free_all(t_data *data, int errcode, char *str)
 {
 	if (data->env)
-		free_lst_env(&data->env);
+		free_lst_env(&data->env, false, 0);
 	if (data->pars)
 		free_lst_pars(&data->pars);
 	if (data->exec)
 		free_lst_exec(&data->exec);
 	if (data->envp)
 		free_tab(data->envp);
-	if (dst)
-		free_tab(dst);
-	
-	exit(data->errcode);
+	if (data->dst)
+		free_tab(data->dst);
+	printf("%s", str);
+	exit(errcode);
 }

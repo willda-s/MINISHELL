@@ -1,106 +1,108 @@
 #include "../includes/parsing.h"
 
-static int	ft_expand_var(char *res, int j, char *word, int *i, t_env *env) //refacto
+static int	ft_expand_var(char *res, int j, char *word, t_data *data) //refacto
 {
     char	var[256];
     char	*val;
     int		k;
 
-    (*i)++;
+    data->i++;
     k = 0;
-    if (!word[*i] || (!is_var_char(word[*i]) && word[*i] != '"' && word[*i] != '\''))
+    if (!word[data->i] || (!is_var_char(word[data->i]) && word[data->i] != '"' && word[data->i] != '\''))
     {
         res[j++] = '$';
         return (j);
     }
-    while (word[*i] && is_var_char(word[*i]) && word[*i] != '"' && word[*i] != '\'' && k < 255)
-        var[k++] = word[(*i)++];
+    while (word[data->i] && is_var_char(word[data->i]) && word[data->i] != '"' && word[data->i] != '\'' && k < 255)
+        var[k++] = word[(data->i)++];
     var[k] = '\0';
-    val = get_env_value(env, var);
+    val = get_env_value(data->env, var);
     k = 0;
     while (val && val[k])
         res[j++] = val[k++];
     return (j);
 }
 
-static int	ft_handle_squotes(char *res, int j, char *word, int *i)
+static int	ft_handle_squotes(char *res, int j, char *word, t_data *data)
 {
-    (*i)++;
-    while (word[*i] && word[*i] != '\'')
-        res[j++] = word[(*i)++];
-    if (word[*i] == '\'')
-        (*i)++;
+    data->i++;
+    while (word[data->i] && word[data->i] != '\'')
+        res[j++] = word[data->i++];
+    if (word[data->i] == '\'')
+        data->i++;
     else
-        printf("error squotes\n"); // a exit
+        free_all(data, 0,  "Error\nQuotes aren't closed");
     return (j);
 }
 
-static int	ft_handle_dquotes(char *res, int j, char *word, int *i, t_env *env) //refacto
+static int	ft_handle_dquotes(char *res, int j, char *word, t_data *data)
 {
-    (*i)++;
-    while (word[*i] && word[*i] != '"')
+    data->i++;
+    while (word[data->i] && word[data->i] != '"')
     {
-        if (word[*i] == '$')
-            j = ft_expand_var(res, j, word, i, env);
+        if (word[data->i] == '$')
+            j = ft_expand_var(res, j, word, data);
         else
-            res[j++] = word[(*i)++];
+            res[j++] = word[data->i++];
     }
-    if (word[*i] == '"')
+    if (word[data->i] == '"')
 	{
 		if (j == 0)
 			res[j++] = '$';
-        (*i)++;
+        data->i++;
 	}
     else
-        printf("error hquotes\n"); //a exit
+        free_all(data, 0, "Error\nQuotes aren't closed");
     return (j);
 }
 
-static char	*ft_expand_word(t_env *env, char *word)
+static char	*ft_expand_word(t_data *data, char *word)
 {
     char	res[4096];
-    int		i;
     int		j;
 
-    i = 0;
     j = 0;
-    while (word[i])
+	data->i = 0;
+    while (word[data->i])
     {
-        if (word[i] == '\'')
-            j = ft_handle_squotes(res, j, word, &i);
-        else if (word[i] == '"')
-            j = ft_handle_dquotes(res, j, word, &i, env);
-		else if (word[i] == '$')
-            j = ft_expand_var(res, j, word, &i, env);
+        if (word[data->i] == '\'')
+            j = ft_handle_squotes(res, j, word, data);
+        else if (word[data->i] == '"')
+            j = ft_handle_dquotes(res, j, word, data);
+		else if (word[data->i] == '$')
+            j = ft_expand_var(res, j, word, data);
         else
-            res[j++] = word[i++];
+            res[j++] = word[data->i++];
     }
     res[j] = '\0';
-    return (ft_strdup(res)); //a secure
+    return (ft_strdup(res));
 }
 
-void	expand_exec_list(t_exec *exec, t_env *env)
+void expand_exec_list(t_data *data)
 {
-    int		i;
-    char	*new_word;
+    char    *new_word;
+    t_exec  *exec;
+	int i;
 
+    exec = data->exec;
     while (exec)
     {
         i = 0;
         while (exec->cmd && exec->cmd[i])
         {
-            new_word = ft_expand_word(env, exec->cmd[i]);
+            new_word = ft_expand_word(data, exec->cmd[i]);
             if (new_word)
             {
                 free(exec->cmd[i]);
                 exec->cmd[i] = new_word;
             }
+			else
+				free_all(data, 0, "Error\nMalloc fail in ft_expand_word");
             i++;
         }
         exec = exec->next;
     }
 }
-
 
 /*
 	- ne pas gerer $$ ($$HOME, $$, $$PWD ...) OK 

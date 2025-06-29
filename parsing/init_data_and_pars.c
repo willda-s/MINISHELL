@@ -1,23 +1,26 @@
 
 #include "../includes/parsing.h"
 
-int init_data(t_data *data, t_env **envd, char **dst)
+void init_data(t_data *data, t_env **envd, char **dst)
 {
 	t_pars *pars;
 	t_exec *exec;
 
 	pars = NULL;
 	exec = NULL;
+	data->dst = dst;
 	data->env = *envd;
-	if (init_lst_pars(&pars, dst) == 1)
+	data->envp = NULL;
+	data->errcode = 0;
+	data->i = 0;
+	if (init_lst_pars(&pars, data->dst) == 1)
 	{
 		free_lst_pars(&pars);
 		free_tab(dst);
-		free_lst_env(envd);
+		free_lst_env(envd, true, 0);
 	}
 	data->pars = pars;
 	data->exec = exec;
-	return (0);
 }
 
 int init_lst_pars(t_pars **pars, char **dst)

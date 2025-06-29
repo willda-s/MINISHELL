@@ -122,68 +122,124 @@ size_t count_cmd(t_pars *pars)
 	return (i);
 }
 
-char **init_cmds(t_pars *pars, t_exec **node)
-{
-	t_pars *tmp;
-	size_t ccmd;
-	int i = 1;
+// char **init_cmds(t_pars *pars, t_exec **node)
+// {
+// 	t_pars *tmp;
+// 	size_t ccmd;
+// 	int i;
+	
+// 	i = 1;
+// 	if (pars->type == COMMANDS || pars->type == BUILTINS)
+// 	{
+// 		ccmd = count_cmd(pars);
+// 		(*node)->cmd = malloc(sizeof(char *) * (ccmd + 1));
+// 		if (!(*node)->cmd)
+// 			return (NULL) ; //secure
+// 		(*node)->cmd[0] = ft_strdup(pars->word);
+// 		if (!(*node)->cmd || !(*node)->cmd[0])
+// 			return (NULL)  ; //secure
+// 		tmp = pars->next;
+// 		while (tmp && tmp->type != PIPE)
+// 		{
+// 			if (tmp->type == ARGS)
+// 			{
+// 				(*node)->cmd[i] = ft_strdup(tmp->word);
+// 				if (!(*node)->cmd[i])
+// 					return (NULL) ; //secure
+// 				i++;
+// 			}
+// 				tmp = tmp->next;
+// 		}
+// 		(*node)->cmd[i] = NULL;
+// 	}
+// 	else
+// 		(*node)->cmd = NULL;
+// 	return ((*node)->cmd);
+// }
 
-	ccmd = count_cmd(pars);
-	if (pars->type == COMMANDS || pars->type == BUILTINS)
-	{
-		ccmd = count_cmd(pars);
-		(*node)->cmd = malloc(sizeof(char *) * (ccmd + 1));
-		if (!(*node)->cmd)
-			return (NULL) ; //secure
-		(*node)->cmd[0] = ft_strdup(pars->word);
-		if (!(*node)->cmd || !(*node)->cmd[0])
-			return (NULL)  ; //secure
-		tmp = pars->next;
-		while (tmp && tmp->type != PIPE)
-		{
-			if (tmp->type == ARGS)
-			{
-				(*node)->cmd[i] = ft_strdup(tmp->word);
-				if (!(*node)->cmd[i])
-					return (NULL) ;
-				i++;
-			}
-				tmp = tmp->next;
-		}
-		(*node)->cmd[i] = NULL;
-	}
-	else
-		(*node)->cmd = NULL;
-	return ((*node)->cmd);
+static int fill_args(t_pars *pars, t_exec *node)
+{
+    int i = 1;
+
+    while (pars && pars->type != PIPE)
+    {
+        if (pars->type == ARGS)
+        {
+            node->cmd[i] = ft_strdup(pars->word);
+            if (!node->cmd[i])
+                return (1);
+            i++;
+        }
+        pars = pars->next;
+    }
+    node->cmd[i] = NULL;
+    return (0);
 }
 
-void init_filename_and_token(t_redir **node, t_pars *tmp)
+char **init_cmds(t_data *data, t_pars *tmp, t_exec **node)
+{
+    size_t ccmd;
+    if (tmp->type == COMMANDS || tmp->type == BUILTINS)
+    {
+        ccmd = count_cmd(tmp);
+        (*node)->cmd = malloc(sizeof(char *) * (ccmd + 1));
+        if (!(*node)->cmd)
+            free_all(data, 0, "Error\nMalloc fail in init_cmds\n");
+        (*node)->cmd[0] = ft_strdup(tmp->word);
+        if (!(*node)->cmd[0])
+            free_all(data, 0, "Error\nMalloc fail in init_cmds\n");
+        if (fill_args(tmp->next, *node) == 1)
+            free_all(data, 0, "Error\nMalloc fail in fill_args\n");
+    }
+    else
+        (*node)->cmd = NULL;
+    return ((*node)->cmd);
+}
+
+static void check_redirin(t_data *data, t_pars *tmp, t_redir **node)
+{
+	if (tmp->type == REDIR_IN && tmp->next)
+	{
+		(*node)->filename = ft_strdup(tmp->next->word);
+		if (!(*node)->filename)
+			free_all(data, 0, "Error\nMalloc fail in check_redirin\n");
+		(*node)->token = REDIR_IN;
+	}
+	else if (tmp->type == HEREDOC && tmp->next && (*node)->token != HEREDOC)
+	{
+		(*node)->delimiter = ft_strdup(tmp->next->word); //rajouter le \n pour le heredoc
+		if (!(*node)->delimiter)
+			free_all(data, 0, "Error\nMalloc fail in check_redirin\n");
+		(*node)->token = HEREDOC;
+	}
+}
+
+static void check_redirout(t_data *data, t_pars *tmp, t_redir **node)
+{
+	if (tmp->type == REDIR_APPEND && tmp->next)
+	{
+		(*node)->filename = ft_strdup(tmp->next->word);
+		if (!(*node)->filename)
+			free_all(data, 0, "Error\nMalloc fail in check_redirout\n");
+		(*node)->token = REDIR_APPEND;
+	}
+	else if (tmp->type == REDIR_TRUNC && tmp->next)
+	{
+		(*node)->filename = ft_strdup(tmp->next->word);
+		if (!(*node)->filename)
+			free_all(data, 0, "Error\nMalloc fail in check_redirout\n");		
+		(*node)->token = REDIR_TRUNC;
+	}
+}
+void init_filename_and_token(t_redir **node, t_pars *tmp, t_data *data)
 {
 	if (tmp && tmp->type & REDIR)
 	{
-		if (tmp->type == REDIR_IN && tmp->next)
-		{
-			(*node)->filename = ft_strdup(tmp->next->word);
-			(*node)->token = REDIR_IN;
-		}
-		else if (tmp->type == HEREDOC && tmp->next && (*node)->token != HEREDOC)
-		{
-			(*node)->delimiter = ft_strdup(tmp->next->word);
-			(*node)->token = HEREDOC;
-		}
-		else if (tmp->type == REDIR_APPEND && tmp->next)
-		{
-			(*node)->filename = ft_strdup(tmp->next->word);
-			(*node)->token = REDIR_APPEND;
-		}
-		else if (tmp->type == REDIR_TRUNC && tmp->next)
-		{
-			(*node)->filename = ft_strdup(tmp->next->word);
-			(*node)->token = REDIR_TRUNC;
-		}
+		check_redirin(data, tmp, node);
+		check_redirout(data, tmp, node);
 	}
 }
-void init_lst_redir(t_exec **exec, t_pars *pars)
+void init_lst_redir(t_exec **exec, t_pars *pars, t_data *data)
 {
 	t_redir *node;
 
@@ -191,37 +247,64 @@ void init_lst_redir(t_exec **exec, t_pars *pars)
 	if (pars && pars->type & REDIR)
 	{
 		if (add_back_redir(&(*exec)->redir) == 1)
-			return ;
+			free_all(data, 0, "Error\nAdd_back fail in init_lst_redir\n");
 		node = ft_lstlast_redir((*exec)->redir);
 		if (!node)
-			return ;
-		init_filename_and_token(&node, pars);
+			free_all(data, 0, "Error\nFt_lstlast_redir fail\n");
+		init_filename_and_token(&node, pars, data);
 	}
 }
-void init_lst_exec(t_exec **exec, t_pars *pars) 
+// int init_lst_exec(t_exec **exec, t_pars *pars) 
+// {
+// 	t_exec *node;
+
+// 	node = NULL;
+// 	while(pars)
+// 	{
+// 		if (add_back_exec(exec) == 1)
+// 			return (1);
+// 		node = ft_lstlast_exec(*exec);
+// 		if (!node)
+// 			return (1);
+// 		while (pars && pars->type != PIPE)
+// 		{
+// 			if (!node->cmd)
+// 				node->cmd = init_cmds(pars, &node);
+// 			init_lst_redir(&node, pars);
+// 			pars = pars->next;
+// 		}
+// 		if (pars && pars->type == PIPE)
+// 			pars = pars->next;
+// 	}
+// 	return (0);
+// }
+
+
+void init_lst_exec(t_data *data) 
 {
 	t_exec *node;
+	t_pars *tmp;
 
 	node = NULL;
-	while(pars)
+	tmp = data->pars;
+	while(tmp)
 	{
-		if (add_back_exec(exec) == 1)
-			return ;
-		node = ft_lstlast_exec(*exec);
+		if (add_back_exec(&(data)->exec) == 1)
+			free_all(data, 0, "Error\nAdd_back fail in init_lst_exec\n");
+		node = ft_lstlast_exec(data->exec);
 		if (!node)
-			return ;
-		while (pars && pars->type != PIPE)
+			free_all(data, 0, "Error\nFt_lstlast fail\n");
+		while (tmp && tmp->type != PIPE)
 		{
 			if (!node->cmd)
-				node->cmd = init_cmds(pars, &node);
-			init_lst_redir(&node, pars);
-			pars = pars->next;
+				node->cmd = init_cmds(data, tmp, &node);
+			init_lst_redir(&node, tmp, data);
+			tmp = tmp->next;
 		}
-		if (pars && pars->type == PIPE)
-			pars = pars->next;
+		if (tmp && tmp->type == PIPE)
+			tmp = tmp->next;
 	}
 }
-
 
 
 //1.Creer le node dans tout les cas

@@ -18,7 +18,7 @@ int	lstsize_env(t_env *envd)
 	return (i);
 }
 
-void	free_lst_env(t_env **envd)
+void	free_lst_env(t_env **envd, bool ext, int errcode)
 {
 	t_env	*tmp;
 	int		size;
@@ -36,6 +36,8 @@ void	free_lst_env(t_env **envd)
 		free(*envd);
 		*envd = tmp;
 	}
+	if (ext)
+		exit(errcode);
 }
 
 t_env	*ft_lstlast_env(t_env *envd)

@@ -20,27 +20,24 @@ int main(int ac, char **av, char **env)
 		input = readline("> ");
 		if (*input)
 			add_history(input);
-		dst = ft_split_with_quotes(input, ' ');
+		dst = ft_split_with_quotes(input, ' '); // A FAIRE 
 		if (!dst)
-			free_lst_env(&envd);
-		if (init_data(&data, &envd, dst) == 1)
-			free_all(&data, dst);
+			free_lst_env(&envd, true, 0);
+		init_data(&data, &envd, dst);
 		token_main(&data.pars);
-		init_lst_exec(&data.exec, data.pars);
-		expand_exec_list(data.exec, data.env);
+		init_lst_exec(&data);
+		expand_exec_list(&data);
 		init_envp(&data);
-		// print_envp(data.envp);
 		print_lst_exec(data.exec);
-		print_lst_pars(data.pars);
-		free_all(&data, dst);
+		// print_lst_pars(data.pars);
+		free_all(&data, 0, "");
 	}
 }
 
 
 /*TO DO :
- 			-TOUTES LES REMONTES D'ERREUR A VERIFIER
-			-REFACTO EXPAND
+ 			-TOUTES LES REMONTES D'ERREUR A VERIFIER // OKOK
+			-REFACTO EXPAND // OKOK
 			- SUPPRIMER LES NODES VIDES APRES L'EXPAND POUR POUVOIR RETOKENIZER
 			- 
-			
 */

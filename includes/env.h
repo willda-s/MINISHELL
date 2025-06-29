@@ -14,7 +14,7 @@ typedef struct s_env
 int					add_back_env(t_env **envd);
 t_env				*ft_lstlast_env(t_env *envd);
 int					lstsize_env(t_env *envd);
-void			free_lst_env(t_env **envd);
+void			free_lst_env(t_env **envd, bool ext, int errcode);
 void				print_lst_env(t_env *envd);
 
 //////////////////////////////

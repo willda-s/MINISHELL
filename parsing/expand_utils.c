@@ -15,11 +15,6 @@ char	*get_env_value(t_env *envd, char *key)
 	return ("");
 }
 
-int	is_var_start(char c)
-{
-	return (ft_isalpha(c) || c == '_');
-}
-
 int	is_var_char(char c)
 {
 	return (ft_isalnum(c) || c == '_');

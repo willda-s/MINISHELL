@@ -12,13 +12,13 @@ void init_lst_env(t_env **envd, char **env)
 			exit(EXIT_FAILURE);
 		node = ft_lstlast_env(*envd);
 		if (!node)
-			return ;
+			free_lst_env(envd, true, 0);
 		node->key = ft_strndup(env[i], ft_strchr(env[i], '=') - env[i]);
 		if (!node->key)
-			free_lst_env(envd);
+			free_lst_env(envd, true, 0);
 		node->value = ft_strdup(ft_strchr(env[i], '=') + 1);
 		if (!node->value)
-			free_lst_env(envd);
+			free_lst_env(envd, true, 0);
 		i++;
 	}
 }
@@ -41,24 +41,24 @@ static int count_env(t_data *data)
 void	init_envp(t_data *data)
 {
 	t_env *tmp;
-	char *temp;
+	char *str;
 	int i;
 
 	i = count_env(data);
-    data->envp = malloc(sizeof(char *) * (i + 1));
+    data->envp = ft_calloc((i + 1), sizeof(char *));
     if (!data->envp)
-        return ;
+        free_all(data, 0, "Error\nMalloc fail in init_envp\n");
     i = 0;
     tmp = data->env;
     while (tmp)
     {
-        temp = ft_strjoin(tmp->key, "=");
-        if (!data->envp[i])
-            return ;
-        data->envp[i] = ft_strjoin(temp, tmp->value);
-        if (!data->envp[i])
-            return ;
-		free(temp);
+        str = ft_strjoin(tmp->key, "=");
+        if (!str)
+            free_all(data, 0, "Error\nMalloc fail in init_envp\n");
+        data->envp[i] = ft_strjoin(str, tmp->value);
+		free(str);
+        if (!data->envp || !data->envp[i])
+             free_all(data, 0, "Error\nMalloc fail in init_envp\n");
         i++;
         tmp = tmp->next;
     }
