@@ -11,14 +11,18 @@ ENV_FILES = env.c\
 PARSING_DIR = parsing/
 
 PARSING_FILES = init_data_and_pars.c\
+				init_filename.c\
+				init_lst_exec.c\
 				lst_utils_exec.c\
 				lst_utils_pars.c\
 				lst_utils_redir.c\
 				split_quotes.c\
-				utils_tab_free.c\
 				expandf.c\
 				expand_utils.c\
-				type.c
+				type.c\
+				type_utils.c\
+				remove_line.c\
+				functions_free.c
 
 UTILS = main.c\
 

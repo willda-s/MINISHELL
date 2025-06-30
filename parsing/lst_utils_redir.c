@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lst_utils_redir.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/30 13:55:51 by willda-s          #+#    #+#             */
+/*   Updated: 2025/06/30 14:16:46 by willda-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/parsing.h"
 
-int	lstsize_redir(t_redir *redir)
+static int	lstsize_redir(t_redir *redir)
 {
-	int		i;
+	int	i;
 
 	i = 1;
 	if (!redir)
@@ -35,7 +47,6 @@ void	free_lst_redir(t_redir **redir)
 		free(*redir);
 		*redir = tmp;
 	}
-	
 }
 
 t_redir	*ft_lstlast_redir(t_redir *redir)

@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:05:40 by willda-s          #+#    #+#             */
-/*   Updated: 2024/11/22 16:39:49 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/06/30 14:05:26 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,3 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	dst[c] = '\0';
 	return (ft_strlen(dst) + ft_strlen(&src[i]));
 }
-
-// int	main(void)
-// {
-// 	char		dst[] = "bonjiur";
-// 	const char	src[] = "fs";
-
-// 	printf("%ld\n", ft_strlcat(dst, src, 50));
-// 	printf("%s", dst);
-// }

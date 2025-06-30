@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:17:01 by willda-s          #+#    #+#             */
-/*   Updated: 2024/11/22 18:10:11 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/06/30 14:05:21 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	dest[i] = '\0';
 	return (dest);
 }
-
-// int	main(void)
-// {
-// 	char *s1 = "salut";
-// 	char *s2 = "ca va";
-
-// 	printf("%s", ft_strjoin(s1, s2));
-// }

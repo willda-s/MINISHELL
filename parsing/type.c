@@ -1,37 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   type.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/30 13:55:59 by willda-s          #+#    #+#             */
+/*   Updated: 2025/06/30 16:16:16 by willda-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/parsing.h"
 
-void	is_builtins(t_pars **tmp)
+static bool	lastnode_pipe(t_pars *pars)
 {
-	if (ft_strncmp((*tmp)->word, "cd", ft_strlen((*tmp)->word)) == 0
-		|| ft_strncmp((*tmp)->word, "echo", ft_strlen((*tmp)->word)) == 0
-		|| ft_strncmp((*tmp)->word, "pwd", ft_strlen((*tmp)->word)) == 0
-		|| ft_strncmp((*tmp)->word, "export", ft_strlen((*tmp)->word)) == 0
-		|| ft_strncmp((*tmp)->word, "unset", ft_strlen((*tmp)->word)) == 0
-		|| ft_strncmp((*tmp)->word, "env", ft_strlen((*tmp)->word)) == 0
-		|| ft_strncmp((*tmp)->word, "exit", ft_strlen((*tmp)->word)) == 0)
-	{
-		(*tmp)->type = BUILTINS;
-	}
-}
-
-bool	is_redirection(t_pars **tmp)
-{
-	if (ft_strncmp((*tmp)->word, ">", ft_strlen((*tmp)->word)) == 0)
-		(*tmp)->type = REDIR_TRUNC;
-	else if (ft_strncmp((*tmp)->word, "<", ft_strlen((*tmp)->word)) == 0)
-		(*tmp)->type = REDIR_IN;
-	else if (ft_strncmp((*tmp)->word, "<<", ft_strlen((*tmp)->word)) == 0)
-		(*tmp)->type = HEREDOC;
-	else if (ft_strncmp((*tmp)->word, ">>", ft_strlen((*tmp)->word)) == 0)
-		(*tmp)->type = REDIR_APPEND;
-	if ((*tmp)->type != NUL)
+	while (pars->next)
+		pars = pars->next;
+	if (pars->type == PIPE)
 		return (true);
-	else
-		return (false);
+	return (false);
 }
 
-void	init_token_command(t_pars **pars)
+static void	init_token_command(t_pars **pars)
 {
 	t_pars	*tmp;
 
@@ -53,7 +43,7 @@ void	init_token_command(t_pars **pars)
 	}
 }
 
-void	init_token_redir(t_pars **pars)
+static void	init_token_redir(t_pars **pars)
 {
 	t_pars	*tmp;
 
@@ -71,7 +61,8 @@ void	init_token_redir(t_pars **pars)
 		tmp = tmp->next;
 	}
 }
-void	init_token(t_pars **pars)
+
+static void	init_token_pipe(t_pars **pars)
 {
 	t_pars	*tmp;
 
@@ -84,13 +75,11 @@ void	init_token(t_pars **pars)
 	}
 }
 
-void	token_main(t_pars **pars)
+void	token_main(t_data *data)
 {
-	init_token_redir(pars);
-	init_token(pars);
-	init_token_command(pars);
+	init_token_redir(&data->pars);
+	init_token_pipe(&data->pars);
+	if (lastnode_pipe(data->pars))
+		free_all(data, 0, "Error\nIncorrect syntax\n");
+	init_token_command(&data->pars);
 }
-
-// Autre chose a interpreter ?
-
-// prio des token ???? : 1. redirection 2. Pipe 3. commands et args ?

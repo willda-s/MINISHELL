@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lst_utils_pars.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/30 13:55:03 by willda-s          #+#    #+#             */
+/*   Updated: 2025/06/30 14:15:27 by willda-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/parsing.h"
 
-int	lstsize_pars(t_pars *pars)
+static int	lstsize_pars(t_pars *pars)
 {
-	int		i;
+	int	i;
 
 	i = 1;
 	if (!pars)
@@ -34,7 +45,6 @@ void	free_lst_pars(t_pars **pars)
 		free(*pars);
 		*pars = tmp;
 	}
-	
 }
 
 t_pars	*ft_lstlast_pars(t_pars *pars)
@@ -65,9 +75,9 @@ int	add_back_pars(t_pars **pars)
 	return (0);
 }
 
-void print_lst_pars(t_pars *pars)
+void	print_lst_pars(t_pars *pars)
 {
-	while(pars)
+	while (pars)
 	{
 		if (pars->type == PIPE)
 			printf("\033[33mWORD == %s \033[;32m|||||||||| \033[35mTYPE == PIPE\033[0m\n", pars->word);

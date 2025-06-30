@@ -1,31 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_utils.c                                     :+:      :+:    :+:   */
+/*   functions_print.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 13:54:29 by willda-s          #+#    #+#             */
-/*   Updated: 2025/06/30 13:56:18 by willda-s         ###   ########.fr       */
+/*   Created: 2025/06/30 13:56:02 by willda-s          #+#    #+#             */
+/*   Updated: 2025/06/30 14:19:39 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parsing.h"
 
-char	*get_env_value(t_env *envd, char *key)
-{
-	while (envd)
-	{
-		if (ft_strncmp(envd->key, key, ft_strlen(envd->key)) == 0)
-		{
-			return (envd->value);
-		}
-		envd = envd->next;
-	}
-	return ("");
-}
+// void	print_tab(char **dst)
+// {
+// 	int	i;
 
-int	is_var_char(char c)
-{
-	return (ft_isalnum(c) || c == '_');
-}
+// 	i = 0;
+// 	while (dst && dst[i])
+// 	{
+// 		printf("dst[%d] = %s\n", i, dst[i]);
+// 		i++;
+// 	}
+// }
+// void	print_lst_env(t_env *envd)
+// {
+// 	while (envd)
+// 	{
+// 		printf("%s=%s\n", envd->key, envd->value);
+// 		envd = envd->next;
+// 	}
+// }
+
+// void	print_envp(char **envp)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (envp[i])
+// 	{
+// 		printf("%s\n", envp[i]);
+// 		i++;
+// 	}
+// }
