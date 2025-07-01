@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:41 by willda-s          #+#    #+#             */
-/*   Updated: 2025/06/30 13:54:44 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/07/01 19:12:02 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int	free_all(t_data *data, int errcode, char *str)
 		free_tab(data->envp);
 	if (data->dst)
 		free_tab(data->dst);
-	printf("%s", str);
+	ft_putstr_fd(str, 2);
 	exit(errcode);
 }

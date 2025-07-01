@@ -41,7 +41,6 @@ int main(int ac, char **av, char **env)
 
 			- REPRENDRE LE HEREDOC
 			-  SIGNAUX
-			- DPRINTF pour print sur sortie d'erreur !
 */
 
 /*A SUPPRIMER DU .H ET DU .C :
