@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lst_utils_redir.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/30 13:55:51 by willda-s          #+#    #+#             */
+/*   Updated: 2025/06/30 14:16:46 by willda-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/parsing.h"
 
-int	lstsize_redir(t_redir *redir)
+static int	lstsize_redir(t_redir *redir)
 {
-	int		i;
+	int	i;
 
 	i = 1;
 	if (!redir)
@@ -17,24 +29,25 @@ int	lstsize_redir(t_redir *redir)
 	return (i);
 }
 
-// void	free_lst_redir(t_redir **redir)
-// {
-// 	t_redir	*tmp;
-// 	int		size;
+void	free_lst_redir(t_redir **redir)
+{
+	t_redir	*tmp;
+	int		size;
 
-// 	size = lstsize_redir(*redir);
-// 	if (!(*redir))
-// 		return ;
-// 	while (size--)
-// 	{
-// 		tmp = (*redir)->next;
-// 		if ((*redir)->word)
-// 			free((*redir)->word);
-// 		free(*redir);
-// 		*redir = tmp;
-// 	}
-	
-// }
+	size = lstsize_redir(*redir);
+	if (!(*redir))
+		return ;
+	while (size--)
+	{
+		tmp = (*redir)->next;
+		if ((*redir)->filename)
+			free((*redir)->filename);
+		if ((*redir)->delimiter)
+			free((*redir)->delimiter);
+		free(*redir);
+		*redir = tmp;
+	}
+}
 
 t_redir	*ft_lstlast_redir(t_redir *redir)
 {

@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lst_utils_env.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/30 13:54:06 by willda-s          #+#    #+#             */
+/*   Updated: 2025/06/30 14:59:38 by willda-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "../includes/env.h"
+#include "../includes/parsing.h"
 
 int	lstsize_env(t_env *envd)
 {
-	int		i;
+	int	i;
 
 	i = 1;
 	if (!envd)
@@ -18,25 +29,26 @@ int	lstsize_env(t_env *envd)
 	return (i);
 }
 
-int	free_lst_env(t_env **envd)
+void	free_lst_env(t_env **envd, bool ext, int errcode)
 {
 	t_env	*tmp;
 	int		size;
 
 	size = lstsize_env(*envd);
 	if (!(*envd))
-		return (1);
+		return ;
 	while (size--)
 	{
 		tmp = (*envd)->next;
-		if ((*envd)->key) //Necessaire ??
+		if ((*envd)->key)
 			free((*envd)->key);
-		if ((*envd)->value) // //
+		if ((*envd)->value)
 			free((*envd)->value);
 		free(*envd);
 		*envd = tmp;
 	}
-	exit(0);
+	if (ext)
+		exit(errcode);
 }
 
 t_env	*ft_lstlast_env(t_env *envd)
@@ -65,13 +77,4 @@ int	add_back_env(t_env **envd)
 		tmp->next = node;
 	}
 	return (0);
-}
-
-void print_lst_env(t_env *envd)
-{
-	while(envd)
-	{
-		printf("%s=%s\n", envd->key, envd->value);
-		envd = envd->next;
-	}
 }

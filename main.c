@@ -1,6 +1,6 @@
-
-#include "includes/parsing.h"
-#include "libft/libft.h"
+#include "../includes/minishell.h"
+// #include "exec.h"
+#include <readline/history.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 
@@ -14,7 +14,7 @@ int main(int ac, char **av, char **env)
 	t_data	data;
 
 	envd = NULL;
-	init_duplicate_env(&envd, env);
+	init_lst_env(&envd, env);
 	while (1)
 	{
 		input = readline("> ");
@@ -22,26 +22,27 @@ int main(int ac, char **av, char **env)
 			add_history(input);
 		dst = ft_split_with_quotes(input, ' ');
 		if (!dst)
-			free_lst_env(&envd);
-		if (init_data(&data, &envd, dst) == 1)
-			free_all(&data, dst);
-		token_main(&data.pars);
-		init_lst_exec(&data.exec, data.pars);
-		// handle_quotes(&data);
-		expand_exec_list(data.exec, data.env);
+			free_lst_env(&envd, true, 0);
+		init_data(&data, &envd, dst);
+		token_main(&data);
+		init_lst_exec(&data);
+		expand_exec_list(&data);
+		init_envp(&data);
+		remove_empty_line(&data);
+		exec_cmd(&data);
 		print_lst_exec(data.exec);
 		print_lst_pars(data.pars);
-		// print_lst_env(data.env);
-		// free_all(&data, dst);
+		//free_all(&data, 0, "");
 	}
 }
 
-//TOUTES LES REMONTES D'ERREUR A VERIFIER
-//gerer les quotes ouvert fermes + expand ce qui ya dedans
 
-//Le premier mot entre chaque pipe est forcement une commande
+// TOUTES LES REMONTES D'ERREUR A VERIFIER
+// gerer les quotes ouvert fermes + expand ce qui ya dedans
 
-/*TO DO : 
+// Le premier mot entre chaque pipe est forcement une commande
+
+/*TO DO :
 	- Finir token avec builtins
 	- initialiser char **envp (t_data)
 */

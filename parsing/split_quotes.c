@@ -1,7 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split_quotes.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/30 13:55:55 by willda-s          #+#    #+#             */
+/*   Updated: 2025/06/30 13:55:57 by willda-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/parsing.h"
 
-static size_t	count_word_with_quotes(char const *s, char c)
+static char	update_quote(char currentc, char quote)
+{
+	if (currentc == '\'' || currentc == '"')
+	{
+		if (quote == '\0')
+			quote = currentc;
+		else if (quote == currentc)
+			quote = '\0';
+	}
+	return (quote);
+}
+
+static void	update_inword(char currentc, char sep, bool *inword, size_t *count)
+{
+	if (currentc == sep)
+		*inword = false;
+	else if (!*inword)
+	{
+		*inword = true;
+		(*count)++;
+	}
+}
+
+static size_t	count_word_with_quotes(char const *s, char sep)
 {
 	size_t	i;
 	size_t	count;
@@ -14,22 +48,9 @@ static size_t	count_word_with_quotes(char const *s, char c)
 	quote = '\0';
 	while (s[i])
 	{
-		if ((s[i] == '\'' || s[i] == '"'))
-		{
-			if (quote == '\0')
-			{
-				quote = s[i];
-				if (!inword)
-				{
-					inword = true;
-					count++;
-				}
-			}
-			else if (quote == s[i])
-				quote = '\0';
-		}
-		else if (s[i] == c && quote == '\0')
-			inword = false;
+		quote = update_quote(s[i], quote);
+		if (quote == '\0')
+			update_inword(s[i], sep, &inword, &count);
 		else if (!inword)
 		{
 			inword = true;
@@ -66,10 +87,10 @@ static int	ft_strlenword_with_quotes(const char *str, char c)
 
 char	**ft_split_with_quotes(char const *s, char c)
 {
-	size_t i;
-	size_t j;
-	size_t length;
-	char **dst;
+	size_t	i;
+	size_t	j;
+	size_t	length;
+	char	**dst;
 
 	i = 0;
 	j = 0;

@@ -1,7 +1,8 @@
 
-#include "../includes/builtins.h"
+#include "../includes/minishell.h"
 
-size_t	count_tab(char **str) {
+size_t	count_tab(char **str) 
+{
   size_t i;
 
   i = 0;
@@ -10,7 +11,8 @@ size_t	count_tab(char **str) {
   return (i);
 }
 
-int	ft_echo(char **str) {
+int	ft_echo(char **str) 
+{
   int i;
   int n;
   int count;
@@ -22,7 +24,8 @@ int	ft_echo(char **str) {
     n = 1;
     i++;
   }
-  while (str[i]) {
+  while (str[i]) 
+  {
     printf("%s", str[i]);
     if (str[i + 1])
       printf(" ");

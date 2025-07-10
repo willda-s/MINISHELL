@@ -1,7 +1,7 @@
 
 NAME = minishell
 
-INCLUDE = -Iincludes
+INCLUDE = -Iincludes 
 
 ENV_DIR = env/
 
@@ -12,14 +12,18 @@ ENV_FILES = env.c\
 PARSING_DIR = parsing/
 
 PARSING_FILES = init_data_and_pars.c\
+				init_filename.c\
+				init_lst_exec.c\
 				lst_utils_exec.c\
 				lst_utils_pars.c\
 				lst_utils_redir.c\
 				split_quotes.c\
-				utils_tab_free.c\
 				expandf.c\
 				expand_utils.c\
-				type.c
+				type.c\
+				type_utils.c\
+				remove_line.c\
+				functions_free.c
 
 ######################### EXEC #########################
 EXEC_DIR = exec/
@@ -50,6 +54,7 @@ CFLAGS	= -Wall -Wextra -Werror -MMD -g3
 FILE =	$(addprefix $(ENV_DIR), $(ENV_FILES))\
 		$(addprefix $(PARSING_DIR), $(PARSING_FILES))\
 		$(addprefix $(BUILTINS_DIR), $(BUILTINS_FILES))\
+		$(addprefix $(EXEC_DIR), $(EXEC_FILES))\
 		$(UTILS)
 		
 OBJ_DIR = obj/
@@ -68,7 +73,7 @@ $(NAME): $(OBJ) $(LIBFT)
 
 $(OBJ_DIR)%.o: %.c Makefile
 			@mkdir -p $(dir $@)
-			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@ 
 
 -include $(DEPD)
 

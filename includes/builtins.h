@@ -1,6 +1,6 @@
-
+#ifndef BUILTINS_H
+#define BUILTINS_H
 #include "../libft/libft.h"
-#include "parsing.h"
 #include <readline/history.h>
 #include <readline/readline.h>
 
@@ -68,7 +68,7 @@ int			ft_export(char **str, char **env);
 
 ///////////////////// EXEC BUILTINGS /////////////////////
 
-void		exec_builtins(char **str, char **env, char *input);
+void		exec_builtins(t_exec *exec, char **env, char *input);
 
 /////////////////////////// FREE ///////////////////////////
 
@@ -86,3 +86,5 @@ void		exec_builtins(char **str, char **env, char *input);
 		//structure qui contiendra la structure token ? ou juste appelez s_token ?
 // 	s_data *next;
 // }
+
+#endif

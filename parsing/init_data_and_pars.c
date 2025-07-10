@@ -1,32 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_data_and_pars.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/30 13:54:46 by willda-s          #+#    #+#             */
+/*   Updated: 2025/06/30 14:22:35 by willda-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/parsing.h"
 
-int init_data(t_data *data, t_env **envd, char **dst)
+static int	init_lst_pars(t_pars **pars, char **dst)
 {
-	t_pars *pars;
-	t_exec *exec;
-
-	pars = NULL;
-	exec = NULL;
-	data->env = *envd;
-	if (init_lst_pars(&pars, dst) == 1)
-	{
-		free_lst_pars(&pars);
-		free_tab(dst);
-		free_lst_env(envd);
-	}
-	data->pars = pars;
-	data->exec = exec;
-	return (0);
-}
-
-int init_lst_pars(t_pars **pars, char **dst)
-{
-	t_pars *node;
-	int i;
+	t_pars	*node;
+	int		i;
 
 	i = 0;
-	while(dst && dst[i])
+	while (dst && dst[i])
 	{
 		if (add_back_pars(pars) == 1)
 			return (1);
@@ -42,3 +34,24 @@ int init_lst_pars(t_pars **pars, char **dst)
 	return (0);
 }
 
+void	init_data(t_data *data, t_env **envd, char **dst)
+{
+	t_pars	*pars;
+	t_exec	*exec;
+
+	pars = NULL;
+	exec = NULL;
+	data->dst = dst;
+	data->env = *envd;
+	data->envp = NULL;
+	data->errcode = 0;
+	data->i = 0;
+	if (init_lst_pars(&pars, data->dst) == 1)
+	{
+		free_lst_pars(&pars);
+		free_tab(dst);
+		free_lst_env(envd, true, 0);
+	}
+	data->pars = pars;
+	data->exec = exec;
+}

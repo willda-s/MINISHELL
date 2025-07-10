@@ -1,5 +1,5 @@
 
-#include "../includes/builtins.h"
+#include "../includes/minishell.h"
 
 static int	strsearch(const char *str, int c)
 {
