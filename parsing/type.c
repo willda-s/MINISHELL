@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:55:59 by willda-s          #+#    #+#             */
-/*   Updated: 2025/06/30 16:16:16 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/27 19:56:11 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static bool	lastnode_pipe(t_pars *pars)
 {
-	while (pars->next)
+	while (pars && pars->next)
 		pars = pars->next;
-	if (pars->type == PIPE)
+	if (pars && pars->type == PIPE)
 		return (true);
 	return (false);
 }

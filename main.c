@@ -31,6 +31,7 @@ int main(int ac, char **av, char **env)
 		remove_empty_line(&data);
 		print_lst_exec(data.exec);
 		print_lst_pars(data.pars);
+		execc(&data);
 		free_all(&data, 0, "");
 	}
 }
@@ -41,6 +42,7 @@ int main(int ac, char **av, char **env)
 
 			- REPRENDRE LE HEREDOC
 			-  SIGNAUX
+			- secu ligne 92 de expandf.c
 */
 
 /*A SUPPRIMER DU .H ET DU .C :

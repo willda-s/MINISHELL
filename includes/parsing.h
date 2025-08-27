@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/06/30 17:06:32 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/27 19:48:08 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_data
 	int				i;
 }					t_data;
 
+void execc(t_data *data);
 /////////////SPLIT_QUOTES.C/////////////////////
 
 char				**ft_split_with_quotes(char const *s, char c);

@@ -1,31 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 14:34:20 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/08 13:19:37 by willda-s         ###   ########.fr       */
+/*   Created: 2025/08/27 18:12:50 by willda-s          #+#    #+#             */
+/*   Updated: 2025/08/27 18:26:14 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "parsing.h"
 
-char	*ft_strdup(const char *str)
-{
-	char	*dst;
-	size_t	i;
-
-	i = 0;
-	dst = malloc(sizeof(char) * (ft_strlen((char *)str)) + 1);
-	if (!dst)
-		return (NULL);
-	while (str && str[i])
-	{
-		dst[i] = str[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
-}

@@ -24,6 +24,10 @@ PARSING_FILES = init_data_and_pars.c\
 				remove_line.c\
 				functions_free.c
 
+EXEC_DIR = exec/
+
+EXEC_FILES = path.c
+
 UTILS = main.c\
 
 MAKEFLAGS += --no-print-directory
@@ -32,6 +36,7 @@ CC	= cc
 CFLAGS	= -Wall -Wextra -Werror -MMD -g3
 
 FILE =	$(addprefix $(ENV_DIR), $(ENV_FILES))\
+		$(addprefix $(EXEC_DIR), $(EXEC_FILES))\
 		$(addprefix $(PARSING_DIR), $(PARSING_FILES))\
 		$(UTILS)
 		
@@ -47,11 +52,11 @@ all: banner lib $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
 		$(CC) $(CFLAGS) -lreadline $(OBJ) -o $(NAME) $(LIBFT)
-		@echo "$(PURPLE)👾 Minishell compilation done ! $(RESET)"
+	@echo "$(PURPLE)👾 Minishell compilation done ! $(RESET)"
 
 $(OBJ_DIR)%.o: %.c Makefile
-			@mkdir -p $(dir $@)
-			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 -include $(DEPD)
 
