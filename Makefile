@@ -29,7 +29,13 @@ UTILS = main.c\
 MAKEFLAGS += --no-print-directory
 
 CC	= cc
-CFLAGS	= -Wall -Wextra -Werror -MMD -g3
+CFLAGS	= -Wall -Wextra -Werror -MMD -g3 \
+		  -I includes \
+		  -I libft/libft_functions/includes \
+		  -I libft/vectors/includes \
+		  -I libft/ft_printf/includes
+
+LIBS = -L$(LIBFT_DIR) -lft -lreadline
 
 FILE =	$(addprefix $(ENV_DIR), $(ENV_FILES))\
 		$(addprefix $(PARSING_DIR), $(PARSING_FILES))\
@@ -46,16 +52,19 @@ LIBFT = $(LIBFT_DIR)/libft.a
 all: banner lib $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-		$(CC) $(CFLAGS) -lreadline $(OBJ) -o $(NAME) $(LIBFT)
-		@echo "$(PURPLE)👾 Minishell compilation done ! $(RESET)"
+		$(CC) $(CFLAGS) -lreadline $(OBJ) -o $(NAME) $(LIBFT) $(LIBS)
+	@echo "$(PURPLE)👾 Minishell compilation done ! $(RESET)"
 
 $(OBJ_DIR)%.o: %.c Makefile
-			@mkdir -p $(dir $@)
-			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 -include $(DEPD)
 
-$(LIBFT):
+.PHONY: FORCE
+FORCE:
+
+$(LIBFT): FORCE
 	@make -s -C $(LIBFT_DIR)
 
 clean:

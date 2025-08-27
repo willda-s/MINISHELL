@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   functions_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:41 by willda-s          #+#    #+#             */
-/*   Updated: 2025/07/01 19:12:02 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/27 20:23:06 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parsing.h"
+#include "fd_printf.h"
+#include "parsing.h"
 
 void	free_tab(char **dst)
 {
@@ -37,6 +38,6 @@ int	free_all(t_data *data, int errcode, char *str)
 		free_tab(data->envp);
 	if (data->dst)
 		free_tab(data->dst);
-	ft_putstr_fd(str, 2);
+	ft_dprintf(2, "%s\n", str);
 	exit(errcode);
 }

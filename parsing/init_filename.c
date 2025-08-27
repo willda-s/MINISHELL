@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_filename.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:50 by willda-s          #+#    #+#             */
-/*   Updated: 2025/07/01 19:15:23 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/27 19:42:08 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parsing.h"
+#include "parsing.h"
 
 static void	check_redirin(t_data *data, t_pars *tmp, t_redir **node)
 {

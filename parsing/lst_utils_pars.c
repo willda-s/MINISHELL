@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   lst_utils_pars.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:55:03 by willda-s          #+#    #+#             */
-/*   Updated: 2025/06/30 14:15:27 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/27 20:06:40 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parsing.h"
+#include "parsing.h"
+#include <stdio.h>
 
 static int	lstsize_pars(t_pars *pars)
 {

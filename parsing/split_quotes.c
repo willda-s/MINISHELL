@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   split_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:55:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/06/30 13:55:57 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/27 20:12:58 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parsing.h"
+#include "parsing.h"
+#include "libft.h"
 
 static char	update_quote(char currentc, char quote)
 {

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   lst_utils_exec.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:58 by willda-s          #+#    #+#             */
-/*   Updated: 2025/06/30 15:46:10 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/27 20:05:20 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parsing.h"
+#include "parsing.h"
+#include <stdio.h>
 
 static int	lstsize_exec(t_exec *exec)
 {

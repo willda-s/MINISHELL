@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:29 by willda-s          #+#    #+#             */
-/*   Updated: 2025/06/30 13:56:18 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/27 19:48:58 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parsing.h"
+#include "parsing.h"
+#include "libft.h"
 
 char	*get_env_value(t_env *envd, char *key)
 {
