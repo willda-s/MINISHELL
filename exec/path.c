@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 19:44:48 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/27 20:28:19 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/27 22:33:29 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	find_path_line(t_data *data)
 	return (-1);
 }
 
-int	is_slash(t_exec *exec)
+static int	is_slash(t_exec *exec)
 {
 	int	j;
 
@@ -74,7 +74,7 @@ static char	**find_path_first(t_data *data)
 	return (cmd);
 }
 
-char	*find_path(t_exec *exec)
+char	*find_path(t_data *data)
 {
 	char	**allpath;
 	char	*buff;
@@ -82,13 +82,13 @@ char	*find_path(t_exec *exec)
 	int		j;
 
 	j = 0;
-	allpath = find_path_first(exec);
+	allpath = find_path_first(data);
 	while (allpath[++j])
 	{
 		buff = ft_strjoin(allpath[j], "/");
 		if (!buff)
 			return (NULL);
-		path = ft_strjoin(buff, exec->cmd[0]);
+		path = ft_strjoin(buff, data->exec->cmd[0]);
 		free(buff);
 		if (!path)
 			return (NULL);
@@ -98,12 +98,4 @@ char	*find_path(t_exec *exec)
 	}
 	free_tab(allpath);
 	return (NULL);
-}
-void execc(t_data *data)
-{
-	data->exec->path = path_in_arg(data->exec);
-	if (data->exec->path == NULL)
-		data->exec->path = find_path(data->exec);
-	if (data->exec->path != NULL)
-		execve(data->exec->path, data->exec->cmd, data->envp);
 }

@@ -6,11 +6,13 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/27 19:48:08 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/27 23:11:18 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
+#include <sys/types.h>
+#include <sys/wait.h>
 
 typedef enum s_type
 {
@@ -65,6 +67,13 @@ typedef struct s_data
 }					t_data;
 
 void execc(t_data *data);
+void	ft_close(int *fd);
+void	open_dup_close_firstcmd(t_data *data, int *fd);
+void	open_dup_close_lastcmd(t_data *data, int *fd);
+pid_t execfirstcmd(t_data *data, int *fd);
+pid_t execlastcmd(t_data *data, int *fd);
+char	*path_in_arg(t_exec *exec);
+char	*find_path(t_data *data);
 /////////////SPLIT_QUOTES.C/////////////////////
 
 char				**ft_split_with_quotes(char const *s, char c);

@@ -26,7 +26,9 @@ PARSING_FILES = init_data_and_pars.c\
 
 EXEC_DIR = exec/
 
-EXEC_FILES = path.c
+EXEC_FILES = path.c\
+			exec.c\
+			dupfirstcmd.c\
 
 UTILS = main.c\
 
