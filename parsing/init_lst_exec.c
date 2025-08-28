@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:54 by willda-s          #+#    #+#             */
-/*   Updated: 2025/07/01 19:16:14 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/28 13:29:26 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void	init_lst_exec(t_data *data)
 		{
 			if (!node->cmd)
 				node->cmd = init_cmds(data, tmp, &node);
+			node->fd_in = -1;
+			node->fd_out = -1;
 			init_lst_redir(&node, tmp, data);
 			tmp = tmp->next;
 		}

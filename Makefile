@@ -16,6 +16,7 @@ PARSING_FILES = init_data_and_pars.c\
 				lst_utils_exec.c\
 				lst_utils_pars.c\
 				lst_utils_redir.c\
+				functions_print.c\
 				split_quotes.c\
 				expandf.c\
 				expand_utils.c\
@@ -27,7 +28,7 @@ PARSING_FILES = init_data_and_pars.c\
 EXEC_DIR = exec/
 
 EXEC_FILES = path.c\
-			exec.c\
+			exec2.c\
 			dupfirstcmd.c\
 
 UTILS = main.c\

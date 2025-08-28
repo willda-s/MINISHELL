@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:56:02 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/27 20:04:21 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/28 15:44:25 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@
 // 		i++;
 // 	}
 // }
-// void	print_lst_env(t_env *envd)
-// {
-// 	while (envd)
-// 	{
-// 		printf("%s=%s\n", envd->key, envd->value);
-// 		envd = envd->next;
-// 	}
-// }
+void	print_lst_env(t_env *envd)
+{
+	while (envd)
+	{
+		printf("%s=%s\n", envd->key, envd->value);
+		envd = envd->next;
+	}
+}
 
 // void	print_envp(char **envp)
 // {

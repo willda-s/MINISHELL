@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:06 by willda-s          #+#    #+#             */
-/*   Updated: 2025/06/30 14:59:38 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/28 14:08:30 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,15 @@ void	free_lst_env(t_env **envd, bool ext, int errcode)
 	{
 		tmp = (*envd)->next;
 		if ((*envd)->key)
+		{
 			free((*envd)->key);
+			(*envd)->key = NULL;
+		}
 		if ((*envd)->value)
+		{
 			free((*envd)->value);
+			(*envd)->value = NULL;
+		}
 		free(*envd);
 		*envd = tmp;
 	}

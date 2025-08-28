@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/27 23:11:18 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/28 15:45:21 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,14 @@ typedef struct s_data
 
 void execc(t_data *data);
 void	ft_close(int *fd);
-void	open_dup_close_firstcmd(t_data *data, int *fd);
-void	open_dup_close_lastcmd(t_data *data, int *fd);
+void	dup_cmd(t_exec *node, t_data *data);
+void	dup_lastcmd(t_exec *node, t_data *data);
 pid_t execfirstcmd(t_data *data, int *fd);
 pid_t execlastcmd(t_data *data, int *fd);
 char	*path_in_arg(t_exec *exec);
-char	*find_path(t_data *data);
+char	*find_path(t_exec *node, t_data *data);
+
+void init_pipe(t_exec *node);
 /////////////SPLIT_QUOTES.C/////////////////////
 
 char				**ft_split_with_quotes(char const *s, char c);
@@ -117,6 +119,8 @@ void				free_lst_redir(t_redir **redir);
 void				free_all(t_data *data, int errcode, char *str, bool exitstatue);
 
 void				free_tab(char **dst);
+
+void				free_tmpall(t_data *data);
 
 ////////////////////TYPE.C && TYPE_UTILS.C/////////////////
 

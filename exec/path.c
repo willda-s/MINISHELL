@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 19:44:48 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/27 22:33:29 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/28 15:15:59 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static char	**find_path_first(t_data *data)
 	return (cmd);
 }
 
-char	*find_path(t_data *data)
+char	*find_path(t_exec *node, t_data *data)
 {
 	char	**allpath;
 	char	*buff;
@@ -88,7 +88,7 @@ char	*find_path(t_data *data)
 		buff = ft_strjoin(allpath[j], "/");
 		if (!buff)
 			return (NULL);
-		path = ft_strjoin(buff, data->exec->cmd[0]);
+		path = ft_strjoin(buff, node->cmd[0]);
 		free(buff);
 		if (!path)
 			return (NULL);
