@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
 	"files.associations": {
 		"parsing.h": "c",
 		"env.h": "c",
@@ -6,4 +7,10 @@
 		"types.h": "c",
 		"wait.h": "c"
 	}
+=======
+    "files.associations": {
+        "readline.h": "c",
+        "parsing.h": "c"
+    }
+>>>>>>> parsing
 }
