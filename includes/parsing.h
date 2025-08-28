@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/06/30 17:06:32 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/27 20:47:54 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
+
+# define SYNTAX_ERR "minishell: syntax error near unexpected token `%s'\n"
 
 typedef enum s_type
 {
@@ -25,8 +27,12 @@ typedef enum s_type
 	ARGS = 1 << 7,
 	BUILTINS = 1 << 8,
 	TARGETS = 1 << 9,
+	OPEN_BRACE = 1 << 10,
+	CLOSED_BRACE = 1 << 11,
 	REDIR = REDIR_IN | HEREDOC | REDIR_APPEND | REDIR_TRUNC,
 }					t_type;
+
+
 
 typedef struct s_redir
 {
