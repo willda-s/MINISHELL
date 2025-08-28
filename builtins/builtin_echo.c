@@ -8,7 +8,7 @@ int builtin_echo(t_exec *exec)
     i = 1;
     new_line = 1;
     //cas de l option -n
-    if (exec->cmd[1] && ft_strncmp(exec->cmd[1], "-n") == 0)
+    if (exec->cmd[1] && ft_strncmp(exec->cmd[1], "-n", 2) == 0)
     {
         i = 2;
         new_line = 0;

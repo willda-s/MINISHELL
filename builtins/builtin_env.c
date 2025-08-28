@@ -17,3 +17,5 @@ int builtin_env(t_env *env)
     }
     return (0);
 }
+//fait : dupliquer l env + affichage
+//a completer
