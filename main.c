@@ -29,10 +29,10 @@ int main(int ac, char **av, char **env)
 		expand_exec_list(&data);
 		init_envp(&data);
 		remove_empty_line(&data);
-		execc(&data);
 		print_lst_exec(data.exec);
 		print_lst_pars(data.pars);
-		free_all(&data, 0, "");
+		execc(&data);
+		free_all(&data, 0, "", false);
 	}
 }
 

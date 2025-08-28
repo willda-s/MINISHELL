@@ -12,24 +12,21 @@
 
 #include "parsing.h"
 
-static int	wait_process(int pid)
+static int	wait_process(int nb_proc, int last_pid)
 {
-	int		count;
 	int		pid_w;
 	int		status;
-	int		err;
-	size_t	i;
+	int		err = 0;
+	int		count = 0;
 
-	count = 2;
-	i = 0;
-	while (count--)
+	while (count < nb_proc)
 	{
 		pid_w = wait(&status);
 		if (pid_w == -1)
 			exit(errno);
-		else if (pid == pid_w && WIFEXITED(status))
+		if (last_pid == pid_w && WIFEXITED(status))
 			err = WEXITSTATUS(status);
-		i++;
+		count++;
 	}
 	return (err);
 }
@@ -37,9 +34,7 @@ static int	wait_process(int pid)
 
 pid_t execfirstcmd(t_data *data, int *fd)
 {
-	pid_t pid;
-
-	pid = fork();
+	pid_t pid = fork();
 	if (pid == 0)
 	{
 		open_dup_close_firstcmd(data, fd);
@@ -48,34 +43,33 @@ pid_t execfirstcmd(t_data *data, int *fd)
 			data->exec->path = find_path(data);
 		if (data->exec->path != NULL)
 			execve(data->exec->path, data->exec->cmd, data->envp);
+		free_all(data, errno, "execve", true);
 	}
 	return (pid);
 }
 
 pid_t execlastcmd(t_data *data, int *fd)
 {
-	pid_t pid;
-
-	pid = fork();
+	pid_t pid = fork();
 	if (pid == 0)
 	{
-		printf("salut");
 		open_dup_close_lastcmd(data, fd);
 		data->exec->path = path_in_arg(data->exec);
 		if (data->exec->path == NULL)
 			data->exec->path = find_path(data);
 		if (data->exec->path != NULL)
 			execve(data->exec->path, data->exec->cmd, data->envp);
+		free_all(data, errno, "execve", true);
 	}
 	return (pid);
 }
 void execc(t_data *data)
 {
-	int		pid;
-	int		err;
+	int		pid1 = -1;
+	int		pid2 = -1;
 	int		fd[2];
+	t_exec	*save = data->exec;
 
-	err = 0;
 	if (data->exec->next)
 	{
 		if (pipe(fd) == -1)
@@ -83,12 +77,17 @@ void execc(t_data *data)
 			perror("pipe firstcmd");
 			exit(errno);
 		}
+		pid1 = execfirstcmd(data, fd);
+		close(fd[1]);
+		data->exec = data->exec->next;
+		pid2 = execlastcmd(data, fd);
+		close(fd[0]);
+		wait_process(2, pid2);
+		data->exec = save;
 	}
-		pid = execfirstcmd(data, fd);
-		if (data->exec->next)
-		{
-			data->exec = data->exec->next;
-			pid = execlastcmd(data, fd);
-		}
-		err = wait_process(pid);
+	else
+	{
+		pid1 = execfirstcmd(data, NULL);
+	   wait_process(1, pid1);
+	}
 }

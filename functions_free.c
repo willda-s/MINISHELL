@@ -25,7 +25,7 @@ void	free_tab(char **dst)
 	free(dst);
 }
 
-int	free_all(t_data *data, int errcode, char *str)
+void	free_all(t_data *data, int errcode, char *str, bool exitstatue)
 {
 	if (data->env)
 		free_lst_env(&data->env, false, 0);
@@ -38,5 +38,6 @@ int	free_all(t_data *data, int errcode, char *str)
 	if (data->dst)
 		free_tab(data->dst);
 	ft_putstr_fd(str, 2);
-	exit(errcode);
+	if (exitstatue)
+		exit(errcode);
 }

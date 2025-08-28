@@ -114,7 +114,7 @@ void				free_lst_redir(t_redir **redir);
 
 ///////////////FUNCTIONS_FREE.C/////////////////////
 
-int					free_all(t_data *data, int errcode, char *str);
+void				free_all(t_data *data, int errcode, char *str, bool exitstatue);
 
 void				free_tab(char **dst);
 

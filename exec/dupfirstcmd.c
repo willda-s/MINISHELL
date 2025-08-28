@@ -27,14 +27,18 @@ void	ft_close(int *fd)
 }
 void	open_dup_close_firstcmd(t_data *data, int *fd)
 {
+	if (!fd)
+		return;
 	if (dup2(fd[1], 1) == -1)
-		free_all(data, errno, "dup firstcmd fail\n");
+		free_all(data, errno, "dup firstcmd fail\n", true);
 	ft_close(fd);
 }
 
 void	open_dup_close_lastcmd(t_data *data, int *fd)
 {
+	if (!fd)
+		return;
 	if (dup2(fd[0], 0) == -1)
-		free_all(data, errno, "dup lastcmd fail\n");
+		free_all(data, errno, "dup lastcmd fail\n", true);
 	ft_close(fd);
 }

@@ -53,7 +53,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 all: banner lib $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-		$(CC) $(CFLAGS) -lreadline $(OBJ) -o $(NAME) $(LIBFT)
+		$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT) -lreadline
 	@echo "$(PURPLE)👾 Minishell compilation done ! $(RESET)"
 
 $(OBJ_DIR)%.o: %.c Makefile

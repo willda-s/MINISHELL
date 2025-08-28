@@ -67,10 +67,10 @@ static char	**find_path_first(t_data *data)
 	int j;
 	j = find_path_line(data);
 	if (j == -1)
-		free_all(data, 0, "no path=\n");
+		free_all(data, 0, "no path=\n", true);
 	cmd = ft_split(data->envp[j], ':');
 	if (!cmd)
-		free_all(data, 0, "split fail path last command\n");
+		free_all(data, 0, "split fail path last command\n", true);
 	return (cmd);
 }
 

@@ -80,6 +80,6 @@ void	token_main(t_data *data)
 	init_token_redir(&data->pars);
 	init_token_pipe(&data->pars);
 	if (lastnode_pipe(data->pars))
-		free_all(data, 0, "Error\nIncorrect syntax\n");
+		free_all(data, 0, "Error\nIncorrect syntax\n", true);
 	init_token_command(&data->pars);
 }

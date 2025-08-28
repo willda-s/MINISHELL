@@ -45,7 +45,7 @@ static int	ft_handle_squotes(char *res, int j, char *word, t_data *data)
 	if (word[data->i] == '\'')
 		data->i++;
 	else
-		free_all(data, 0, "Error\nQuotes aren't closed");
+		free_all(data, 0, "Error\nQuotes aren't closed", true);
 	return (j);
 }
 
@@ -66,7 +66,7 @@ static int	ft_handle_dquotes(char *res, int j, char *word, t_data *data)
 		data->i++;
 	}
 	else
-		free_all(data, 0, "Error\nQuotes aren't closed");
+		free_all(data, 0, "Error\nQuotes aren't closed", true);
 	return (j);
 }
 
@@ -111,7 +111,7 @@ void	expand_exec_list(t_data *data)
 				exec->cmd[i] = new_word;
 			}
 			else
-				free_all(data, 0, "Error\nMalloc fail in ft_expand_word");
+				free_all(data, 0, "Error\nMalloc fail in ft_expand_word", true);
 			i++;
 		}
 		exec = exec->next;
