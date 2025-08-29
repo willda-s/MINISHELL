@@ -6,13 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/27 20:47:54 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/08/29 13:25:46 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 
-# define SYNTAX_ERR "minishell: syntax error near unexpected token `%s'\n"
+#define SYNTAX_ERR "minishell: syntax error near unexpected token `%s'\n"
 
 typedef enum s_type
 {
@@ -31,8 +31,6 @@ typedef enum s_type
 	CLOSED_BRACE = 1 << 11,
 	REDIR = REDIR_IN | HEREDOC | REDIR_APPEND | REDIR_TRUNC,
 }					t_type;
-
-
 
 typedef struct s_redir
 {
@@ -139,3 +137,9 @@ void				init_lst_redir(t_exec **exec, t_pars *pars, t_data *data);
 void				remove_empty_line(t_data *data);
 
 void				init_envp(t_data *data);
+
+////////////////VALIDATE_SYNTAX.C////////////////////////////
+
+int					validate_syntax(t_pars *pars);
+
+int					syntax_error(int type);

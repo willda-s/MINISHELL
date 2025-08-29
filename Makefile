@@ -22,7 +22,9 @@ PARSING_FILES = init_data_and_pars.c\
 				type.c\
 				type_utils.c\
 				remove_line.c\
-				functions_free.c
+				functions_free.c\
+				validate_syntax.c\
+				syntax_error.c
 
 UTILS = main.c\
 
