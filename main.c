@@ -1,6 +1,5 @@
 
 #include "parsing.h"
-#include "libft.h"
 #include <readline/readline.h>
 #include <readline/history.h>
 
@@ -30,7 +29,11 @@ int main(int ac, char **av, char **env)
 			expand_exec_list(&data);
 			init_envp(&data);
 			remove_empty_line(&data);
-			
+			if (data.pars && validate_syntax(data.pars))
+			{
+				free_all(&data, 2, "");
+				return (-1);
+			}
 			print_lst_exec(data.exec);
 			print_lst_pars(data.pars);
 			free_all(&data, 0, "");

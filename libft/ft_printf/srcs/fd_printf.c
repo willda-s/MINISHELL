@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dprintf.c                                       :+:      :+:    :+:   */
+/*   fd_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 07:34:41 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/06/27 20:40:54 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/08/29 13:31:59 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fd_printf.h"
+#include "fd_printf.h"
 
 int	ft_dprintf(int fd, const char *input, ...)
 {

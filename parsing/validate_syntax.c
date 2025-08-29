@@ -6,12 +6,11 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:26:59 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/08/29 13:26:00 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/08/29 14:33:06 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-#include <stddef.h>
 
 static int	check_syntax(t_pars *pars);
 static int	check_curr_and_next_token(t_pars *curr, t_pars *next);
@@ -38,7 +37,7 @@ static int	check_syntax(t_pars *pars)
 	result = check_curr_and_next_token(pars, pars->next);
 	if (result != 0)
 		return (result);
-	return (check_syntax(pars));
+	return (check_syntax(pars->next));
 }
 
 static int	check_curr_and_next_token(t_pars *curr, t_pars *next)
@@ -76,12 +75,15 @@ static int	is_syntax_error(t_pars *tok1, t_pars *tok2)
 		return (1);
 	if (tok1->type == PIPE && tok2->type == PIPE)
 		return (1);
+	// if ((tok1->type == OPEN_BRACE || tok1->type == CLOSED_BRACE)
+	// 	|| (tok2->type == OPEN_BRACE || tok2->type == CLOSED_BRACE))
+	// 	return (1);
 	return (0);
 }
 
 static int	is_logic_sep(t_pars *token)
 {
-	if (token->type & PIPE)
+	if (token->type == PIPE)
 		return (1);
 	return (0);
 }

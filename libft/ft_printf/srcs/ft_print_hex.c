@@ -6,11 +6,11 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 21:24:09 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/06/23 18:20:09 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/08/29 13:33:07 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fd_printf.h"
+#include "fd_printf.h"
 
 int	print_hex_upper(unsigned int num, t_vector *buffer)
 {

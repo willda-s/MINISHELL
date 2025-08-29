@@ -1,2 +1,2 @@
-obj/parsing/type.o: parsing/type.c parsing/../includes/parsing.h \
-  includes/env.h includes/../libft/libft.h
+obj/parsing/type.o: parsing/type.c includes/parsing.h includes/env.h \
+  libft/libft_functions/includes/libft.h

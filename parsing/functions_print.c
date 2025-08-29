@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   functions_print.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:56:02 by willda-s          #+#    #+#             */
-/*   Updated: 2025/06/30 14:19:39 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/29 13:33:32 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parsing.h"
+#include "parsing.h"
 
 // void	print_tab(char **dst)
 // {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   type_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:00:48 by willda-s          #+#    #+#             */
-/*   Updated: 2025/06/30 14:01:23 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/29 13:33:47 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parsing.h"
+#include "parsing.h"
 
 void	is_builtins(t_pars **tmp)
 {

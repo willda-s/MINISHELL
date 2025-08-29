@@ -6,20 +6,20 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:55:59 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/27 16:53:29 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/08/29 14:23:07 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parsing.h"
+#include "parsing.h"
 
-static bool	lastnode_pipe(t_pars *pars)
-{
-	while (pars->next)
-		pars = pars->next;
-	if (pars->type == PIPE)
-		return (true);
-	return (false);
-}
+// static bool	lastnode_pipe(t_pars *pars)
+// {
+// 	while (pars->next)
+// 		pars = pars->next;
+// 	if (pars->type == PIPE)
+// 		return (true);
+// 	return (false);
+// }
 
 static void	init_token_command(t_pars **pars)
 {
@@ -79,7 +79,7 @@ void	token_main(t_data *data)
 {
 	init_token_redir(&data->pars);
 	init_token_pipe(&data->pars);
-	if (lastnode_pipe(data->pars))
-		free_all(data, 0, "Error\nIncorrect syntax\n");
+	// if (lastnode_pipe(data->pars))
+	// 	free_all(data, 0, "Error\nIncorrect syntax\n");
 	init_token_command(&data->pars);
 }
