@@ -28,8 +28,8 @@ PARSING_FILES = init_data_and_pars.c\
 EXEC_DIR = exec/
 
 EXEC_FILES = path.c\
-			exec2.c\
-			dupfirstcmd.c\
+			exec.c\
+			ft_fd.c\
 
 UTILS = main.c\
 

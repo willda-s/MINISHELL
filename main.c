@@ -18,6 +18,11 @@ int main(int ac, char **av, char **env)
 	while (1)
 	{
 		input = readline("> ");
+		if (!input)
+		{
+			ft_putstr_fd("exit\n", 2);
+			free_lst_env(&envd, true, 0);
+		}
 		if (*input)
 			add_history(input);
 		dst = ft_split_with_quotes(input, ' ');

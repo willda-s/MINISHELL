@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/28 15:45:21 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 01:04:17 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,13 @@ typedef struct s_data
 
 void execc(t_data *data);
 void	ft_close(int *fd);
-void	dup_cmd(t_exec *node, t_data *data);
+void	dup_fd(t_exec *node, t_data *data);
 void	dup_lastcmd(t_exec *node, t_data *data);
 pid_t execfirstcmd(t_data *data, int *fd);
 pid_t execlastcmd(t_data *data, int *fd);
+void close_last_fd(t_exec *node);
+void close_first_fd(t_exec *node);
+void close_fd(t_exec *node);
 char	*path_in_arg(t_exec *exec);
 char	*find_path(t_exec *node, t_data *data);
 

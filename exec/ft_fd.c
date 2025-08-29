@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dupfirstcmd.c                                      :+:      :+:    :+:   */
+/*   ft_fd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 21:13:24 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/28 15:50:45 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 01:28:09 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,31 @@
 // 	}
 // }
 
-void	dup_cmd(t_exec *node, t_data *data)
+void close_last_fd(t_exec *node)
+{
+	if (node && node->fd_out != -1)
+	{
+		close(node->fd_out);
+		node->fd_out = -1;
+	}
+}
+
+void close_first_fd(t_exec *node)
+{
+	if (node && node->fd_in != -1)
+	{
+		close(node->fd_in);
+		node->fd_in = -1;
+	}
+}
+
+void close_fd(t_exec *node)
+{
+	close_first_fd(node);
+	close_last_fd(node);
+}
+
+void	dup_fd(t_exec *node, t_data *data)
 {
 	if (node->fd_out != -1)
 	{
