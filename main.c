@@ -1,8 +1,5 @@
 
-#include "includes/parsing.h"
-#include "libft/libft.h"
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "parsing.h"
 
 int main(int ac, char **av, char **env)
 {
@@ -36,17 +33,18 @@ int main(int ac, char **av, char **env)
 		remove_empty_line(&data);
 		// print_lst_exec(data.exec);
 		// print_lst_pars(data.pars);
+		handle_heredoc(&data);
 		execc(&data);
+		// ft_dprintf(2, "%d\n", data.errcode);
 		free_tmpall(&data);
 	}
 }
 
 /*TO DO :
-	LE PARSING SEMBLE FINIT, NORMER, SECURISER.
-
-			- REPRENDRE LE HEREDOC
-			-  SIGNAUX
-			- secu ligne 92 de expandf.c
+			- heredoc
+			- $? et code de sortie
+			- redirection files
+			- signal
 */
 
 /*A SUPPRIMER DU .H ET DU .C :

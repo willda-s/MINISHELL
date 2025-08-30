@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 19:44:48 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/28 15:15:59 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 23:56:12 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ static int	is_slash(t_exec *exec)
 	int	j;
 
 	j = 0;
-	while (exec->cmd[0][j])
+	if (!exec->cmd || !exec->cmd[0])
+		return(0);
+	while (exec->cmd && exec->cmd[0][j])
 	{
 		if (exec->cmd[0][j] == '/')
 			return (1);
@@ -82,6 +84,8 @@ char	*find_path(t_exec *node, t_data *data)
 	int		j;
 
 	j = 0;
+	if (!node->cmd || !node->cmd[0])
+		return (NULL);
 	allpath = find_path_first(data);
 	while (allpath[++j])
 	{

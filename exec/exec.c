@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 13:07:45 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/30 14:32:32 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/31 00:01:32 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,17 @@ static int	wait_process(int nb_proc)
 
 void exec_cmd(t_exec *node, t_data *data)
 {
+	if (node->cmd)
+	{
 		node->path = path_in_arg(node);
 		if (node->path == NULL)
 			node->path = find_path(node, data);
 		if (node->path != NULL)
             execve(node->path, node->cmd, data->envp);
-		close_all_fd(data);
-		free_all(data, errno, "", true); //message d'erreur a faire, return errno ou data->errcode?
+			ft_dprintf(2, "%s: command not found\n", node->cmd[0]);
+	}	
+	close_allfd_struct(data);
+	free_all(data, 127, "", true);
 }
 
 void init_pipe(t_exec *node)
@@ -71,11 +75,11 @@ void execc(t_data *data)
 			exec_cmd(tmp, data);
 		}
 		else if (pid < 0)
-			free_all(data, errno, "fork fail\n", true);
+			free_all(data, errno, "fork fail\n", true); //errno 12 = malloc fail ?
 		close_fd(tmp);
 		i++;
 		prev = tmp;
 		tmp = tmp->next;
 	}
-    wait_process(i);
+    data->errcode = wait_process(i); //on recup le dernier code d'erreur sur data->errcode ?
 }

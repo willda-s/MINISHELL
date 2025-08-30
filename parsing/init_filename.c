@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:50 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/27 18:39:36 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 23:54:23 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	check_redirin(t_data *data, t_pars *tmp, t_redir **node)
 	}
 	else if (tmp->type == HEREDOC && tmp->next && (*node)->token != HEREDOC)
 	{
-		(*node)->delimiter = ft_strjoin(tmp->next->word, "\n");
+		(*node)->delimiter = ft_strdup(tmp->next->word);
 		if (!(*node)->delimiter)
 			free_all(data, 0, "Error\nMalloc fail in check_redirin\n", true);
 		(*node)->token = HEREDOC;

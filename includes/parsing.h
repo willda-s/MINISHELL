@@ -6,20 +6,23 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/30 13:44:11 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 23:43:11 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <fcntl.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 typedef enum s_type
 {
 	NUL,
-	WORD = 1,
-	PIPE = 1 << 1,
-	HEREDOC = 1 << 2,
+	WORD = 1,			// delimiter par un space
+	PIPE = 1 << 1,		// delimiter par non pipe
+	HEREDOC = 1 << 2,	// delimiter par non chevron
 	REDIR_APPEND = 1 << 3,
 	REDIR_TRUNC = 1 << 4,
 	REDIR_IN = 1 << 5,
@@ -77,9 +80,10 @@ void close_first_fd(t_exec *node);
 void close_fd(t_exec *node);
 char	*path_in_arg(t_exec *exec);
 char	*find_path(t_exec *node, t_data *data);
-void close_all_fd(t_data *data);
-
+void close_allfd_struct(t_data *data);
 void init_pipe(t_exec *node);
+void open_all_file(t_exec *node, t_data *data);
+void handle_heredoc(t_data *data);
 /////////////SPLIT_QUOTES.C/////////////////////
 
 char				**ft_split_with_quotes(char const *s, char c);
