@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 21:13:24 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/30 01:28:09 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 13:43:16 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@
 // 		fd[1] = -1;
 // 	}
 // }
+void close_all_fd(t_data *data)
+{
+	t_exec *tmp = data->exec;
+	while (tmp)
+	{
+		close_fd(tmp);
+		tmp = tmp->next;
+	}
+}
 
 void close_last_fd(t_exec *node)
 {

@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/30 01:04:17 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 13:44:11 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void close_first_fd(t_exec *node);
 void close_fd(t_exec *node);
 char	*path_in_arg(t_exec *exec);
 char	*find_path(t_exec *node, t_data *data);
+void close_all_fd(t_data *data);
 
 void init_pipe(t_exec *node);
 /////////////SPLIT_QUOTES.C/////////////////////

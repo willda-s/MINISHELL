@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 13:07:45 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/30 01:27:12 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 14:32:32 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,8 @@ void exec_cmd(t_exec *node, t_data *data)
 			node->path = find_path(node, data);
 		if (node->path != NULL)
             execve(node->path, node->cmd, data->envp);
-		if (!node->next)
-			close_fd(node);
-		free_all(data, errno, "", true);
+		close_all_fd(data);
+		free_all(data, errno, "", true); //message d'erreur a faire, return errno ou data->errcode?
 }
 
 void init_pipe(t_exec *node)
