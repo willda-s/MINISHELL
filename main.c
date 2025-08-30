@@ -25,15 +25,16 @@ int main(int ac, char **av, char **env)
 				free_lst_env(&envd, true, 0);
 			init_data(&data, &envd, dst);
 			token_main(&data);
+			if (data.pars && validate_syntax(data.pars))
+			{
+				free_all(&data, 2, "");
+				free(input);
+				continue ;
+			}
 			init_lst_exec(&data);
 			expand_exec_list(&data);
 			init_envp(&data);
 			remove_empty_line(&data);
-			if (data.pars && validate_syntax(data.pars))
-			{
-				free_all(&data, 2, "");
-				return (-1);
-			}
 			print_lst_exec(data.exec);
 			print_lst_pars(data.pars);
 			free_all(&data, 0, "");
