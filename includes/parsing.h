@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/29 13:25:46 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/08/30 15:54:28 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef enum s_type
 	TARGETS = 1 << 9,
 	OPEN_BRACE = 1 << 10,
 	CLOSED_BRACE = 1 << 11,
+	SIMPLE_QUOTE = 1 << 12,
+	DOUBLE_QUOTE = 1 << 13,
 	REDIR = REDIR_IN | HEREDOC | REDIR_APPEND | REDIR_TRUNC,
 }					t_type;
 
