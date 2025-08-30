@@ -19,7 +19,8 @@ int main(int ac, char **av, char **env)
 		{
 			input = readline("> ");
 			if (*input)
-				add_history(input);
+			add_history(input);
+			// fonction to parse with spaces
 			dst = ft_split_with_quotes(input, ' ');
 			if (!dst)
 				free_lst_env(&envd, true, 0);
