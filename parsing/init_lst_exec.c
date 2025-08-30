@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:54 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/29 13:33:37 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/08/30 16:15:11 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ static char	**init_cmds(t_data *data, t_pars *tmp, t_exec **node)
 		ccmd = count_cmd(tmp);
 		(*node)->cmd = malloc(sizeof(char *) * (ccmd + 1));
 		if (!(*node)->cmd)
-			free_all(data, 0, "Error\nMalloc fail in init_cmds\n");
+			free_all_msg(data, 0, "Error\nMalloc fail in init_cmds\n");
 		(*node)->cmd[0] = ft_strdup(tmp->word);
 		if (!(*node)->cmd[0])
-			free_all(data, 0, "Error\nMalloc fail in init_cmds\n");
+			free_all_msg(data, 0, "Error\nMalloc fail in init_cmds\n");
 		if (fill_args(tmp->next, *node) == 1)
-			free_all(data, 0, "Error\nMalloc fail in fill_args\n");
+			free_all_msg(data, 0, "Error\nMalloc fail in fill_args\n");
 	}
 	else
 		(*node)->cmd = NULL;
@@ -82,10 +82,10 @@ void	init_lst_exec(t_data *data)
 	while (tmp)
 	{
 		if (add_back_exec(&(data)->exec) == 1)
-			free_all(data, 0, "Error\nAdd_back fail in init_lst_exec\n");
+			free_all_msg(data, 0, "Error\nAdd_back fail in init_lst_exec\n");
 		node = ft_lstlast_exec(data->exec);
 		if (!node)
-			free_all(data, 0, "Error\nFt_lstlast fail\n");
+			free_all_msg(data, 0, "Error\nFt_lstlast fail\n");
 		while (tmp && tmp->type != PIPE)
 		{
 			if (!node->cmd)

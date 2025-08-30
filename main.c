@@ -27,8 +27,7 @@ int main(int ac, char **av, char **env)
 			token_main(&data);
 			if (data.pars && validate_syntax(data.pars))
 			{
-				free_all(&data, 2, "");
-				free(input);
+				free_all(&data, 2);
 				continue ;
 			}
 			init_lst_exec(&data);
@@ -37,7 +36,7 @@ int main(int ac, char **av, char **env)
 			remove_empty_line(&data);
 			print_lst_exec(data.exec);
 			print_lst_pars(data.pars);
-			free_all(&data, 0, "");
+			free_all_msg(&data, 0, "");
 		}
 	}
 }

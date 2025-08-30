@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:23:20 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/08/29 13:23:32 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/08/30 16:32:34 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	syntax_error(int type)
 	[REDIR_APPEND] = ">>",
 	[OPEN_BRACE] = "(",
 	[CLOSED_BRACE] = ")",
+	[SIMPLE_QUOTE] = "\'",
+	[DOUBLE_QUOTE] = "\"",
 	};
 
 	ft_dprintf(STDERR_FILENO, SYNTAX_ERR, op_type[type]);

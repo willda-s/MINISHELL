@@ -43,7 +43,7 @@ FILE =	$(addprefix $(ENV_DIR), $(ENV_FILES))\
 		$(addprefix $(PARSING_DIR), $(PARSING_FILES))\
 		$(UTILS)
 		
-OBJ_DIR = obj/
+OBJ_DIR = .obj/
 
 OBJ = $(addprefix $(OBJ_DIR), $(FILE:.c=.o))
 DEPD = $(addprefix $(OBJ_DIR), $(FILE:.c=.d))

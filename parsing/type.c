@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:55:59 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/30 15:52:29 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/08/30 16:15:11 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,6 @@ void	token_main(t_data *data)
 	init_token_pipe(&data->pars);
 	init_token_brace(&data->pars);
 	// if (lastnode_pipe(data->pars))
-	// 	free_all(data, 0, "Error\nIncorrect syntax\n");
+	// 	free_all_msg(data, 0, "Error\nIncorrect syntax\n");
 	init_token_command(&data->pars);
 }

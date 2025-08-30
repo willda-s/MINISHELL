@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/30 15:54:28 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/08/30 16:16:28 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,9 @@ void				free_lst_redir(t_redir **redir);
 
 ///////////////FUNCTIONS_FREE.C/////////////////////
 
-int					free_all(t_data *data, int errcode, char *str);
+int					free_all_msg(t_data *data, int errcode, char *str);
+
+int					free_all(t_data *data, int errcode);
 
 void				free_tab(char **dst);
 

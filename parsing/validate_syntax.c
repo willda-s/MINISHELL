@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:26:59 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/08/30 15:45:26 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/08/30 16:36:15 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	check_syntax(t_pars *pars)
 
 static int	check_curr_and_next_token(t_pars *curr, t_pars *next)
 {
-	if (contains_double_pipe(next->word))
+	if (contains_double_pipe(curr->word))
 		return (syntax_error(PIPE));
 	if (curr->type == OPEN_BRACE || curr->type == CLOSED_BRACE)
 		return (syntax_error(curr->type));
@@ -82,7 +82,7 @@ static int	contains_double_pipe(char *word)
 {
 	if (!word)
 		return (0);
-	if (ft_strcmp(word, "||") == 0)
+	if (ft_strncmp(word, "||", 2) == 0)
 		return (1);
 	return (0);
 }
