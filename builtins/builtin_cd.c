@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:50:00 by cafabre           #+#    #+#             */
-/*   Updated: 2025/08/31 17:41:14 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/08/31 18:52:11 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ static void	update_pwd_vars(t_env *env, char *old_pwd)
 	}
 }
 
-int	builtin_cd(t_exec *exec)
+int	builtin_cd(t_exec *exec, t_data *data)
 {
 	char	*path;
 	char	*old_pwd;
 
 	old_pwd = getcwd(NULL, 0);
 	if (!exec->cmd[1])
-		path = get_env_value(exec->env, "HOME");
+		path = get_env_value(data->env, "HOME");
 	else
 		path = exec->cmd[1];
 	if (!path)
@@ -72,7 +72,7 @@ int	builtin_cd(t_exec *exec)
 		free(old_pwd);
 		return (EXIT_FAILURE);
 	}
-	update_pwd_vars(exec->env, old_pwd);
+	update_pwd_vars(data->env, old_pwd);
 	free(old_pwd);
 	return (EXIT_SUCCESS);
 }

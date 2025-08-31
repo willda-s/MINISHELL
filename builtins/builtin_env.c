@@ -6,17 +6,17 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:07:51 by cafabre           #+#    #+#             */
-/*   Updated: 2025/08/31 17:55:18 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/08/31 18:52:42 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-int	builtin_env(t_exec *exec)
+int	builtin_env(t_data *data)
 {
 	t_env	*tmp;
 
-	tmp = exec->env;
+	tmp = data->env;
 	while (tmp)
 	{
 		if (tmp->value)

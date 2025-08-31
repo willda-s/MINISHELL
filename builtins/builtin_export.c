@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/08/31 18:00:49 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/08/31 18:51:50 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,18 @@ static t_env	*extract_key_value(t_exec *exec)
 	return (env);
 }
 
-int	builtin_export(t_exec *exec)
+int	builtin_export(t_exec *exec, t_data *data)
 {
 	t_env	*new_var;
 
 	if (parsing_export(exec))
 		return (EXIT_FAILURE);
 	if (!exec->cmd[1])
-		builtin_env(exec->env);
+		builtin_env(data->env);
 	else
 	{
 		new_var = extract_key_value(exec);
-		ft_lstlast_env(exec->env)->next = new_var;
+		ft_lstlast_env(data->env)->next = new_var;
 	}
 	return (EXIT_SUCCESS);
 }
