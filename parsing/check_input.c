@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 18:18:26 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/08/31 18:40:19 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/08/31 18:58:02 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ size_t	ft_strlen(const char *s)
 
 static char	*dup_with_new_len(char *input, size_t new_len);
 static int	is_command(char cmd);
+static int	is_space(char c);
 
 char	*check_input(char *input)
 {
@@ -119,11 +120,30 @@ static char	*add_space(char *input)
 static int	calculate_new_len(char *new_input)
 {
 	size_t	i;
+	size_t	new_len;
 
 	i = 0;
+	new_len = ft_strlen(new_input);
 	while (new_input[i])
 	{
-		
+		if (is_command(new_input[i]) == 1)
+		{
+			if (new_input[i] && !is_space(new_input[i + 1]))
+			{
+				if (i != 0 && !is_space(new_input[i - 1]))
+					++new_len;
+				++new_len;
+			}
+		}
+		else if (is_command(new_input[i]) == 2)
+		{
+			if (ft_strcmp(&new_input[i], &new_input[i + 1]))
+				++i;
+			if (new_input[i] && !is_space(new_input[i + 1]))
+			{
+			}
+		}
+		if (is_command(new_input[i]) == 3)
 	}
 }
 
@@ -131,14 +151,16 @@ static int	is_command(char cmd)
 {
 	if (cmd == '|')
 		return (1);
-	if (cmd == '<' || cmd == '>')
+	if (cmd == '<')
 		return (2);
+	if (cmd == '>')
+		return (3);
 	return (0);
 }
 
 static int	is_space(char c)
 {
-	return (c == ' ');
+	return (c == ' ' || (c >= '\t' && c <= '\r'));
 }
 
 int	main(int ac, char **av)
