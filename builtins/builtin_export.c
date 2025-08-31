@@ -20,10 +20,10 @@ static int  parsing_export(t_exec *exec)
     while (exec->cmd[1][i])
     {
         if (!ft_isalnum(exec->cmd[1][i]) && exec->cmd[1][i] != '=')
-            return (1);
+            return (EXIT_FAILURE);
         i++;
     }
-    return (0);
+    return (EXIT_SUCCESS);
 }
 
 static char *extract_key(char *cmd_arg)
@@ -75,7 +75,7 @@ static t_env *extract_key_value(t_exec *exec)
 int builtin_export(t_exec *exec)
 {
     if (parsing_export(exec))
-        return (1);
+        return (EXIT_FAILURE);
     if (!exec->cmd[1])
         builtin_env(exec->env);
     else
@@ -83,5 +83,5 @@ int builtin_export(t_exec *exec)
         t_env *new_var = extract_key_value(exec);
         ft_lstlast_env(exec->env)->next = new_var;
     }
-    return (0);
+    return (EXIT_SUCCESS);
 }

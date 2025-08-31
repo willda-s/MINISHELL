@@ -6,7 +6,7 @@
 /*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:02 by cafabre           #+#    #+#             */
-/*   Updated: 2025/08/31 14:26:20 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/08/31 14:35:58 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int builtin_exit(t_exec *exec, t_data *data)
    if (exec->argc > 2)
    {
        write(1, "exit: too many arguments\n", 25);
-       return (1);
+       return (EXIT_FAILURE);
    }
    if (exec->argc == 2)
    {

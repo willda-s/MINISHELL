@@ -23,7 +23,7 @@ int  builtin_unset(char *var, t_env **env)
         free(current->key);
         free(current->value);
         free(current);
-        return (0);
+        return (EXIT_SUCCESS);
     }
     while (current != NULL)
     {
@@ -33,10 +33,10 @@ int  builtin_unset(char *var, t_env **env)
             free(current->key);
             free(current->value);
             free(current);
-            return (0);
+            return (EXIT_SUCCESS);
         }
         prev = current;
         current = current->next;
     }
-    return (0);
+    return (EXIT_SUCCESS);
 }

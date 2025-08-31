@@ -6,7 +6,7 @@
 /*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:07:51 by cafabre           #+#    #+#             */
-/*   Updated: 2025/08/31 14:07:53 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/08/31 14:38:48 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,5 @@ int builtin_env(t_env *env)
         }
         tmp = tmp->next;
     }
-    return (0);
+    return (EXIT_SUCCESS);
 }
-//fait : dupliquer l env + affichage
-//a completer

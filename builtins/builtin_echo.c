@@ -33,5 +33,5 @@ int builtin_echo(t_exec *exec)
     }
     if (new_line)
         write(exec->fd_out, "\n", 1);
-    return (0);
+    return (EXIT_SUCCESS);
 }

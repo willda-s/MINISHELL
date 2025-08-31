@@ -21,10 +21,10 @@ int builtin_pwd(t_exec *exec)
     if (cwd == NULL)
     {
         perror("pwd");
-        return (1);
+        return (EXIT_FAILURE);
     }
     write(1, cwd, ft_strlen(cwd));
     write(1, "\n", 1);
     free(cwd);
-    return (0);
+    return (EXIT_SUCCESS);
 }
