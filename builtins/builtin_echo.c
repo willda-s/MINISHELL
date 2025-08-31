@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:07:42 by cafabre           #+#    #+#             */
-/*   Updated: 2025/08/31 20:37:35 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/08/31 20:45:50 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ int	builtin_echo(t_exec *exec)
 	}
 	while (exec->cmd[i])
 	{
-		write(exec->fd_out, exec->cmd[i], ft_strlen(exec->cmd[i]));
+		write(1, exec->cmd[i], ft_strlen(exec->cmd[i]));
 		if (exec->cmd[i + 1])
-			write(exec->fd_out, " ", 1);
+			write(1, " ", 1);
 		i++;
 	}
 	if (new_line)
-		write(exec->fd_out, "\n", 1);
+		write(1, "\n", 1);
 	return (EXIT_SUCCESS);
 }
