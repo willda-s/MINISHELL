@@ -50,7 +50,7 @@ long long ft_atoll(const char *str)
     return (result * sign);
 }
 
-int builtin_exit(t_exec *exec)
+int builtin_exit(t_exec *exec, t_data *data)
 {
    long long status;
 
@@ -70,5 +70,5 @@ int builtin_exit(t_exec *exec)
        status = ft_atoll(exec->argv[1]);
        exit((unsigned char)status);
    }
-   exit(exec->last_status);
+   exit(data->errcode);
 }
