@@ -6,12 +6,13 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:22:27 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/30 23:34:51 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/31 19:08:03 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft_functions/includes/libft.h"
 #include "../libft/ft_printf/includes/fd_printf.h"
+#include "../libft/get_next_line/includes/get_next_line_bonus.h"
 #include <stdbool.h>
 #include <errno.h>
 

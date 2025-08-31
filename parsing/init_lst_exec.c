@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:54 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/28 13:29:26 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/31 22:14:21 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ static char	**init_cmds(t_data *data, t_pars *tmp, t_exec **node)
 		ccmd = count_cmd(tmp);
 		(*node)->cmd = malloc(sizeof(char *) * (ccmd + 1));
 		if (!(*node)->cmd)
-			free_all(data, 0, "Error\nMalloc fail in init_cmds\n", true);
+			free_all(data, 12, "Error\nMalloc fail in init_cmds\n", true);
 		(*node)->cmd[0] = ft_strdup(tmp->word);
 		if (!(*node)->cmd[0])
-			free_all(data, 0, "Error\nMalloc fail in init_cmds\n", true);
+			free_all(data, 12, "Error\nMalloc fail in init_cmds\n", true);
 		if (fill_args(tmp->next, *node) == 1)
-			free_all(data, 0, "Error\nMalloc fail in fill_args\n", true);
+			free_all(data, 12, "Error\nMalloc fail in fill_args\n", true);
 	}
 	else
 		(*node)->cmd = NULL;

@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 19:04:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/31 00:10:55 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/31 22:34:22 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void open_redir_trunc(t_exec *node, t_data *data, t_redir *tmp)
 		if (node->fd_out == -1)
 		{
 			close_allfd_struct(data);
-			ft_dprintf(2, "%s: Permission denied\n", tmp->filename);
-			free_all(data, 1, "", true);
+			ft_dprintf(STDERR_FILENO, "%s: Permission denied\n", tmp->filename);
+			free_all(data, 1, NULL, true);
 		}
 }
 
@@ -33,8 +33,8 @@ static void open_redir_append(t_exec *node, t_data *data, t_redir *tmp)
 	if (node->fd_out == -1)
 	{
 		close_allfd_struct(data);
-		ft_dprintf(2, "%s: Permission denied\n", tmp->filename);
-		free_all(data, 1, "", true);
+		ft_dprintf(STDERR_FILENO, "%s: Permission denied\n", tmp->filename);
+		free_all(data, 1, NULL, true);
 	}
 }
 
@@ -46,8 +46,8 @@ static void open_redir_in(t_exec *node, t_data *data, t_redir *tmp)
 	if (node->fd_in == -1)
 	{
 		close_allfd_struct(data);
-		ft_dprintf(2, "%s: No such file or directory\n", tmp->filename);
-		free_all(data, 1, "", true);
+		ft_dprintf(STDERR_FILENO, "%s: No such file or directory\n", tmp->filename);
+		free_all(data, 1, NULL, true);
 	}
 }
 
@@ -59,8 +59,8 @@ static void open_heredoc_in(t_exec *node, t_data *data, t_redir *tmp)
 	if (node->fd_in == -1)
 	{
 		close_allfd_struct(data);
-		ft_dprintf(2, "%s: No such file or directory\n", tmp->filename); // No SUCH FILE ... ?
-		free_all(data, 1, "", true);
+		ft_dprintf(STDERR_FILENO, "%s: No such file or directory\n", tmp->filename); // No SUCH FILE ... ?
+		free_all(data, 1, NULL, true);
 	}
 	unlink(tmp->filename);
 }

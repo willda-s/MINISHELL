@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:50 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/30 23:54:23 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/31 22:14:06 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static void	check_redirin(t_data *data, t_pars *tmp, t_redir **node)
 	{
 		(*node)->filename = ft_strdup(tmp->next->word);
 		if (!(*node)->filename)
-			free_all(data, 0, "Error\nMalloc fail in check_redirin\n", true);
+			free_all(data, 12, "Error\nMalloc fail in check_redirin\n", true);
 		(*node)->token = REDIR_IN;
 	}
 	else if (tmp->type == HEREDOC && tmp->next && (*node)->token != HEREDOC)
 	{
 		(*node)->delimiter = ft_strdup(tmp->next->word);
 		if (!(*node)->delimiter)
-			free_all(data, 0, "Error\nMalloc fail in check_redirin\n", true);
+			free_all(data, 12, "Error\nMalloc fail in check_redirin\n", true);
 		(*node)->token = HEREDOC;
 	}
 }
@@ -36,14 +36,14 @@ static void	check_redirout(t_data *data, t_pars *tmp, t_redir **node)
 	{
 		(*node)->filename = ft_strdup(tmp->next->word);
 		if (!(*node)->filename)
-			free_all(data, 0, "Error\nMalloc fail in check_redirout\n", true);
+			free_all(data, 12, "Error\nMalloc fail in check_redirout\n", true);
 		(*node)->token = REDIR_APPEND;
 	}
 	else if (tmp->type == REDIR_TRUNC && tmp->next)
 	{
 		(*node)->filename = ft_strdup(tmp->next->word);
 		if (!(*node)->filename)
-			free_all(data, 0, "Error\nMalloc fail in check_redirout\n", true);
+			free_all(data, 12, "Error\nMalloc fail in check_redirout\n", true);
 		(*node)->token = REDIR_TRUNC;
 	}
 }

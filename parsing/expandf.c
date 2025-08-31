@@ -6,12 +6,26 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/30 22:52:24 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/08/31 22:14:00 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parsing.h"
 
+
+static int handle_errcode(char *res, int j, t_data *data)
+{
+	int len;
+	char *str;
+
+	str = ft_itoa(data->errcode);
+	len = 0;
+	while(res && str && str[len])
+		res[j++] = str[len++];
+	free(str);
+	data->i++;
+	return (j);
+}
 static int	ft_expand_var(char *res, int j, char *word, t_data *data)
 {
 	char	var[256];
@@ -20,7 +34,12 @@ static int	ft_expand_var(char *res, int j, char *word, t_data *data)
 
 	data->i++;
 	k = 0;
-	if (!word[data->i] || (!is_var_char(word[data->i]) && word[data->i] != '"'
+	if (word && word[data->i] == '?')
+	{
+		j = handle_errcode(res, j, data);
+		return (j);
+	}
+	else if (!word[data->i] || (!is_var_char(word[data->i]) && word[data->i] != '"'
 			&& word[data->i] != '\''))
 	{
 		res[j++] = '$';
@@ -111,7 +130,7 @@ void	expand_exec_list(t_data *data)
 				exec->cmd[i] = new_word;
 			}
 			else
-				free_all(data, 0, "Error\nMalloc fail in ft_expand_word", true);
+				free_all(data, 12, "Error\nMalloc fail in ft_expand_word", true);
 			i++;
 		}
 		exec = exec->next;
