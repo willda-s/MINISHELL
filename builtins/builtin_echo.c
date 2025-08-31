@@ -16,7 +16,7 @@ int builtin_echo(t_exec *exec)
     //parcourt des arguments de la commande
     while (exec->cmd[i])
     {
-        write(exec->fd_out, exec->cmd[1], ft_strlen(exec->cmd[1]));
+        write(exec->fd_out, exec->cmd[i], ft_strlen(exec->cmd[i]));
         if (exec->cmd[i + 1])
             write(exec->fd_out, " ", 1);
         i++;
