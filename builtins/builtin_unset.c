@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:16 by cafabre           #+#    #+#             */
-/*   Updated: 2025/08/31 18:58:11 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/08/31 19:02:23 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	builtin_unset(char *var, t_env *env)
 
 	current = env;
 	prev = NULL;
-	if (current != NULL && strcmp(current->key, var) == 0)
+	if (current != NULL && ft_strcmp(current->key, var) == 0)
 	{
 		env = current->next;
 		unset_free(current);
@@ -34,7 +34,7 @@ int	builtin_unset(char *var, t_env *env)
 	}
 	while (current != NULL)
 	{
-		if (strcmp(current->key, var) == 0)
+		if (ft_strcmp(current->key, var) == 0)
 		{
 			prev->next = current->next;
 			unset_free(current);
