@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/08/31 19:18:23 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/08/31 20:40:27 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	builtin_export(t_exec *exec, t_data *data)
 	if (parsing_export(exec))
 		return (EXIT_FAILURE);
 	if (!exec->cmd[1])
-		builtin_env(data->env);
+		builtin_env(data->env, true);
 	else
 	{
 		new_var = extract_key_value(exec);
