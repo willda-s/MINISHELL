@@ -6,13 +6,13 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:02 by cafabre           #+#    #+#             */
-/*   Updated: 2025/08/31 17:57:19 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/08/31 19:18:19 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-int	is_number(char *s)
+static int	is_number(char *s)
 {
 	int	i;
 
@@ -30,7 +30,7 @@ int	is_number(char *s)
 	return (1);
 }
 
-long long	ft_atoll(const char *str)
+static long long	ft_atoll(const char *str)
 {
 	long long	result;
 	int			sign;

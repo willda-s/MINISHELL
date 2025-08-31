@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:07:42 by cafabre           #+#    #+#             */
-/*   Updated: 2025/08/31 17:54:54 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/08/31 19:23:05 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	builtin_echo(t_exec *exec)
 
 	i = 1;
 	new_line = 1;
-	if (exec->cmd[1] && ft_strncmp(exec->cmd[1], "-n", 2) == 0)
+	if (exec->cmd[i] && ft_strncmp(exec->cmd[i], "-n", 2) == 0)
 	{
-		i = 2;
+		i++;
 		new_line = 0;
 	}
 	while (exec->cmd[i])

@@ -6,13 +6,12 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 18:00:01 by cafabre           #+#    #+#             */
-/*   Updated: 2025/08/31 18:00:04 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/08/31 19:18:32 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
 #include <unistd.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
