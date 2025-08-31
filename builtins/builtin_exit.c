@@ -53,21 +53,25 @@ long long ft_atoll(const char *str)
 int builtin_exit(t_exec *exec, t_data *data)
 {
    long long status;
+   int argc;
 
+   argc = 0;
+   while (exec->cmd[argc])
+       argc++;
    write(1, "exit\n", 5);
-   if (exec->argc > 2)
+   if (argc > 2)
    {
        write(1, "exit: too many arguments\n", 25);
        return (EXIT_FAILURE);
    }
-   if (exec->argc == 2)
+   if (argc == 2)
    {
-       if (!is_number(exec->argv[1]))
+       if (!is_number(exec->cmd[1]))
        {
            write(1, "exit: numeric argument required\n", 32);
            exit(2);
        }
-       status = ft_atoll(exec->argv[1]);
+       status = ft_atoll(exec->cmd[1]);
        exit((unsigned char)status);
    }
    exit(data->errcode);

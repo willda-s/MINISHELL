@@ -6,7 +6,7 @@
 /*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/08/31 15:39:59 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/08/31 15:48:38 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ static char *extract_value(char *cmd_arg)
     i = 0;
     j = 0;
     value = malloc(ft_strlen(cmd_arg) + 1);
+    if (!value)
+        return (NULL);
     while (cmd_arg[i] && cmd_arg[i] != '=')
         i++;
     if (cmd_arg[i] == '=')
@@ -67,6 +69,8 @@ static t_env *extract_key_value(t_exec *exec)
     t_env   *env;
 
     env = malloc(sizeof(t_env));
+    if (!env)
+        return (NULL);
     env->key = extract_key(exec->cmd[1]);
     env->value = extract_value(exec->cmd[1]);
     env->next = NULL;
