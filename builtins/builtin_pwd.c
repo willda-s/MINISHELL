@@ -6,7 +6,7 @@
 /*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:12 by cafabre           #+#    #+#             */
-/*   Updated: 2025/08/31 14:08:13 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/08/31 15:22:26 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int builtin_pwd(t_exec *exec)
 {
     char    *cwd;
-    int     output_fd;
 
     cwd = getcwd(NULL, 0);
     if (cwd == NULL)
