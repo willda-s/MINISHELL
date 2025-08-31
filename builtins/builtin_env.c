@@ -12,9 +12,9 @@
 
 #include "builtins.h"
 
-int builtin_env(t_env *env)
+int builtin_env(t_exec *exec)
 {
-    t_env *tmp = env;
+    t_env *tmp = exec->env;
 
     while (tmp)
     {
