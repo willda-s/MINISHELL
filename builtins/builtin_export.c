@@ -6,7 +6,7 @@
 /*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/08/31 14:08:09 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/08/31 15:39:59 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static int  parsing_export(t_exec *exec)
     i = 0;
     while (exec->cmd[1][i])
     {
-        if (!ft_isalnum(exec->cmd[1][i]) && exec->cmd[1][i] != '=')
+        if (!ft_isalnum(exec->cmd[1][i]) && exec->cmd[1][i] != '='
+            && exec->cmd[1][i] != '_')
             return (EXIT_FAILURE);
         i++;
     }
@@ -32,7 +33,7 @@ static char *extract_key(char *cmd_arg)
     char    *key;
 
     i = 0;
-    key = malloc(256);
+    key = malloc(ft_strlen(cmd_arg) + 1);
     while (cmd_arg[i] && cmd_arg[i] != '=')
     {
         key[i] = cmd_arg[i];
@@ -50,7 +51,7 @@ static char *extract_value(char *cmd_arg)
 
     i = 0;
     j = 0;
-    value = malloc(256);
+    value = malloc(ft_strlen(cmd_arg) + 1);
     while (cmd_arg[i] && cmd_arg[i] != '=')
         i++;
     if (cmd_arg[i] == '=')
