@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin_exit.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/31 14:08:02 by cafabre           #+#    #+#             */
+/*   Updated: 2025/08/31 14:26:20 by cafabre          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "builtins.h"
 
 int is_number(char *s)
@@ -58,9 +70,5 @@ int builtin_exit(t_exec *exec)
        status = ft_atoll(exec->argv[1]);
        exit((unsigned char)status);
    }
-   exit(exec->last_status); //A completer
+   exit(exec->last_status);
 }
-
-//last status : trouver un moyen de recuperer le code de la derniere commande
-//option 1 : ajouter a la structure exec
-//option 2 : var globale, bof...

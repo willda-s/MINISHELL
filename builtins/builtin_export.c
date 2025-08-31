@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin_export.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
+/*   Updated: 2025/08/31 14:08:09 by cafabre          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "builtins.h"
 
 static int  parsing_export(t_exec *exec)
@@ -14,41 +26,48 @@ static int  parsing_export(t_exec *exec)
     return (0);
 }
 
-static t_env  *extract_key_value(t_exec *exec)
+static char *extract_key(char *cmd_arg)
 {
     int     i;
-    int     j;
     char    *key;
-    char    *value;
-    t_env   *env;
 
     i = 0;
-    j = 0;
     key = malloc(256);
-    value = malloc(256);
-    env = malloc(sizeof(t_env));
-    
-    while (exec->cmd[1][i] && exec->cmd[1][i] != '=')
+    while (cmd_arg[i] && cmd_arg[i] != '=')
     {
-        key[i] = exec->cmd[1][i];
+        key[i] = cmd_arg[i];
         i++;
     }
     key[i] = '\0';
-    
-    if (exec->cmd[1][i] == '=')
-    {
+    return (key);
+}
+
+static char *extract_value(char *cmd_arg)
+{
+    int     i;
+    int     j;
+    char    *value;
+
+    i = 0;
+    j = 0;
+    value = malloc(256);
+    while (cmd_arg[i] && cmd_arg[i] != '=')
         i++;
-        while (exec->cmd[1][i])
-        {
-            value[j] = exec->cmd[1][i];
-            i++;
-            j++;
-        }
-    }
+    if (cmd_arg[i] == '=')
+        i++;
+    while (cmd_arg[i])
+        value[j++] = cmd_arg[i++];
     value[j] = '\0';
-    
-    env->key = key;
-    env->value = value;
+    return (value);
+}
+
+static t_env *extract_key_value(t_exec *exec)
+{
+    t_env   *env;
+
+    env = malloc(sizeof(t_env));
+    env->key = extract_key(exec->cmd[1]);
+    env->value = extract_value(exec->cmd[1]);
     env->next = NULL;
     return (env);
 }
@@ -57,11 +76,6 @@ int builtin_export(t_exec *exec)
 {
     if (parsing_export(exec))
         return (1);
-    //etape 1 : trouver la pos pour ajouter la var
-    //etape 2 :
-        //cas 1 : export sans arg -> afficher l env
-        //cas 2 : export + 1 arg -> ajouter a l env
-        //cas 3 : export + 2 args -> ajouter a l env + assigner value
     if (!exec->cmd[1])
         builtin_env(exec->env);
     else
