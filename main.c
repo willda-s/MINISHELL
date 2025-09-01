@@ -22,6 +22,11 @@ int	main(int ac, char **av, char **env)
 			if (*input)
 				add_history(input);
 			input = check_input(input);
+			if (!input)
+			{
+				free_lst_env(&envd, true, 0);
+				return (-1);
+			}
 			dst = ft_split_with_quotes(input, ' ');
 			if (!dst)
 				free_lst_env(&envd, true, 0);

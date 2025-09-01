@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 18:18:26 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/01 18:54:59 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/01 19:52:08 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,66 +90,3 @@ static void	add_space_to_redir(char *input, char *new_input, size_t *i,
 			new_input[(*j)++] = ' ';
 	}
 }
-
-// static size_t	calculate_new_len(char *input)
-// {
-// 	size_t	i;
-// 	size_t	new_len;
-
-// 	i = 0;
-// 	new_len = ft_strlen(input);
-// 	while (input[i])
-// 	{
-// 		if (is_command(input[i]) == 1)
-// 		{
-// 			if (i > 0 && !is_space(input[i - 1]))
-// 				++new_len;
-// 			if (input[i] && !is_space(input[i + 1]))
-// 				++new_len;
-// 		}
-// 		else if (is_command(input[i]) == 2)
-// 		{
-// 			if (i > 0 && !is_space(input[i - 1]))
-// 				++new_len;
-// 			if (input[i + 1] && (input[i] == input[i + 1]))
-// 				++i;
-// 			if (input[i] && !is_space(input[i + 1]))
-// 				++new_len;
-// 		}
-// 		else if (is_command(input[i]) == 3)
-// 		{
-// 			if (i > 0 && !is_space(input[i - 1]))
-// 				++new_len;
-// 			if (input[i + 1] && (input[i] == input[i + 1]))
-// 				++i;
-// 			if (input[i] && !is_space(input[i + 1]))
-// 				++new_len;
-// 		}
-// 		++i;
-// 	}
-// 	return (new_len);
-// }
-
-// int	main(int ac, char **av)
-// {
-// 	char	*result;
-
-// 	// size_t	space_count;
-// 	// size_t	i;
-// 	result = NULL;
-// 	// i = 0;
-// 	// space_count = 0;
-// 	if (ac == 2)
-// 	{
-// 		result = check_input(av[1]);
-// 		// while (result[i])
-// 		// {
-// 		// 	if (ft_strcmp(&result[i], " ") == 0)
-// 		// 		++space_count;
-// 		// 	++i;
-// 		// }
-// 		// printf("count =%zu\n", space_count);
-// 		printf("%s\n", result);
-// 	}
-// 	return (0);
-// }

@@ -6,21 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:55:59 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/30 16:15:11 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/01 19:56:01 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parsing.h"
-
-// static bool	lastnode_pipe(t_pars *pars)
-// {
-// 	while (pars->next)
-// 		pars = pars->next;
-// 	if (pars->type == PIPE)
-// 		return (true);
-// 	return (false);
-// }
 
 static void	init_token_command(t_pars **pars)
 {
@@ -96,7 +87,5 @@ void	token_main(t_data *data)
 	init_token_redir(&data->pars);
 	init_token_pipe(&data->pars);
 	init_token_brace(&data->pars);
-	// if (lastnode_pipe(data->pars))
-	// 	free_all_msg(data, 0, "Error\nIncorrect syntax\n");
 	init_token_command(&data->pars);
 }

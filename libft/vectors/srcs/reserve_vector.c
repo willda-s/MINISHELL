@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 19:15:02 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/08/09 19:22:37 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/01 19:56:31 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	reserve_vector(t_vector *vector, size_t size)
 {
-	size_t count;
+	size_t	count;
 
 	count = 0;
 	if (!vector)

@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:41 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/30 16:28:01 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/01 19:53:41 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	free_all_msg(t_data *data, int errcode, char *str)
 	ft_dprintf(2, "%s\n", str);
 	exit(errcode);
 }
+
 int	free_all(t_data *data, int errcode)
 {
 	if (data->env)
