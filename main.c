@@ -1,16 +1,17 @@
 
 #include "parsing.h"
-#include <readline/readline.h>
 #include <readline/history.h>
+#include <readline/readline.h>
 
-int main(int ac, char **av, char **env)
+int	main(int ac, char **av, char **env)
 {
+	char	*input;
+	char	**dst;
+	t_env	*envd;
+	t_data	data;
+
 	(void)ac;
 	(void)av;
-	char *input;
-	char **dst;
-	t_env 	*envd;
-	t_data	data;
 	if (ac == 1)
 	{
 		envd = NULL;
@@ -19,8 +20,8 @@ int main(int ac, char **av, char **env)
 		{
 			input = readline("> ");
 			if (*input)
-			add_history(input);
-			// fonction to parse with spaces
+				add_history(input);
+			input = check_input(input);
 			dst = ft_split_with_quotes(input, ' ');
 			if (!dst)
 				free_lst_env(&envd, true, 0);
@@ -42,6 +43,29 @@ int main(int ac, char **av, char **env)
 	}
 }
 
+// int	main(int ac, char **av)
+// {
+// 	char	*result;
+
+// 	// size_t	space_count;
+// 	// size_t	i;
+// 	result = NULL;
+// 	// i = 0;
+// 	// space_count = 0;
+// 	if (ac == 2)
+// 	{
+// 		result = check_input(av[1]);
+// 		// while (result[i])
+// 		// {
+// 		// 	if (ft_strcmp(&result[i], " ") == 0)
+// 		// 		++space_count;
+// 		// 	++i;
+// 		// }
+// 		// printf("count =%zu\n", space_count);
+// 		printf("%s\n", result);
+// 	}
+// 	return (0);
+// }
 
 /*TO DO :
 	LE PARSING SEMBLE FINIT, NORMER, SECURISER.

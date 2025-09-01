@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/30 16:16:28 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/01 18:59:32 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,3 +147,13 @@ void				init_envp(t_data *data);
 int					validate_syntax(t_pars *pars);
 
 int					syntax_error(int type);
+
+////////////////CHECK_INPUT.C////////////////////////////
+
+int					is_command(char cmd);
+
+int					is_space(char c);
+
+size_t				calculate_new_len(char *input);
+
+char				*check_input(char *input);

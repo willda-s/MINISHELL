@@ -24,7 +24,9 @@ PARSING_FILES = init_data_and_pars.c\
 				remove_line.c\
 				functions_free.c\
 				validate_syntax.c\
-				syntax_error.c
+				syntax_error.c\
+				check_input.c\
+				check_input_utils.c
 
 UTILS = main.c\
 
