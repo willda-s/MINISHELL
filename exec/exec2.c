@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 13:07:45 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/28 16:29:05 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:42:16 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void exec_cmd(t_exec *node, t_data *data)
 			node->path = find_path(node, data);
 		if (node->path != NULL)
 			execve(node->path, node->cmd, data->envp);
-		free_all(data, errno, "execve", true);
+		free_all_msg(data, errno, "execve");
 }
 
 void init_pipe(t_exec *node)

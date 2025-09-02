@@ -6,13 +6,14 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 16:35:48 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:42:02 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <errno.h>
 
 #define SYNTAX_ERR "minishell: syntax error near unexpected token `%s'\n"
 
@@ -122,13 +123,9 @@ void				free_lst_redir(t_redir **redir);
 
 ///////////////FUNCTIONS_FREE.C/////////////////////
 
-<<<<<<< HEAD
 int					free_all_msg(t_data *data, int errcode, char *str);
 
 int					free_all(t_data *data, int errcode);
-=======
-void				free_all(t_data *data, int errcode, char *str, bool exitstatue);
->>>>>>> cam
 
 void				free_tab(char **dst);
 

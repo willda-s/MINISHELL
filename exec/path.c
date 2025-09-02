@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 19:44:48 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/28 15:15:59 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:40:20 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ static char	**find_path_first(t_data *data)
 	int j;
 	j = find_path_line(data);
 	if (j == -1)
-		free_all(data, 0, "no path=\n", true);
+		free_all_msg(data, 0, "no path=\n");
 	cmd = ft_split(data->envp[j], ':');
 	if (!cmd)
-		free_all(data, 0, "split fail path last command\n", true);
+		free_all_msg(data, 0, "split fail path last command\n");
 	return (cmd);
 }
 
