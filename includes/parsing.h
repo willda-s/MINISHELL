@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/01 18:59:32 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 15:50:49 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,3 +157,7 @@ int					is_space(char c);
 size_t				calculate_new_len(char *input);
 
 char				*check_input(char *input);
+
+////////////////SIGNALS.C////////////////////////////
+
+void				init_sigint(void);

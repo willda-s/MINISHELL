@@ -3,6 +3,10 @@ NAME = minishell
 
 INCLUDE = -Iincludes
 
+SIG_DIR = signals/
+
+SIG_FILES = sigint.c
+
 ENV_DIR = env/
 
 ENV_FILES = env.c\
@@ -43,6 +47,7 @@ LIBS = -L$(LIBFT_DIR) -lft -lreadline
 
 FILE =	$(addprefix $(ENV_DIR), $(ENV_FILES))\
 		$(addprefix $(PARSING_DIR), $(PARSING_FILES))\
+		$(addprefix $(SIG_DIR), $(SIG_FILES))\
 		$(UTILS)
 		
 OBJ_DIR = .obj/
