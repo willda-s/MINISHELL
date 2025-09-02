@@ -22,6 +22,7 @@ PARSING_FILES = init_data_and_pars.c\
 				lst_utils_redir.c\
 				functions_print.c\
 				split_quotes.c\
+				heredoc.c\
 				expandf.c\
 				expand_utils.c\
 				type.c\
@@ -39,9 +40,15 @@ PARSING_FILES = init_data_and_pars.c\
 EXEC_DIR = exec/
 
 EXEC_FILES = path.c\
+<<<<<<< HEAD
 			exec2.c\
 			dupfirstcmd.c\
 >>>>>>> cam
+=======
+			exec.c\
+			ft_fd.c\
+			redirections.c\
+>>>>>>> parsing
 
 UTILS = main.c\
 
@@ -67,7 +74,7 @@ OBJ_DIR = .obj/
 OBJ = $(addprefix $(OBJ_DIR), $(FILE:.c=.o))
 DEPD = $(addprefix $(OBJ_DIR), $(FILE:.c=.d))
 
-LIBFT_DIR = libft
+LIBFT_DIR = libft/
 LIBFT = $(LIBFT_DIR)/libft.a
 
 all: banner lib $(NAME)

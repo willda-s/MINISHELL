@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:53:49 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 16:10:39 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:18:06 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,18 @@ void	init_envp(t_data *data)
 	i = count_env(data);
 	data->envp = ft_calloc((i + 1), sizeof(char *));
 	if (!data->envp)
-		free_all_msg(data, 0, "Error\nMalloc fail in init_envp\n");
+		free_all(data, 12, "Error\nMalloc fail in init_envp\n", true);
 	i = 0;
 	tmp = data->env;
 	while (tmp)
 	{
 		str = ft_strjoin(tmp->key, "=");
 		if (!str)
-			free_all_msg(data, 0, "Error\nMalloc fail in init_envp\n");
+			free_all(data, 12, "Error\nMalloc fail in init_envp\n", true);
 		data->envp[i] = ft_strjoin(str, tmp->value);
 		free(str);
 		if (!data->envp || !data->envp[i])
-			free_all_msg(data, 0, "Error\nMalloc fail in init_envp\n");
+			free_all(data, 12, "Error\nMalloc fail in init_envp\n", true);
 		i++;
 		tmp = tmp->next;
 	}

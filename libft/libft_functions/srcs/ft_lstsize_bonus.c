@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reserve_vector.c                                   :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/09 19:15:02 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/02 16:20:49 by akarapkh         ###   ########.fr       */
+/*   Created: 2024/11/20 03:21:19 by akarapkh          #+#    #+#             */
+/*   Updated: 2025/06/28 14:19:55 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vectors.h"
-#include <stddef.h>
+#include "libft.h"
 
-int	reserve_vector(t_vector *vector, size_t size)
+int	ft_lstsize(t_list *lst)
 {
-	size_t	count;
+	int	len;
 
-	count = 0;
-	if (!vector)
-		return (-1);
-	if (vector->allocated >= size)
-		return (0);
-	count = size - vector->allocated;
-	set_alloc_size(vector, count);
-	if (resize_vector(vector) == -1)
-		return (-1);
-	return (0);
+	len = 0;
+	while (lst)
+	{
+		len++;
+		lst = lst->next;
+	}
+	return (len);
 }

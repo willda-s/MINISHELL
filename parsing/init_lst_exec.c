@@ -7,10 +7,14 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:54 by willda-s          #+#    #+#             */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*   Updated: 2025/08/30 16:15:11 by akarapkh         ###   ########.fr       */
 =======
 /*   Updated: 2025/08/28 13:29:26 by willda-s         ###   ########.fr       */
 >>>>>>> cam
+=======
+/*   Updated: 2025/08/31 22:14:21 by willda-s         ###   ########.fr       */
+>>>>>>> parsing
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +69,7 @@ static char	**init_cmds(t_data *data, t_pars *tmp, t_exec **node)
 		(*node)->cmd = malloc(sizeof(char *) * (ccmd + 1));
 		if (!(*node)->cmd)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			free_all_msg(data, 0, "Error\nMalloc fail in init_cmds\n");
 		(*node)->cmd[0] = ft_strdup(tmp->word);
 		if (!(*node)->cmd[0])
@@ -73,12 +78,19 @@ static char	**init_cmds(t_data *data, t_pars *tmp, t_exec **node)
 			free_all_msg(data, 0, "Error\nMalloc fail in fill_args\n");
 =======
 			free_all(data, 0, "Error\nMalloc fail in init_cmds\n", true);
+=======
+			free_all(data, 12, "Error\nMalloc fail in init_cmds\n", true);
+>>>>>>> parsing
 		(*node)->cmd[0] = ft_strdup(tmp->word);
 		if (!(*node)->cmd[0])
-			free_all(data, 0, "Error\nMalloc fail in init_cmds\n", true);
+			free_all(data, 12, "Error\nMalloc fail in init_cmds\n", true);
 		if (fill_args(tmp->next, *node) == 1)
+<<<<<<< HEAD
 			free_all(data, 0, "Error\nMalloc fail in fill_args\n", true);
 >>>>>>> cam
+=======
+			free_all(data, 12, "Error\nMalloc fail in fill_args\n", true);
+>>>>>>> parsing
 	}
 	else
 		(*node)->cmd = NULL;

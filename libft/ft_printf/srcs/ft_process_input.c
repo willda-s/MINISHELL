@@ -6,11 +6,19 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:21:54 by akarapkh          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/08/29 13:33:30 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fd_printf.h"
+=======
+/*   Updated: 2025/06/23 18:31:28 by akarapkh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/fd_printf.h"
+>>>>>>> parsing
 
 ssize_t	ft_process_input(const char *input, va_list args, t_vector *buffer)
 {

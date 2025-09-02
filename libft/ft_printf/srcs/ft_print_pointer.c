@@ -6,11 +6,19 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:43:05 by akarapkh          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/08/29 13:33:14 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fd_printf.h"
+=======
+/*   Updated: 2025/06/23 18:30:57 by akarapkh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/fd_printf.h"
+>>>>>>> parsing
 
 static int	print_hex(uintptr_t num, char format, t_vector *buffer)
 {

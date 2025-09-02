@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reserve_vector.c                                   :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/09 19:15:02 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/02 16:20:49 by akarapkh         ###   ########.fr       */
+/*   Created: 2024/11/19 06:49:45 by akarapkh          #+#    #+#             */
+/*   Updated: 2025/06/28 14:19:55 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vectors.h"
-#include <stddef.h>
+#include "libft.h"
 
-int	reserve_vector(t_vector *vector, size_t size)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	count;
+	size_t	i;
+	size_t	s_len;
+	char	*res;
 
-	count = 0;
-	if (!vector)
-		return (-1);
-	if (vector->allocated >= size)
-		return (0);
-	count = size - vector->allocated;
-	set_alloc_size(vector, count);
-	if (resize_vector(vector) == -1)
-		return (-1);
-	return (0);
+	s_len = ft_strlen(s);
+	res = malloc(sizeof(char) * (s_len + 1));
+	if (!res)
+		return (NULL);
+	i = 0;
+	while (i < s_len)
+	{
+		res[i] = f(i, s[i]);
+		i++;
+	}
+	res[i] = '\0';
+	return (res);
 }

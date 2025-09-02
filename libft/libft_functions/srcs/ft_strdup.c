@@ -1,15 +1,11 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-<<<<<<< HEAD
 <<<<<<<< HEAD:libft/libft_functions/srcs/ft_strndup.c
-=======
->>>>>>> parsing
 /*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-<<<<<<< HEAD
 <<<<<<< HEAD:libft/libft_functions/srcs/ft_strndup.c
 /*   Created: 2025/08/27 19:59:29 by akarapkh          #+#    #+#             */
 /*   Updated: 2025/08/27 20:01:48 by akarapkh         ###   ########.fr       */
@@ -25,19 +21,12 @@
 /*   Created: 2024/11/13 07:10:55 by akarapkh          #+#    #+#             */
 /*   Updated: 2025/06/28 14:19:55 by akarapkh         ###   ########.fr       */
 >>>>>>>> parsing:libft/libft_functions/srcs/ft_strdup.c
-=======
-/*   Created: 2025/08/27 19:59:29 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/08/27 20:01:48 by akarapkh         ###   ########.fr       */
->>>>>>> parsing
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-<<<<<<< HEAD
 <<<<<<<< HEAD:libft/libft_functions/srcs/ft_strndup.c
-=======
->>>>>>> parsing
 char	*ft_strndup(const char *str, size_t len)
 {
 	size_t	i;
@@ -54,7 +43,6 @@ char	*ft_strndup(const char *str, size_t len)
 	}
 	dup[i] = '\0';
 	return (dup);
-<<<<<<< HEAD
 ========
 char	*ft_strdup(const char *s)
 {
@@ -77,6 +65,4 @@ char	*ft_strdup(const char *s)
 	dest[i] = '\0';
 	return (dest);
 >>>>>>>> parsing:libft/libft_functions/srcs/ft_strdup.c
-=======
->>>>>>> parsing
 }

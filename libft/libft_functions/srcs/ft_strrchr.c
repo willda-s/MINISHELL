@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reserve_vector.c                                   :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/09 19:15:02 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/02 16:20:49 by akarapkh         ###   ########.fr       */
+/*   Created: 2024/11/07 15:12:10 by akarapkh          #+#    #+#             */
+/*   Updated: 2025/06/28 14:19:55 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vectors.h"
-#include <stddef.h>
+#include "libft.h"
 
-int	reserve_vector(t_vector *vector, size_t size)
+char	*ft_strrchr(const char *s, int c)
 {
-	size_t	count;
+	size_t	i;
+	char	*last_occurance;
 
-	count = 0;
-	if (!vector)
-		return (-1);
-	if (vector->allocated >= size)
-		return (0);
-	count = size - vector->allocated;
-	set_alloc_size(vector, count);
-	if (resize_vector(vector) == -1)
-		return (-1);
-	return (0);
+	i = 0;
+	last_occurance = NULL;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			last_occurance = (char *)s + i;
+		i++;
+	}
+	if (s[i] == (char)c)
+		return ((char *)s + i);
+	return (last_occurance);
 }

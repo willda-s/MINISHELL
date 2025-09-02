@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reserve_vector.c                                   :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/09 19:15:02 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/02 16:20:49 by akarapkh         ###   ########.fr       */
+/*   Created: 2024/11/07 17:58:11 by akarapkh          #+#    #+#             */
+/*   Updated: 2025/06/28 14:19:55 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vectors.h"
-#include <stddef.h>
+#include "libft.h"
 
-int	reserve_vector(t_vector *vector, size_t size)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t	count;
+	size_t	i;
+	size_t	j;
 
-	count = 0;
-	if (!vector)
-		return (-1);
-	if (vector->allocated >= size)
-		return (0);
-	count = size - vector->allocated;
-	set_alloc_size(vector, count);
-	if (resize_vector(vector) == -1)
-		return (-1);
-	return (0);
+	if (*little == '\0')
+		return ((char *)big);
+	i = 0;
+	while (big[i] && i < len)
+	{
+		j = 0;
+		while (big[i + j] == little[j] && (i + j) < len && little[j])
+			j++;
+		if (little[j] == '\0')
+			return ((char *)big + i);
+		i++;
+	}
+	return (NULL);
 }

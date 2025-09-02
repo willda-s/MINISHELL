@@ -10,7 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+<<<<<<< HEAD
 #include "fd_printf.h"
+=======
+#include "../includes/fd_printf.h"
+>>>>>>> parsing
 
 static int	print_positive_int(unsigned int n, t_vector *buffer)
 {

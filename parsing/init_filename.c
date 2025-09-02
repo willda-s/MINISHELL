@@ -7,10 +7,14 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:50 by willda-s          #+#    #+#             */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*   Updated: 2025/08/30 16:15:11 by akarapkh         ###   ########.fr       */
 =======
 /*   Updated: 2025/08/27 18:39:36 by willda-s         ###   ########.fr       */
 >>>>>>> cam
+=======
+/*   Updated: 2025/08/31 22:14:06 by willda-s         ###   ########.fr       */
+>>>>>>> parsing
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +27,29 @@ static void	check_redirin(t_data *data, t_pars *tmp, t_redir **node)
 		(*node)->filename = ft_strdup(tmp->next->word);
 		if (!(*node)->filename)
 <<<<<<< HEAD
-			free_all_msg(data, 0, "Error\nMalloc fail in check_redirin\n");
-=======
-			free_all(data, 0, "Error\nMalloc fail in check_redirin\n", true);
->>>>>>> cam
-		(*node)->token = REDIR_IN;
-	}
-	else if (tmp->type == HEREDOC && tmp->next && (*node)->token != HEREDOC)
-	{
-		(*node)->delimiter = ft_strjoin(tmp->next->word, "\n");
-		if (!(*node)->delimiter)
 <<<<<<< HEAD
 			free_all_msg(data, 0, "Error\nMalloc fail in check_redirin\n");
 =======
 			free_all(data, 0, "Error\nMalloc fail in check_redirin\n", true);
 >>>>>>> cam
+=======
+			free_all(data, 12, "Error\nMalloc fail in check_redirin\n", true);
+>>>>>>> parsing
+		(*node)->token = REDIR_IN;
+	}
+	else if (tmp->type == HEREDOC && tmp->next && (*node)->token != HEREDOC)
+	{
+		(*node)->delimiter = ft_strdup(tmp->next->word);
+		if (!(*node)->delimiter)
+<<<<<<< HEAD
+<<<<<<< HEAD
+			free_all_msg(data, 0, "Error\nMalloc fail in check_redirin\n");
+=======
+			free_all(data, 0, "Error\nMalloc fail in check_redirin\n", true);
+>>>>>>> cam
+=======
+			free_all(data, 12, "Error\nMalloc fail in check_redirin\n", true);
+>>>>>>> parsing
 		(*node)->token = HEREDOC;
 	}
 }
@@ -49,10 +61,14 @@ static void	check_redirout(t_data *data, t_pars *tmp, t_redir **node)
 		(*node)->filename = ft_strdup(tmp->next->word);
 		if (!(*node)->filename)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			free_all_msg(data, 0, "Error\nMalloc fail in check_redirout\n");
 =======
 			free_all(data, 0, "Error\nMalloc fail in check_redirout\n", true);
 >>>>>>> cam
+=======
+			free_all(data, 12, "Error\nMalloc fail in check_redirout\n", true);
+>>>>>>> parsing
 		(*node)->token = REDIR_APPEND;
 	}
 	else if (tmp->type == REDIR_TRUNC && tmp->next)
@@ -60,10 +76,14 @@ static void	check_redirout(t_data *data, t_pars *tmp, t_redir **node)
 		(*node)->filename = ft_strdup(tmp->next->word);
 		if (!(*node)->filename)
 <<<<<<< HEAD
+<<<<<<< HEAD
 			free_all_msg(data, 0, "Error\nMalloc fail in check_redirout\n");
 =======
 			free_all(data, 0, "Error\nMalloc fail in check_redirout\n", true);
 >>>>>>> cam
+=======
+			free_all(data, 12, "Error\nMalloc fail in check_redirout\n", true);
+>>>>>>> parsing
 		(*node)->token = REDIR_TRUNC;
 	}
 }
