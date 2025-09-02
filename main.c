@@ -46,42 +46,13 @@ int	main(int ac, char **av, char **env)
 			init_lst_exec(&data);
 			expand_exec_list(&data);
 			init_envp(&data);
-			remove_empty_line(&data);
-			print_lst_exec(data.exec);
-			print_lst_pars(data.pars);
-			free_all_msg(&data, 0, "");
+			// remove_empty_line(&data);
+			// print_lst_exec(data.exec);
+			// print_lst_pars(data.pars);
+			handle_heredoc(&data);
+			execc(&data);
+			free_tmpall(&data);
 		}
-		if (isatty(fileno(stdin)))
-		input = readline("> ");
-		else
-		{
-			char *line;
-			line = get_next_line(fileno(stdin));
-			input = ft_strtrim(line, "\n");
-			free(line);
-		}
-		// input = readline("> ");
-		if (!input)
-		{
-			ft_putstr_fd("exit\n", 2);
-			free_lst_env(&envd, true, data.errcode);
-		}
-		if (*input)
-			add_history(input);
-		dst = ft_split_with_quotes(input, ' ');
-		if (!dst)
-			free_lst_env(&envd, true, 0);
-		init_data(&data, &envd, dst);
-		token_main(&data);
-		init_lst_exec(&data);
-		expand_exec_list(&data);
-		init_envp(&data);
-		// remove_empty_line(&data);
-		// print_lst_exec(data.exec);
-		// print_lst_pars(data.pars);
-		handle_heredoc(&data);
-		execc(&data);
-		free_tmpall(&data);
 	}
 }
 

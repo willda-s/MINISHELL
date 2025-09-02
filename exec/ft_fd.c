@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 21:13:24 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/30 22:57:35 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:56:27 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,22 @@ void	dup_fd(t_exec *node, t_data *data)
 	if (node->fd_out != -1)
 	{
 		if (dup2(node->fd_out, STDOUT_FILENO) == -1)
-		free_all(data, errno, "Dup2 fd_out fail\n", true);
+		free_all(data, errno);
 	}
 	else
 	{
 		if (dup2(1, STDOUT_FILENO) == -1)
-		free_all(data, errno, "Dup2 STDOUT fail\n", true);
+		free_all(data, errno);
 	}
 	if (node->fd_in != -1)
 	{
 		if (dup2(node->fd_in, STDIN_FILENO) == -1)
-		free_all(data, errno, "Dup2 fd_in fail\n", true);
+		free_all(data, errno);
 	}
 	else
 	{
 		if (dup2(0, STDIN_FILENO) == -1)
-		free_all(data, errno, "Dup2 STDIN fail\n", true);
+		free_all(data, errno);
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/31 22:56:56 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:54:44 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void exec_cmd(t_exec *node, t_data *data)
 			ft_dprintf(2, "%s: command not found\n", node->cmd[0]);
 	}	
 	close_allfd_struct(data);
-	free_all(data, 127, "", true);
+	free_all(data, 127);
 }
 
 void init_pipe(t_exec *node)
@@ -75,7 +75,7 @@ void execc(t_data *data)
 			exec_cmd(tmp, data);
 		}
 		else if (pid < 0)
-			free_all(data, errno, "fork fail\n", true); //errno 12 = malloc fail ?
+			free_all(data, errno); //errno 12 = malloc fail ?
 		close_fd(tmp);
 		i++;
 		prev = tmp;

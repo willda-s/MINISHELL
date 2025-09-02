@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 16:46:51 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:53:45 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <errno.h>
-
-#define SYNTAX_ERR "minishell: syntax error near unexpected token `%s'\n"
 #include <fcntl.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+
+#define SYNTAX_ERR "minishell: syntax error near unexpected token `%s'\n"
 
 typedef enum s_type
 {
