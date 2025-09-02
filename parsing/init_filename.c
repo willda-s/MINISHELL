@@ -6,11 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:50 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 16:50:31 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:31:13 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include "libft.h"
 
 static void	check_redirin(t_data *data, t_pars *tmp, t_redir **node)
 {

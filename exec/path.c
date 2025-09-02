@@ -6,10 +6,11 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 19:44:48 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 16:46:29 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 18:35:24 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "parsing.h"
 
 static int	find_path_line(t_data *data)
@@ -33,7 +34,7 @@ static int	is_slash(t_exec *exec)
 
 	j = 0;
 	if (!exec->cmd || !exec->cmd[0])
-		return(0);
+		return (0);
 	while (exec->cmd && exec->cmd[0][j])
 	{
 		if (exec->cmd[0][j] == '/')
@@ -66,7 +67,8 @@ char	*path_in_arg(t_exec *exec)
 static char	**find_path_first(t_data *data)
 {
 	char	**cmd;
-	int j;
+	int		j;
+
 	j = find_path_line(data);
 	if (j == -1)
 		free_all_msg(data, 0, "no path=\n");

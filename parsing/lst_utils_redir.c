@@ -6,11 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:55:51 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/29 13:33:41 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:33:28 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include "libft.h"
+#include <stdlib.h>
 
 static int	lstsize_redir(t_redir *redir)
 {

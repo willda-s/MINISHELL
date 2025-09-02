@@ -81,7 +81,7 @@ CFLAGS = -Wall -Wextra -Werror -MP -MMD \
 	 -I libft_functions/includes \
 	 -I ft_printf/includes \
 	 -I get_next_line/includes \
-	 -I vectors/includes \
+	 -I vectors/includes
 
 RED=\033[0;31m
 MAGENTA=\033[0;35m

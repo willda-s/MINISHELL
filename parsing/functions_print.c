@@ -6,10 +6,11 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:56:02 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 16:41:43 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 18:18:09 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "fd_printf.h"
 #include "parsing.h"
 
 // void	print_tab(char **dst)
@@ -43,4 +44,3 @@ void	print_lst_env(t_env *envd)
 // 		i++;
 // 	}
 // }
-

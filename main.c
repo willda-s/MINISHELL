@@ -20,18 +20,15 @@ int	main(int ac, char **av, char **env)
 		while (1)
 		{
 			input = readline("minishell> ");
+			if(!input)
+				return (-1);
 			if (*input)
 				add_history(input);
 			input = check_input(input);
 			if (!input)
 			{
-				free_lst_env(&envd, true, 0);
-				return (-1);
-			}
-			if (*input == '\0')
-			{
-				free_lst_env(&envd, true, 0);
-				continue ;
+				printf("spsgfg0");
+				free_lst_env(&envd, false, 0);
 			}
 			dst = ft_split_with_quotes(input, ' ');
 			if (!dst)
@@ -40,7 +37,7 @@ int	main(int ac, char **av, char **env)
 			token_main(&data);
 			if (data.pars && validate_syntax(data.pars))
 			{
-				free_all(&data, 2);
+				free_tmpall(&data);
 				continue ;
 			}
 			init_lst_exec(&data);

@@ -6,11 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 18:18:26 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/01 19:52:08 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:36:47 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include <stdlib.h>
 
 static char	*add_space(char *input);
 static void	add_space_to_pipe(char *input, char *new_input, size_t *i,

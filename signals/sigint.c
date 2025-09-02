@@ -6,13 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:23:52 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/02 15:54:36 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 18:36:45 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <readline/readline.h>
 #include <signal.h>
 #include <unistd.h>
-#include <readline/readline.h>
 
 static void	sigint_handler(int sig);
 
@@ -32,8 +32,8 @@ static void	sigint_handler(int sig)
 	if (write(1, "\n", 1) == -1)
 		return ;
 	rl_on_new_line();
- 	rl_replace_line("", 0);
- 	rl_redisplay();
+	rl_replace_line("", 0);
+	rl_redisplay();
 }
 
 // void	setup_signal(int signo, void (*handler)(int))

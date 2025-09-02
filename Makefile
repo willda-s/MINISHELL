@@ -25,6 +25,7 @@ PARSING_FILES = init_data_and_pars.c\
 				heredoc.c\
 				expandf.c\
 				expand_utils.c\
+				expand_var.c\
 				type.c\
 				type_utils.c\
 				remove_line.c\
@@ -50,7 +51,8 @@ CFLAGS	= -Wall -Wextra -Werror -MMD -g3 \
 		  -I includes \
 		  -I libft/libft_functions/includes \
 		  -I libft/vectors/includes \
-		  -I libft/ft_printf/includes
+		  -I libft/ft_printf/includes \
+		  -I libft/get_next_line/includes
 
 LIBS = -L$(LIBFT_DIR) -lft -lreadline
 
