@@ -20,6 +20,7 @@ PARSING_FILES = init_data_and_pars.c\
 				lst_utils_exec.c\
 				lst_utils_pars.c\
 				lst_utils_redir.c\
+				functions_print.c\
 				split_quotes.c\
 				expandf.c\
 				expand_utils.c\
@@ -31,6 +32,12 @@ PARSING_FILES = init_data_and_pars.c\
 				syntax_error.c\
 				check_input.c\
 				check_input_utils.c
+
+EXEC_DIR = exec/
+
+EXEC_FILES = path.c\
+			exec2.c\
+			dupfirstcmd.c\
 
 UTILS = main.c\
 
@@ -46,6 +53,7 @@ CFLAGS	= -Wall -Wextra -Werror -MMD -g3 \
 LIBS = -L$(LIBFT_DIR) -lft -lreadline
 
 FILE =	$(addprefix $(ENV_DIR), $(ENV_FILES))\
+		$(addprefix $(EXEC_DIR), $(EXEC_FILES))\
 		$(addprefix $(PARSING_DIR), $(PARSING_FILES))\
 		$(addprefix $(SIG_DIR), $(SIG_FILES))\
 		$(UTILS)

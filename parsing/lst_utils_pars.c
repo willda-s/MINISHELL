@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:55:03 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/01 19:55:19 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:37:11 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,3 +105,4 @@ void	print_lst_pars(t_pars *pars)
 		pars = pars->next;
 	}
 }
+

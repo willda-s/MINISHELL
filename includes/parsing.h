@@ -6,11 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 15:50:49 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:35:48 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
+#include <sys/types.h>
+#include <sys/wait.h>
 
 #define SYNTAX_ERR "minishell: syntax error near unexpected token `%s'\n"
 
@@ -70,6 +72,16 @@ typedef struct s_data
 	int				i;
 }					t_data;
 
+void execc(t_data *data);
+void	ft_close(int *fd);
+void	dup_cmd(t_exec *node, t_data *data);
+void	dup_lastcmd(t_exec *node, t_data *data);
+pid_t execfirstcmd(t_data *data, int *fd);
+pid_t execlastcmd(t_data *data, int *fd);
+char	*path_in_arg(t_exec *exec);
+char	*find_path(t_exec *node, t_data *data);
+
+void init_pipe(t_exec *node);
 /////////////SPLIT_QUOTES.C/////////////////////
 
 char				**ft_split_with_quotes(char const *s, char c);
@@ -110,11 +122,17 @@ void				free_lst_redir(t_redir **redir);
 
 ///////////////FUNCTIONS_FREE.C/////////////////////
 
+<<<<<<< HEAD
 int					free_all_msg(t_data *data, int errcode, char *str);
 
 int					free_all(t_data *data, int errcode);
+=======
+void				free_all(t_data *data, int errcode, char *str, bool exitstatue);
+>>>>>>> cam
 
 void				free_tab(char **dst);
+
+void				free_tmpall(t_data *data);
 
 ////////////////////TYPE.C && TYPE_UTILS.C/////////////////
 

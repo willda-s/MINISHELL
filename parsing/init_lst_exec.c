@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:54 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/30 16:15:11 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:37:08 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void	init_lst_exec(t_data *data)
 		{
 			if (!node->cmd)
 				node->cmd = init_cmds(data, tmp, &node);
+			node->fd_in = -1;
+			node->fd_out = -1;
 			init_lst_redir(&node, tmp, data);
 			tmp = tmp->next;
 		}

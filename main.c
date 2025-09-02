@@ -83,6 +83,7 @@ int	main(int ac, char **av, char **env)
 
 			- REPRENDRE LE HEREDOC
 			-  SIGNAUX
+			- secu ligne 92 de expandf.c
 */
 
 /*A SUPPRIMER DU .H ET DU .C :

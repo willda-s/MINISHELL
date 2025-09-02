@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:06 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/29 13:31:55 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:35:44 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,15 @@ void	free_lst_env(t_env **envd, bool ext, int errcode)
 	{
 		tmp = (*envd)->next;
 		if ((*envd)->key)
+		{
 			free((*envd)->key);
+			(*envd)->key = NULL;
+		}
 		if ((*envd)->value)
+		{
 			free((*envd)->value);
+			(*envd)->value = NULL;
+		}
 		free(*envd);
 		*envd = tmp;
 	}

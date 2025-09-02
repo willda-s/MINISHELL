@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:58 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/27 20:05:20 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:37:10 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void	print_lst_exec(t_exec *exec)
 	{
 		i = 0;
 		printf("-------------noeud [%d]---------------------\n", j++);
+		printf("fd_in = %d\n", exec->fd_in);
+		printf("fd_out = %d\n", exec->fd_out);
 		while (exec->cmd && exec->cmd[i])
 		{
 			printf("cmd[%d] = %s\n", i, exec->cmd[i]);

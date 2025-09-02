@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:56:02 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/29 13:33:32 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:36:45 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@
 // 		i++;
 // 	}
 // }
-// void	print_lst_env(t_env *envd)
-// {
-// 	while (envd)
-// 	{
-// 		printf("%s=%s\n", envd->key, envd->value);
-// 		envd = envd->next;
-// 	}
-// }
+void	print_lst_env(t_env *envd)
+{
+	while (envd)
+	{
+		printf("%s=%s\n", envd->key, envd->value);
+		envd = envd->next;
+	}
+}
 
 // void	print_envp(char **envp)
 // {
@@ -43,3 +43,4 @@
 // 		i++;
 // 	}
 // }
+
