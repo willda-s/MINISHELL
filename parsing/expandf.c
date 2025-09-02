@@ -6,12 +6,26 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 16:36:27 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:49:38 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
+
+static int handle_errcode(char *res, int j, t_data *data)
+{
+	int len;
+	char *str;
+
+	str = ft_itoa(data->errcode);
+	len = 0;
+	while(res && str && str[len])
+		res[j++] = str[len++];
+	free(str);
+	data->i++;
+	return (j);
+}
 static int	ft_expand_var(char *res, int j, char *word, t_data *data)
 {
 	char	var[256];
@@ -20,7 +34,12 @@ static int	ft_expand_var(char *res, int j, char *word, t_data *data)
 
 	data->i++;
 	k = 0;
-	if (!word[data->i] || (!is_var_char(word[data->i]) && word[data->i] != '"'
+	if (word && word[data->i] == '?')
+	{
+		j = handle_errcode(res, j, data);
+		return (j);
+	}
+	else if (!word[data->i] || (!is_var_char(word[data->i]) && word[data->i] != '"'
 			&& word[data->i] != '\''))
 	{
 		res[j++] = '$';

@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 16:42:02 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:46:51 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@
 #include <errno.h>
 
 #define SYNTAX_ERR "minishell: syntax error near unexpected token `%s'\n"
+#include <fcntl.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 typedef enum s_type
 {
 	NUL,
-	WORD = 1,
-	PIPE = 1 << 1,
-	HEREDOC = 1 << 2,
+	WORD = 1,			// delimiter par un space
+	PIPE = 1 << 1,		// delimiter par non pipe
+	HEREDOC = 1 << 2,	// delimiter par non chevron
 	REDIR_APPEND = 1 << 3,
 	REDIR_TRUNC = 1 << 4,
 	REDIR_IN = 1 << 5,
@@ -75,14 +78,19 @@ typedef struct s_data
 
 void execc(t_data *data);
 void	ft_close(int *fd);
-void	dup_cmd(t_exec *node, t_data *data);
+void	dup_fd(t_exec *node, t_data *data);
 void	dup_lastcmd(t_exec *node, t_data *data);
 pid_t execfirstcmd(t_data *data, int *fd);
 pid_t execlastcmd(t_data *data, int *fd);
+void close_last_fd(t_exec *node);
+void close_first_fd(t_exec *node);
+void close_fd(t_exec *node);
 char	*path_in_arg(t_exec *exec);
 char	*find_path(t_exec *node, t_data *data);
-
+void close_allfd_struct(t_data *data);
 void init_pipe(t_exec *node);
+void open_all_file(t_exec *node, t_data *data);
+void handle_heredoc(t_data *data);
 /////////////SPLIT_QUOTES.C/////////////////////
 
 char				**ft_split_with_quotes(char const *s, char c);

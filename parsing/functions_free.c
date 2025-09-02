@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:41 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 16:36:39 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:50:16 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ int	free_all(t_data *data, int errcode)
 		data->envp = NULL;
 	}
 	if (data->dst)
-	{
 		free_tab(data->dst);
 	exit(errcode);
 }
-

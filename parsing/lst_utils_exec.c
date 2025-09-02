@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:58 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 16:37:10 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:50:54 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	print_lst_exec(t_exec *exec)
 		while (tmp)
 		{
 			printf("token = %u\n", tmp->token);
-			printf("file = %s\n", tmp->filename);
+			printf("filename = %s\n", tmp->filename);
 			printf("delimiter = %s\n", tmp->delimiter);
 			tmp = tmp->next;
 		}

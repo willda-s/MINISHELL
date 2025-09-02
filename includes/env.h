@@ -6,13 +6,15 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:22:27 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/27 19:52:19 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:46:37 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h> 
-#include <stdlib.h>
-#include "libft.h"
+#include "../libft/libft_functions/includes/libft.h"
+#include "../libft/ft_printf/includes/fd_printf.h"
+#include "../libft/get_next_line/includes/get_next_line_bonus.h"
+#include <stdbool.h>
+#include <errno.h>
 
 typedef struct s_env
 {
