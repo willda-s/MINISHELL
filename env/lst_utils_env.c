@@ -3,6 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   lst_utils_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:06 by willda-s          #+#    #+#             */
@@ -11,6 +12,16 @@
 /* ************************************************************************** */
 
 #include "parsing.h"
+=======
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/30 13:54:06 by willda-s          #+#    #+#             */
+/*   Updated: 2025/08/28 14:08:30 by willda-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/parsing.h"
+>>>>>>> cam
 
 static int	lstsize_env(t_env *envd)
 {
@@ -41,9 +52,20 @@ void	free_lst_env(t_env **envd, bool ext, int errcode)
 	{
 		tmp = (*envd)->next;
 		if ((*envd)->key)
+<<<<<<< HEAD
 			free((*envd)->key);
 		if ((*envd)->value)
+=======
+		{
+			free((*envd)->key);
+			(*envd)->key = NULL;
+		}
+		if ((*envd)->value)
+		{
+>>>>>>> cam
 			free((*envd)->value);
+			(*envd)->value = NULL;
+		}
 		free(*envd);
 		*envd = tmp;
 	}

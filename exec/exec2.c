@@ -1,0 +1,101 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec2.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/28 13:07:45 by willda-s          #+#    #+#             */
+/*   Updated: 2025/08/28 16:29:05 by willda-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "parsing.h"
+ 
+static int	wait_process(int nb_proc)
+{
+	int		pid_w;
+	int		status;
+	int		err = 0;
+	int		count = 0;
+
+	while (count < nb_proc)
+	{
+		pid_w = wait(&status);
+		if (pid_w == -1)
+			exit(errno);
+		if (WIFEXITED(status))
+			err = WEXITSTATUS(status);
+		count++;
+	}
+	return (err);
+}
+
+void close_fd(t_exec *node)
+{
+	if (node->fd_out != -1)
+	{
+		close(node->fd_out);
+		node->fd_out = -1;
+	}
+	if (node->fd_in != -1)
+	{
+		close(node->fd_in);
+		node->fd_in = -1;
+	}
+}
+
+void close_last_fd(t_exec *prev)
+{
+	if (prev && prev->fd_out != -1)
+	{
+		close(prev->fd_out);
+		prev->fd_out = -1;
+	}
+}
+
+void exec_cmd(t_exec *node, t_data *data)
+{
+		node->path = path_in_arg(node);
+		if (node->path == NULL)
+			node->path = find_path(node, data);
+		if (node->path != NULL)
+			execve(node->path, node->cmd, data->envp);
+		free_all(data, errno, "execve", true);
+}
+
+void init_pipe(t_exec *node)
+{
+    int fd[2];
+	t_exec  *next = node->next;
+
+    if (pipe(fd) == -1)
+        exit(errno);
+    node->fd_out = fd[1];
+    next->fd_in = fd[0];
+}
+
+void execc(t_data *data)
+{
+	t_exec	*tmp = data->exec;
+	t_exec	*prev = NULL;
+
+	int	i = 0;
+	while (tmp)
+	{
+		if (tmp->next)
+			init_pipe(tmp);
+		pid_t pid = fork();
+		if (pid == 0)
+		{
+			dup_cmd(tmp, data);
+			close_last_fd(prev);
+			exec_cmd(tmp, data);
+		}
+		close_fd(tmp);
+		i++;
+		prev = tmp;
+		tmp = tmp->next;
+	}
+    wait_process(i);
+}

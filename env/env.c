@@ -6,12 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:53:49 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/30 16:15:11 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:10:39 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
+void	init_lst_env(t_env **envd, char **env)
 void	init_lst_env(t_env **envd, char **env)
 {
 	t_env	*node;
@@ -25,11 +26,14 @@ void	init_lst_env(t_env **envd, char **env)
 		node = ft_lstlast_env(*envd);
 		if (!node)
 			free_lst_env(envd, true, 0);
+			free_lst_env(envd, true, 0);
 		node->key = ft_strndup(env[i], ft_strchr(env[i], '=') - env[i]);
 		if (!node->key)
 			free_lst_env(envd, true, 0);
+			free_lst_env(envd, true, 0);
 		node->value = ft_strdup(ft_strchr(env[i], '=') + 1);
 		if (!node->value)
+			free_lst_env(envd, true, 0);
 			free_lst_env(envd, true, 0);
 		i++;
 	}

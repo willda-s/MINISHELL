@@ -20,17 +20,28 @@ PARSING_FILES = init_data_and_pars.c\
 				lst_utils_exec.c\
 				lst_utils_pars.c\
 				lst_utils_redir.c\
+				functions_print.c\
 				split_quotes.c\
 				expandf.c\
 				expand_utils.c\
 				type.c\
 				type_utils.c\
 				remove_line.c\
+<<<<<<< HEAD
 				functions_free.c\
 				validate_syntax.c\
 				syntax_error.c\
 				check_input.c\
 				check_input_utils.c
+=======
+				functions_free.c
+
+EXEC_DIR = exec/
+
+EXEC_FILES = path.c\
+			exec2.c\
+			dupfirstcmd.c\
+>>>>>>> cam
 
 UTILS = main.c\
 
@@ -46,6 +57,7 @@ CFLAGS	= -Wall -Wextra -Werror -MMD -g3 \
 LIBS = -L$(LIBFT_DIR) -lft -lreadline
 
 FILE =	$(addprefix $(ENV_DIR), $(ENV_FILES))\
+		$(addprefix $(EXEC_DIR), $(EXEC_FILES))\
 		$(addprefix $(PARSING_DIR), $(PARSING_FILES))\
 		$(addprefix $(SIG_DIR), $(SIG_FILES))\
 		$(UTILS)
@@ -61,7 +73,11 @@ LIBFT = $(LIBFT_DIR)/libft.a
 all: banner lib $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
+<<<<<<< HEAD
 		$(CC) $(CFLAGS) -lreadline $(OBJ) -o $(NAME) $(LIBFT) $(LIBS)
+=======
+		$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT) -lreadline
+>>>>>>> cam
 	@echo "$(PURPLE)👾 Minishell compilation done ! $(RESET)"
 
 $(OBJ_DIR)%.o: %.c Makefile
