@@ -3,16 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 18:00:01 by cafabre           #+#    #+#             */
-/*   Updated: 2025/08/31 20:39:49 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/03 19:12:00 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <limits.h>
-#include <stdbool.h>
+int	builtin_unset(char *var, t_env *env);
+
+int	builtin_pwd(t_exec *exec);
+
+int	builtin_export(t_exec *exec, t_data *data);
+
+int	builtin_exit(t_exec *exec, t_data *data);
+
+int	builtin_env(t_data *data, bool export);
+
+int	builtin_echo(t_exec *exec);
+
+int	builtin_cd(t_exec *exec, t_data *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 18:44:05 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/03 19:54:49 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <readline/readline.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <stdlib.h>
 
 #define SYNTAX_ERR "minishell: syntax error near unexpected token `%s'\n"
 
@@ -67,6 +68,7 @@ typedef struct s_pars
 typedef struct s_data
 {
 	char			**dst;
+	char			*input;
 	t_env			*env;
 	t_pars			*pars;
 	t_exec			*exec;
