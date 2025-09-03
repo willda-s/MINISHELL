@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:55:59 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 16:33:34 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:16:54 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ static void	init_token_redir(t_pars **pars)
 		{
 			if (is_redirection(&tmp))
 			{
-				if (tmp->next)
+				if (tmp->next && ((ft_strncmp(tmp->next->word, "<", 1) != 0)
+						&& (ft_strncmp(tmp->next->word, ">", 1) != 0)))
 					tmp->next->type = TARGETS;
 			}
 		}
@@ -61,7 +62,9 @@ static void	init_token_pipe(t_pars **pars)
 	tmp = *pars;
 	while (tmp)
 	{
-		if (ft_strncmp(tmp->word, "|", ft_strlen(tmp->word)) == 0)
+		if (ft_strncmp(tmp->word, "||", 2) == 0)
+			tmp->type = DOUBLE_PIPE;
+		else if (ft_strncmp(tmp->word, "|", 1) == 0)
 			tmp->type = PIPE;
 		tmp = tmp->next;
 	}
@@ -74,9 +77,9 @@ static void	init_token_brace(t_pars **pars)
 	tmp = *pars;
 	while (tmp)
 	{
-		if (ft_strcmp(tmp->word, "(") == 0)
+		if (ft_strncmp(tmp->word, "(", 1) == 0)
 			tmp->type = OPEN_BRACE;
-		else if (ft_strcmp(tmp->word, ")") == 0)
+		else if (ft_strncmp(tmp->word, ")", 1) == 0)
 			tmp->type = CLOSED_BRACE;
 		tmp = tmp->next;
 	}
@@ -87,5 +90,6 @@ void	token_main(t_data *data)
 	init_token_redir(&data->pars);
 	init_token_pipe(&data->pars);
 	init_token_brace(&data->pars);
+	init_token_backslash(&data->pars);
 	init_token_command(&data->pars);
 }

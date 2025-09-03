@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 18:44:05 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:15:58 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef enum s_type
 	CLOSED_BRACE = 1 << 11,
 	SIMPLE_QUOTE = 1 << 12,
 	DOUBLE_QUOTE = 1 << 13,
+	DOUBLE_PIPE = 1 << 14,
+	BACK_SLASH = 1 << 15,
 	REDIR = REDIR_IN | HEREDOC | REDIR_APPEND | REDIR_TRUNC,
 }					t_type;
 
@@ -71,6 +73,7 @@ typedef struct s_data
 	t_pars			*pars;
 	t_exec			*exec;
 	char			**envp;
+	char			*input;
 	int				errcode;
 	int				i;
 }					t_data;
@@ -126,6 +129,8 @@ void				free_tmpall(t_data *data);
 ////////////////////TYPE.C && TYPE_UTILS.C/////////////////
 
 void				token_main(t_data *data);
+
+void				init_token_backslash(t_pars **pars);
 
 void				is_builtins(t_pars **tmp);
 

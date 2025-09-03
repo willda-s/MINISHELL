@@ -5,7 +5,6 @@
 
 int	main(int ac, char **av, char **env)
 {
-	char	*input;
 	char	**dst;
 	t_env	*envd;
 	t_data	data;
@@ -19,18 +18,17 @@ int	main(int ac, char **av, char **env)
 		init_sigint();
 		while (1)
 		{
-			input = readline("minishell> ");
-			if(!input)
+			data.input = readline("minishell> ");
+			if(!data.input)
 				return (-1);
-			if (*input)
-				add_history(input);
-			input = check_input(input);
-			if (!input)
+			if (*data.input)
+				add_history(data.input);
+			data.input = check_input(data.input);
+			if (!data.input)
 			{
-				printf("spsgfg0");
 				free_lst_env(&envd, false, 0);
 			}
-			dst = ft_split_with_quotes(input, ' ');
+			dst = ft_split_with_quotes(data.input, ' ');
 			if (!dst)
 				free_lst_env(&envd, true, 0);
 			init_data(&data, &envd, dst);
@@ -44,8 +42,8 @@ int	main(int ac, char **av, char **env)
 			expand_exec_list(&data);
 			init_envp(&data);
 			// remove_empty_line(&data);
-			// print_lst_exec(data.exec);
-			// print_lst_pars(data.pars);
+			print_lst_exec(data.exec);
+			print_lst_pars(data.pars);
 			handle_heredoc(&data);
 			execc(&data);
 			free_tmpall(&data);

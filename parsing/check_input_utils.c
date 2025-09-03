@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:42:46 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/01 19:04:45 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:26:40 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ int	is_command(char cmd)
 		return (2);
 	if (cmd == '>')
 		return (3);
+	if (cmd == '(')
+		return (1);
+	if (cmd == ')')
+		return (1);
+	if (cmd == '\\')
+		return (1);
 	return (0);
 }
 
