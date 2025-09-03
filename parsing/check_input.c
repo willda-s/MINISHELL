@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 18:18:26 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/03 17:30:39 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:45:12 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 
 static char	*add_space(char *input);
-static void	add_space_to_pipe(char *input, char *new_input, size_t *i,
+static void	add_space_to_cmd(char *input, char *new_input, size_t *i,
 				size_t *j);
 static void	add_space_to_redir(char *input, char *new_input, size_t *i,
 				size_t *j);
@@ -47,7 +47,7 @@ static char	*add_space(char *input)
 	while (input[i])
 	{
 		if (is_command(input[i]) == 1)
-			add_space_to_pipe(input, new_input, &i, &j);
+			add_space_to_cmd(input, new_input, &i, &j);
 		else if (is_command(input[i]) == 2 || is_command(input[i]) == 3)
 			add_space_to_redir(input, new_input, &i, &j);
 		else
@@ -57,8 +57,7 @@ static char	*add_space(char *input)
 	return (new_input);
 }
 
-static void	add_space_to_pipe(char *input, char *new_input, size_t *i,
-		size_t *j)
+static void	add_space_to_cmd(char *input, char *new_input, size_t *i, size_t *j)
 {
 	if ((*i) != 0 && !is_space(input[(*i) - 1]))
 		new_input[(*j)++] = ' ';
