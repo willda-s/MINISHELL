@@ -25,12 +25,7 @@ int	main(int ac, char **av, char **env)
 			input = check_input(input);
 			if (!input)
 			{
-				free_lst_env(&envd, true, 0);
-				return (-1);
-			}
-			if (*input == '\0')
-			{
-				free_lst_env(&envd, true, 0);
+				free_lst_env(&envd, false, 0);
 				continue ;
 			}
 			dst = ft_split_with_quotes(input, ' ');
@@ -40,7 +35,6 @@ int	main(int ac, char **av, char **env)
 			token_main(&data);
 			if (data.pars && validate_syntax(data.pars))
 			{
-				free_all(&data, 2);
 				continue ;
 			}
 			init_lst_exec(&data);

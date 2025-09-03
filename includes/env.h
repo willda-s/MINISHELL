@@ -6,13 +6,11 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:22:27 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/27 19:52:19 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/03 13:58:39 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h> 
-#include <stdlib.h>
-#include "libft.h"
 
 typedef struct s_env
 {

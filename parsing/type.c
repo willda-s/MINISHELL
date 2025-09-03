@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:55:59 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/01 19:56:01 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/03 14:10:34 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ static void	init_token_brace(t_pars **pars)
 	tmp = *pars;
 	while (tmp)
 	{
-		if (ft_strcmp(tmp->word, "(") == 0)
+		if (ft_strncmp(tmp->word, "(", 1) == 0)
 			tmp->type = OPEN_BRACE;
-		else if (ft_strcmp(tmp->word, ")") == 0)
+		else if (ft_strncmp(tmp->word, ")", 1) == 0)
 			tmp->type = CLOSED_BRACE;
 		tmp = tmp->next;
 	}

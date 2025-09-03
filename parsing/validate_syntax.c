@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:26:59 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/01 19:16:13 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/03 14:20:11 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,12 @@ static int	check_curr_and_next_token(t_pars *curr, t_pars *next)
 			return (syntax_error(PIPE));
 		if (next->type == OPEN_BRACE || next->type == CLOSED_BRACE)
 			return (syntax_error(next->type));
-		if (is_syntax_error(curr, next))
+		if (is_syntax_error(curr, next) == 1)
 			return (syntax_error(next->type));
+		if (is_syntax_error(curr, next) == 2)
+			return (syntax_error(REDIR_IN));
+		if (is_syntax_error(curr, next))
+			return (syntax_error(REDIR_TRUNC));
 	}
 	else
 	{
@@ -71,6 +75,10 @@ static int	is_syntax_error(t_pars *tok1, t_pars *tok2)
 {
 	if ((tok1->type & REDIR) && tok2->type != TARGETS)
 		return (1);
+	if ((tok1->type & REDIR) && (ft_strncmp(tok2->word, "<", 1) == 0))
+		return (2);
+	if ((tok1->type & REDIR) && (ft_strncmp(tok2->word, ">", 1) == 0))
+		return (3);
 	if (tok1->type == PIPE && tok2->type == PIPE)
 		return (1);
 	if (tok1->type == PIPE && (tok2->type & REDIR) && !tok2->next)

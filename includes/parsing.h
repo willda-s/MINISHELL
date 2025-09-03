@@ -6,11 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 15:50:49 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/03 13:59:15 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
+#include <stdlib.h>
 
 #define SYNTAX_ERR "minishell: syntax error near unexpected token `%s'\n"
 
