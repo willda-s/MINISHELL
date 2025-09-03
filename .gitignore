@@ -1,0 +1,52 @@
+*.json
+*.cache
+a.out
+copy
+*.out
+# Executables
+minishell
+*.exe
+*.out
+a.out
+
+# Object files
+*.o
+*.d
+*.objects
+*.a
+*.so
+*.dylib
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Temporary files
+*~
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.sublime-*
+.clangd/
+
+# Test files (optionnel)
+test_*
+tests/
+*.test
+
+# Log files
+*.log
+
+# Core dumps
+core
+vgcore.*
+
+# Make files temporaires
+.depend
