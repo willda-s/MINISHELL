@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/04 22:57:28 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/04 23:39:55 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,11 @@ static void	exec_loop(int *i, t_data *data, t_exec *prev)
 	{
 		if (tmp->next)
 			init_pipe(tmp);
+		//si pas dans un pipe
+		//si builtin
+		//-> executer dans le processus parent
+		else if (!exec_builtins(prev, data))
+			break;
 		pid = fork();
 		if (pid == 0)
 		{
