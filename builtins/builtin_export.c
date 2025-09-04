@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/04 21:37:07 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/04 21:47:58 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ static char	*extract_key(char *cmd_arg)
 
 	i = 0;
 	key = malloc(ft_strlen(cmd_arg) + 1);
-	if (!key)
-		return; //a secure
 	while (cmd_arg[i] && cmd_arg[i] != '=')
 	{
 		key[i] = cmd_arg[i];

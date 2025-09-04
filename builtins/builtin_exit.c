@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:02 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/04 21:34:41 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/04 22:31:45 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,13 @@ int	builtin_exit(t_exec *exec, t_data *data)
 		if (!is_number(exec->cmd[1]))
 		{
 			write(1, "exit: numeric argument required\n", 32);
+			free_all(data, 2);
 			exit(2);
 		}
-		status = ft_atoll(exec->cmd[1]);
+		status = (unsigned char)(ft_atoll(exec->cmd[1]));
 		free_all(data, status);
+		exit(status);
 	}
 	free_all(data, data->errcode);
-	return (EXIT_SUCCESS);
+	exit(data->errcode);
 }
