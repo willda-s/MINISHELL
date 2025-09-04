@@ -6,11 +6,13 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:22:27 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/03 19:16:13 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/04 18:21:59 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
+#include "libft.h"
+#include "get_next_line_bonus.h"
 
 typedef struct s_env
 {

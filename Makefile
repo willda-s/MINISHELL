@@ -41,7 +41,17 @@ EXEC_FILES = path.c\
 			exec.c\
 			ft_fd.c\
 			redirections.c\
+			exec_utils.c
 
+BUILTINS_DIR = builtins/
+
+BUILTINS_FILES = 	builtin_pwd.c\
+					builtin_cd.c\
+					builtin_exit.c\
+					builtin_export.c\
+					builtin_unset.c\
+					builtin_echo.c\
+					builtin_env.c
 UTILS = main.c\
 
 MAKEFLAGS += --no-print-directory
@@ -60,6 +70,7 @@ FILE =	$(addprefix $(ENV_DIR), $(ENV_FILES))\
 		$(addprefix $(EXEC_DIR), $(EXEC_FILES))\
 		$(addprefix $(PARSING_DIR), $(PARSING_FILES))\
 		$(addprefix $(SIG_DIR), $(SIG_FILES))\
+		$(addprefix $(BUILTINS_DIR), $(BUILTINS_FILES))\
 		$(UTILS)
 		
 OBJ_DIR = .obj/

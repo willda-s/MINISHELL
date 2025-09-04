@@ -6,12 +6,12 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 20:37:29 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/04 20:08:55 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fd_printf.h"
-#include "parsing.h"
+#include "builtins.h"
 #include <errno.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -41,15 +41,18 @@ static void	exec_cmd(t_exec *node, t_data *data)
 {
 	if (node->cmd)
 	{
-		node->path = path_in_arg(node);
-		if (node->path == NULL)
-			node->path = find_path(node, data);
-		if (node->path != NULL)
-			execve(node->path, node->cmd, data->envp);
-		ft_dprintf(2, "%s: command not found\n", node->cmd[0]);
+		if (exec_builtins(node, data))
+		{
+			node->path = path_in_arg(node);
+			if (node->path == NULL)
+				node->path = find_path(node, data);
+			if (node->path != NULL)
+				execve(node->path, node->cmd, data->envp);
+			ft_dprintf(2, "%s: command not found\n", node->cmd[0]);	
+		}
 	}
 	close_allfd_struct(data);
-	free_all(data, 127);
+	free_all(data, errno);
 }
 
 static void	init_pipe(t_exec *node)

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:07:42 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/02 14:37:27 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/04 19:22:19 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
+#include "fd_printf.h"
 
 static bool	check_n_option(char *s)
 {
@@ -45,7 +46,7 @@ int	builtin_echo(t_exec *exec)
 	}
 	while (exec->cmd[i])
 	{
-		write(1, exec->cmd[i], ft_strlen(exec->cmd[i]));
+		write(STDOUT_FILENO, exec->cmd[i], ft_strlen(exec->cmd[i]));
 		if (exec->cmd[i + 1])
 			write(1, " ", 1);
 		i++;

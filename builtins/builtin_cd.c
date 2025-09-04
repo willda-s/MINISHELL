@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:50:00 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/02 13:23:12 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/04 19:08:16 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-static char	*get_env_value(t_env *env, char *key)
-{
-	t_env	*tmp;
+// static char	*get_env_value(t_env *env, char *key)
+// {
+// 	t_env	*tmp;
 
-	tmp = env;
-	while (tmp)
-	{
-		if (ft_strcmp(tmp->key, key) == 0)
-			return (tmp->value);
-		tmp = tmp->next;
-	}
-	return (NULL);
-}
+// 	tmp = env;
+// 	while (tmp)
+// 	{
+// 		if (ft_strcmp(tmp->key, key) == 0)
+// 			return (tmp->value);
+// 		tmp = tmp->next;
+// 	}
+// 	return (NULL);
+// }
 
 static void	update_pwd_vars(t_env *env, char *old_pwd)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:02 by cafabre           #+#    #+#             */
-/*   Updated: 2025/08/31 19:18:19 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/04 21:34:41 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ int	builtin_exit(t_exec *exec, t_data *data)
 			exit(2);
 		}
 		status = ft_atoll(exec->cmd[1]);
-		exit((unsigned char)status);
+		free_all(data, status);
 	}
-	exit(data->errcode);
+	free_all(data, data->errcode);
+	return (EXIT_SUCCESS);
 }

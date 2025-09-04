@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/03 19:54:49 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/04 19:14:09 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,8 @@ void				init_sigint(void);
 /////////////EXEC.C/////////////////////
 
 void				execc(t_data *data);
+
+bool				exec_builtins(t_exec *node, t_data *data);
 
 void				dup_fd(t_exec *node, t_data *data);
 

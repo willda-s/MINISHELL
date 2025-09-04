@@ -18,9 +18,18 @@ int	main(int ac, char **av, char **env)
 		init_sigint();
 		while (1)
 		{
-			data.input = readline("minishell> ");
+			if (isatty(fileno(stdin)))
+				data.input = readline("> ");
+			else
+			{
+				char *line;
+				line = get_next_line(fileno(stdin));
+				data.input = ft_strtrim(line, "\n");
+				free(line);
+			}
+			// data.input = readline("minishell> ");
 			if(!data.input)
-				return (-1);
+				return (data.errcode);
 			if (*data.input)
 				add_history(data.input);
 			data.input = check_input(data.input);
@@ -52,30 +61,6 @@ int	main(int ac, char **av, char **env)
 	}
 }
 
-// int	main(int ac, char **av)
-// {
-// 	char	*result;
-
-// 	// size_t	space_count;
-// 	// size_t	i;
-// 	result = NULL;
-// 	// i = 0;
-// 	// space_count = 0;
-// 	if (ac == 2)
-// 	{
-// 		result = check_input(av[1]);
-// 		// while (result[i])
-// 		// {
-// 		// 	if (ft_strcmp(&result[i], " ") == 0)
-// 		// 		++space_count;
-// 		// 	++i;
-// 		// }
-// 		// printf("count =%zu\n", space_count);
-// 		printf("%s\n", result);
-// 	}
-// 	return (0);
-// }
-
 
 
 /*TO DO :
@@ -91,5 +76,5 @@ int	main(int ac, char **av, char **env)
 			- Function_print.c
 			- print_lst_exec(data.exec);
 			- print_lst_pars(data.pars);
-
+			- remove_empty_line.c
 */

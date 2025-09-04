@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 18:00:01 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/03 19:12:00 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/04 19:07:32 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	builtin_unset(char *var, t_env *env);
 
-int	builtin_pwd(t_exec *exec);
+int	builtin_pwd(void);
 
 int	builtin_export(t_exec *exec, t_data *data);
 

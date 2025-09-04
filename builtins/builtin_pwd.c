@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:12 by cafabre           #+#    #+#             */
-/*   Updated: 2025/08/31 19:18:26 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/04 19:07:27 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-int	builtin_pwd(t_exec *exec)
+int	builtin_pwd(void)
 {
 	char	*cwd;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/08/31 20:40:27 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/04 21:37:07 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	parsing_export(t_exec *exec)
 	int	i;
 
 	i = 0;
-	while (exec->cmd[1][i])
+	while (exec->cmd && exec->cmd[1][i])
 	{
 		if (!ft_isalnum(exec->cmd[1][i]) && exec->cmd[1][i] != '='
 			&& exec->cmd[1][i] != '_')
@@ -34,6 +34,8 @@ static char	*extract_key(char *cmd_arg)
 
 	i = 0;
 	key = malloc(ft_strlen(cmd_arg) + 1);
+	if (!key)
+		return; //a secure
 	while (cmd_arg[i] && cmd_arg[i] != '=')
 	{
 		key[i] = cmd_arg[i];
@@ -84,7 +86,7 @@ int	builtin_export(t_exec *exec, t_data *data)
 	if (parsing_export(exec))
 		return (EXIT_FAILURE);
 	if (!exec->cmd[1])
-		builtin_env(data->env, true);
+		builtin_env(data, true);
 	else
 	{
 		new_var = extract_key_value(exec);
