@@ -6,16 +6,17 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:23:52 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/04 20:53:46 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/04 20:11:39 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "signals.h"
+#include "parsing.h"
 #include <readline/readline.h>
 #include <signal.h>
+#include <unistd.h>
 
-volatile sig_atomic_t	g_exit_status = 0;
+volatile sig_atomic_t	gshell_exit_status;
 
 void	setup_signal(int sig, void (*handler)(int))
 {
@@ -35,7 +36,7 @@ void	handle_sigint(int sig)
 {
 	if (sig == SIGINT)
 	{
-		g_exit_status = 130;
+		gshell_exit_status = 130;
 		ft_putstr_fd("\n", STDOUT_FILENO);
 		rl_on_new_line();
 		rl_replace_line("", 0);
@@ -46,7 +47,7 @@ void	handle_sigint(int sig)
 void	setup_child_signals(void)
 {
 	setup_signal(SIGINT, SIG_DFL);
-	setup_signal(SIGQUIT, SIG_IGN);
+	setup_signal(SIGQUIT, SIG_DFL);
 }
 
 void	setup_parent_signals(void)
@@ -55,13 +56,14 @@ void	setup_parent_signals(void)
 	setup_signal(SIGQUIT, SIG_IGN);
 }
 
+void	setup_heredoc_signals(void)
+{
+	setup_signal(SIGINT, SIG_DFL);
+	setup_signal(SIGQUIT, SIG_IGN);
+}
+
 void	setup_main_signals(void)
 {
 	setup_signal(SIGINT, handle_sigint);
 	setup_signal(SIGQUIT, SIG_IGN);
 }
-// void	setup_heredoc_signals(void)
-// {
-// 	setup_signal(SIGINT, SIG_DFL);
-// 	setup_signal(SIGQUIT, SIG_IGN);
-// }

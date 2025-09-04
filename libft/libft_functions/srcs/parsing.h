@@ -6,21 +6,18 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/04 20:20:51 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/04 20:01:47 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#include "env.h"
+#include <fcntl.h>
+#include <readline/history.h>
+#include <readline/readline.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
-# include "env.h"
-# include <fcntl.h>
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-
-# define SYNTAX_ERR "minishell: syntax error near unexpected token `%s'\n"
+#define SYNTAX_ERR "minishell: syntax error near unexpected token `%s'\n"
 
 typedef enum s_type
 {
@@ -175,6 +172,20 @@ size_t				calculate_new_len(char *input);
 
 char				*check_input(char *input);
 
+////////////////SIGNALS.C////////////////////////////
+
+// void					init_sigint(void);
+
+void				setup_signal(int sig, void (*handler)(int));
+
+void				handle_sigint(int sig);
+
+void				setup_main_signals(void);
+
+void				setup_child_signals(void);
+
+void				setup_parent_signals(void);
+
 /////////////EXEC.C/////////////////////
 
 void				execc(t_data *data);
@@ -206,5 +217,3 @@ void				open_all_file(t_exec *node, t_data *data);
 void				handle_heredoc(t_data *data);
 
 int					handle_errcode(char *res, int j, t_data *data);
-
-#endif

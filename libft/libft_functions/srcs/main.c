@@ -1,8 +1,5 @@
 
-#include "fd_printf.h"
 #include "parsing.h"
-#include "signals.h"
-#include <errno.h>
 #include <readline/history.h>
 #include <readline/readline.h>
 
@@ -21,14 +18,9 @@ int	main(int ac, char **av, char **env)
 		setup_main_signals();
 		while (1)
 		{
-			g_exit_status = 0;
 			data.input = readline("minishell> ");
-			if (!data.input)
-			{
-				ft_dprintf(2, "exit\n");
-				free_lst_env(&envd, false, 0);
+			if(!data.input)
 				return (-1);
-			}
 			if (*data.input)
 				add_history(data.input);
 			data.input = check_input(data.input);

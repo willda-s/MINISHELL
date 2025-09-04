@@ -6,11 +6,14 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:22:27 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 18:06:39 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/04 20:17:15 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#ifndef ENV_H
+# define ENV_H
+
+# include <stdbool.h>
 
 typedef struct s_env
 {
@@ -29,3 +32,5 @@ void				init_lst_env(t_env **envd, char **env);
 
 void				print_lst_env(t_env *envd);
 void				print_envp(char **envp);
+
+#endif
