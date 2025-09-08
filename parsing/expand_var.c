@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 18:14:13 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/02 18:14:49 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/08 00:53:46 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 static int	is_expand_err(char *word, t_data *data)
 {
+	if (!word || !word[data->i])
+		return (2);
 	if (word && word[data->i] == '?')
+	{
+		data->i++;
 		return (1);
+	}
 	if (!word[data->i] || (!is_var_char(word[data->i]) && word[data->i] != '"'
 			&& word[data->i] != '\''))
 		return (2);
@@ -52,7 +57,7 @@ int	ft_expand_var(char *res, int j, char *word, t_data *data)
 	data->i++;
 	err = is_expand_err(word, data);
 	if (err == 1)
-		return (handle_errcode(res, j, data));
+		return (handle_errcode(res, j));
 	if (err == 2)
 	{
 		res[j++] = '$';

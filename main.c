@@ -6,6 +6,8 @@
 #include <readline/history.h>
 #include <readline/readline.h>
 
+volatile sig_atomic_t	g_exit_status = 0;
+
 int	main(int ac, char **av, char **env)
 {
 	char	**dst;
@@ -21,13 +23,12 @@ int	main(int ac, char **av, char **env)
 		setup_main_signals();
 		while (1)
 		{
-			g_exit_status = 0;
 			data.input = readline("minishell> ");
 			if (!data.input)
 			{
 				ft_dprintf(2, "exit\n");
 				free_lst_env(&envd, false, 0);
-				return (-1);
+				return (g_exit_status);
 			}
 			if (*data.input)
 				add_history(data.input);
@@ -35,6 +36,7 @@ int	main(int ac, char **av, char **env)
 			if (!data.input)
 			{
 				free_lst_env(&envd, false, 0);
+				continue ;
 			}
 			dst = ft_split_with_quotes(data.input, ' ');
 			if (!dst)
@@ -43,20 +45,24 @@ int	main(int ac, char **av, char **env)
 			token_main(&data);
 			if (data.pars && validate_syntax(data.pars))
 			{
+				g_exit_status = 2;
 				free_tmpall(&data);
 				continue ;
 			}
 			init_lst_exec(&data);
 			expand_exec_list(&data);
 			init_envp(&data);
-			// remove_empty_line(&data);
+			remove_empty_line(&data);
 			// print_lst_exec(data.exec);
 			// print_lst_pars(data.pars);
 			handle_heredoc(&data);
+			if (g_exit_status == 130)
+				g_exit_status = 0;
 			execc(&data);
 			free_tmpall(&data);
 		}
 	}
+	return (g_exit_status);
 }
 
 // int	main(int ac, char **av)

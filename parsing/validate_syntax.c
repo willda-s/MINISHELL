@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:26:59 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/03 17:32:48 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/06 17:43:40 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	validate_syntax(t_pars *pars)
 	if (!pars)
 		return (0);
 	if (!pars->next && pars->type == PIPE)
+		return (syntax_error(PIPE));
+	if (pars->type == PIPE)
 		return (syntax_error(PIPE));
 	if (pars->next && pars->next->type == pars->type)
 		return (syntax_error(DOUBLE_PIPE));
@@ -64,7 +66,7 @@ static int	check_curr_and_next_token(t_pars *curr, t_pars *next)
 			return (syntax_error(next->type));
 		if (next->type == BACK_SLASH)
 			return (syntax_error(next->type));
-		if (is_syntax_error(curr, next) == 1)
+		if (is_syntax_error(curr, next))
 			return (syntax_error(next->type));
 	}
 	else

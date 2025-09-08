@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.h                                         :+:      :+:    :+:   */
+/*   setup_child_parent_signals.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/31 18:00:01 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/06 15:18:42 by akarapkh         ###   ########.fr       */
+/*   Created: 2025/09/07 23:32:16 by akarapkh          #+#    #+#             */
+/*   Updated: 2025/09/07 23:32:38 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <limits.h>
-#include <stdbool.h>
+#include "signals.h"
+#include <readline/readline.h>
+#include <signal.h>
 
-int	builtin_unset(char *var, t_env *env);
-int	builtin_pwd(t_exec *exec);
-int	builtin_export(t_exec *exec, t_data *data);
-int	builtin_exit(t_exec *exec, t_data *data);
+void	setup_child_signals(void)
+{
+	setup_signal(SIGINT, SIG_DFL);
+	setup_signal(SIGQUIT, SIG_DFL);
+}
 
+void	setup_parent_signals(void)
+{
+	setup_signal(SIGINT, SIG_IGN);
+	setup_signal(SIGQUIT, SIG_IGN);
+}

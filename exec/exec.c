@@ -6,39 +6,47 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 18:41:59 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/08 00:47:17 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fd_printf.h"
 #include "parsing.h"
+#include "signals.h"
 #include <errno.h>
 #include <stdlib.h>
 #include <sys/types.h>
 
 static int	wait_process(int nb_proc)
 {
-	int	pid_w;
-	int	status;
 	int	err;
 	int	count;
+	int	n;
+	int	ret;
 
 	err = 0;
 	count = 0;
+	n = 0;
+	setup_parent_signals();
 	while (count < nb_proc)
 	{
-		pid_w = wait(&status);
-		if (pid_w == -1)
+		ret = wait_one_process(&n);
+		if (ret == -1)
+		{
+			setup_main_signals();
 			exit(errno);
-		if (WIFEXITED(status))
-			err = WEXITSTATUS(status);
+		}
+		err = ret;
 		count++;
 	}
+	print_wait_error(n);
+	setup_main_signals();
 	return (err);
 }
 
 static void	exec_cmd(t_exec *node, t_data *data)
 {
+	setup_child_signals();
 	if (node->cmd)
 	{
 		node->path = path_in_arg(node);
@@ -82,7 +90,10 @@ static void	exec_loop(int *i, t_data *data, t_exec *prev)
 			exec_cmd(tmp, data);
 		}
 		else if (pid < 0)
+		{
+			setup_main_signals();
 			free_all(data, errno);
+		}
 		close_fd(tmp);
 		(*i)++;
 		prev = tmp;
@@ -98,5 +109,6 @@ void	execc(t_data *data)
 	prev = NULL;
 	i = 0;
 	exec_loop(&i, data, prev);
-	data->errcode = wait_process(i);
+	g_exit_status = wait_process(i);
+	data->errcode = g_exit_status;
 }

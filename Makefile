@@ -5,7 +5,10 @@ INCLUDE = -Iincludes
 
 SIG_DIR = signals/
 
-SIG_FILES = sigint.c
+SIG_FILES = setup_signal.c\
+			setup_heredoc_signals.c\
+			setup_child_parent_signals.c\
+			setup_sigint_main_signals.c
 
 ENV_DIR = env/
 
@@ -23,6 +26,7 @@ PARSING_FILES = init_data_and_pars.c\
 				functions_print.c\
 				split_quotes.c\
 				heredoc.c\
+				heredoc_utils.c\
 				expandf.c\
 				expand_utils.c\
 				expand_var.c\
@@ -39,8 +43,9 @@ EXEC_DIR = exec/
 
 EXEC_FILES = path.c\
 			exec.c\
+			exec_utils.c\
 			ft_fd.c\
-			redirections.c\
+			redirections.c
 
 UTILS = main.c\
 

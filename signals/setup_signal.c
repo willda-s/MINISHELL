@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sigint.c                                           :+:      :+:    :+:   */
+/*   setup_signal.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/02 14:23:52 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/04 20:53:46 by akarapkh         ###   ########.fr       */
+/*   Created: 2025/09/06 18:58:53 by akarapkh          #+#    #+#             */
+/*   Updated: 2025/09/07 23:27:50 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "signals.h"
 #include <readline/readline.h>
 #include <signal.h>
-
-volatile sig_atomic_t	g_exit_status = 0;
 
 void	setup_signal(int sig, void (*handler)(int))
 {
@@ -30,38 +28,3 @@ void	setup_signal(int sig, void (*handler)(int))
 	if (sigaction(sig, &sa, NULL) != 0)
 		ft_putstr_fd("minishell: signal setup failed\n", 2);
 }
-
-void	handle_sigint(int sig)
-{
-	if (sig == SIGINT)
-	{
-		g_exit_status = 130;
-		ft_putstr_fd("\n", STDOUT_FILENO);
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	}
-}
-
-void	setup_child_signals(void)
-{
-	setup_signal(SIGINT, SIG_DFL);
-	setup_signal(SIGQUIT, SIG_IGN);
-}
-
-void	setup_parent_signals(void)
-{
-	setup_signal(SIGINT, SIG_IGN);
-	setup_signal(SIGQUIT, SIG_IGN);
-}
-
-void	setup_main_signals(void)
-{
-	setup_signal(SIGINT, handle_sigint);
-	setup_signal(SIGQUIT, SIG_IGN);
-}
-// void	setup_heredoc_signals(void)
-// {
-// 	setup_signal(SIGINT, SIG_DFL);
-// 	setup_signal(SIGQUIT, SIG_IGN);
-// }

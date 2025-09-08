@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/04 20:20:51 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/08 00:54:39 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,10 @@ char				*check_input(char *input);
 
 void				execc(t_data *data);
 
+int					wait_one_process(int *n);
+
+void				print_wait_error(int n);
+
 void				dup_fd(t_exec *node, t_data *data);
 
 void				ft_close(int *fd);
@@ -203,8 +207,12 @@ void				close_allfd_struct(t_data *data);
 
 void				open_all_file(t_exec *node, t_data *data);
 
+////////////////heredoc.c////////////////////////////
+
+void				open_heredoc_out(t_redir *redir, t_data *data, int i);
+
 void				handle_heredoc(t_data *data);
 
-int					handle_errcode(char *res, int j, t_data *data);
+int					handle_errcode(char *res, int j);
 
 #endif

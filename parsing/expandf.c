@@ -6,42 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 18:15:47 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/06 17:54:20 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parsing.h"
-
-// static int	ft_expand_var(char *res, int j, char *word, t_data *data)
-// {
-// 	char	var[256];
-// 	char	*val;
-// 	int		k;
-
-// 	data->i++;
-// 	k = 0;
-// 	if (word && word[data->i] == '?')
-// 	{
-// 		j = handle_errcode(res, j, data);
-// 		return (j);
-// 	}
-// 	else if (!word[data->i] || (!is_var_char(word[data->i])
-// 			&& word[data->i] != '"' && word[data->i] != '\''))
-// 	{
-// 		res[j++] = '$';
-// 		return (j);
-// 	}
-// 	while (word[data->i] && is_var_char(word[data->i]) && word[data->i] != '"'
-// 		&& word[data->i] != '\'' && k < 255)
-// 		var[k++] = word[(data->i)++];
-// 	var[k] = '\0';
-// 	val = get_env_value(data->env, var);
-// 	k = 0;
-// 	while (val && val[k])
-// 		res[j++] = val[k++];
-// 	return (j);
-// }
 
 static int	ft_handle_squotes(char *res, int j, char *word, t_data *data)
 {
@@ -51,10 +21,7 @@ static int	ft_handle_squotes(char *res, int j, char *word, t_data *data)
 	if (word[data->i] == '\'')
 		data->i++;
 	else
-	{
 		syntax_error(SIMPLE_QUOTE);
-		free_all(data, 2);
-	}
 	return (j);
 }
 
@@ -75,10 +42,7 @@ static int	ft_handle_dquotes(char *res, int j, char *word, t_data *data)
 		data->i++;
 	}
 	else
-	{
 		syntax_error(DOUBLE_QUOTE);
-		free_all(data, 2);
-	}
 	return (j);
 }
 
