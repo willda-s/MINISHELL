@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 18:43:18 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/07 23:32:13 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/08 15:48:08 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	handle_heredoc_sigint(int sig)
 {
 	if (sig == SIGINT)
 	{
-		g_exit_status = 130;
+		g_signal_status = 130;
 		ft_putstr_fd("\n", STDOUT_FILENO);
 		exit(130);
 	}

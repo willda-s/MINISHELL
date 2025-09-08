@@ -2,11 +2,10 @@
 #include "fd_printf.h"
 #include "parsing.h"
 #include "signals.h"
-#include <errno.h>
 #include <readline/history.h>
 #include <readline/readline.h>
 
-volatile sig_atomic_t	g_exit_status = 0;
+volatile sig_atomic_t	g_signal_status = 0;
 
 int	main(int ac, char **av, char **env)
 {
@@ -28,7 +27,7 @@ int	main(int ac, char **av, char **env)
 			{
 				ft_dprintf(2, "exit\n");
 				free_lst_env(&envd, false, 0);
-				return (g_exit_status);
+				return (g_signal_status);
 			}
 			if (*data.input)
 				add_history(data.input);
@@ -45,24 +44,25 @@ int	main(int ac, char **av, char **env)
 			token_main(&data);
 			if (data.pars && validate_syntax(data.pars))
 			{
-				g_exit_status = 2;
+				g_signal_status = 2;
 				free_tmpall(&data);
 				continue ;
 			}
 			init_lst_exec(&data);
-			expand_exec_list(&data);
+			if (expand_exec_list(&data) != 0)
+				continue ;
 			init_envp(&data);
 			remove_empty_line(&data);
 			// print_lst_exec(data.exec);
 			// print_lst_pars(data.pars);
 			handle_heredoc(&data);
-			if (g_exit_status == 130)
-				g_exit_status = 0;
+			if (g_signal_status == 130)
+				g_signal_status = 0;
 			execc(&data);
 			free_tmpall(&data);
 		}
 	}
-	return (g_exit_status);
+	return (g_signal_status);
 }
 
 // int	main(int ac, char **av)
@@ -102,5 +102,7 @@ int	main(int ac, char **av, char **env)
 			- Function_print.c
 			- print_lst_exec(data.exec);
 			- print_lst_pars(data.pars);
+
+			REGLER INPUT_CHECK LORSQUE ECHO QVEC " "
 
 */

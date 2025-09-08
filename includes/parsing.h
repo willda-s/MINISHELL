@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/08 00:54:39 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/08 19:47:07 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int					free_all(t_data *data, int errcode);
 
 void				free_tab(char **dst);
 
-void				free_tmpall(t_data *data);
+int					free_tmpall(t_data *data);
 
 ////////////////////TYPE.C && TYPE_UTILS.C/////////////////
 
@@ -147,7 +147,7 @@ int					is_var_char(char c);
 
 int					ft_expand_var(char *res, int j, char *word, t_data *data);
 
-void				expand_exec_list(t_data *data);
+int					expand_exec_list(t_data *data);
 
 ////////////////INIT_FILENAME.C//////////////////////////
 

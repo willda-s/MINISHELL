@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 20:15:11 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/07 23:42:05 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/08 15:48:08 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <signal.h>
 
-extern volatile sig_atomic_t	g_exit_status;
+extern volatile sig_atomic_t	g_signal_status;
 
 ////////////////SIGNALS.C////////////////////////////
 

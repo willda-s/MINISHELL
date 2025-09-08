@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/06 17:54:20 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/08 16:26:03 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ static int	ft_handle_squotes(char *res, int j, char *word, t_data *data)
 	if (word[data->i] == '\'')
 		data->i++;
 	else
+	{
 		syntax_error(SIMPLE_QUOTE);
+		return (-1);
+	}
 	return (j);
 }
 
@@ -42,7 +45,10 @@ static int	ft_handle_dquotes(char *res, int j, char *word, t_data *data)
 		data->i++;
 	}
 	else
+	{
 		syntax_error(DOUBLE_QUOTE);
+		return (-1);
+	}
 	return (j);
 }
 
@@ -61,14 +67,17 @@ static char	*ft_expand_word(t_data *data, char *word)
 			j = ft_handle_dquotes(res, j, word, data);
 		else if (word[data->i] == '$')
 			j = ft_expand_var(res, j, word, data);
-		else
+		if (j == -1)
+			return (NULL);
+		if (word[data->i] != '\'' && word[data->i] != '"'
+			&& word[data->i] != '$')
 			res[j++] = word[data->i++];
 	}
 	res[j] = '\0';
 	return (ft_strdup(res));
 }
 
-void	expand_exec_list(t_data *data)
+int	expand_exec_list(t_data *data)
 {
 	char	*new_word;
 	t_exec	*exec;
@@ -87,9 +96,13 @@ void	expand_exec_list(t_data *data)
 				exec->cmd[i] = new_word;
 			}
 			else
-				free_all_msg(data, 0, "Error\nMalloc fail in ft_expand_word");
+			{
+				free_tmpall(data);
+				return (2);
+			}
 			i++;
 		}
 		exec = exec->next;
 	}
+	return (0);
 }

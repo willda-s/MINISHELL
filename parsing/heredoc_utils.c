@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:56:37 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/08 01:13:27 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/08 19:47:30 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	handle_errcode(char *res, int j)
 	size_t	i;
 	size_t	len;
 
-	str = ft_itoa(g_exit_status);
+	str = ft_itoa(g_signal_status);
 	if (!str)
 		return (j);
 	len = ft_strlen(str);
@@ -81,9 +81,9 @@ static void	write_in_heredoc(int *fd, t_redir *redir)
 		setup_parent_signals();
 		waitpid(pid, &status, 0);
 		if (WIFEXITED(status))
-			g_exit_status = WEXITSTATUS(status);
+			g_signal_status = WEXITSTATUS(status);
 		else if (WIFSIGNALED(status))
-			g_exit_status = 128 + WTERMSIG(status);
+			g_signal_status = 128 + WTERMSIG(status);
 		setup_main_signals();
 	}
 }
@@ -98,7 +98,7 @@ static void	heredoc_child_loop(int *fd, t_redir *redir)
 		line = readline("Heredoc> ");
 		if (!line)
 		{
-			g_exit_status = 130;
+			g_signal_status = 130;
 			exit(130);
 		}
 		if (line && ft_strcmp(line, redir->delimiter) == 0)

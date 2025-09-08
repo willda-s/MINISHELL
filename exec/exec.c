@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/08 00:47:17 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/08 19:49:37 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,6 @@ void	execc(t_data *data)
 	prev = NULL;
 	i = 0;
 	exec_loop(&i, data, prev);
-	g_exit_status = wait_process(i);
-	data->errcode = g_exit_status;
+	g_signal_status = wait_process(i);
+	data->errcode = g_signal_status;
 }

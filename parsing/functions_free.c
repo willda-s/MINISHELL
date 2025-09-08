@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:41 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/03 17:36:51 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/08 17:29:35 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	free_all(t_data *data, int errcode)
 	exit(errcode);
 }
 
-void	free_tmpall(t_data *data)
+int	free_tmpall(t_data *data)
 {
 	if (data->input)
 		free(data->input);
@@ -86,4 +86,5 @@ void	free_tmpall(t_data *data)
 		free_tab(data->dst);
 		data->dst = NULL;
 	}
+	return (2);
 }

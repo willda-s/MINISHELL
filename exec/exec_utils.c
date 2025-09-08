@@ -6,43 +6,43 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 00:34:23 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/08 00:41:05 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/08 18:49:41 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <sys/wait.h>
-#include <stdlib.h>
 #include <signal.h>
+#include <stdlib.h>
+#include <sys/wait.h>
 #include <unistd.h>
 
-int	wait_one_process(int *n)
+int	wait_one_process(int *flag)
 {
 	int	status;
 	int	pid_w;
-	int	err;
+	int	exit_status;
 
-	err = 0;
+	exit_status = 0;
 	pid_w = wait(&status);
 	if (pid_w == -1)
 		return (-1);
 	if (WIFEXITED(status))
-		err = WEXITSTATUS(status);
+		exit_status = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))
 	{
-		err = 128 + WTERMSIG(status);
+		exit_status = 128 + WTERMSIG(status);
 		if (WTERMSIG(status) == SIGINT)
-			*n = 1;
+			*flag = 1;
 		else if (WTERMSIG(status) == SIGQUIT)
-			*n = 2;
+			*flag = 2;
 	}
-	return (err);
+	return (exit_status);
 }
 
-void	print_wait_error(int n)
+void	print_wait_error(int flag)
 {
-	if (n == 1)
-		ft_putstr_fd("\n", STDOUT_FILENO);
-	else if (n == 2)
-		ft_putstr_fd("Quit (core dumped)\n", STDOUT_FILENO);
+	if (flag == 1)
+		ft_putstr_fd("\n", STDERR_FILENO);
+	else if (flag == 2)
+		ft_putstr_fd("Quit (core dumped)\n", STDERR_FILENO);
 }
