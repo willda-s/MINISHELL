@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 20:15:11 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/08 15:48:08 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/10 22:29:37 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ extern volatile sig_atomic_t	g_signal_status;
 
 void							setup_main_signals(void);
 
-void							setup_child_signals(void); 
+void							setup_child_signals(void);
 
 void							setup_parent_signals(void);
 
