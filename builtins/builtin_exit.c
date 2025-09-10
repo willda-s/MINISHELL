@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:02 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/10 17:50:10 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/10 18:38:47 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static long long	ft_atoll(const char *str)
 
 static int	free_exit(t_data *data, int errcode)
 {
+	close_allfd_struct(data);
 	free_all(data, errcode);
 	exit(errcode);
 }

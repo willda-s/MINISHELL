@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/10 17:39:35 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/10 18:51:24 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static int	wait_process(int nb_proc)
 
 static void	exec_cmd(t_exec *node, t_data *data)
 {
-	write(1, "in exec_cmd\n", 13);
 	if (node->cmd)
 	{
 		if (exec_builtins(node, data))
@@ -78,7 +77,7 @@ static void	exec_loop(int *i, t_data *data, t_exec *prev)
 	{
 		if (tmp->next)
 			init_pipe(tmp);
-		else if (!prev && exec_builtins(tmp, data))
+		else if (!prev && !exec_builtins(tmp, data))
 			return ;
 		pid = fork();
 		if (pid == 0)
