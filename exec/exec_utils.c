@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 22:47:42 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/08 16:23:23 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/10 17:38:59 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-bool exec_builtins(t_exec *node, t_data *data)
+bool	exec_builtins(t_exec *node, t_data *data)
 {
-	int val;
+	int	val;
 
 	val = 1;
 	if (node->cmd && ft_strcmp(node->cmd[0], "echo") == 0)

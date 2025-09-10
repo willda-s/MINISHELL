@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/10 14:08:44 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/10 17:09:16 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,11 @@ static t_env	*extract_key_value(t_exec *exec)
 int	builtin_export(t_exec *exec, t_data *data)
 {
 	t_env	*new_var;
-	
+
 	if (!exec->cmd[1])
 	{
 		builtin_env(data, true);
-		return(EXIT_SUCCESS);
+		return (EXIT_SUCCESS);
 	}
 	if (parsing_export(exec))
 		return (EXIT_FAILURE);
