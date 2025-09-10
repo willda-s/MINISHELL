@@ -42,23 +42,23 @@ int	main(int ac, char **av, char **env)
 				free_lst_env(&envd, true, 0);
 			init_data(&data, &envd, dst);
 			token_main(&data);
-			if (data.pars && validate_syntax(data.pars))
-			{
-				g_signal_status = 2;
-				free_tmpall(&data);
-				continue ;
-			}
+			// if (data.pars && validate_syntax(data.pars))
+			// {
+			// 	g_signal_status = 2;
+			// 	free_tmpall(&data);
+			// 	continue ;
+			// }
 			init_lst_exec(&data);
 			if (expand_exec_list(&data) != 0)
 				continue ;
 			init_envp(&data);
 			remove_empty_line(&data);
-			// print_lst_exec(data.exec);
-			// print_lst_pars(data.pars);
-			handle_heredoc(&data);
+			print_lst_exec(data.exec);
+			print_lst_pars(data.pars);
+			// handle_heredoc(&data);
 			if (g_signal_status == 130)
 				g_signal_status = 0;
-			execc(&data);
+			// execc(&data);
 			free_tmpall(&data);
 		}
 	}
