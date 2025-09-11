@@ -1,35 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setup_sigint_main_signals.c                        :+:      :+:    :+:   */
+/*   setup_signals.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/02 14:23:52 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/11 15:03:58 by cafabre          ###   ########.fr       */
+/*   Created: 2025/09/11 16:06:14 by cafabre           #+#    #+#             */
+/*   Updated: 2025/09/11 16:06:39 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "signals.h"
 #include "libft.h"
+#include "parsing.h"
 #include <readline/readline.h>
+#include <signal.h>
+#include <unistd.h>
 
-static void	handle_sigint(int sig);
+void	setup_child_signals(void)
+{
+	setup_signal(SIGINT, SIG_DFL);
+	setup_signal(SIGQUIT, SIG_DFL);
+}
+
+void	setup_parent_signals(void)
+{
+	setup_signal(SIGINT, SIG_IGN);
+	setup_signal(SIGQUIT, SIG_IGN);
+}
+
+void	setup_heredoc_signals(void)
+{
+	setup_signal(SIGINT, SIG_DFL);
+	setup_signal(SIGQUIT, SIG_IGN);
+}
 
 void	setup_main_signals(void)
 {
 	setup_signal(SIGINT, handle_sigint);
 	setup_signal(SIGQUIT, SIG_IGN);
-}
-
-static void	handle_sigint(int sig)
-{
-	if (sig == SIGINT)
-	{
-		g_signal_status = 130;
-		ft_putstr_fd("\n", STDOUT_FILENO);
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	}
 }
