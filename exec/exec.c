@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/10 14:04:59 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/11 18:48:01 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ static void	exec_loop(int *i, t_data *data, t_exec *prev)
 		if (pid == 0)
 		{
 			dup_fd(tmp, data);
-			close_last_fd(prev);
 			exec_cmd(tmp, data);
 		}
 		else if (pid < 0)
@@ -105,3 +104,6 @@ void	execc(t_data *data)
 	exec_loop(&i, data, prev);
 	data->errcode = wait_process(i);
 }
+
+//le cas du : cat | ls
+// je ferme l'ecriture du cat quand ls s'execute simultanement

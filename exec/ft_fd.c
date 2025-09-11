@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 21:13:24 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/04 16:01:39 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/10 20:20:16 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	dup_fd(t_exec *node, t_data *data)
 	open_all_file(node, data);
 	if (node->fd_out != -1)
 	{
-		if (dup2(node->fd_out, STDOUT_FILENO) == -1) //donne le role d'ecriture au fd
+		if (dup2(node->fd_out, STDOUT_FILENO) == -1)
 			free_all(data, errno);
 	}
 	else
@@ -65,7 +65,7 @@ void	dup_fd(t_exec *node, t_data *data)
 	}
 	if (node->fd_in != -1)
 	{
-		if (dup2(node->fd_in, STDIN_FILENO) == -1) //donne le role de lecture au fd
+		if (dup2(node->fd_in, STDIN_FILENO) == -1)
 			free_all(data, errno);
 	}
 	else

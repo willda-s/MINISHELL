@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   lst_utils_exec.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:58 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 18:03:45 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/10 20:17:31 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "libft.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 static int	lstsize_exec(t_exec *exec)
 {
@@ -91,20 +92,20 @@ void	print_lst_exec(t_exec *exec)
 	while (exec)
 	{
 		i = 0;
-		printf("-------------noeud [%d]---------------------\n", j++);
-		printf("fd_in = %d\n", exec->fd_in);
-		printf("fd_out = %d\n", exec->fd_out);
+		dprintf(STDERR_FILENO, "-------------noeud [%d]---------------------\n", j++);
+		dprintf(STDERR_FILENO, "fd_in = %d\n", exec->fd_in);
+		dprintf(STDERR_FILENO, "fd_out = %d\n", exec->fd_out);
 		while (exec->cmd && exec->cmd[i])
 		{
-			printf("cmd[%d] = %s\n", i, exec->cmd[i]);
+			dprintf(STDERR_FILENO, "cmd[%d] = %s\n", i, exec->cmd[i]);
 			i++;
 		}
 		tmp = exec->redir;
 		while (tmp)
 		{
-			printf("token = %u\n", tmp->token);
-			printf("filename = %s\n", tmp->filename);
-			printf("delimiter = %s\n", tmp->delimiter);
+			dprintf(STDERR_FILENO, "token = %u\n", tmp->token);
+			dprintf(STDERR_FILENO, "filename = %s\n", tmp->filename);
+			dprintf(STDERR_FILENO, "delimiter = %s\n", tmp->delimiter);
 			tmp = tmp->next;
 		}
 		exec = exec->next;
