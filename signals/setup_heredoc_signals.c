@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   setup_heredoc_signals.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 18:43:18 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/08 15:48:08 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/11 15:04:09 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "signals.h"
+#include "libft.h"
 #include <readline/readline.h>
-#include <signal.h>
 
 static void	handle_heredoc_sigint(int sig);
 

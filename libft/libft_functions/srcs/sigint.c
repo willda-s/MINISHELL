@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:23:52 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/10 22:30:36 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/11 16:09:17 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <signal.h>
 #include <unistd.h>
 
-volatile g_sig_atomic_t	gshell_exit_status;
+volatile sig_atomic_t	g_shell_exit_status;
 
 void	setup_signal(int sig, void (*handler)(int))
 {
@@ -36,34 +36,10 @@ void	handle_sigint(int sig)
 {
 	if (sig == SIGINT)
 	{
-		gshell_exit_status = 130;
+		g_shell_exit_status = 130;
 		ft_putstr_fd("\n", STDOUT_FILENO);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
-}
-
-void	setup_child_signals(void)
-{
-	setup_signal(SIGINT, SIG_DFL);
-	setup_signal(SIGQUIT, SIG_DFL);
-}
-
-void	setup_parent_signals(void)
-{
-	setup_signal(SIGINT, SIG_IGN);
-	setup_signal(SIGQUIT, SIG_IGN);
-}
-
-void	setup_heredoc_signals(void)
-{
-	setup_signal(SIGINT, SIG_DFL);
-	setup_signal(SIGQUIT, SIG_IGN);
-}
-
-void	setup_main_signals(void)
-{
-	setup_signal(SIGINT, handle_sigint);
-	setup_signal(SIGQUIT, SIG_IGN);
 }
