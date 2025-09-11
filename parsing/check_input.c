@@ -6,18 +6,19 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 18:18:26 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/10 22:38:35 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/11 14:44:51 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include <stdlib.h>
 
+static int	*fill_new_input(char *input, char *new_input);
 static char	*add_space(char *input);
 static void	add_space_to_cmd(char *input, char *new_input, size_t *i,
-				size_t *j);
+								size_t *j);
 static void	add_space_to_redir(char *input, char *new_input, size_t *i,
-				size_t *j);
+								size_t *j);
 static int	update_quote_state(char c, int current_state);
 
 char	*check_input(char *input)
@@ -32,7 +33,7 @@ char	*check_input(char *input)
 	return (result);
 }
 
-static char	*fill_new_input(char *input, char *new_input)
+static int	*fill_new_input(char *input, char *new_input)
 {
 	size_t	i;
 	size_t	j;
@@ -57,6 +58,7 @@ static char	*fill_new_input(char *input, char *new_input)
 		new_input[j++] = input[i++];
 	}
 	new_input[j] = '\0';
+	return (EXIT_SUCCESS);
 }
 
 static char	*add_space(char *input)
@@ -82,7 +84,7 @@ static void	add_space_to_cmd(char *input, char *new_input, size_t *i, size_t *j)
 }
 
 static void	add_space_to_redir(char *input, char *new_input, size_t *i,
-		size_t *j)
+								size_t *j)
 {
 	if (is_command(input[(*i)]) == 2)
 	{
@@ -106,7 +108,7 @@ static void	add_space_to_redir(char *input, char *new_input, size_t *i,
 	}
 }
 
-static int	update_quote_state(char c, int current_state)
+static int update_quote_state(char c, int current_state)
 {
 	if (c == '\'' && current_state != 2)
 	{
