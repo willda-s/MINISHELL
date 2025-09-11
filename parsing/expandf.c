@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   expandf.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 19:03:46 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/11 20:17:48 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "parsing.h"
+#include "libft.h"
 
 static int	ft_handle_squotes(char *res, int j, char *word, t_data *data)
 {

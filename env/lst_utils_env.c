@@ -6,13 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:06 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 17:23:16 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:07:20 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
-#include <stdlib.h>
+#include "env.h"
 #include "libft.h"
+#include <stdlib.h>
 
 static int	lstsize_env(t_env *envd)
 {

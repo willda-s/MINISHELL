@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   setup_child_parent_signals.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:32:16 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/11 15:04:14 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/11 20:33:17 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "signals.h"
-#include <readline/readline.h>
 
 void	setup_child_signals(void)
 {

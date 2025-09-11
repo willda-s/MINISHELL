@@ -43,7 +43,6 @@ EXEC_DIR = exec/
 
 EXEC_FILES = path.c\
 			exec.c\
-			exec_utils.c\
 			ft_fd.c\
 			redirections.c\
 			exec_utils.c

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 21:13:24 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 19:03:01 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/11 20:14:53 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-#include <errno.h>
 #include <unistd.h>
+#include <errno.h>
 
 void	close_allfd_struct(t_data *data)
 {

@@ -6,11 +6,11 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:23:25 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/02 16:46:58 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:23:48 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fd_printf.h"
+#include "ft_dprintf.h"
 
 ssize_t	ft_input_check(const char *input, va_list args, t_vector *buffer)
 {

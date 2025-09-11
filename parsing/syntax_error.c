@@ -6,12 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:23:20 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/08 16:17:07 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:31:49 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-#include "fd_printf.h"
+#include "ft_dprintf.h"
 
 int	syntax_error(int type)
 {

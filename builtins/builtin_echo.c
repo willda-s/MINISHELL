@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:07:42 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/04 19:22:19 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:38:01 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
-#include "fd_printf.h"
+#include "libft.h"
+#include "parsing.h"
+#include <stdbool.h>
 
 static bool	check_n_option(char *s)
 {

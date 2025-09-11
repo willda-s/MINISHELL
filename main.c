@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/11 19:55:40 by akarapkh          #+#    #+#             */
+/*   Updated: 2025/09/11 20:36:26 by akarapkh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "fd_printf.h"
 #include "parsing.h"
+#include "ft_dprintf.h"
 #include "signals.h"
 #include <readline/history.h>
 #include <readline/readline.h>
@@ -67,8 +78,6 @@ int	main(int ac, char **av, char **env)
 	}
 	return (g_signal_status);
 }
-
-
 
 /*TO DO :
 			- expand vide dans le cas du token=commands alors pas d'execution

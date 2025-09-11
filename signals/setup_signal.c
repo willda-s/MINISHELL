@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   setup_signal.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 18:58:53 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/11 16:08:45 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/11 20:35:10 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "signals.h"
+#include <signals.h>
 #include "libft.h"
-#include <readline/readline.h>
 
 void	setup_signal(int sig, void (*handler)(int))
 {

@@ -6,13 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:55:03 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 18:04:03 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:29:14 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "libft.h"
-#include <stdlib.h>
 
 static int	lstsize_pars(t_pars *pars)
 {

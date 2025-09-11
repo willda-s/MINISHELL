@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   functions_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:41 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 19:04:39 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/11 20:23:48 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fd_printf.h"
 #include "parsing.h"
+#include "ft_dprintf.h"
+#include <stdlib.h>
 
 void	free_tab(char **dst)
 {
@@ -77,6 +78,6 @@ int	free_tmpall(t_data *data)
 	{
 		free_tab(data->dst);
 		data->dst = NULL;
-
 	}
+	return (2);
 }

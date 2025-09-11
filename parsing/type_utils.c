@@ -6,12 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:00:48 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/03 17:15:25 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:32:05 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "parsing.h"
+#include "libft.h"
 
 void	is_builtins(t_pars **tmp)
 {

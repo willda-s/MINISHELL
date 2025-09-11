@@ -6,12 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 19:04:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 18:35:51 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:23:48 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fd_printf.h"
 #include "parsing.h"
+#include "ft_dprintf.h"
 
 static void	open_redir_trunc(t_exec *node, t_data *data, t_redir *tmp)
 {

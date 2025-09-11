@@ -6,11 +6,11 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 07:34:41 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/02 16:46:56 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:23:48 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fd_printf.h"
+#include "ft_dprintf.h"
 
 int	ft_dprintf(int fd, const char *input, ...)
 {

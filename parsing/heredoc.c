@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 22:57:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 19:04:45 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/11 20:27:09 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-#include <stddef.h>
 
 void	handle_heredoc(t_data *data)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_sigint_main_signals.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:23:52 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/11 15:03:58 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/11 20:34:45 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -6,12 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:55:59 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/03 17:16:54 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:32:30 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "parsing.h"
+#include "libft.h"
 
 static void	init_token_command(t_pars **pars)
 {

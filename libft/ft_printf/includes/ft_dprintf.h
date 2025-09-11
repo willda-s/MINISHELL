@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fd_printf.h                                        :+:      :+:    :+:   */
+/*   ft_dprintf.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:01:24 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/06/28 14:23:46 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:25:55 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FD_PRINTF_H
-# define FD_PRINTF_H
+#ifndef FT_DPRINTF_H
+# define FT_DPRINTF_H
 
-# include "../../vectors/includes/vectors.h"
+# include "vectors.h"
 # include <limits.h>
 # include <stdarg.h>
 # include <stdint.h>

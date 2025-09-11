@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:12 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/04 19:07:27 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:41:27 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "builtins.h"
+#include <unistd.h>
 
 int	builtin_pwd(void)
 {

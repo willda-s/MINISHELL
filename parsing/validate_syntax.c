@@ -6,12 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:26:59 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/06 17:43:40 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:32:55 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "parsing.h"
+#include "libft.h"
 
 static int	check_syntax(t_pars *pars);
 static int	check_curr_and_next_token(t_pars *curr, t_pars *next);

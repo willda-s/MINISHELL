@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init_data_and_pars.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:46 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/04 18:28:31 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:27:31 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-#include "libft.h"\
+#include "libft.h"
 
 static int	init_lst_pars(t_pars **pars, char **dst)
 {

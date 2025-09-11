@@ -6,12 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:42:46 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/10 19:21:45 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:15:51 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "parsing.h"
+#include <stdlib.h>
 
 static void	handle_double_cmd(char *input, size_t *i, size_t *new_len);
 static void	handle_single_cmd(char *input, size_t *i, size_t *new_len);

@@ -6,12 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:12:44 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/02 16:49:04 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:23:48 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "fd_printf.h"
+#include "ft_dprintf.h"
 
 ssize_t	ft_process_format(const char *input, va_list args, t_vector *buffer)
 {

@@ -6,13 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:54 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 17:31:56 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:28:19 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "libft.h"
-#include <stdlib.h>
 
 static size_t	count_cmd(t_pars *pars)
 {

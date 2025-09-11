@@ -6,12 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:55:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/08/27 20:12:58 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:31:29 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
 #include "libft.h"
+#include <stdbool.h>
+#include <stdlib.h>
 
 static char	update_quote(char currentc, char quote)
 {

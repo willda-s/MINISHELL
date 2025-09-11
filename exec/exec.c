@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 19:05:17 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/11 20:23:48 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fd_printf.h"
-#include "parsing.h"
 #include "signals.h"
+#include "parsing.h"
+#include "ft_dprintf.h"
 #include <errno.h>
 #include <stdlib.h>
-#include <sys/types.h>
 
 static int	wait_process(int nb_proc)
 {

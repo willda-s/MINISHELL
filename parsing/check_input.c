@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 18:18:26 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/11 14:44:51 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/11 20:59:04 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ static int	*fill_new_input(char *input, char *new_input)
 			else
 				new_input[j++] = input[i++];
 		}
-		new_input[j++] = input[i++];
+		else
+			new_input[j++] = input[i++];
 	}
 	new_input[j] = '\0';
 	return (EXIT_SUCCESS);
@@ -67,6 +68,7 @@ static char	*add_space(char *input)
 	char	*new_input;
 
 	new_len = calculate_new_len(input);
+	fprintf(stderr, "%zu\n", new_len);
 	new_input = malloc(sizeof(char) * (new_len + 1));
 	if (!new_input)
 		return (NULL);

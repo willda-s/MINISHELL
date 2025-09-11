@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 22:47:42 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 19:02:29 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/11 20:08:48 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "libft.h"
-#include <signal.h>
-#include <stdlib.h>
-#include <sys/wait.h>
-#include <unistd.h>
+#include <stdbool.h>
 
 bool	exec_builtins(t_exec *node, t_data *data)
 {

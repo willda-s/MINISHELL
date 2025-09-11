@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:50:00 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/04 19:08:16 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:36:49 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "parsing.h"
+#include "libft.h"
 
 // static char	*get_env_value(t_env *env, char *key)
 // {

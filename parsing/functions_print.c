@@ -6,12 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:56:02 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 18:18:09 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:23:48 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fd_printf.h"
-#include "parsing.h"
+#include "env.h"
+#include "ft_dprintf.h"
 
 // void	print_tab(char **dst)
 // {
