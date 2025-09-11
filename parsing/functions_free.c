@@ -6,12 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:41 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 20:23:48 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/11 21:14:51 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
 #include "ft_dprintf.h"
+#include "parsing.h"
 #include <stdlib.h>
 
 void	free_tab(char **dst)
@@ -52,7 +52,7 @@ int	free_all(t_data *data, int errcode)
 	exit(errcode);
 }
 
-int	free_tmpall(t_data *data)
+void	free_tmpall(t_data *data)
 {
 	if (data->input)
 	{
@@ -79,5 +79,4 @@ int	free_tmpall(t_data *data)
 		free_tab(data->dst);
 		data->dst = NULL;
 	}
-	return (2);
 }

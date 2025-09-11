@@ -6,12 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:42:46 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/11 20:15:51 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/10 20:15:31 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
+#include "parsing.h"
 
 static void	handle_double_cmd(char *input, size_t *i, size_t *new_len);
 static void	handle_single_cmd(char *input, size_t *i, size_t *new_len);
@@ -42,17 +42,23 @@ size_t	calculate_new_len(char *input)
 {
 	size_t	i;
 	size_t	new_len;
+	int		quote_state;
 
 	i = 0;
+	quote_state = 0;
 	new_len = ft_strlen(input);
 	while (input[i])
 	{
-		if (is_command(input[i]) == 1)
-			handle_single_cmd(input, &i, &new_len);
-		else if (is_command(input[i]) == 2)
-			handle_double_cmd(input, &i, &new_len);
-		else if (is_command(input[i]) == 3)
-			handle_double_cmd(input, &i, &new_len);
+		quote_state = update_quote_state(input[i], quote_state);
+		if (quote_state == 0)
+		{
+			if (is_command(input[i]) == 1)
+				handle_single_cmd(input, &i, &new_len);
+			else if (is_command(input[i]) == 2)
+				handle_double_cmd(input, &i, &new_len);
+			else if (is_command(input[i]) == 3)
+				handle_double_cmd(input, &i, &new_len);
+		}
 		++i;
 	}
 	return (new_len);

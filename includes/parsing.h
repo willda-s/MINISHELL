@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 20:11:15 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/11 21:14:56 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define SYNTAX_ERR "minishell: syntax error near unexpected token `%s'\n"
 
-#include "env.h"
+# include "env.h"
 # include <fcntl.h>
 # include <readline/history.h>
 # include <readline/readline.h>
@@ -129,7 +129,7 @@ int					free_all(t_data *data, int errcode);
 
 void				free_tab(char **dst);
 
-int					free_tmpall(t_data *data);
+void				free_tmpall(t_data *data);
 
 ////////////////////TYPE.C && TYPE_UTILS.C/////////////////
 
@@ -176,6 +176,10 @@ int					is_space(char c);
 size_t				calculate_new_len(char *input);
 
 char				*check_input(char *input);
+
+char				*allocate_and_initialize(char *input, size_t *new_len);
+
+int					update_quote_state(char c, int current_state);
 
 /////////////EXEC.C/////////////////////
 
