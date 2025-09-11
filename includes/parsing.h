@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/09/10 20:13:40 by willda-s         ###   ########.fr       */
+=======
+/*   Updated: 2025/09/10 17:10:35 by cafabre          ###   ########.fr       */
+>>>>>>> bd457e1f5b280740f238f766be3d71c84a56f4c0
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +21,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define SYNTAX_ERR "minishell: syntax error near unexpected token `%s'\n"
 

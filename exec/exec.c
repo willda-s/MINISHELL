@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/09/11 18:48:01 by willda-s         ###   ########.fr       */
+=======
+/*   Updated: 2025/09/10 18:51:24 by cafabre          ###   ########.fr       */
+>>>>>>> bd457e1f5b280740f238f766be3d71c84a56f4c0
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +82,7 @@ static void	exec_loop(int *i, t_data *data, t_exec *prev)
 		if (tmp->next)
 			init_pipe(tmp);
 		else if (!prev && !exec_builtins(tmp, data))
-			return;
+			return ;
 		pid = fork();
 		if (pid == 0)
 		{
