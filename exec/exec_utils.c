@@ -6,11 +6,16 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 22:47:42 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/10 18:34:38 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/11 19:02:29 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
+#include "libft.h"
+#include <signal.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+#include <unistd.h>
 
 bool	exec_builtins(t_exec *node, t_data *data)
 {
@@ -35,4 +40,35 @@ bool	exec_builtins(t_exec *node, t_data *data)
 	else if (node->cmd && ft_strcmp(node->cmd[0], "unset") == 0)
 		val = builtin_unset(node->cmd[1], data->env);
 	return (val);
+}
+
+int	wait_one_process(int *flag)
+{
+	int	status;
+	int	pid_w;
+	int	exit_status;
+
+	exit_status = 0;
+	pid_w = wait(&status);
+	if (pid_w == -1)
+		return (-1);
+	if (WIFEXITED(status))
+		exit_status = WEXITSTATUS(status);
+	else if (WIFSIGNALED(status))
+	{
+		exit_status = 128 + WTERMSIG(status);
+		if (WTERMSIG(status) == SIGINT)
+			*flag = 1;
+		else if (WTERMSIG(status) == SIGQUIT)
+			*flag = 2;
+	}
+	return (exit_status);
+}
+
+void	print_wait_error(int flag)
+{
+	if (flag == 1)
+		ft_putstr_fd("\n", STDERR_FILENO);
+	else if (flag == 2)
+		ft_putstr_fd("Quit (core dumped)\n", STDERR_FILENO);
 }

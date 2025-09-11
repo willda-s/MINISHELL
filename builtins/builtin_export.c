@@ -6,11 +6,12 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/10 17:09:16 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/11 19:01:14 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
+#include "libft.h"
 
 static int	parsing_export(t_exec *exec)
 {

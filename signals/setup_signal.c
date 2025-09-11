@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_utils.c                                     :+:      :+:    :+:   */
+/*   setup_signal.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 13:54:29 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/06 16:39:50 by akarapkh         ###   ########.fr       */
+/*   Created: 2025/09/06 18:58:53 by akarapkh          #+#    #+#             */
+/*   Updated: 2025/09/07 23:27:50 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
 #include "libft.h"
+#include "signals.h"
+#include <readline/readline.h>
+#include <signal.h>
 
-char	*get_env_value(t_env *envd, char *key)
+void	setup_signal(int sig, void (*handler)(int))
 {
-	while (envd)
-	{
-		if (ft_strncmp(envd->key, key, ft_strlen(envd->key)) == 0)
-		{
-			return (envd->value);
-		}
-		envd = envd->next;
-	}
-	return ("");
-}
+	struct sigaction	sa;
 
-int	is_var_char(char c)
-{
-	return (ft_isalnum(c) || c == '_');
+	sigemptyset(&sa.sa_mask);
+	sa.sa_handler = handler;
+	if (handler == SIG_DFL || handler == SIG_IGN)
+		sa.sa_flags = SA_RESTART;
+	else
+		sa.sa_flags = 0;
+	if (sigaction(sig, &sa, NULL) != 0)
+		ft_putstr_fd("minishell: signal setup failed\n", 2);
 }

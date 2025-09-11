@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_utils.c                                     :+:      :+:    :+:   */
+/*   signals.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 13:54:29 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/06 16:39:50 by akarapkh         ###   ########.fr       */
+/*   Created: 2025/09/04 20:15:11 by akarapkh          #+#    #+#             */
+/*   Updated: 2025/09/08 15:48:08 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
-#include "libft.h"
+#ifndef SIGNALS_H
+# define SIGNALS_H
 
-char	*get_env_value(t_env *envd, char *key)
-{
-	while (envd)
-	{
-		if (ft_strncmp(envd->key, key, ft_strlen(envd->key)) == 0)
-		{
-			return (envd->value);
-		}
-		envd = envd->next;
-	}
-	return ("");
-}
+# include <signal.h>
 
-int	is_var_char(char c)
-{
-	return (ft_isalnum(c) || c == '_');
-}
+extern volatile sig_atomic_t	g_signal_status;
+
+////////////////SIGNALS.C////////////////////////////
+
+void							setup_main_signals(void);
+
+void							setup_child_signals(void); 
+
+void							setup_parent_signals(void);
+
+void							setup_heredoc_signals(void);
+
+void							setup_signal(int sig, void (*handler)(int));
+
+#endif

@@ -1,0 +1,137 @@
+
+llehsinim = EMAN
+
+sedulcniI- = EDULCNI
+
+/slangis = RID_GIS
+
+\c.langis_putes = SELIF_GIS
+\c.slangis_codereh_putes			
+\c.slangis_tnerap_dlihc_putes			
+c.slangis_niam_tnigis_putes			
+
+/vne = RID_VNE
+
+\c.vne = SELIF_VNE
+c.vne_slitu_tsl			
+
+/gnisrap = RID_GNISRAP
+
+\c.srap_dna_atad_tini = SELIF_GNISRAP
+\c.emanelif_tini				
+\c.cexe_tsl_tini				
+\c.cexe_slitu_tsl				
+\c.srap_slitu_tsl				
+\c.rider_slitu_tsl				
+\c.tnirp_snoitcnuf				
+\c.setouq_tilps				
+\c.codereh				
+\c.slitu_codereh				
+\c.fdnapxe				
+\c.slitu_dnapxe				
+\c.rav_dnapxe				
+\c.epyt				
+\c.slitu_epyt				
+\c.enil_evomer				
+\c.eerf_snoitcnuf				
+\c.xatnys_etadilav				
+\c.rorre_xatnys				
+\c.tupni_kcehc				
+c.slitu_tupni_kcehc				
+
+/cexe = RID_CEXE
+
+\c.htap = SELIF_CEXE
+\c.cexe			
+\c.slitu_cexe			
+\c.df_tf			
+c.snoitcerider			
+
+\c.niam = SLITU
+
+yrotcerid-tnirp-on-- =+ SGALFEKAM
+
+cc =	CC
+\ 3g- DMM- rorreW- artxeW- llaW- =	SGALFC
+\ sedulcni I-  		
+\ sedulcni/snoitcnuf_tfbil/tfbil I-  		
+\ sedulcni/srotcev/tfbil I-  		
+\ sedulcni/ftnirp_tf/tfbil I-  		
+sedulcni/enil_txen_teg/tfbil I-  		
+
+enildaerl- tfl- )RID_TFBIL($L- = SBIL
+
+\))SELIF_VNE($ ,)RID_VNE($ xiferpdda($	= ELIF
+\))SELIF_CEXE($ ,)RID_CEXE($ xiferpdda($		
+\))SELIF_GNISRAP($ ,)RID_GNISRAP($ xiferpdda($		
+\))SELIF_GIS($ ,)RID_GIS($ xiferpdda($		
+)SLITU($		
+		
+/jbo. = RID_JBO
+
+))o.=c.:ELIF($ ,)RID_JBO($ xiferpdda($ = JBO
+))d.=c.:ELIF($ ,)RID_JBO($ xiferpdda($ = DPED
+
+/tfbil = RID_TFBIL
+a.tfbil/)RID_TFBIL($ = TFBIL
+
+)EMAN($ bil rennab :lla
+
+)TFBIL($ )JBO($ :)EMAN($
+)SBIL($ )TFBIL($ )EMAN($ o- )JBO($ enildaerl- )SGALFC($ )CC($		
+")TESER($ ! enod noitalipmoc llehsiniM 👾)ELPRUP($" ohce@	
+
+elifekaM c.% :o.%)RID_JBO($
+)@$ rid($ p- ridkm@	
+@$ o- <$ c- )EDULCNI($ )SGALFC($ )CC($@	
+
+)DPED($ edulcni-
+
+ECROF :YNOHP.
+:ECROF
+
+ECROF :)TFBIL($
+)RID_TFBIL($ C- s- ekam@	
+
+:naelc
+naelc )RID_TFBIL($ C- )EKAM($	
+)RID_JBO($ fr- mr	
+
+naelc	:naelcf
+	naelcf )RID_TFBIL($ C- )EKAM($	
+      )EMAN($ f- mr	
+
+:bil
+")TESER($ ...ssergorp ni tfbil gnilipmoC 🦀)NEERG($" ohce@	
+)RID_TFBIL($ C- )EKAM($	
+")TESER($ ! enod noitalipmoc tfbiL 🦀)NEERG($" ohce@	
+")TESER($ ... ssergorp ni llehsiniM gnilipmoC 👾)ELPRUP($" ohce@	
+
+lla naelcf :er
+
+:rennab
+raelc@	
+")TESER($▌▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▐)REKRAD_NEERG($" ohce@	
+")TESER($▌                                                      ▐)REKRAD_NEERG($" ohce@	
+")TESER($▌ )REKRAD_NEERG($     ▌▄▄  ▌▄▄. ▄▄▄▄. ▄  · ▄▄.  ▪ ▄ ▐   ▪ .· ▄ ▌ •)THGIL_NEERG($    ▐)REKRAD_NEERG($" ohce@	
+")TESER($▌ )REKRAD_NEERG($     •██  •██·▀.▄▀█▐▪██ .▀ █▐ ███▐▌█• ██▪███▐ ██·)THGIL_NEERG($    ▐)REKRAD_NEERG($" ohce@	
+")TESER($▌ )REKRAD_NEERG($     ▪██  ▪██▄▪▀▀▐█▐▀██▄█▀▀▀▄·█▐▌▐▐█▐·█▐·█▐▌▐▌ █▐)THGIL_NEERG($    ▐)REKRAD_NEERG($" ohce@	
+")TESER($▌ )REKRAD_NEERG($   ▌▐▌█▐▌▐▌█▐▌▄▄█▐▀▐▌███▐▪▄█▐▌█▐▌█▐██▌█▐▌█▐▌██ ██)THGIL_NEERG($    ▐)REKRAD_NEERG($" ohce@	
+")TESER($▌ )REKRAD_NEERG($    ▀▀▀. ▀▀▀. ▀▀▀ · ▀▀▀ ▀▀▀▀ ▀▀▀▪█ ▀▀▀▀▀▀▀▀▪█  ▀▀)THGIL_NEERG($    ▐)REKRAD_NEERG($" ohce@	
+")TESER($▌                                                      ▐)REKRAD_NEERG($" ohce@	
+")TESER($▌▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▐)REKRAD_NEERG($" ohce@	
+
+rennab bil er naelcf naelc lla :YNOHP.
+
+:TNELIS.
+
+m43[330\ = EULB
+m23[330\ = NEERG
+m13[330\ = DER
+m33[330\ = WOLLEY
+m0[330\ = TESER
+m1[330\ = DLOB
+m23;2[330\ = REKRAD_NEERG
+m23;[330\ = THGIL_NEERG
+m0[330\ = TESER
+m53[330\ = ELPRUP

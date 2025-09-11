@@ -6,12 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:00:48 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/02 17:36:02 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:15:25 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
 #include "libft.h"
+#include "parsing.h"
 
 void	is_builtins(t_pars **tmp)
 {
@@ -41,4 +41,17 @@ bool	is_redirection(t_pars **tmp)
 		return (true);
 	else
 		return (false);
+}
+
+void	init_token_backslash(t_pars **pars)
+{
+	t_pars	*tmp;
+
+	tmp = *pars;
+	while (tmp)
+	{
+		if (ft_strncmp(tmp->word, "\\", 1) == 0)
+			tmp->type = BACK_SLASH;
+		tmp = tmp->next;
+	}
 }

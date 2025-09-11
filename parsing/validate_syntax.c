@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:26:59 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/01 19:16:13 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/06 17:43:40 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,15 @@ int	validate_syntax(t_pars *pars)
 {
 	if (!pars)
 		return (0);
+	if (!pars->next && pars->type == PIPE)
+		return (syntax_error(PIPE));
 	if (pars->type == PIPE)
 		return (syntax_error(PIPE));
+	if (pars->next && pars->next->type == pars->type)
+		return (syntax_error(DOUBLE_PIPE));
 	if (pars->type == OPEN_BRACE || pars->type == CLOSED_BRACE)
+		return (syntax_error(pars->type));
+	if (pars->type == BACK_SLASH)
 		return (syntax_error(pars->type));
 	return (check_syntax(pars));
 }
@@ -47,14 +53,18 @@ static int	check_syntax(t_pars *pars)
 static int	check_curr_and_next_token(t_pars *curr, t_pars *next)
 {
 	if (contains_double_pipe(curr->word))
-		return (syntax_error(PIPE));
+		return (syntax_error(DOUBLE_PIPE));
 	if (curr->type == OPEN_BRACE || curr->type == CLOSED_BRACE)
+		return (syntax_error(curr->type));
+	if (curr->type == BACK_SLASH)
 		return (syntax_error(curr->type));
 	if (next)
 	{
 		if (contains_double_pipe(next->word))
-			return (syntax_error(PIPE));
+			return (syntax_error(DOUBLE_PIPE));
 		if (next->type == OPEN_BRACE || next->type == CLOSED_BRACE)
+			return (syntax_error(next->type));
+		if (next->type == BACK_SLASH)
 			return (syntax_error(next->type));
 		if (is_syntax_error(curr, next))
 			return (syntax_error(next->type));
