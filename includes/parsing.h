@@ -6,13 +6,14 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 21:14:56 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/12 15:48:45 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
+# include <stddef.h>
 # define SYNTAX_ERR "minishell: syntax error near unexpected token `%s'\n"
 
 # include "env.h"
@@ -82,6 +83,15 @@ typedef struct s_data
 	int				errcode;
 	int				i;
 }					t_data;
+
+typedef struct s_process_input
+{
+	char			*input;
+	char			*new_input;
+	size_t			*i;
+	size_t			*j;
+	int				quote_state;
+}					t_process_input;
 
 /////////////SPLIT_QUOTES.C/////////////////////
 

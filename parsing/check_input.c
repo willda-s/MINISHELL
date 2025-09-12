@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 18:18:26 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/10 20:22:26 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/12 15:45:46 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,7 @@ static char	*add_space(char *input)
 	j = 0;
 	quote_state = 0;
 	while (input[i])
-	{
 		process_character(input, new_input, &i, &j, &quote_state);
-	}
 	new_input[j] = '\0';
 	return (new_input);
 }

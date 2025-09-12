@@ -6,13 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 20:23:48 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/12 15:16:12 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "signals.h"
-#include "parsing.h"
 #include "ft_dprintf.h"
+#include "parsing.h"
+#include "signals.h"
 #include <errno.h>
 #include <stdlib.h>
 
@@ -55,7 +55,7 @@ static void	exec_cmd(t_exec *node, t_data *data)
 				node->path = find_path(node, data);
 			if (node->path != NULL)
 				execve(node->path, node->cmd, data->envp);
-			ft_dprintf(2, "%s: command not found\n", node->cmd[0]);	
+			ft_dprintf(2, "%s: command not found\n", node->cmd[0]);
 		}
 	}
 	close_allfd_struct(data);
@@ -116,5 +116,5 @@ void	execc(t_data *data)
 	data->errcode = g_signal_status;
 }
 
-//le cas du : cat | ls
+// le cas du : cat | ls
 // je ferme l'ecriture du cat quand ls s'execute simultanement
