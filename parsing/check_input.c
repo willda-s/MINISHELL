@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 18:18:26 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/12 15:45:46 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/12 17:27:14 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 #include <stdlib.h>
 
 static char	*add_space(char *input);
-static void	process_character(char *input, char *new_input, size_t *i,
-				size_t *j, int *quote_state);
+static void	process_character(t_process_data *data, size_t *i, size_t *j);
 static void	add_space_to_cmd(char *input, char *new_input, size_t *i,
 				size_t *j);
 static void	add_space_to_redir(char *input, char *new_input, size_t *i,
@@ -35,39 +34,38 @@ char	*check_input(char *input)
 
 static char	*add_space(char *input)
 {
-	size_t	i;
-	size_t	j;
-	size_t	new_len;
-	char	*new_input;
-	int		quote_state;
+	size_t			i;
+	size_t			j;
+	t_process_data	data;
 
-	new_input = allocate_and_initialize(input, &new_len);
-	if (!new_input)
+	data.input = input;
+	data.new_input = allocate_and_initialize(data.input, &data.new_len);
+	if (!data.new_input)
 		return (NULL);
 	i = 0;
 	j = 0;
-	quote_state = 0;
-	while (input[i])
-		process_character(input, new_input, &i, &j, &quote_state);
-	new_input[j] = '\0';
-	return (new_input);
+	data.quote_state = 0;
+	while (data.input[i])
+		process_character(&data, &i, &j);
+	data.new_input[j] = '\0';
+	return (data.new_input);
 }
 
-static void	process_character(char *input, char *new_input, size_t *i,
-		size_t *j, int *quote_state)
+static void	process_character(t_process_data *data, size_t *i, size_t *j)
 {
-	*quote_state = update_quote_state(input[*i], *quote_state);
-	if (*quote_state == 0)
+	data->quote_state = update_quote_state(data->input[*i], data->quote_state);
+	if (data->quote_state == 0)
 	{
-		if (is_command(input[*i]) == 1)
-			add_space_to_cmd(input, new_input, i, j);
-		else if (is_command(input[*i]) == 2 || is_command(input[*i]) == 3)
-			add_space_to_redir(input, new_input, i, j);
+		if (is_command(data->input[*i]) == 1)
+			add_space_to_cmd(data->input, data->new_input, i, j);
+		else if (is_command(data->input[*i]) == 2
+			|| is_command(data->input[*i]) == 3)
+			add_space_to_redir(data->input, data->new_input, i, j);
 		else
-			new_input[(*j)++] = input[(*i)++];
+			data->new_input[(*j)++] = data->input[(*i)++];
 	}
 	else
-		new_input[(*j)++] = input[(*i)++];
+		data->new_input[(*j)++] = data->input[(*i)++];
 }
 
 static void	add_space_to_cmd(char *input, char *new_input, size_t *i, size_t *j)
