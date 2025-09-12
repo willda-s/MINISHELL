@@ -6,17 +6,19 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:56:37 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/11 20:26:54 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/12 23:59:03 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_dprintf.h"
 #include "libft.h"
 #include "parsing.h"
 #include "signals.h"
-#include "ft_dprintf.h"
 #include <errno.h>
+#include <fcntl.h>
+#include <readline/readline.h>
 #include <stdlib.h>
-
+#include <string.h>
 
 static char	*file_create(int i);
 static void	write_in_heredoc(int *fd, t_redir *redir);

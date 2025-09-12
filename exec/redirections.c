@@ -6,12 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 19:04:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 20:23:48 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/12 23:54:37 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
 #include "ft_dprintf.h"
+#include "parsing.h"
+#include <fcntl.h>
 
 static void	open_redir_trunc(t_exec *node, t_data *data, t_redir *tmp)
 {
@@ -62,7 +63,7 @@ static void	open_heredoc_in(t_exec *node, t_data *data, t_redir *tmp)
 	{
 		close_allfd_struct(data);
 		ft_dprintf(STDERR_FILENO, "%s: No such file or directory\n",
-			tmp->filename); // No SUCH FILE ... ?
+					tmp->filename); // No SUCH FILE ... ?
 		free_all(data, 1);
 	}
 	unlink(tmp->filename);

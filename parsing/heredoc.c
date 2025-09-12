@@ -6,11 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 22:57:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 20:27:09 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/12 23:58:34 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include <stdlib.h>
 
 void	handle_heredoc(t_data *data)
 {

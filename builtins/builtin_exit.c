@@ -6,12 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:02 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/11 20:40:06 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/12 23:53:56 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "builtins.h"
+#include <stdlib.h>
 #include <unistd.h>
 
 static int	is_number(char *s)

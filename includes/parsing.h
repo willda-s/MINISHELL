@@ -6,23 +6,16 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/12 19:16:06 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/13 00:01:22 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
-# include <stddef.h>
 # define SYNTAX_ERR "minishell: syntax error near unexpected token `%s'\n"
 
 # include "env.h"
-# include <fcntl.h>
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdbool.h>
-# include <stdlib.h>
-# include <sys/types.h>
 # include <sys/wait.h>
 
 typedef enum s_type

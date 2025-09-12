@@ -6,12 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:50:00 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/11 20:36:49 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/13 00:00:20 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "libft.h"
+#include <stdio.h>
 
 // static char	*get_env_value(t_env *env, char *key)
 // {

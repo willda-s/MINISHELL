@@ -6,12 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:12 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/11 20:41:27 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/12 23:59:36 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "builtins.h"
+#include <stdio.h>
 #include <unistd.h>
 
 int	builtin_pwd(void)
