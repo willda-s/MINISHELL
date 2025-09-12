@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:41 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 21:14:51 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/12 19:33:53 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ int	free_all_msg(t_data *data, int errcode, char *str)
 int	free_all(t_data *data, int errcode)
 {
 	if (data->input)
+	{
 		free(data->input);
+		data->input = NULL;
+	}
 	if (data->env)
 	{
 		free_lst_env(&data->env, false, 0);

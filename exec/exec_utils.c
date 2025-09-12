@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 22:47:42 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/12 17:11:02 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/12 19:32:55 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ bool	exec_builtins(t_exec *node, t_data *data)
 	int	val;
 
 	val = 1;
+	if (!node->cmd || !(*node->cmd))
+		return (-1);
 	if (node->cmd && ft_strcmp(node->cmd[0], "echo") == 0)
 		val = builtin_echo(node);
 	else if (node->cmd && ft_strcmp(node->cmd[0], "exit") == 0)

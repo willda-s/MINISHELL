@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/12 17:00:51 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/12 19:35:37 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 
 static int	ft_handle_squotes(char *res, int j, char *word, t_data *data)
 {
+	size_t	word_len;
+
+	word_len = ft_strlen(word);
 	data->i++;
 	while (word[data->i] && word[data->i] != '\'')
 		res[j++] = word[data->i++];
-	if (word[data->i] == '\'')
+	if (word[data->i] == '\'' && data->i < word_len)
 		data->i++;
 	else
 	{
@@ -30,6 +33,9 @@ static int	ft_handle_squotes(char *res, int j, char *word, t_data *data)
 
 static int	ft_handle_dquotes(char *res, int j, char *word, t_data *data)
 {
+	size_t	word_len;
+
+	word_len = ft_strlen(word);
 	data->i++;
 	while (word[data->i] && word[data->i] != '"')
 	{
@@ -38,7 +44,7 @@ static int	ft_handle_dquotes(char *res, int j, char *word, t_data *data)
 		else
 			res[j++] = word[data->i++];
 	}
-	if (word[data->i] == '"')
+	if (word[data->i] == '"' && data->i < word_len)
 	{
 		if (j == 0 && ft_strlen(word) == 3)
 			res[j++] = '$';
