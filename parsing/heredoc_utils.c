@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:56:37 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/11 20:26:54 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/12 17:03:51 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "ft_dprintf.h"
 #include <errno.h>
 #include <stdlib.h>
-
 
 static char	*file_create(int i);
 static void	write_in_heredoc(int *fd, t_redir *redir);

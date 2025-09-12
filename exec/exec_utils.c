@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 22:47:42 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 20:08:48 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/12 17:11:02 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "libft.h"
+#include "signals.h"
 #include <stdbool.h>
+#include <errno.h>
 
 bool	exec_builtins(t_exec *node, t_data *data)
 {
@@ -37,6 +39,33 @@ bool	exec_builtins(t_exec *node, t_data *data)
 	else if (node->cmd && ft_strcmp(node->cmd[0], "unset") == 0)
 		val = builtin_unset(node->cmd[1], data->env);
 	return (val);
+}
+
+int	wait_process(int nb_proc)
+{
+	int	err;
+	int	count;
+	int	n;
+	int	ret;
+
+	err = 0;
+	count = 0;
+	n = 0;
+	setup_parent_signals();
+	while (count < nb_proc)
+	{
+		ret = wait_one_process(&n);
+		if (ret == -1)
+		{
+			setup_main_signals();
+			exit(errno);
+		}
+		err = ret;
+		count++;
+	}
+	print_wait_error(n);
+	setup_main_signals();
+	return (err);
 }
 
 int	wait_one_process(int *flag)

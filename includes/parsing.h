@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/12 15:48:45 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/12 17:13:12 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,8 @@ int					update_quote_state(char c, int current_state);
 void				execc(t_data *data);
 
 bool				exec_builtins(t_exec *node, t_data *data);
+
+int					wait_process(int nb_proc);
 
 int					wait_one_process(int *n);
 
