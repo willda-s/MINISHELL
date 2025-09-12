@@ -6,7 +6,7 @@
 /*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/12 16:55:44 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/12 17:01:49 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void	init_pipe(t_exec *node)
 	next->fd_in = fd[0];
 }
 
-static void	handle_fork(t_exec *tmp, t_data *data, t_exec *prev, int *i)
+static void	handle_fork(t_exec *tmp, t_data *data, int *i)
 {
 	pid_t	pid;
 
@@ -104,7 +104,7 @@ static void	exec_loop(int *i, t_data *data, t_exec *prev)
 			init_pipe(tmp);
 		else if (!prev && !exec_builtins(tmp, data))
 			return ;
-		handle_fork(tmp, data, prev, i);
+		handle_fork(tmp, data, i);
 		prev = tmp;
 		tmp = tmp->next;
 	}

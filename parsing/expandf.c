@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expandf.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 20:17:48 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/12 17:00:51 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ int	expand_exec_list(t_data *data)
 	exec = data->exec;
 	while (exec)
 	{
-		i = 0;
-		while (exec->cmd && exec->cmd[i])
+		i = -1;
+		while (exec->cmd && exec->cmd[++i])
 		{
 			new_word = ft_expand_word(data, exec->cmd[i]);
 			if (new_word)
@@ -100,7 +100,6 @@ int	expand_exec_list(t_data *data)
 				free_tmpall(data);
 				return (2);
 			}
-			i++;
 		}
 		exec = exec->next;
 	}
