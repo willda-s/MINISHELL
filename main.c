@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 19:55:40 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/12 17:29:48 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/12 17:56:03 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,23 +56,23 @@ int	main(int ac, char **av, char **env)
 			}
 			init_data(&data, &envd, dst);
 			token_main(&data);
-			// if (data.pars && validate_syntax(data.pars))
-			// {
-			// 	g_signal_status = 2;
-			// 	free_tmpall(&data);
-			// 	continue ;
-			// }
+			if (data.pars && validate_syntax(data.pars))
+			{
+				g_signal_status = 2;
+				free_tmpall(&data);
+				continue ;
+			}
 			init_lst_exec(&data);
 			if (expand_exec_list(&data) != 0)
 				continue ;
 			init_envp(&data);
 			remove_empty_line(&data);
-			print_lst_exec(data.exec);
-			print_lst_pars(data.pars);
-			// handle_heredoc(&data);
+			// print_lst_exec(data.exec);
+			// print_lst_pars(data.pars);
+			handle_heredoc(&data);
 			if (g_signal_status == 130)
 				g_signal_status = 0;
-			// execc(&data);
+			execc(&data);
 			free_tmpall(&data);
 		}
 	}
