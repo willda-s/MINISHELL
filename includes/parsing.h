@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/12 17:22:29 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/12 19:16:06 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct s_data
 	t_exec			*exec;
 	char			**envp;
 	int				errcode;
-	int				i;
+	size_t			i;
 }					t_data;
 
 typedef struct s_process_data

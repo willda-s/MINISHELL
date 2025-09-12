@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 20:26:59 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/12 16:52:19 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/12 15:36:32 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int	validate_syntax(t_pars *pars)
 {
 	if (!pars)
 		return (0);
-	if (pars->next && (pars->next->type == pars->type) && (pars->type == PIPE))
-		return (syntax_error(DOUBLE_PIPE));
+	if (pars->next && (pars->next->type == pars->type)
+		&& (pars->type == PIPE))
+			return (syntax_error(DOUBLE_PIPE));
 	if (!pars->next && pars->type == PIPE)
 		return (syntax_error(PIPE));
 	if (pars->type == PIPE)

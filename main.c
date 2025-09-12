@@ -6,12 +6,14 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 19:55:40 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/12 17:56:03 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/12 18:58:36 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
 #include "ft_dprintf.h"
+#include "get_next_line_bonus.h"
+#include "libft.h"
+#include "parsing.h"
 #include "signals.h"
 #include <readline/history.h>
 #include <readline/readline.h>
@@ -23,6 +25,7 @@ int	main(int ac, char **av, char **env)
 	char	**dst;
 	t_env	*envd;
 	t_data	data;
+	// char	*line;
 
 	(void)ac;
 	(void)av;
@@ -33,6 +36,19 @@ int	main(int ac, char **av, char **env)
 		setup_main_signals();
 		while (1)
 		{
+			// if (isatty(fileno(stdin)))
+			// 	data.input = readline("minishell> ");
+			// else
+			// {
+			// 	line = get_next_line(fileno(stdin));
+			// 	if (!line)
+			// 	{
+			// 		free_lst_env(&envd, false, 0);
+			// 		return (g_signal_status);
+			// 	}
+			// 	data.input = ft_strtrim(line, "\n");
+			// 	free(line);
+			// }
 			data.input = readline("minishell> ");
 			if (!data.input)
 			{
