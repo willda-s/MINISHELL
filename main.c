@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 19:55:40 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/11 21:12:24 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/12 16:51:46 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ int	main(int ac, char **av, char **env)
 				continue ;
 			init_envp(&data);
 			remove_empty_line(&data);
-			// print_lst_exec(data.exec);
-			// print_lst_pars(data.pars);
 			handle_heredoc(&data);
 			if (g_signal_status == 130)
 				g_signal_status = 0;

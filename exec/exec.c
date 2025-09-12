@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/12 15:16:12 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/12 16:55:44 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,28 @@ static void	init_pipe(t_exec *node)
 	next->fd_in = fd[0];
 }
 
+static void	handle_fork(t_exec *tmp, t_data *data, t_exec *prev, int *i)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == 0)
+	{
+		dup_fd(tmp, data);
+		exec_cmd(tmp, data);
+	}
+	else if (pid < 0)
+	{
+		setup_main_signals();
+		free_all(data, errno);
+	}
+	close_fd(tmp);
+	(*i)++;
+}
+
 static void	exec_loop(int *i, t_data *data, t_exec *prev)
 {
 	t_exec	*tmp;
-	pid_t	pid;
 
 	tmp = data->exec;
 	while (tmp)
@@ -86,19 +104,7 @@ static void	exec_loop(int *i, t_data *data, t_exec *prev)
 			init_pipe(tmp);
 		else if (!prev && !exec_builtins(tmp, data))
 			return ;
-		pid = fork();
-		if (pid == 0)
-		{
-			dup_fd(tmp, data);
-			exec_cmd(tmp, data);
-		}
-		else if (pid < 0)
-		{
-			setup_main_signals();
-			free_all(data, errno);
-		}
-		close_fd(tmp);
-		(*i)++;
+		handle_fork(tmp, data, prev, i);
 		prev = tmp;
 		tmp = tmp->next;
 	}
