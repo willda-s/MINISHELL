@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/12 15:16:12 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/13 03:54:48 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ static void	exec_cmd(t_exec *node, t_data *data)
 				node->path = find_path(node, data);
 			if (node->path != NULL)
 				execve(node->path, node->cmd, data->envp);
-			ft_dprintf(2, "%s: command not found\n", node->cmd[0]);
+			if (node->cmd[0] && node->cmd[0][0] != '\0')
+				ft_dprintf(2, "minishell: %s: command not found\n", node->cmd[0]);
+			else
+				ft_dprintf(2, "minishell: : command not found\n");
 		}
 	}
 	close_allfd_struct(data);
@@ -89,6 +92,7 @@ static void	exec_loop(int *i, t_data *data, t_exec *prev)
 		pid = fork();
 		if (pid == 0)
 		{
+			close_fd(tmp->next);
 			dup_fd(tmp, data);
 			exec_cmd(tmp, data);
 		}
@@ -115,6 +119,3 @@ void	execc(t_data *data)
 	g_signal_status = wait_process(i);
 	data->errcode = g_signal_status;
 }
-
-// le cas du : cat | ls
-// je ferme l'ecriture du cat quand ls s'execute simultanement

@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:29 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 20:16:59 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/13 05:26:53 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ char	*get_env_value(t_env *envd, char *key)
 	while (envd)
 	{
 		if (ft_strncmp(envd->key, key, ft_strlen(envd->key)) == 0)
-		{
 			return (envd->value);
-		}
 		envd = envd->next;
 	}
 	return ("");

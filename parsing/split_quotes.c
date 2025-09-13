@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:55:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 20:31:29 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/13 04:48:20 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static char	update_quote(char currentc, char quote)
 {
-	if (currentc == '\'' || currentc == '"')
+	if (currentc == '\'' || currentc == '\"')
 	{
 		if (quote == '\0')
 			quote = currentc;
@@ -72,7 +72,7 @@ static int	ft_strlenword_with_quotes(const char *str, char c)
 	quote = '\0';
 	while (str[i])
 	{
-		if ((str[i] == '\'' || str[i] == '"') && (quote == '\0'
+		if ((str[i] == '\'' || str[i] == '\"') && (quote == '\0'
 				|| quote == str[i]))
 		{
 			if (quote == '\0')

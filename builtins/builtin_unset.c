@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:16 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/11 20:42:11 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/13 00:55:38 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	builtin_unset(char *var, t_env *env)
 
 	current = env;
 	prev = NULL;
+	if (!var)
+		return (0);
 	if (current != NULL && ft_strcmp(current->key, var) == 0)
 	{
 		env = current->next;

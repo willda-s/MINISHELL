@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 22:47:42 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 20:08:48 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/13 00:09:06 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ bool	exec_builtins(t_exec *node, t_data *data)
 {
 	int	val;
 
+	if (!node->cmd || !(*node->cmd))
+		return (-1);
 	val = 1;
 	if (node->cmd && ft_strcmp(node->cmd[0], "echo") == 0)
 		val = builtin_echo(node);

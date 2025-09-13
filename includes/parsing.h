@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/13 00:01:22 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/13 05:36:24 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,8 @@ int					is_var_char(char c);
 int					ft_expand_var(char *res, int j, char *word, t_data *data);
 
 int					expand_exec_list(t_data *data);
+
+char				*ft_expand_word(t_data *data, char *word);
 
 ////////////////INIT_FILENAME.C//////////////////////////
 
