@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 19:55:40 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/13 04:00:02 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/13 05:57:09 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,7 @@ int	main(int ac, char **av, char **env)
 			- remove_empty_line.c
 
 			REGLER INPUT_CHECK LORSQUE ECHO QVEC " "
+
+			!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  ECHO ET TOUS LES AUTRES BUILTINS DANS REDIRECTION AVOIR UN FD TOUJOURS SUR 1 A PART SI REDIR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 */
