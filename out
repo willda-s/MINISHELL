@@ -1,0 +1,12 @@
+builtins
+env
+exec
+includes
+leak.supp
+libft
+main.c
+Makefile
+minishell
+out
+parsing
+signals

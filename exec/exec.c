@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/15 14:37:06 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/15 14:46:00 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void	exec_loop(int *i, t_data *data, t_exec *prev)
 		{
 			dup_fd(tmp, data);
 			exec_builtins(tmp, data);
-			close_allfd_struct(data);
+			close_fd(tmp);
 			data->errcode = g_signal_status;
 			return ;
 		}
