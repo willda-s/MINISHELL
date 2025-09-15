@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 19:04:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/15 14:29:58 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/15 18:57:03 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	open_redir_trunc(t_exec *node, t_data *data, char *filename)
 	{
 		close_allfd_struct(data);
 		ft_dprintf(STDERR_FILENO, "%s: Permission denied\n", filename);
+		free(filename);
 		free_all(data, 1);
 	}
 }
@@ -36,6 +37,7 @@ static void	open_redir_append(t_exec *node, t_data *data, char *filename)
 	{
 		close_allfd_struct(data);
 		ft_dprintf(STDERR_FILENO, "%s: Permission denied\n", filename);
+		free(filename);
 		free_all(data, 1);
 	}
 }
@@ -50,6 +52,7 @@ static void	open_redir_in(t_exec *node, t_data *data, char *filename)
 		close_allfd_struct(data);
 		ft_dprintf(STDERR_FILENO, "%s: No such file or directory\n",
 			filename);
+		free(filename);
 		free_all(data, 1);
 	}
 }
@@ -63,7 +66,8 @@ static void	open_heredoc_in(t_exec *node, t_data *data, char *filename)
 	{
 		close_allfd_struct(data);
 		ft_dprintf(STDERR_FILENO, "%s: No such file or directory\n",
-					filename); // No SUCH FILE ... ?
+					filename);
+		free(filename);
 		free_all(data, 1);
 	}
 	unlink(filename);

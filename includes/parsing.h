@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/15 14:26:03 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/15 18:39:05 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,7 +219,9 @@ void				close_allfd_struct(t_data *data);
 
 void				open_all_file(t_exec *node, t_data *data);
 
-bool is_builtins_exec(t_exec *node);
+bool 				is_builtins_exec(t_exec *node);
+
+void 				handle_builtins_in_parent(t_exec *node, t_data *data);
 
 ////////////////heredoc.c////////////////////////////
 

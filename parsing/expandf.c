@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expandf.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/13 05:43:05 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/15 18:51:51 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ char	*ft_expand_word(t_data *data, char *word)
 			j = ft_expand_var(res, j, word, data);
 		if (j == -1)
 			return (NULL);
+		if (!word[data->i])
+			break;
 		if (word[data->i] != '\'' && word[data->i] != '"'
 			&& word[data->i] != '$')
 			res[j++] = word[data->i++];

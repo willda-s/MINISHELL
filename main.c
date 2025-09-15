@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 19:55:40 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/15 15:40:29 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/15 18:59:16 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ int	main(int ac, char **av, char **env)
 				continue ;
 			init_envp(&data);
 			remove_empty_line(&data);
-			// print_lst_exec(data.exec);
-			// print_lst_pars(data.pars);
+			print_lst_exec(data.exec);
+			print_lst_pars(data.pars);
 			handle_heredoc(&data);
 			if (g_signal_status == 130)
 				g_signal_status = 0;
