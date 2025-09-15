@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 22:47:42 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/15 14:26:15 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/15 20:02:03 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,15 @@ void	print_wait_error(int flag)
 
 bool is_builtins_exec(t_exec *node)
 {
-		if (ft_strncmp(node->cmd[0], "cd", ft_strlen(node->cmd[0])) == 0
-		|| ft_strncmp(node->cmd[0], "echo", ft_strlen(node->cmd[0])) == 0
-		|| ft_strncmp(node->cmd[0], "pwd", ft_strlen(node->cmd[0])) == 0
-		|| ft_strncmp(node->cmd[0], "export", ft_strlen(node->cmd[0])) == 0
-		|| ft_strncmp(node->cmd[0], "unset", ft_strlen(node->cmd[0])) == 0
-		|| ft_strncmp(node->cmd[0], "env", ft_strlen(node->cmd[0])) == 0
-		|| ft_strncmp(node->cmd[0], "exit", ft_strlen(node->cmd[0])) == 0)
+	if (!node->cmd || !(*node->cmd))
+		return (false);
+	if (ft_strncmp(node->cmd[0], "cd", ft_strlen(node->cmd[0])) == 0
+	|| ft_strncmp(node->cmd[0], "echo", ft_strlen(node->cmd[0])) == 0
+	|| ft_strncmp(node->cmd[0], "pwd", ft_strlen(node->cmd[0])) == 0
+	|| ft_strncmp(node->cmd[0], "export", ft_strlen(node->cmd[0])) == 0
+	|| ft_strncmp(node->cmd[0], "unset", ft_strlen(node->cmd[0])) == 0
+	|| ft_strncmp(node->cmd[0], "env", ft_strlen(node->cmd[0])) == 0
+	|| ft_strncmp(node->cmd[0], "exit", ft_strlen(node->cmd[0])) == 0)
 			return (true);
 		return (false);
 }

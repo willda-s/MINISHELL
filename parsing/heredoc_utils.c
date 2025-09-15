@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:56:37 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/12 23:59:03 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/15 19:59:15 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 
 static char	*file_create(int i);
 static void	write_in_heredoc(int *fd, t_redir *redir);
-static void	heredoc_child_loop(int *fd, t_redir *redir);
 
 int	handle_errcode(char *res, int j)
 {
@@ -74,41 +73,17 @@ static char	*file_create(int i)
 
 static void	write_in_heredoc(int *fd, t_redir *redir)
 {
-	pid_t	pid;
-	int		status;
-
-	pid = fork();
-	if (pid == 0)
-		heredoc_child_loop(fd, redir);
-	else
-	{
-		setup_parent_signals();
-		waitpid(pid, &status, 0);
-		if (WIFEXITED(status))
-			g_signal_status = WEXITSTATUS(status);
-		else if (WIFSIGNALED(status))
-			g_signal_status = 128 + WTERMSIG(status);
-		setup_main_signals();
-	}
-}
-
-static void	heredoc_child_loop(int *fd, t_redir *redir)
-{
 	char	*line;
 
-	setup_heredoc_signals();
 	while (1)
 	{
 		line = readline("Heredoc> ");
 		if (!line)
-		{
-			g_signal_status = 130;
-			exit(130);
-		}
+			break ;
 		if (line && ft_strcmp(line, redir->delimiter) == 0)
 		{
 			free(line);
-			exit(0);
+			break ;
 		}
 		ft_dprintf(fd[1], "%s\n", line);
 		free(line);
