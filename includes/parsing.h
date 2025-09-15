@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/13 05:36:24 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/15 14:26:03 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,8 @@ char				*find_path(t_exec *node, t_data *data);
 void				close_allfd_struct(t_data *data);
 
 void				open_all_file(t_exec *node, t_data *data);
+
+bool is_builtins_exec(t_exec *node);
 
 ////////////////heredoc.c////////////////////////////
 

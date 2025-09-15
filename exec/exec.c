@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/13 03:54:48 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/15 14:37:06 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,14 @@ static void	exec_loop(int *i, t_data *data, t_exec *prev)
 	{
 		if (tmp->next)
 			init_pipe(tmp);
-		else if (!prev && !exec_builtins(tmp, data))
+		else if (!prev && is_builtins_exec(tmp))
+		{
+			dup_fd(tmp, data);
+			exec_builtins(tmp, data);
+			close_allfd_struct(data);
+			data->errcode = g_signal_status;
 			return ;
+		}
 		pid = fork();
 		if (pid == 0)
 		{

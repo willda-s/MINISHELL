@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 22:47:42 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/13 00:09:06 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/15 14:26:15 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,17 @@ void	print_wait_error(int flag)
 		ft_putstr_fd("\n", STDERR_FILENO);
 	else if (flag == 2)
 		ft_putstr_fd("Quit (core dumped)\n", STDERR_FILENO);
+}
+
+bool is_builtins_exec(t_exec *node)
+{
+		if (ft_strncmp(node->cmd[0], "cd", ft_strlen(node->cmd[0])) == 0
+		|| ft_strncmp(node->cmd[0], "echo", ft_strlen(node->cmd[0])) == 0
+		|| ft_strncmp(node->cmd[0], "pwd", ft_strlen(node->cmd[0])) == 0
+		|| ft_strncmp(node->cmd[0], "export", ft_strlen(node->cmd[0])) == 0
+		|| ft_strncmp(node->cmd[0], "unset", ft_strlen(node->cmd[0])) == 0
+		|| ft_strncmp(node->cmd[0], "env", ft_strlen(node->cmd[0])) == 0
+		|| ft_strncmp(node->cmd[0], "exit", ft_strlen(node->cmd[0])) == 0)
+			return (true);
+		return (false);
 }
