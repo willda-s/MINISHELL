@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/15 18:39:05 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/18 23:14:58 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,7 @@ int					update_quote_state(char c, int current_state);
 
 void				execc(t_data *data);
 
-bool				exec_builtins(t_exec *node, t_data *data);
+bool				exec_builtins(t_exec *node, t_data *data, int fd_backup_in, int fd_backup_out);
 
 int					wait_one_process(int *n);
 

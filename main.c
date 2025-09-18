@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 19:55:40 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/15 20:08:03 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/18 23:07:04 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	main(int ac, char **av, char **env)
 			if (!data.input)
 			{
 				ft_dprintf(2, "exit\n");
+				rl_clear_history();
 				free_lst_env(&envd, false, 0);
 				return (g_signal_status);
 			}

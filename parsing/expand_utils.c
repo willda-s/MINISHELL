@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:29 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/13 05:26:53 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/18 22:42:46 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*get_env_value(t_env *envd, char *key)
 {
 	while (envd)
 	{
-		if (ft_strncmp(envd->key, key, ft_strlen(envd->key)) == 0)
+		if (ft_strcmp(envd->key, key) == 0)
 			return (envd->value);
 		envd = envd->next;
 	}

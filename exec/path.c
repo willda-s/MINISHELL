@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 19:44:48 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 20:15:12 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/18 23:03:16 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "libft.h"
+#include "ft_dprintf.h"
 
 static int	find_path_line(t_data *data)
 {
@@ -64,14 +65,17 @@ char	*path_in_arg(t_exec *exec)
 	return (NULL);
 }
 
-static char	**find_path_first(t_data *data)
+static char	**find_path_first(t_data *data, t_exec *node)
 {
 	char	**cmd;
 	int		j;
 
 	j = find_path_line(data);
 	if (j == -1)
-		free_all_msg(data, 0, "no path=\n");
+	{
+		ft_dprintf(2, "minishell: %s: No such file or directory\n", node->cmd[0]);
+		free_all(data, 127);
+	}
 	cmd = ft_split(data->envp[j], ':');
 	if (!cmd)
 		free_all_msg(data, 0, "split fail path last command\n");
@@ -88,7 +92,7 @@ char	*find_path(t_exec *node, t_data *data)
 	j = 0;
 	if (!node->cmd || !node->cmd[0] || ft_strcmp(node->cmd[0], "") == 0)
 		return (NULL);
-	allpath = find_path_first(data);
+	allpath = find_path_first(data, node);
 	while (allpath[++j])
 	{
 		buff = ft_strjoin(allpath[j], "/");

@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/15 18:29:07 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/18 23:16:21 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	exec_cmd(t_exec *node, t_data *data)
 	setup_child_signals();
 	if (node->cmd)
 	{
-		if (exec_builtins(node, data))
+		if (exec_builtins(node, data, -1, -1))
 		{
 			node->path = path_in_arg(node);
 			if (node->path == NULL)

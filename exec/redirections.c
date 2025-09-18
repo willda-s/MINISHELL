@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 19:04:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/15 18:57:03 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/18 22:29:15 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ static void	open_heredoc_in(t_exec *node, t_data *data, char *filename)
 		free(filename);
 		free_all(data, 1);
 	}
-	unlink(filename);
 }
 
 void	open_all_file(t_exec *node, t_data *data)

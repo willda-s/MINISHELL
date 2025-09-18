@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   functions_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:41 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/13 00:10:22 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/18 23:10:07 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_dprintf.h"
 #include "parsing.h"
 #include <stdlib.h>
+#include <readline/readline.h>
 
 void	free_tab(char **dst)
 {
@@ -35,6 +36,7 @@ int	free_all_msg(t_data *data, int errcode, char *str)
 		data->env = NULL;
 	}
 	free_tmpall(data);
+	rl_clear_history();
 	ft_dprintf(2, "%s\n", str);
 	exit(errcode);
 }
@@ -52,6 +54,7 @@ int	free_all(t_data *data, int errcode)
 		data->env = NULL;
 	}
 	free_tmpall(data);
+	rl_clear_history();
 	exit(errcode);
 }
 

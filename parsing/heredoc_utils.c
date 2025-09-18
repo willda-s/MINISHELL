@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:56:37 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/15 19:59:15 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/18 22:29:18 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ void	open_heredoc_out(t_redir *redir, t_data *data, int i)
 	if (fd[1] == -1)
 	{
 		ft_dprintf(2, "Heredoc: %s\n", strerror(errno));
+		free(file);
 		free_all(data, 1);
 	}
+	unlink(file);
 	write_in_heredoc(fd, redir);
 	redir->filename = ft_strdup(file);
 	close(fd[1]);
