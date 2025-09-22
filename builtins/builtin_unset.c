@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_unset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:16 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/13 00:55:38 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/22 21:36:50 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	builtin_unset(char *var, t_env *env)
 		return (0);
 	if (current != NULL && ft_strcmp(current->key, var) == 0)
 	{
-		env = current->next;
+		env = env->next;
 		unset_free(current);
 		return (EXIT_SUCCESS);
 	}

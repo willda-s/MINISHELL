@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:46 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/18 23:19:28 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:13:09 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	init_data(t_data *data, t_env **envd, char **dst)
 		data->input = NULL;
 	data->i = 0;
 	data->errcode = 0;
+	data->fd_backup_in = -1;
+	data->fd_backup_out = -1;
 	if (init_lst_pars(&pars, data->dst) == 1)
 	{
 		free_lst_pars(&pars);

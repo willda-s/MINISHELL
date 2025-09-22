@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:41 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/18 23:10:07 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:16:17 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ int	free_all(t_data *data, int errcode)
 		data->env = NULL;
 	}
 	free_tmpall(data);
+	if (data->fd_backup_in != -1)
+		close(data->fd_backup_in);
+	if (data->fd_backup_out != -1)
+		close(data->fd_backup_out);
 	rl_clear_history();
 	exit(errcode);
 }

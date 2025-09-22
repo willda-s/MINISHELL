@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 18:28:33 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/18 23:14:48 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:16:31 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,14 @@ static void wrapper_dup(int oldfd, int *newfd, int fd_other, t_data *data)
 
 void handle_builtins_in_parent(t_exec *node, t_data *data)
 {
-	int fd_backup_in;
-	int fd_backup_out;
-
-    fd_backup_in = -1;
-    fd_backup_out = -1;
-	wrapper_dup(STDIN_FILENO, &fd_backup_in, fd_backup_out, data);
-	wrapper_dup(STDOUT_FILENO, &fd_backup_out, fd_backup_in, data);
+	wrapper_dup(STDIN_FILENO, &data->fd_backup_in,data->fd_backup_out, data);
+	wrapper_dup(STDOUT_FILENO, &data->fd_backup_out,data->fd_backup_in, data);
 	dup_fd(node, data);
-	exec_builtins(node, data, fd_backup_in, fd_backup_out);
-    wrapper_dup2(fd_backup_in, STDIN_FILENO, data, fd_backup_out);
-    wrapper_dup2(fd_backup_out, STDOUT_FILENO, data, fd_backup_in);
-    close(fd_backup_in);
-    close(fd_backup_out);
+	exec_builtins(node, data, data->fd_backup_in, data->fd_backup_out);
+    wrapper_dup2(data->fd_backup_in, STDIN_FILENO, data, data->fd_backup_out);
+    wrapper_dup2(data->fd_backup_out, STDOUT_FILENO, data, data->fd_backup_in);
+    close(data->fd_backup_in);
+    close(data->fd_backup_out);
 	close_fd(node);
 	data->errcode = g_signal_status;
 }

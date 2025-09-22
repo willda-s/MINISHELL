@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/18 23:14:58 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:12:41 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef struct s_data
 {
 	char			**dst;
 	char			*input;
+	int 			fd_backup_in;
+	int 			fd_backup_out;
 	t_env			*env;
 	t_pars			*pars;
 	t_exec			*exec;
