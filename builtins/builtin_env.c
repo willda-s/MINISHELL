@@ -6,14 +6,13 @@
 /*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:07:51 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/24 01:19:33 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/24 01:22:28 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "libft.h"
 
-#include <stdio.h>
 int	builtin_env(t_data *data, bool export)
 {
 	t_env	*tmp;
