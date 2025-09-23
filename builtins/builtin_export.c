@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/11 20:40:22 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/23 16:13:57 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ static int	parsing_export(t_exec *exec)
 	int	i;
 
 	i = 0;
-	while (exec->cmd && exec->cmd[1][i])
+	while (exec->cmd && exec->cmd[1][i] && exec->cmd[1][i] != '=')
 	{
-		if (!ft_isalnum(exec->cmd[1][i]) && exec->cmd[1][i] != '='
-			&& exec->cmd[1][i] != '_')
+		if (!ft_isalnum(exec->cmd[1][i]) && exec->cmd[1][i] != '_')
 			return (1);
 		i++;
 	}

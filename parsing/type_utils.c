@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   type_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: charles <charles@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:00:48 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 20:32:05 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/23 15:51:24 by charles          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 void	is_builtins(t_pars **tmp)
 {
-	if (ft_strncmp((*tmp)->word, "cd", ft_strlen((*tmp)->word)) == 0
-		|| ft_strncmp((*tmp)->word, "echo", ft_strlen((*tmp)->word)) == 0
-		|| ft_strncmp((*tmp)->word, "pwd", ft_strlen((*tmp)->word)) == 0
-		|| ft_strncmp((*tmp)->word, "export", ft_strlen((*tmp)->word)) == 0
-		|| ft_strncmp((*tmp)->word, "unset", ft_strlen((*tmp)->word)) == 0
-		|| ft_strncmp((*tmp)->word, "env", ft_strlen((*tmp)->word)) == 0
-		|| ft_strncmp((*tmp)->word, "exit", ft_strlen((*tmp)->word)) == 0)
+	if (ft_strcmp((*tmp)->word, "cd") == 0
+		|| ft_strcmp((*tmp)->word, "echo") == 0
+		|| ft_strcmp((*tmp)->word, "pwd") == 0
+		|| ft_strcmp((*tmp)->word, "export") == 0
+		|| ft_strcmp((*tmp)->word, "unset") == 0
+		|| ft_strcmp((*tmp)->word, "env") == 0
+		|| ft_strcmp((*tmp)->word, "exit") == 0)
 	{
 		(*tmp)->type = BUILTINS;
 	}
@@ -29,13 +29,13 @@ void	is_builtins(t_pars **tmp)
 
 bool	is_redirection(t_pars **tmp)
 {
-	if (ft_strncmp((*tmp)->word, ">", ft_strlen((*tmp)->word)) == 0)
+	if (ft_strcmp((*tmp)->word, ">") == 0)
 		(*tmp)->type = REDIR_TRUNC;
-	else if (ft_strncmp((*tmp)->word, "<", ft_strlen((*tmp)->word)) == 0)
+	else if (ft_strcmp((*tmp)->word, "<") == 0)
 		(*tmp)->type = REDIR_IN;
-	else if (ft_strncmp((*tmp)->word, "<<", ft_strlen((*tmp)->word)) == 0)
+	else if (ft_strcmp((*tmp)->word, "<<") == 0)
 		(*tmp)->type = HEREDOC;
-	else if (ft_strncmp((*tmp)->word, ">>", ft_strlen((*tmp)->word)) == 0)
+	else if (ft_strcmp((*tmp)->word, ">>") == 0)
 		(*tmp)->type = REDIR_APPEND;
 	if ((*tmp)->type != NUL)
 		return (true);
