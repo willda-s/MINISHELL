@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 22:47:42 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/23 23:53:02 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/24 01:54:15 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,13 +111,13 @@ bool is_builtins_exec(t_exec *node)
 {
 	if (!node->cmd || !(*node->cmd))
 		return (false);
-	if (ft_strncmp(node->cmd[0], "cd", ft_strlen(node->cmd[0])) == 0
-	|| ft_strncmp(node->cmd[0], "echo", ft_strlen(node->cmd[0])) == 0
-	|| ft_strncmp(node->cmd[0], "pwd", ft_strlen(node->cmd[0])) == 0
-	|| ft_strncmp(node->cmd[0], "export", ft_strlen(node->cmd[0])) == 0
-	|| ft_strncmp(node->cmd[0], "unset", ft_strlen(node->cmd[0])) == 0
-	|| ft_strncmp(node->cmd[0], "env", ft_strlen(node->cmd[0])) == 0
-	|| ft_strncmp(node->cmd[0], "exit", ft_strlen(node->cmd[0])) == 0)
+	if (ft_strcmp(node->cmd[0], "cd") == 0
+	|| ft_strcmp(node->cmd[0], "echo") == 0
+	|| ft_strcmp(node->cmd[0], "pwd") == 0
+	|| ft_strcmp(node->cmd[0], "export") == 0
+	|| ft_strcmp(node->cmd[0], "unset") == 0
+	|| ft_strcmp(node->cmd[0], "env") == 0
+	|| ft_strcmp(node->cmd[0], "exit") == 0)
 			return (true);
 		return (false);
 }
