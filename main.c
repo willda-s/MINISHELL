@@ -3,19 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-<<<<<<< HEAD
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/11 19:55:40 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/23 20:07:05 by akarapkh         ###   ########.fr       */
-=======
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/11 19:55:40 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/12 16:51:46 by cafabre          ###   ########.fr       */
->>>>>>> cam_merge
+/*   Created: 2025/09/23 23:43:26 by willda-s          #+#    #+#             */
+/*   Updated: 2025/09/23 23:43:27 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "ft_dprintf.h"
 #include "get_next_line_bonus.h"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/23 23:33:32 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/23 23:37:07 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	init_pipe(t_exec *node)
 static void	exec_loop(int *i, t_data *data, t_exec *prev)
 {
 	t_exec	*tmp;
+	int pid;
 
 	tmp = data->exec;
 	while (tmp)
