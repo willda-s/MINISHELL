@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:53:49 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 20:11:37 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/23 19:55:36 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ void	init_lst_env(t_env **envd, char **env)
 	int		i;
 
 	i = 0;
+	/*si !env
+		ft_export(ft_pwd)
+		ft_export OLDPWD
+	*/
 	while (env && env[i])
 	{
 		if (add_back_env(envd) == 1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 19:55:40 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/18 23:07:04 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/23 20:07:05 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int ac, char **av, char **env)
 			{
 				ft_dprintf(2, "exit\n");
 				rl_clear_history();
-				free_lst_env(&envd, false, 0);
+				free_all(&data, 12);
 				return (g_signal_status);
 			}
 			if (*data.input)
