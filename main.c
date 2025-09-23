@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 19:55:40 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/13 05:57:09 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/18 23:07:04 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,11 @@ int	main(int ac, char **av, char **env)
 		setup_main_signals();
 		while (1)
 		{
-			// if (isatty(fileno(stdin)))
-			// 	data.input = readline("minishell> ");
-			// else
-			// {
-			// 	line = get_next_line(fileno(stdin));
-			// 	if (!line)
-			// 	{
-			// 		free_lst_env(&envd, false, 0);
-			// 		return (g_signal_status);
-			// 	}
-			// 	data.input = ft_strtrim(line, "\n");
-			// 	free(line);
-			// }
 			data.input = readline("minishell> ");
 			if (!data.input)
 			{
 				ft_dprintf(2, "exit\n");
+				rl_clear_history();
 				free_lst_env(&envd, false, 0);
 				return (g_signal_status);
 			}
@@ -82,12 +70,10 @@ int	main(int ac, char **av, char **env)
 			if (expand_exec_list(&data) != 0)
 				continue ;
 			init_envp(&data);
-			remove_empty_line(&data);
+			// remove_empty_line(&data);
 			// print_lst_exec(data.exec);
 			// print_lst_pars(data.pars);
 			handle_heredoc(&data);
-			if (g_signal_status == 130)
-				g_signal_status = 0;
 			execc(&data);
 			free_tmpall(&data);
 		}
@@ -111,6 +97,7 @@ int	main(int ac, char **av, char **env)
 			- remove_empty_line.c
 
 			REGLER INPUT_CHECK LORSQUE ECHO QVEC " "
+			- EXIT CODE
 
 			!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  ECHO ET TOUS LES AUTRES BUILTINS DANS REDIRECTION AVOIR UN FD TOUJOURS SUR 1 A PART SI REDIR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 

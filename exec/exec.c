@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/13 03:54:48 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/18 23:16:21 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	exec_cmd(t_exec *node, t_data *data)
 	setup_child_signals();
 	if (node->cmd)
 	{
-		if (exec_builtins(node, data))
+		if (exec_builtins(node, data, -1, -1))
 		{
 			node->path = path_in_arg(node);
 			if (node->path == NULL)
@@ -77,6 +77,7 @@ static void	init_pipe(t_exec *node)
 	next->fd_in = fd[0];
 }
 
+
 static void	exec_loop(int *i, t_data *data, t_exec *prev)
 {
 	t_exec	*tmp;
@@ -87,8 +88,11 @@ static void	exec_loop(int *i, t_data *data, t_exec *prev)
 	{
 		if (tmp->next)
 			init_pipe(tmp);
-		else if (!prev && !exec_builtins(tmp, data))
+		else if (!prev && is_builtins_exec(tmp))
+		{
+			handle_builtins_in_parent(tmp, data);
 			return ;
+		}
 		pid = fork();
 		if (pid == 0)
 		{

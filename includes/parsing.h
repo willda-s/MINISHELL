@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/13 05:36:24 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:12:41 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef struct s_data
 {
 	char			**dst;
 	char			*input;
+	int 			fd_backup_in;
+	int 			fd_backup_out;
 	t_env			*env;
 	t_pars			*pars;
 	t_exec			*exec;
@@ -189,7 +191,7 @@ int					update_quote_state(char c, int current_state);
 
 void				execc(t_data *data);
 
-bool				exec_builtins(t_exec *node, t_data *data);
+bool				exec_builtins(t_exec *node, t_data *data, int fd_backup_in, int fd_backup_out);
 
 int					wait_one_process(int *n);
 
@@ -218,6 +220,10 @@ char				*find_path(t_exec *node, t_data *data);
 void				close_allfd_struct(t_data *data);
 
 void				open_all_file(t_exec *node, t_data *data);
+
+bool 				is_builtins_exec(t_exec *node);
+
+void 				handle_builtins_in_parent(t_exec *node, t_data *data);
 
 ////////////////heredoc.c////////////////////////////
 

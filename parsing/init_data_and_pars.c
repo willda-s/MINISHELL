@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data_and_pars.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:46 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 20:27:31 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:13:09 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ void	init_data(t_data *data, t_env **envd, char **dst)
 	if (!data->input)
 		data->input = NULL;
 	data->i = 0;
+	data->errcode = 0;
+	data->fd_backup_in = -1;
+	data->fd_backup_out = -1;
 	if (init_lst_pars(&pars, data->dst) == 1)
 	{
 		free_lst_pars(&pars);

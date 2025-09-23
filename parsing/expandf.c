@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/22 17:27:22 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/23 19:39:49 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ char	*ft_expand_word(t_data *data, char *word)
 			j = ft_expand_var(res, j, word, data);
 		if (j == -1)
 			return (NULL);
+		if (!word[data->i])
+			break;
 		if (word[data->i] != '\'' && word[data->i] != '"'
 			&& word[data->i] != '$')
 			res[j++] = word[data->i++];
