@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   expandf.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/13 05:43:05 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/22 17:27:22 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
 #include "libft.h"
+#include "parsing.h"
+#include <stddef.h>
 
 static int	ft_handle_squotes(char *res, int j, char *word, t_data *data)
 {
@@ -54,9 +55,16 @@ static int	ft_handle_dquotes(char *res, int j, char *word, t_data *data)
 
 char	*ft_expand_word(t_data *data, char *word)
 {
-	char	res[4194304];
+	size_t	max_len;
+	char	*res;
+	char	*dup;
 	int		j;
 
+	// char	res[4194304];
+	max_len = ft_strlen(word);
+	res = malloc(max_len + 1);
+	if (!res)
+		return (NULL);
 	j = 0;
 	data->i = 0;
 	while (word[data->i])
@@ -74,7 +82,12 @@ char	*ft_expand_word(t_data *data, char *word)
 			res[j++] = word[data->i++];
 	}
 	res[j] = '\0';
-	return (ft_strdup(res));
+	dup = ft_strdup(res);
+	if (!dup)
+		return (NULL);
+	free(res);
+	// res = NULL;
+	return (dup);
 }
 
 int	expand_exec_list(t_data *data)

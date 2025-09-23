@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 07:10:55 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/02 16:49:12 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/22 17:21:08 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strdup(const char *s)
 	size_t	src_len;
 	size_t	i;
 
+	if (!s)
+		return (NULL);
 	src_len = 0;
 	while (s[src_len])
 		src_len++;
