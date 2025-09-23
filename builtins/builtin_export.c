@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <cafabre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/23 21:49:42 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/23 23:27:25 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,9 @@ int	builtin_export(t_exec *exec, t_data *data)
 			}
 			data->env = (data->env)->next;
 		}
-		ft_lstlast_env(data->env)->next = new_var;
+		printf("last var : %s\n", data->env->key);
+		add_back_env(&new_var);
+		//ft_lstlast_env(data->env)->next = new_var;
 	}
 	return (EXIT_SUCCESS);
 }
