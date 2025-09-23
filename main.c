@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 23:43:26 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/23 23:43:27 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/24 01:52:16 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int ac, char **av, char **env)
 
 	(void)ac;
 	(void)av;
+	data.env = NULL;
 	if (ac == 1)
 	{
 		envd = NULL;

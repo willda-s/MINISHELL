@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:16 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/23 23:53:51 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/24 01:51:20 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ int	builtin_unset(char *var, t_data *data)
 				data->env = current->next;
 			else
 				prev->next = current->next;
-			free_tab(data->envp);
 			unset_free(current);
-			init_envp(data);
 			return (EXIT_SUCCESS);
 		}
 		prev = current;
