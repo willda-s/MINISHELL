@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expandf.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/23 19:39:49 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/23 23:30:55 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@
 
 static int	ft_handle_squotes(char *res, int j, char *word, t_data *data)
 {
+	size_t	word_len;
+
+	word_len = ft_strlen(word);
 	data->i++;
 	while (word[data->i] && word[data->i] != '\'')
 		res[j++] = word[data->i++];
-	if (word[data->i] == '\'')
+	if (word[data->i] == '\'' && data->i < word_len)
 		data->i++;
 	else
 	{
@@ -31,6 +34,9 @@ static int	ft_handle_squotes(char *res, int j, char *word, t_data *data)
 
 static int	ft_handle_dquotes(char *res, int j, char *word, t_data *data)
 {
+	size_t	word_len;
+
+	word_len = ft_strlen(word);
 	data->i++;
 	while (word[data->i] && word[data->i] != '"')
 	{
@@ -39,7 +45,7 @@ static int	ft_handle_dquotes(char *res, int j, char *word, t_data *data)
 		else
 			res[j++] = word[data->i++];
 	}
-	if (word[data->i] == '"')
+	if (word[data->i] == '"' && data->i < word_len)
 	{
 		if (j == 0 && ft_strlen(word) == 3)
 			res[j++] = '$';
@@ -101,8 +107,8 @@ int	expand_exec_list(t_data *data)
 	exec = data->exec;
 	while (exec)
 	{
-		i = 0;
-		while (exec->cmd && exec->cmd[i])
+		i = -1;
+		while (exec->cmd && exec->cmd[++i])
 		{
 			new_word = ft_expand_word(data, exec->cmd[i]);
 			if (new_word)
@@ -115,7 +121,6 @@ int	expand_exec_list(t_data *data)
 				free_tmpall(data);
 				return (2);
 			}
-			i++;
 		}
 		exec = exec->next;
 	}

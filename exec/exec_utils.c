@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 22:47:42 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/18 23:16:28 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/23 23:30:29 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "libft.h"
+#include "signals.h"
 #include <stdbool.h>
+#include <errno.h>
 
 bool	exec_builtins(t_exec *node, t_data *data, int fd_backup_in, int fd_backup_out)
 {
@@ -21,6 +23,8 @@ bool	exec_builtins(t_exec *node, t_data *data, int fd_backup_in, int fd_backup_o
 	if (!node->cmd || !(*node->cmd))
 		return (-1);
 	val = 1;
+	if (!node->cmd || !(*node->cmd))
+		return (-1);
 	if (node->cmd && ft_strcmp(node->cmd[0], "echo") == 0)
 		val = builtin_echo(node);
 	else if (node->cmd && ft_strcmp(node->cmd[0], "exit") == 0)
@@ -43,6 +47,33 @@ bool	exec_builtins(t_exec *node, t_data *data, int fd_backup_in, int fd_backup_o
 	else if (node->cmd && ft_strcmp(node->cmd[0], "unset") == 0)
 		val = builtin_unset(node->cmd[1], data->env);
 	return (val);
+}
+
+int	wait_process(int nb_proc)
+{
+	int	err;
+	int	count;
+	int	n;
+	int	ret;
+
+	err = 0;
+	count = 0;
+	n = 0;
+	setup_parent_signals();
+	while (count < nb_proc)
+	{
+		ret = wait_one_process(&n);
+		if (ret == -1)
+		{
+			setup_main_signals();
+			exit(errno);
+		}
+		err = ret;
+		count++;
+	}
+	print_wait_error(n);
+	setup_main_signals();
+	return (err);
 }
 
 int	wait_one_process(int *flag)

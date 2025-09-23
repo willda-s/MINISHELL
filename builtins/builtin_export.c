@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/18 22:55:05 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/23 23:30:15 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ static int	parsing_export(t_exec *exec)
 	int	i;
 
 	i = 0;
-	while (exec->cmd && exec->cmd[1][i])
+	while (exec->cmd && exec->cmd[1][i] && exec->cmd[1][i] != '=')
 	{
-		if (!ft_isalnum(exec->cmd[1][i]) && exec->cmd[1][i] != '='
-			&& exec->cmd[1][i] != '_')
+		if (!ft_isalnum(exec->cmd[1][i]) && exec->cmd[1][i] != '_')
 			return (1);
 		i++;
 	}
@@ -93,7 +92,18 @@ int	builtin_export(t_exec *exec, t_data *data)
 	else
 	{
 		new_var = extract_key_value(exec);
-		ft_lstlast_env(data->env)->next = new_var;
+		while (data->env)
+		{
+			if (ft_strcmp((data->env)->key, new_var->key) == 0)
+			{
+				(data->env)->value = new_var->value;
+				return (EXIT_SUCCESS);
+			}
+			data->env = (data->env)->next;
+		}
+		printf("last var : %s\n", data->env->key);
+		add_back_env(&new_var);
+		//ft_lstlast_env(data->env)->next = new_var;
 	}
 	return (EXIT_SUCCESS);
 }

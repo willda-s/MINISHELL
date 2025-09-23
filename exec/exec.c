@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/18 23:16:21 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/23 23:33:32 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,6 @@
 #include "signals.h"
 #include <errno.h>
 #include <stdlib.h>
-
-static int	wait_process(int nb_proc)
-{
-	int	err;
-	int	count;
-	int	n;
-	int	ret;
-
-	err = 0;
-	count = 0;
-	n = 0;
-	setup_parent_signals();
-	while (count < nb_proc)
-	{
-		ret = wait_one_process(&n);
-		if (ret == -1)
-		{
-			setup_main_signals();
-			exit(errno);
-		}
-		err = ret;
-		count++;
-	}
-	print_wait_error(n);
-	setup_main_signals();
-	return (err);
-}
 
 static void	exec_cmd(t_exec *node, t_data *data)
 {
@@ -77,11 +50,9 @@ static void	init_pipe(t_exec *node)
 	next->fd_in = fd[0];
 }
 
-
 static void	exec_loop(int *i, t_data *data, t_exec *prev)
 {
 	t_exec	*tmp;
-	pid_t	pid;
 
 	tmp = data->exec;
 	while (tmp)
@@ -123,3 +94,5 @@ void	execc(t_data *data)
 	g_signal_status = wait_process(i);
 	data->errcode = g_signal_status;
 }
+// le cas du : cat | ls
+// je ferme l'ecriture du cat quand ls s'execute simultanement
