@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 23:43:26 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/24 01:52:16 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/24 02:12:14 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ volatile sig_atomic_t	g_signal_status = 0;
 int	main(int ac, char **av, char **env)
 {
 	char	**dst;
-	t_env	*envd;
+	// t_env	*envd;
 	t_data	data;
 	// char	*line;
 
@@ -33,8 +33,8 @@ int	main(int ac, char **av, char **env)
 	data.env = NULL;
 	if (ac == 1)
 	{
-		envd = NULL;
-		init_lst_env(&envd, env);
+		// envd = NULL;
+		init_lst_env(&data.env, env);
 		setup_main_signals();
 		while (1)
 		{
@@ -51,16 +51,16 @@ int	main(int ac, char **av, char **env)
 			data.input = check_input(data.input);
 			if (!data.input)
 			{
-				free_lst_env(&envd, false, 0);
+				free_lst_env(&data.env, false, 0);
 				continue ;
 			}
 			dst = ft_split_with_quotes(data.input, ' ');
 			if (!dst)
 			{
 				free(data.input);
-				free_lst_env(&envd, true, 0);
+				free_lst_env(&data.env, true, 0);
 			}
-			init_data(&data, &envd, dst);
+			init_data(&data, &data.env, dst);
 			token_main(&data);
 			if (data.pars && validate_syntax(data.pars))
 			{
