@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:53:49 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/23 23:59:38 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:35:25 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,13 @@ void	init_envp(t_data *data)
 		str = ft_strjoin(tmp->key, "=");
 		if (!str)
 			free_all_msg(data, 12, "Error\nMalloc fail in init_envp\n");
-		data->envp[i] = ft_strjoin(str, tmp->value);
-		free(str);
+		if (tmp->value)
+		{
+			data->envp[i] = ft_strjoin(str, tmp->value);
+			free(str);
+		}
+		else
+			data->envp[i] = str;
 		if (!data->envp || !data->envp[i])
 			free_all_msg(data, 12, "Error\nMalloc fail in init_envp\n");
 		i++;
