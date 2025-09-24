@@ -6,14 +6,12 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 23:43:26 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/24 02:12:14 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/24 02:17:17 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "ft_dprintf.h"
-#include "get_next_line_bonus.h"
-#include "libft.h"
 #include "parsing.h"
 #include "signals.h"
 #include <readline/history.h>

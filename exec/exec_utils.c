@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 22:47:42 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/24 01:54:15 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/24 02:52:01 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "libft.h"
 #include "signals.h"
-#include <stdbool.h>
 #include <errno.h>
+#include <stdbool.h>
 
-bool	exec_builtins(t_exec *node, t_data *data, int fd_backup_in, int fd_backup_out)
+bool	exec_builtins(t_exec *node, t_data *data, int fd_backup_in,
+		int fd_backup_out)
 {
 	int	val;
 
@@ -107,17 +108,15 @@ void	print_wait_error(int flag)
 		ft_putstr_fd("Quit (core dumped)\n", STDERR_FILENO);
 }
 
-bool is_builtins_exec(t_exec *node)
+bool	is_builtins_exec(t_exec *node)
 {
 	if (!node->cmd || !(*node->cmd))
 		return (false);
-	if (ft_strcmp(node->cmd[0], "cd") == 0
-	|| ft_strcmp(node->cmd[0], "echo") == 0
-	|| ft_strcmp(node->cmd[0], "pwd") == 0
-	|| ft_strcmp(node->cmd[0], "export") == 0
-	|| ft_strcmp(node->cmd[0], "unset") == 0
-	|| ft_strcmp(node->cmd[0], "env") == 0
-	|| ft_strcmp(node->cmd[0], "exit") == 0)
-			return (true);
-		return (false);
+	if (ft_strcmp(node->cmd[0], "cd") == 0 || ft_strcmp(node->cmd[0],
+			"echo") == 0 || ft_strcmp(node->cmd[0], "pwd") == 0
+		|| ft_strcmp(node->cmd[0], "export") == 0 || ft_strcmp(node->cmd[0],
+			"unset") == 0 || ft_strcmp(node->cmd[0], "env") == 0
+		|| ft_strcmp(node->cmd[0], "exit") == 0)
+		return (true);
+	return (false);
 }
