@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/23 23:30:44 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/25 00:56:08 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ typedef struct s_data
 {
 	char			**dst;
 	char			*input;
-	int 			fd_backup_in;
-	int 			fd_backup_out;
+	int				fd_backup_in;
+	int				fd_backup_out;
 	t_env			*env;
 	t_pars			*pars;
 	t_exec			*exec;
@@ -157,6 +157,8 @@ int					expand_exec_list(t_data *data);
 
 char				*ft_expand_word(t_data *data, char *word);
 
+int					max_len_in_env(t_env *env);
+
 ////////////////INIT_FILENAME.C//////////////////////////
 
 void				init_lst_redir(t_exec **exec, t_pars *pars, t_data *data);
@@ -191,7 +193,8 @@ int					update_quote_state(char c, int current_state);
 
 void				execc(t_data *data);
 
-bool				exec_builtins(t_exec *node, t_data *data, int fd_backup_in, int fd_backup_out);
+bool				exec_builtins(t_exec *node, t_data *data, int fd_backup_in,
+						int fd_backup_out);
 
 int					wait_process(int nb_proc);
 
@@ -223,9 +226,9 @@ void				close_allfd_struct(t_data *data);
 
 void				open_all_file(t_exec *node, t_data *data);
 
-bool 				is_builtins_exec(t_exec *node);
+bool				is_builtins_exec(t_exec *node);
 
-void 				handle_builtins_in_parent(t_exec *node, t_data *data);
+void				handle_builtins_in_parent(t_exec *node, t_data *data);
 
 ////////////////heredoc.c////////////////////////////
 

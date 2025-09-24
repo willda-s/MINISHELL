@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expandf.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/23 23:30:55 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/25 00:57:43 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,22 @@ static int	ft_handle_dquotes(char *res, int j, char *word, t_data *data)
 	return (j);
 }
 
+int	max_len_in_env(t_env *env)
+{
+	size_t	len;
+
+	len = 0;
+	while (env)
+	{
+		if (ft_strlen(env->value) > len)
+			len = ft_strlen(env->value);
+		if (ft_strlen(env->key) > len)
+			len = ft_strlen(env->key);
+		env = env->next;
+	}
+	return (len);
+}
+
 char	*ft_expand_word(t_data *data, char *word)
 {
 	size_t	max_len;
@@ -66,8 +82,7 @@ char	*ft_expand_word(t_data *data, char *word)
 	char	*dup;
 	int		j;
 
-	// char	res[4194304];
-	max_len = ft_strlen(word);
+	max_len = ft_strlen(word) + max_len_in_env(data->env);
 	res = malloc(max_len + 1);
 	if (!res)
 		return (NULL);
@@ -84,7 +99,7 @@ char	*ft_expand_word(t_data *data, char *word)
 		if (j == -1)
 			return (NULL);
 		if (!word[data->i])
-			break;
+			break ;
 		if (word[data->i] != '\'' && word[data->i] != '"'
 			&& word[data->i] != '$')
 			res[j++] = word[data->i++];
@@ -94,7 +109,6 @@ char	*ft_expand_word(t_data *data, char *word)
 	if (!dup)
 		return (NULL);
 	free(res);
-	// res = NULL;
 	return (dup);
 }
 

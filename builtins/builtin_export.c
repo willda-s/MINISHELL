@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/24 01:12:40 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/25 01:01:26 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
-#include "libft.h"
 #include "builtins.h"
+#include "libft.h"
+#include "parsing.h"
 #include <stdio.h>
 
 static int	parsing_export(t_exec *exec)
@@ -105,7 +105,10 @@ int	builtin_export(t_exec *exec, t_data *data)
 			tmp = tmp->next;
 		}
 		tmp = data->env;
-		ft_lstlast_env(data->env)->next = new_var;
+		if (data->env)
+			ft_lstlast_env(data->env)->next = new_var;
+		else
+			data->env = new_var;
 		new_var->next = NULL;
 	}
 	return (EXIT_SUCCESS);
