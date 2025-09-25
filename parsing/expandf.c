@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/25 00:57:43 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/25 18:52:00 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static int	ft_handle_dquotes(char *res, int j, char *word, t_data *data)
 	}
 	if (word[data->i] == '"' && data->i < word_len)
 	{
-		if (j == 0 && ft_strlen(word) == 3)
-			res[j++] = '$';
+		// 	if (j == 0 && ft_strlen(word) == 3)
+		// 		res[j++] = '$';
 		data->i++;
 	}
 	else
@@ -80,7 +80,7 @@ char	*ft_expand_word(t_data *data, char *word)
 	size_t	max_len;
 	char	*res;
 	char	*dup;
-	int		j;
+	size_t	j;
 
 	max_len = ft_strlen(word) + max_len_in_env(data->env);
 	res = malloc(max_len + 1);
@@ -96,8 +96,11 @@ char	*ft_expand_word(t_data *data, char *word)
 			j = ft_handle_dquotes(res, j, word, data);
 		else if (word[data->i] == '$')
 			j = ft_expand_var(res, j, word, data);
-		if (j == -1)
+		if (j < 0 || j >= max_len)
+		{
+			free(res);
 			return (NULL);
+		}
 		if (!word[data->i])
 			break ;
 		if (word[data->i] != '\'' && word[data->i] != '"'
