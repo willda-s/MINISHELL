@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_utils_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:06 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 20:07:20 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/24 03:24:36 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,3 +86,4 @@ int	add_back_env(t_env **envd)
 	}
 	return (0);
 }
+

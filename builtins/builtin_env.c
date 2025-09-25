@@ -6,7 +6,7 @@
 /*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:07:51 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/23 23:30:06 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/24 01:22:28 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	builtin_env(t_data *data, bool export)
 				write(1, tmp->value, ft_strlen(tmp->value));
 			write(1, "\n", 1);
 		}
-		else if (tmp->value)
+		else if (ft_strlen(tmp->value) >= 1)
 		{
 			write(1, tmp->key, ft_strlen(tmp->key));
 			write(1, "=", 1);

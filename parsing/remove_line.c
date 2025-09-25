@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   remove_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:33:45 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 20:30:28 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/25 04:01:02 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "libft.h"
 
-void	suppr_line(t_exec *exec, int j)
+void	delete_line(t_exec *exec, int j)
 {
 	int	i;
 
@@ -37,7 +37,7 @@ void	remove_empty_line(t_data *data)
 		{
 			if (tmp->cmd && tmp->cmd[i] && ft_strncmp(tmp->cmd[i], " ",
 					ft_strlen(tmp->cmd[i])) == 0)
-				suppr_line(tmp, i);
+				delete_line(tmp, i);
 			i++;
 		}
 		tmp = tmp->next;

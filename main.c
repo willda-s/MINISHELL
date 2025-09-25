@@ -6,13 +6,11 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 23:43:26 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/24 02:12:14 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/25 04:50:40 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_dprintf.h"
-#include "get_next_line_bonus.h"
 #include "libft.h"
 #include "parsing.h"
 #include "signals.h"
@@ -24,16 +22,14 @@ volatile sig_atomic_t	g_signal_status = 0;
 int	main(int ac, char **av, char **env)
 {
 	char	**dst;
-	// t_env	*envd;
 	t_data	data;
-	// char	*line;
 
+	ft_bzero(&data, sizeof(t_data));
 	(void)ac;
 	(void)av;
 	data.env = NULL;
 	if (ac == 1)
 	{
-		// envd = NULL;
 		init_lst_env(&data.env, env);
 		setup_main_signals();
 		while (1)
@@ -44,7 +40,8 @@ int	main(int ac, char **av, char **env)
 				ft_dprintf(2, "exit\n");
 				rl_clear_history();
 				free_all(&data, 12);
-				return (g_signal_status);
+				data.errcode = g_signal_status;
+				return (data.errcode);
 			}
 			if (*data.input)
 				add_history(data.input);
@@ -72,7 +69,7 @@ int	main(int ac, char **av, char **env)
 			if (expand_exec_list(&data) != 0)
 				continue ;
 			init_envp(&data);
-			// remove_empty_line(&data);
+			remove_empty_line(&data);
 			// print_lst_exec(data.exec);
 			// print_lst_pars(data.pars);
 			handle_heredoc(&data);
@@ -80,7 +77,7 @@ int	main(int ac, char **av, char **env)
 			free_tmpall(&data);
 		}
 	}
-	return (g_signal_status);
+	return (data.errcode);
 }
 
 /*TO DO :

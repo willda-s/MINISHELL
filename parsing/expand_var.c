@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 18:14:13 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/13 05:26:28 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/25 19:40:23 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include <stddef.h>
+#include <stdlib.h>
 
 static int	is_expand_err(char *word, t_data *data)
 {
@@ -21,6 +23,8 @@ static int	is_expand_err(char *word, t_data *data)
 		data->i++;
 		return (1);
 	}
+	if (word[data->i] == '"' || word[data->i] == '\'')
+		return (2);
 	if (!word[data->i] || (!is_var_char(word[data->i]) && word[data->i] != '"'
 			&& word[data->i] != '\''))
 		return (2);
@@ -50,9 +54,10 @@ static int	copy_env_value(char *res, int j, char *val)
 
 int	ft_expand_var(char *res, int j, char *word, t_data *data)
 {
-	char	var[256];
+	char	*var;
 	char	*val;
 	int		err;
+	size_t	var_len;
 
 	data->i++;
 	err = is_expand_err(word, data);
@@ -63,8 +68,13 @@ int	ft_expand_var(char *res, int j, char *word, t_data *data)
 		res[j++] = '$';
 		return (j);
 	}
+	var_len = max_len_in_env(data->env);
+	var = malloc(var_len + 1);
+	if (!var)
+		return (j);
 	get_var_name(word, data, var);
 	val = get_env_value(data->env, var);
 	j = copy_env_value(res, j, val);
+	free(var);
 	return (j);
 }
