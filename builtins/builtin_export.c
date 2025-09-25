@@ -6,7 +6,7 @@
 /*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/25 04:28:11 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/25 18:21:40 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "parsing.h"
 #include <stdio.h>
 
-static int	parsing_export(t_exec *exec)
+int	parsing_export(t_exec *exec)
 {
 	int	i;
 
@@ -99,10 +99,7 @@ int	builtin_export(t_exec *exec, t_data *data)
 		{
 			if (ft_strcmp(tmp->key, new_var->key) == 0)
 			{
-				free(tmp->value);
-				tmp->value = new_var->value;
-				free(new_var->key);
-				free(new_var);
+				update_value(tmp, new_var);
 				return (EXIT_SUCCESS);
 			}
 			tmp = tmp->next;
@@ -116,3 +113,4 @@ int	builtin_export(t_exec *exec, t_data *data)
 	}
 	return (EXIT_SUCCESS);
 }
+

@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.h                                         :+:      :+:    :+:   */
+/*   builtin_export_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/31 18:00:01 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/25 18:21:58 by cafabre          ###   ########.fr       */
+/*   Created: 2025/09/25 04:59:39 by cafabre           #+#    #+#             */
+/*   Updated: 2025/09/25 18:21:44 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "builtins.h"
+#include "libft.h"
 
-int		builtin_unset(char *var, t_data *data);
-
-int		builtin_pwd(void);
-
-void	update_value(t_env *tmp, t_env *new_var);
-
-int		parsing_export(t_exec *exec);
-
-int		builtin_export(t_exec *exec, t_data *data);
-
-int		builtin_exit(t_exec *exec, t_data *data);
-
-int		builtin_env(t_data *data, bool export);
-
-int		builtin_echo(t_exec *exec);
-
-int		builtin_cd(t_exec *exec, t_data *data);
+void	update_value(t_env *tmp, t_env *new_var)
+{
+	free(tmp->value);
+	tmp->value = new_var->value;
+	free(new_var->key);
+	free(new_var);
+}
