@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/25 01:01:26 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/25 04:28:11 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,10 @@ int	builtin_export(t_exec *exec, t_data *data)
 		{
 			if (ft_strcmp(tmp->key, new_var->key) == 0)
 			{
+				free(tmp->value);
 				tmp->value = new_var->value;
+				free(new_var->key);
+				free(new_var);
 				return (EXIT_SUCCESS);
 			}
 			tmp = tmp->next;
