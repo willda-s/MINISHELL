@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:41 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/23 23:31:16 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/25 20:37:36 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	free_all_msg(t_data *data, int errcode, char *str)
 	exit(errcode);
 }
 
-int	free_all(t_data *data, int errcode)
+void	free_all(t_data *data, bool quit, int errcode)
 {
 	if (data->input)
 	{
@@ -59,7 +59,8 @@ int	free_all(t_data *data, int errcode)
 	if (data->fd_backup_out != -1)
 		close(data->fd_backup_out);
 	rl_clear_history();
-	exit(errcode);
+	if (quit)
+		exit(errcode);
 }
 
 void	free_tmpall(t_data *data)

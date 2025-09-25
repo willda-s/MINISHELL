@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/25 04:03:59 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/26 00:27:48 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void				free_lst_redir(t_redir **redir);
 
 int					free_all_msg(t_data *data, int errcode, char *str);
 
-int					free_all(t_data *data, int errcode);
+void				free_all(t_data *data, bool quit, int errcode);
 
 void				free_tab(char **dst);
 
@@ -202,7 +202,7 @@ int					wait_one_process(int *n);
 
 void				print_wait_error(int n);
 
-void				dup_fd(t_exec *node, t_data *data);
+int					dup_fd(t_exec *node, t_data *data);
 
 void				ft_close(int *fd);
 
@@ -224,7 +224,7 @@ char				*find_path(t_exec *node, t_data *data);
 
 void				close_allfd_struct(t_data *data);
 
-void				open_all_file(t_exec *node, t_data *data);
+int					open_all_file(t_exec *node, t_data *data);
 
 bool				is_builtins_exec(t_exec *node);
 

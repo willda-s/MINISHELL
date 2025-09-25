@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:56:37 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/23 23:31:46 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/26 01:06:23 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,8 @@ void	open_heredoc_out(t_redir *redir, t_data *data, int i)
 	{
 		ft_dprintf(2, "Heredoc: %s\n", strerror(errno));
 		free(file);
-		free_all(data, 1);
+		free_all(data, true, 1);
 	}
-	unlink(file);
 	write_in_heredoc(fd, redir);
 	redir->filename = ft_strdup(file);
 	close(fd[1]);

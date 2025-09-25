@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/25 04:13:35 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/25 20:35:24 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ static void	exec_cmd(t_exec *node, t_data *data)
 		}
 	}
 	close_allfd_struct(data);
-	free_all(data, errno);
-	exit(data->errcode);
+	free_all(data, true, data->errcode);
 }
 
 static void	init_pipe(t_exec *node)
@@ -91,7 +90,7 @@ static void	exec_loop(int *i, t_data *data, t_exec *prev)
 		else if (pid < 0)
 		{
 			setup_main_signals();
-			free_all(data, errno);
+			free_all(data, true, errno);
 		}
 		close_fd(tmp);
 		(*i)++;

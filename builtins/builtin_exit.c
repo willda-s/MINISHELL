@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:02 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/18 23:10:19 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/25 20:35:01 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static long long	ft_atoll(const char *str)
 static void	free_exit(t_data *data, int errcode)
 {
 	close_allfd_struct(data);
-	free_all(data, errcode);
+	free_all(data, true, errcode);
 }
 
 int	builtin_exit(t_exec *exec, t_data *data)
