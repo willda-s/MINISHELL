@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 18:14:13 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/25 19:40:23 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/25 20:01:32 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static int	copy_env_value(char *res, int j, char *val)
 	int	k;
 
 	k = 0;
+	if (!val || (val == (char *)-1))
+		return (-1);
 	while (val && val[k])
 		res[j++] = val[k++];
 	return (j);

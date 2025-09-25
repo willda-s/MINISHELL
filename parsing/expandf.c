@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/25 18:52:00 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/25 19:55:24 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,7 @@ static int	ft_handle_dquotes(char *res, int j, char *word, t_data *data)
 			res[j++] = word[data->i++];
 	}
 	if (word[data->i] == '"' && data->i < word_len)
-	{
-		// 	if (j == 0 && ft_strlen(word) == 3)
-		// 		res[j++] = '$';
 		data->i++;
-	}
 	else
 	{
 		syntax_error(DOUBLE_QUOTE);
