@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 22:47:42 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/24 02:52:01 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/25 04:16:44 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,13 @@ bool	exec_builtins(t_exec *node, t_data *data, int fd_backup_in,
 	return (val);
 }
 
-int	wait_process(int nb_proc)
+int	wait_process(int nb_proc, t_data *data)
 {
-	int	err;
-	int	count;
-	int	n;
-	int	ret;
+	int		count;
+	int		n;
+	int		ret;
 
-	err = 0;
+	data->errcode = 0;
 	count = 0;
 	n = 0;
 	setup_parent_signals();
@@ -69,12 +68,12 @@ int	wait_process(int nb_proc)
 			setup_main_signals();
 			exit(errno);
 		}
-		err = ret;
+		data->errcode = ret;
 		count++;
 	}
 	print_wait_error(n);
 	setup_main_signals();
-	return (err);
+	return (data->errcode);
 }
 
 int	wait_one_process(int *flag)

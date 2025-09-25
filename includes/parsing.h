@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/25 00:56:08 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/25 04:03:59 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,7 @@ void				execc(t_data *data);
 bool				exec_builtins(t_exec *node, t_data *data, int fd_backup_in,
 						int fd_backup_out);
 
-int					wait_process(int nb_proc);
+int					wait_process(int nb_proc, t_data *data);
 
 int					wait_one_process(int *n);
 

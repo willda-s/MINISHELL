@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 23:43:26 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/25 03:22:08 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/25 04:00:12 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	main(int ac, char **av, char **env)
 			if (expand_exec_list(&data) != 0)
 				continue ;
 			init_envp(&data);
-			// remove_empty_line(&data);
+			remove_empty_line(&data);
 			// print_lst_exec(data.exec);
 			// print_lst_pars(data.pars);
 			handle_heredoc(&data);

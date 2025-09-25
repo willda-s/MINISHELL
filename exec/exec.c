@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/23 23:37:07 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/25 04:13:35 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "parsing.h"
 #include "signals.h"
 #include <errno.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 static void	exec_cmd(t_exec *node, t_data *data)
@@ -27,15 +28,30 @@ static void	exec_cmd(t_exec *node, t_data *data)
 			if (node->path == NULL)
 				node->path = find_path(node, data);
 			if (node->path != NULL)
+			{
 				execve(node->path, node->cmd, data->envp);
-			if (node->cmd[0] && node->cmd[0][0] != '\0')
-				ft_dprintf(2, "minishell: %s: command not found\n", node->cmd[0]);
+				perror("execve");
+				data->errcode = 126;
+			}
 			else
-				ft_dprintf(2, "minishell: : command not found\n");
+			{
+				if (node->cmd[0] && node->cmd[0][0] != '\0')
+				{
+					ft_dprintf(2, "minishell: %s: command not found\n",
+							node->cmd[0]);
+					data->errcode = 127;
+				}
+				else
+				{
+					ft_dprintf(2, "minishell: : command not found\n");
+					data->errcode = 127;
+				}
+			}
 		}
 	}
 	close_allfd_struct(data);
 	free_all(data, errno);
+	exit(data->errcode);
 }
 
 static void	init_pipe(t_exec *node)
@@ -53,7 +69,7 @@ static void	init_pipe(t_exec *node)
 static void	exec_loop(int *i, t_data *data, t_exec *prev)
 {
 	t_exec	*tmp;
-	int pid;
+	int		pid;
 
 	tmp = data->exec;
 	while (tmp)
@@ -92,7 +108,7 @@ void	execc(t_data *data)
 	prev = NULL;
 	i = 0;
 	exec_loop(&i, data, prev);
-	g_signal_status = wait_process(i);
+	g_signal_status = wait_process(i, data);
 	data->errcode = g_signal_status;
 }
 // le cas du : cat | ls
