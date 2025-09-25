@@ -55,6 +55,7 @@ BUILTINS_FILES = 	builtin_pwd.c\
 					builtin_cd.c\
 					builtin_exit.c\
 					builtin_export.c\
+					builtin_export_utils.c\
 					builtin_unset.c\
 					builtin_echo.c\
 					builtin_env.c
