@@ -6,7 +6,7 @@
 /*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/25 20:05:00 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/25 20:10:14 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,21 +92,18 @@ int	builtin_export(t_exec *exec, t_data *data)
 	}
 	if (parsing_export(exec))
 		return (EXIT_FAILURE);
-	else
+	new_var = extract_key_value(exec);
+	while (tmp)
 	{
-		new_var = extract_key_value(exec);
-		while (tmp)
+		if (ft_strcmp(tmp->key, new_var->key) == 0)
 		{
-			if (ft_strcmp(tmp->key, new_var->key) == 0)
-			{
-				set_new_value(tmp, new_var);
-				return (EXIT_SUCCESS);
-			}
-			tmp = tmp->next;
+			set_new_value(tmp, new_var);
+			return (EXIT_SUCCESS);
 		}
-		tmp = data->env;
-		ft_lstlast_env(data->env)->next = new_var;
-		new_var->next = NULL;
+		tmp = tmp->next;
 	}
+	tmp = data->env;
+	ft_lstlast_env(data->env)->next = new_var;
+	new_var->next = NULL;
 	return (EXIT_SUCCESS);
 }
