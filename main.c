@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 23:43:26 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/25 04:00:12 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/25 04:50:40 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	main(int ac, char **av, char **env)
 			free_tmpall(&data);
 		}
 	}
-	return (g_signal_status);
+	return (data.errcode);
 }
 
 /*TO DO :
