@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 23:43:26 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/25 20:40:16 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/26 03:44:10 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,6 @@ int	main(int ac, char **av, char **env)
 			REGLER INPUT_CHECK LORSQUE ECHO QVEC " "
 			- EXIT CODE
 
-			!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  ECHO ET TOUS LES AUTRES BUILTINS DANS REDIRECTION AVOIR UN FD TOUJOURS SUR 1 A PART SI REDIR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+			EXPORT/UNSET ONLY 1ST VALUE
+			export t ------> t=      (not good)
 */

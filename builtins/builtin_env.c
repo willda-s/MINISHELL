@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:07:51 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/24 01:22:28 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/26 04:09:13 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
 #include "libft.h"
+#include "parsing.h"
 
 int	builtin_env(t_data *data, bool export)
 {
@@ -24,9 +24,11 @@ int	builtin_env(t_data *data, bool export)
 		{
 			write(1, "export ", 7);
 			write(1, tmp->key, ft_strlen(tmp->key));
-			write(1, "=", 1);
 			if (tmp->value)
+			{
+				write(1, "=", 1);
 				write(1, tmp->value, ft_strlen(tmp->value));
+			}
 			write(1, "\n", 1);
 		}
 		else if (ft_strlen(tmp->value) >= 1)

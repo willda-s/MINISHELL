@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:29 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/24 04:21:31 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/26 03:39:26 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_env_value(t_env *envd, char *key)
 			return (envd->value);
 		envd = envd->next;
 	}
-	return ((void *)-1);
+	return ((void *)1);
 }
 
 int	is_var_char(char c)

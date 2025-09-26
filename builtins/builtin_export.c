@@ -3,26 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/25 04:28:11 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/26 04:42:43 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "libft.h"
 #include "parsing.h"
+#include <stddef.h>
 #include <stdio.h>
 
-static int	parsing_export(t_exec *exec)
+static int	parsing_export(t_exec *exec, size_t index)
 {
 	int	i;
 
 	i = 0;
-	while (exec->cmd && exec->cmd[1][i] && exec->cmd[1][i] != '=')
+	while (exec->cmd && exec->cmd[index][i] && exec->cmd[index][i] != '=')
 	{
-		if (!ft_isalnum(exec->cmd[1][i]) && exec->cmd[1][i] != '_')
+		if (!ft_isalnum(exec->cmd[index][i]) && exec->cmd[index][i] != '_')
 			return (1);
 		i++;
 	}
@@ -66,15 +67,18 @@ static char	*extract_value(char *cmd_arg)
 	return (value);
 }
 
-static t_env	*extract_key_value(t_exec *exec)
+static t_env	*extract_key_value(t_exec *exec, size_t index)
 {
 	t_env	*env;
 
 	env = malloc(sizeof(t_env));
 	if (!env)
 		return (NULL);
-	env->key = extract_key(exec->cmd[1]);
-	env->value = extract_value(exec->cmd[1]);
+	env->key = extract_key(exec->cmd[index]);
+	if (ft_strchr(exec->cmd[index], '='))
+		env->value = extract_value(exec->cmd[index]);
+	else
+		env->value = NULL;
 	env->next = NULL;
 	return (env);
 }
@@ -83,6 +87,7 @@ int	builtin_export(t_exec *exec, t_data *data)
 {
 	t_env	*new_var;
 	t_env	*tmp;
+	size_t	i;
 
 	tmp = data->env;
 	if (!exec->cmd[1])
@@ -90,29 +95,40 @@ int	builtin_export(t_exec *exec, t_data *data)
 		builtin_env(data, true);
 		return (EXIT_SUCCESS);
 	}
-	if (parsing_export(exec))
-		return (EXIT_FAILURE);
-	else
+	i = 1;
+	while (exec->cmd[i])
 	{
-		new_var = extract_key_value(exec);
-		while (tmp)
-		{
-			if (ft_strcmp(tmp->key, new_var->key) == 0)
-			{
-				free(tmp->value);
-				tmp->value = new_var->value;
-				free(new_var->key);
-				free(new_var);
-				return (EXIT_SUCCESS);
-			}
-			tmp = tmp->next;
-		}
 		tmp = data->env;
-		if (data->env)
-			ft_lstlast_env(data->env)->next = new_var;
+		if (parsing_export(exec, i))
+			return (EXIT_FAILURE);
 		else
-			data->env = new_var;
-		new_var->next = NULL;
+		{
+			new_var = extract_key_value(exec, i);
+			while (tmp)
+			{
+				if (ft_strcmp(tmp->key, new_var->key) == 0)
+				{
+					if (new_var->value)
+					{
+						free(tmp->value);
+						tmp->value = new_var->value;
+					}
+					free(new_var->key);
+					free(new_var);
+					break ;
+				}
+				tmp = tmp->next;
+			}
+			if (!tmp)
+			{
+				if (data->env)
+					ft_lstlast_env(data->env)->next = new_var;
+				else
+					data->env = new_var;
+				new_var->next = NULL;
+			}
+		}
+		i++;
 	}
 	return (EXIT_SUCCESS);
 }

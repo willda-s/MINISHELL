@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/25 19:55:24 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/26 03:41:28 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	max_len_in_env(t_env *env)
 	len = 0;
 	while (env)
 	{
-		if (ft_strlen(env->value) > len)
+		if (ft_strlen(env->value) > len) 	
 			len = ft_strlen(env->value);
 		if (ft_strlen(env->key) > len)
 			len = ft_strlen(env->key);

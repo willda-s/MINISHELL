@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:50:00 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/24 20:15:22 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/26 03:39:59 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ int	builtin_cd(t_exec *exec, t_data *data)
 	if (!exec->cmd[1])
 	{
 		path = get_env_value(data->env, "HOME");
-		if (path == (void *)-1)
+		if (path == (void *)1)
 		{
 			write(2, "cd: HOME not set\n", 17);
 			free(old_pwd);
