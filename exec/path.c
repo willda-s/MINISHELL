@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 19:44:48 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/25 20:36:19 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/26 02:17:00 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,10 @@ char	*find_path(t_exec *node, t_data *data)
 		if (!path)
 			return (NULL);
 		if (access(path, F_OK && X_OK) == 0)
+		{
+			free_tab(allpath);
 			return (path);
+		}
 		free(path);
 	}
 	free_tab(allpath);
