@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 18:00:01 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/23 23:53:11 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/27 19:27:30 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,3 +25,15 @@ int	builtin_env(t_data *data, bool export);
 int	builtin_echo(t_exec *exec);
 
 int	builtin_cd(t_exec *exec, t_data *data);
+
+
+/////////////////cd_utils.c//////////////////
+int	    set_node(t_env *node, const char *key, const char *value);
+
+int	    add_env_var(t_env **env, const char *key, const char *value);
+
+int     handle_no_pwd(int has_pwd, int error_control, t_env **env);
+
+int	    ensure_pwd_var(t_env **env);
+
+void	update_pwd_vars(t_env *env, char *old_pwd);

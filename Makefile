@@ -57,8 +57,10 @@ BUILTINS_FILES = 	builtin_pwd.c\
 					builtin_export.c\
 					builtin_unset.c\
 					builtin_echo.c\
-					builtin_env.c
+					builtin_env.c\
+					cd_utils.c
 UTILS = main.c\
+		main_utils.c
 
 MAKEFLAGS += --no-print-directory
 

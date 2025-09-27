@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/27 04:04:50 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/27 18:03:41 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	exec_cmd(t_exec *node, t_data *data)
 				if (node->cmd[0] && node->cmd[0][0] != '\0')
 				{
 					ft_dprintf(2, "minishell: %s: command not found\n",
-							node->cmd[0]);
+						node->cmd[0]);
 					data->errcode = 127;
 				}
 				else

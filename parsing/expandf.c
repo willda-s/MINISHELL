@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expandf.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/27 02:36:32 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/27 19:05:18 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char	*ft_expand_word(t_data *data, char *word)
 			j = ft_handle_dquotes(res, j, word, data);
 		else if (word[data->i] == '$')
 			j = ft_expand_var(res, j, word, data);
-		if (j < 0 || j >= max_len)
+		if (j >= max_len)
 		{
 			free(res);
 			return (NULL);
@@ -112,6 +112,27 @@ char	*ft_expand_word(t_data *data, char *word)
 		return (NULL);
 	free(res);
 	return (dup);
+}
+
+static int	set_exec_cmd(t_data *data, t_exec *exec, char *new_word, int i)
+{
+	if (new_word)
+	{
+		free(exec->cmd[i]);
+		exec->cmd[i] = new_word;
+		return (0);
+	}
+	else
+	{
+		free(exec->cmd[i]);
+		exec->cmd[i] = ft_strdup("");
+		if (!exec->cmd[i])
+		{
+			free_tmpall(data);
+			return (127);
+		}
+		return (0);
+	}
 }
 
 int	expand_exec_list(t_data *data)
@@ -132,21 +153,8 @@ int	expand_exec_list(t_data *data)
 				free_tmpall(data);
 				return (2);
 			}
-			else if (new_word)
-			{
-				free(exec->cmd[i]);
-				exec->cmd[i] = new_word;
-			}
 			else
-			{
-				free(exec->cmd[i]);
-				exec->cmd[i] = ft_strdup("");
-				if (!exec->cmd[i])
-				{
-					free_tmpall(data);
-					return (127);
-				}
-			}
+				return (set_exec_cmd(data, exec, new_word, i));
 		}
 		exec = exec->next;
 	}

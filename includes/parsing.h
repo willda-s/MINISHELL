@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/27 05:29:32 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/27 17:59:45 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,5 +238,15 @@ void				handle_builtins_in_parent(t_exec *node, t_data *data);
 void				open_heredoc_out(t_redir *redir, t_data *data, int i);
 
 void				handle_heredoc(t_data *data);
+
+////////////////main_utils.c/////////////////////////
+
+int					handle_input(t_data *data);
+
+int					process_input(t_data *data);
+
+int					handle_parsing(t_data *data);
+
+int					handle_exec(t_data *data);
 
 #endif

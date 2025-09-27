@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 19:44:48 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/26 02:17:00 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/27 18:03:30 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ static char	**find_path_first(t_data *data, t_exec *node)
 	j = find_path_line(data);
 	if (j == -1)
 	{
-		ft_dprintf(2, "minishell: %s: No such file or directory\n", node->cmd[0]);
+		ft_dprintf(2, "minishell: %s: No such file or directory\n",
+			node->cmd[0]);
 		free_all(data, true, 127);
 	}
 	cmd = ft_split(data->envp[j], ':');
