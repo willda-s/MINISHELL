@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/26 01:27:24 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/27 04:04:50 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ static void	init_pipe(t_exec *node)
 	next->fd_in = fd[0];
 }
 
-static void	exec_loop(int *i, t_data *data, t_exec *prev)
+static int	exec_loop(t_data *data, t_exec *prev)
 {
 	t_exec	*tmp;
-	int		pid;
 
 	tmp = data->exec;
+	data->pid = -1;
 	while (tmp)
 	{
 		if (tmp->next)
@@ -78,37 +78,33 @@ static void	exec_loop(int *i, t_data *data, t_exec *prev)
 		else if (!prev && is_builtins_exec(tmp))
 		{
 			handle_builtins_in_parent(tmp, data);
-			return ;
+			return (-1);
 		}
-		pid = fork();
-		if (pid == 0)
+		data->pid = fork();
+		if (data->pid == 0)
 		{
 			close_fd(tmp->next);
 			dup_fd(tmp, data);
 			exec_cmd(tmp, data);
 		}
-		else if (pid < 0)
+		else if (data->pid < 0)
 		{
 			setup_main_signals();
 			free_all(data, true, errno);
 		}
-		close_fd(tmp);
-		(*i)++;
 		prev = tmp;
 		tmp = tmp->next;
 	}
+	close_allfd_struct(data);
+	return (data->pid);
 }
 
 void	execc(t_data *data)
 {
 	t_exec	*prev;
-	int		i;
 
 	prev = NULL;
-	i = 0;
-	exec_loop(&i, data, prev);
-	g_signal_status = wait_process(i, data);
+	data->pid = exec_loop(data, prev);
+	g_signal_status = wait_process(data);
 	data->errcode = g_signal_status;
 }
-// le cas du : cat | ls
-// je ferme l'ecriture du cat quand ls s'execute simultanement

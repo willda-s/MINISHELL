@@ -6,15 +6,15 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 22:47:42 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/25 04:16:44 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/27 04:04:43 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "libft.h"
 #include "signals.h"
-#include <errno.h>
 #include <stdbool.h>
+#include <sys/wait.h>
 
 bool	exec_builtins(t_exec *node, t_data *data, int fd_backup_in,
 		int fd_backup_out)
@@ -50,40 +50,36 @@ bool	exec_builtins(t_exec *node, t_data *data, int fd_backup_in,
 	return (val);
 }
 
-int	wait_process(int nb_proc, t_data *data)
+int	wait_process(t_data *data)
 {
-	int		count;
-	int		n;
-	int		ret;
+	int	n;
+	int	ret;
 
-	data->errcode = 0;
-	count = 0;
 	n = 0;
+	data->errcode = 0;
 	setup_parent_signals();
-	while (count < nb_proc)
-	{
-		ret = wait_one_process(&n);
-		if (ret == -1)
-		{
-			setup_main_signals();
-			exit(errno);
-		}
+	ret = wait_one_process(&n, data->pid);
+	if (ret != -1)
 		data->errcode = ret;
-		count++;
+	while (1)
+	{
+		ret = wait_one_process(&n, -1);
+		if (ret == -1)
+			break ;
 	}
 	print_wait_error(n);
 	setup_main_signals();
 	return (data->errcode);
 }
 
-int	wait_one_process(int *flag)
+int	wait_one_process(int *flag, pid_t pid)
 {
-	int	status;
-	int	pid_w;
-	int	exit_status;
+	int		status;
+	pid_t	pid_w;
+	int		exit_status;
 
 	exit_status = 0;
-	pid_w = wait(&status);
+	pid_w = waitpid(pid, &status, 0);
 	if (pid_w == -1)
 		return (-1);
 	if (WIFEXITED(status))

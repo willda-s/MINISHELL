@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 23:43:26 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/26 03:44:10 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/27 02:44:54 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "signals.h"
 #include <readline/history.h>
 #include <readline/readline.h>
+#include <stddef.h>
+#include <stdio.h>
 
 volatile sig_atomic_t	g_signal_status = 0;
 
@@ -34,12 +36,13 @@ int	main(int ac, char **av, char **env)
 		setup_main_signals();
 		while (1)
 		{
+			data.syntax_error_flag = 0;
 			data.input = readline("minishell> ");
 			if (!data.input)
 			{
 				ft_dprintf(2, "exit\n");
 				rl_clear_history();
-				free_all(&data,true, 12);
+				free_all(&data, true, 12);
 			}
 			if (*data.input)
 				add_history(data.input);
@@ -75,6 +78,7 @@ int	main(int ac, char **av, char **env)
 			free_tmpall(&data);
 		}
 	}
+	fprintf(stderr, "error %d\n", data.errcode);
 	return (data.errcode);
 }
 

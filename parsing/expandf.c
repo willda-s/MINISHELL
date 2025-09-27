@@ -6,13 +6,14 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/26 03:41:28 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/27 02:36:32 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parsing.h"
 #include <stddef.h>
+#include <stdlib.h>
 
 static int	ft_handle_squotes(char *res, int j, char *word, t_data *data)
 {
@@ -27,6 +28,7 @@ static int	ft_handle_squotes(char *res, int j, char *word, t_data *data)
 	else
 	{
 		syntax_error(SIMPLE_QUOTE);
+		data->syntax_error_flag = 1;
 		return (-1);
 	}
 	return (j);
@@ -49,6 +51,7 @@ static int	ft_handle_dquotes(char *res, int j, char *word, t_data *data)
 		data->i++;
 	else
 	{
+		data->syntax_error_flag = 1;
 		syntax_error(DOUBLE_QUOTE);
 		return (-1);
 	}
@@ -62,7 +65,7 @@ int	max_len_in_env(t_env *env)
 	len = 0;
 	while (env)
 	{
-		if (ft_strlen(env->value) > len) 	
+		if (ft_strlen(env->value) > len)
 			len = ft_strlen(env->value);
 		if (ft_strlen(env->key) > len)
 			len = ft_strlen(env->key);
@@ -124,15 +127,25 @@ int	expand_exec_list(t_data *data)
 		while (exec->cmd && exec->cmd[++i])
 		{
 			new_word = ft_expand_word(data, exec->cmd[i]);
-			if (new_word)
+			if (data->syntax_error_flag)
+			{
+				free_tmpall(data);
+				return (2);
+			}
+			else if (new_word)
 			{
 				free(exec->cmd[i]);
 				exec->cmd[i] = new_word;
 			}
 			else
 			{
-				free_tmpall(data);
-				return (2);
+				free(exec->cmd[i]);
+				exec->cmd[i] = ft_strdup("");
+				if (!exec->cmd[i])
+				{
+					free_tmpall(data);
+					return (127);
+				}
 			}
 		}
 		exec = exec->next;

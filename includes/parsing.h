@@ -6,13 +6,14 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/26 00:27:48 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/27 04:09:23 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
+# include <stddef.h>
 # define SYNTAX_ERR "minishell: syntax error near unexpected token `%s'\n"
 
 # include "env.h"
@@ -76,7 +77,9 @@ typedef struct s_data
 	t_exec			*exec;
 	char			**envp;
 	int				errcode;
+	pid_t			pid;
 	size_t			i;
+	size_t			syntax_error_flag;
 }					t_data;
 
 typedef struct s_process_data
@@ -196,9 +199,9 @@ void				execc(t_data *data);
 bool				exec_builtins(t_exec *node, t_data *data, int fd_backup_in,
 						int fd_backup_out);
 
-int					wait_process(int nb_proc, t_data *data);
+int					wait_process(t_data *data);
 
-int					wait_one_process(int *n);
+int					wait_one_process(int *n, pid_t pid);
 
 void				print_wait_error(int n);
 

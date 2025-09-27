@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:41 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/25 20:37:36 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/27 02:18:39 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	free_tab(char **dst)
 		i++;
 	}
 	free(dst);
+	dst = NULL;
 }
 
 int	free_all_msg(t_data *data, int errcode, char *str)
