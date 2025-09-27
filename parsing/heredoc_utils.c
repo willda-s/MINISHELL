@@ -6,14 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:56:37 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/26 01:06:23 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/27 05:28:59 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_dprintf.h"
 #include "libft.h"
 #include "parsing.h"
-#include "signals.h"
 #include <errno.h>
 #include <fcntl.h>
 #include <readline/readline.h>
@@ -22,23 +21,6 @@
 
 static char	*file_create(int i);
 static void	write_in_heredoc(int *fd, t_redir *redir);
-
-int	handle_errcode(char *res, int j)
-{
-	char	*str;
-	size_t	i;
-	size_t	len;
-
-	str = ft_itoa(g_signal_status);
-	if (!str)
-		return (j);
-	len = ft_strlen(str);
-	i = 0;
-	while (i < len)
-		res[j++] = str[i++];
-	free(str);
-	return (j);
-}
 
 void	open_heredoc_out(t_redir *redir, t_data *data, int i)
 {

@@ -6,11 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 18:14:13 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/26 03:40:23 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/27 05:29:40 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "parsing.h"
+#include "signals.h"
 #include <stddef.h>
 #include <stdlib.h>
 
@@ -51,6 +53,23 @@ static int	copy_env_value(char *res, int j, char *val)
 		return (-1);
 	while (val && val[k])
 		res[j++] = val[k++];
+	return (j);
+}
+
+static int	handle_errcode(char *res, int j)
+{
+	char	*str;
+	size_t	i;
+	size_t	len;
+
+	str = ft_itoa(g_signal_status);
+	if (!str)
+		return (j);
+	len = ft_strlen(str);
+	i = 0;
+	while (i < len)
+		res[j++] = str[i++];
+	free(str);
 	return (j);
 }
 

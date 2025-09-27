@@ -3,36 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   type.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:55:59 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 20:32:30 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/27 05:32:38 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
 #include "libft.h"
+#include "parsing.h"
 
-static void	init_token_command(t_pars **pars)
+static void	init_token_redir(t_pars **pars);
+static void	init_token_pipe(t_pars **pars);
+static void	init_token_brace(t_pars **pars);
+static void	init_token_command(t_pars **pars);
+
+void	token_main(t_data *data)
 {
-	t_pars	*tmp;
-
-	tmp = *pars;
-	while (tmp)
-	{
-		if (tmp->type == NUL)
-		{
-			tmp->type = COMMANDS;
-			is_builtins(&tmp);
-			while (tmp->next && tmp->next->type != PIPE)
-			{
-				tmp = tmp->next;
-				if (tmp->type == NUL)
-					tmp->type = ARGS;
-			}
-		}
-		tmp = tmp->next;
-	}
+	init_token_redir(&data->pars);
+	init_token_pipe(&data->pars);
+	init_token_brace(&data->pars);
+	init_token_backslash(&data->pars);
+	init_token_command(&data->pars);
 }
 
 static void	init_token_redir(t_pars **pars)
@@ -85,11 +77,24 @@ static void	init_token_brace(t_pars **pars)
 	}
 }
 
-void	token_main(t_data *data)
+static void	init_token_command(t_pars **pars)
 {
-	init_token_redir(&data->pars);
-	init_token_pipe(&data->pars);
-	init_token_brace(&data->pars);
-	init_token_backslash(&data->pars);
-	init_token_command(&data->pars);
+	t_pars	*tmp;
+
+	tmp = *pars;
+	while (tmp)
+	{
+		if (tmp->type == NUL)
+		{
+			tmp->type = COMMANDS;
+			is_builtins(&tmp);
+			while (tmp->next && tmp->next->type != PIPE)
+			{
+				tmp = tmp->next;
+				if (tmp->type == NUL)
+					tmp->type = ARGS;
+			}
+		}
+		tmp = tmp->next;
+	}
 }

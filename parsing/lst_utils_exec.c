@@ -3,33 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   lst_utils_exec.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:58 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/12 23:57:17 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/27 05:39:25 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
 #include "libft.h"
+#include "parsing.h"
 #include <stdio.h>
 
-static int	lstsize_exec(t_exec *exec)
-{
-	int	i;
-
-	i = 1;
-	if (!exec)
-		return (0);
-	if (!exec->next)
-		return (1);
-	while (exec->next)
-	{
-		exec = exec->next;
-		i++;
-	}
-	return (i);
-}
+static int	lstsize_exec(t_exec *exec);
 
 void	free_lst_exec(t_exec **exec)
 {
@@ -51,6 +36,23 @@ void	free_lst_exec(t_exec **exec)
 		free(*exec);
 		*exec = tmp;
 	}
+}
+
+static int	lstsize_exec(t_exec *exec)
+{
+	int	i;
+
+	i = 1;
+	if (!exec)
+		return (0);
+	if (!exec->next)
+		return (1);
+	while (exec->next)
+	{
+		exec = exec->next;
+		i++;
+	}
+	return (i);
 }
 
 t_exec	*ft_lstlast_exec(t_exec *exec)
@@ -91,7 +93,8 @@ void	print_lst_exec(t_exec *exec)
 	while (exec)
 	{
 		i = 0;
-		dprintf(STDERR_FILENO, "-------------noeud [%d]---------------------\n", j++);
+		dprintf(STDERR_FILENO, "-------------noeud [%d]---------------------\n",
+				j++);
 		dprintf(STDERR_FILENO, "fd_in = %d\n", exec->fd_in);
 		dprintf(STDERR_FILENO, "fd_out = %d\n", exec->fd_out);
 		while (exec->cmd && exec->cmd[i])

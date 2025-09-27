@@ -3,31 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   lst_utils_redir.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:55:51 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 20:30:07 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/27 05:38:22 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
 #include "libft.h"
+#include "parsing.h"
 
-static int	lstsize_redir(t_redir *redir)
+t_redir		*ft_lstlast_redir(t_redir *redir);
+static int	lstsize_redir(t_redir *redir);
+
+int	add_back_redir(t_redir **redir)
 {
-	int	i;
+	t_redir	*node;
+	t_redir	*tmp;
 
-	i = 1;
-	if (!redir)
-		return (0);
-	if (!redir->next)
+	node = ft_calloc(1, sizeof(t_redir));
+	if (!node)
 		return (1);
-	while (redir->next)
+	node->next = NULL;
+	if (!*redir)
+		*redir = node;
+	else
 	{
-		redir = redir->next;
-		i++;
+		tmp = ft_lstlast_redir(*redir);
+		tmp->next = node;
 	}
-	return (i);
+	return (0);
 }
 
 void	free_lst_redir(t_redir **redir)
@@ -59,21 +64,19 @@ t_redir	*ft_lstlast_redir(t_redir *redir)
 	return (redir);
 }
 
-int	add_back_redir(t_redir **redir)
+static int	lstsize_redir(t_redir *redir)
 {
-	t_redir	*node;
-	t_redir	*tmp;
+	int	i;
 
-	node = ft_calloc(1, sizeof(t_redir));
-	if (!node)
+	i = 1;
+	if (!redir)
+		return (0);
+	if (!redir->next)
 		return (1);
-	node->next = NULL;
-	if (!*redir)
-		*redir = node;
-	else
+	while (redir->next)
 	{
-		tmp = ft_lstlast_redir(*redir);
-		tmp->next = node;
+		redir = redir->next;
+		i++;
 	}
-	return (0);
+	return (i);
 }

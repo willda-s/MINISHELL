@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:55:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/13 04:48:20 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/27 05:35:46 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,39 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-static char	update_quote(char currentc, char quote)
-{
-	if (currentc == '\'' || currentc == '\"')
-	{
-		if (quote == '\0')
-			quote = currentc;
-		else if (quote == currentc)
-			quote = '\0';
-	}
-	return (quote);
-}
+static size_t	count_word_with_quotes(char const *s, char sep);
+static int		ft_strlenword_with_quotes(const char *str, char c);
+static char		update_quote(char currentc, char quote);
+static void		update_inword(char currentc, char sep, bool *inword,
+					size_t *count);
 
-static void	update_inword(char currentc, char sep, bool *inword, size_t *count)
+char	**ft_split_with_quotes(char const *s, char c)
 {
-	if (currentc == sep)
-		*inword = false;
-	else if (!*inword)
+	size_t	i;
+	size_t	j;
+	size_t	length;
+	char	**dst;
+
+	i = 0;
+	j = 0;
+	dst = ft_calloc(count_word_with_quotes(s, c) + 1, sizeof(char *));
+	if (!dst)
+		return (NULL);
+	while (s[j])
 	{
-		*inword = true;
-		(*count)++;
+		while (s[j] == c && s[j])
+			j++;
+		if (s[j] != c && s[j])
+		{
+			length = ft_strlenword_with_quotes(&s[j], c);
+			dst[i] = ft_strndup(&s[j], length);
+			if (!dst[i])
+				return (ft_free(dst, i));
+			i++;
+			j += length;
+		}
 	}
+	return (dst);
 }
 
 static size_t	count_word_with_quotes(char const *s, char sep)
@@ -87,31 +99,25 @@ static int	ft_strlenword_with_quotes(const char *str, char c)
 	return (i);
 }
 
-char	**ft_split_with_quotes(char const *s, char c)
+static char	update_quote(char currentc, char quote)
 {
-	size_t	i;
-	size_t	j;
-	size_t	length;
-	char	**dst;
-
-	i = 0;
-	j = 0;
-	dst = ft_calloc(count_word_with_quotes(s, c) + 1, sizeof(char *));
-	if (!dst)
-		return (NULL);
-	while (s[j])
+	if (currentc == '\'' || currentc == '\"')
 	{
-		while (s[j] == c && s[j])
-			j++;
-		if (s[j] != c && s[j])
-		{
-			length = ft_strlenword_with_quotes(&s[j], c);
-			dst[i] = ft_strndup(&s[j], length);
-			if (!dst[i])
-				return (ft_free(dst, i));
-			i++;
-			j += length;
-		}
+		if (quote == '\0')
+			quote = currentc;
+		else if (quote == currentc)
+			quote = '\0';
 	}
-	return (dst);
+	return (quote);
+}
+
+static void	update_inword(char currentc, char sep, bool *inword, size_t *count)
+{
+	if (currentc == sep)
+		*inword = false;
+	else if (!*inword)
+	{
+		*inword = true;
+		(*count)++;
+	}
 }

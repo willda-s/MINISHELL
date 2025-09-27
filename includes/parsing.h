@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/27 04:09:23 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/27 05:29:32 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,5 @@ void				handle_builtins_in_parent(t_exec *node, t_data *data);
 void				open_heredoc_out(t_redir *redir, t_data *data, int i);
 
 void				handle_heredoc(t_data *data);
-
-int					handle_errcode(char *res, int j);
 
 #endif
