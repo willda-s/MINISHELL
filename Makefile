@@ -47,12 +47,14 @@ EXEC_FILES = path.c\
 			ft_fd.c\
 			redirections.c\
 			handle_builtins_parent.c\
-			exec_utils.c
+			exec_utils.c\
+			exec_loop_utils.c
 
 BUILTINS_DIR = builtins/
 
 BUILTINS_FILES = 	builtin_pwd.c\
 					builtin_cd.c\
+					builtin_cd_utils.c\
 					builtin_exit.c\
 					builtin_export_utils.c\
 					builtin_export.c\

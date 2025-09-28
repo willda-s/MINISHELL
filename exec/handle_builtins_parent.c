@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_builtins_parent.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 18:28:33 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/22 19:16:31 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/25 23:20:46 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void wrapper_dup(int oldfd, int *newfd, int fd_other, t_data *data)
     }
 }
 
-void handle_builtins_in_parent(t_exec *node, t_data *data)
+void    handle_builtins_in_parent(t_exec *node, t_data *data)
 {
 	wrapper_dup(STDIN_FILENO, &data->fd_backup_in,data->fd_backup_out, data);
 	wrapper_dup(STDOUT_FILENO, &data->fd_backup_out,data->fd_backup_in, data);

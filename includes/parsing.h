@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/25 04:03:59 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/25 23:04:18 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,10 @@ int					update_quote_state(char c, int current_state);
 /////////////EXEC.C/////////////////////
 
 void				execc(t_data *data);
+
+void				handle_null_pid(t_exec *tmp, t_data *data);
+
+void				handle_negative_pid(t_data *data);
 
 bool				exec_builtins(t_exec *node, t_data *data, int fd_backup_in,
 						int fd_backup_out);

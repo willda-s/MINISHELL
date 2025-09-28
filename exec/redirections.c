@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 19:04:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/18 22:29:15 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/25 23:21:05 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	open_heredoc_in(t_exec *node, t_data *data, char *filename)
 	{
 		close_allfd_struct(data);
 		ft_dprintf(STDERR_FILENO, "%s: No such file or directory\n",
-					filename);
+			filename);
 		free(filename);
 		free_all(data, 1);
 	}
@@ -75,7 +75,7 @@ static void	open_heredoc_in(t_exec *node, t_data *data, char *filename)
 void	open_all_file(t_exec *node, t_data *data)
 {
 	t_redir	*tmp;
-	char *filename;
+	char	*filename;
 
 	tmp = node->redir;
 	while (tmp)
