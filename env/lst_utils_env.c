@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:06 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/24 03:24:36 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/27 23:48:40 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static int	lstsize_env(t_env *envd)
-{
-	int	i;
-
-	i = 1;
-	if (!envd)
-		return (0);
-	if (!envd->next)
-		return (1);
-	while (envd->next)
-	{
-		envd = envd->next;
-		i++;
-	}
-	return (i);
-}
+static int	lstsize_env(t_env *envd);
 
 void	free_lst_env(t_env **envd, bool ext, int errcode)
 {
@@ -59,6 +44,23 @@ void	free_lst_env(t_env **envd, bool ext, int errcode)
 		exit(errcode);
 }
 
+static int	lstsize_env(t_env *envd)
+{
+	int	i;
+
+	i = 1;
+	if (!envd)
+		return (0);
+	if (!envd->next)
+		return (1);
+	while (envd->next)
+	{
+		envd = envd->next;
+		i++;
+	}
+	return (i);
+}
+
 t_env	*ft_lstlast_env(t_env *envd)
 {
 	if (!envd)
@@ -86,4 +88,3 @@ int	add_back_env(t_env **envd)
 	}
 	return (0);
 }
-

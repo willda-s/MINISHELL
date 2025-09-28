@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 23:43:26 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/27 05:22:49 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/28 03:03:35 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,11 @@ static int	handle_input(t_data *data)
 static int	process_input(t_data *data)
 {
 	char	**dst;
+	char	*original_input;
 
+	original_input = data->input;
 	data->input = check_input(data->input);
+	free(original_input);
 	if (!data->input)
 	{
 		free_lst_env(&data->env, false, 0);
