@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:07:51 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/26 04:09:13 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/28 23:08:21 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int	builtin_env(t_data *data, bool export)
 			write(1, tmp->key, ft_strlen(tmp->key));
 			if (tmp->value)
 			{
-				write(1, "=", 1);
+				write(1, "=\"", 2);
 				write(1, tmp->value, ft_strlen(tmp->value));
+				write(1, "\"", 1);
 			}
 			write(1, "\n", 1);
 		}

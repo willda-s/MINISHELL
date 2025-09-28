@@ -6,13 +6,13 @@
 /*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 18:00:01 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/28 21:23:16 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/28 22:57:32 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int		builtin_unset(char *var, t_data *data);
+int		builtin_unset(t_exec *exec, t_data *data);
 
 int		builtin_pwd(void);
 

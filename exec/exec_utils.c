@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 22:47:42 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/27 04:04:43 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/28 22:54:18 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	exec_builtins(t_exec *node, t_data *data, int fd_backup_in,
 	else if (node->cmd && ft_strcmp(node->cmd[0], "export") == 0)
 		val = builtin_export(node, data);
 	else if (node->cmd && ft_strcmp(node->cmd[0], "unset") == 0)
-		val = builtin_unset(node->cmd[1], data);
+		val = builtin_unset(node, data);
 	return (val);
 }
 
