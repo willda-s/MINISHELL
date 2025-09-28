@@ -6,27 +6,36 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 19:44:48 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/27 18:03:30 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/29 00:01:55 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
-#include "libft.h"
 #include "ft_dprintf.h"
+#include "libft.h"
+#include "parsing.h"
 
-static int	find_path_line(t_data *data)
+static char	**find_path_first(t_data *data, t_exec *node);
+static int	is_slash(t_exec *exec);
+static int	find_path_line(t_data *data);
+
+char	*path_in_arg(t_exec *exec)
 {
-	int	i;
+	char	*path;
 
-	i = 1;
-	while (data->envp[i])
+	if (is_slash(exec) == 1)
 	{
-		if (ft_strncmp(data->envp[i], "PATH=", 5) == 0)
-			return (i);
-		i++;
+		if ((access(exec->cmd[0], F_OK) == -1) || (access(exec->cmd[0], X_OK) ==
+				-1))
+			return (NULL);
+		else
+		{
+			path = ft_strdup(exec->cmd[0]);
+			if (!path)
+				return (NULL);
+			return (path);
+		}
 	}
-	i = 0;
-	return (-1);
+	return (NULL);
 }
 
 static int	is_slash(t_exec *exec)
@@ -43,44 +52,6 @@ static int	is_slash(t_exec *exec)
 		j++;
 	}
 	return (0);
-}
-
-char	*path_in_arg(t_exec *exec)
-{
-	char	*path;
-
-	if (is_slash(exec) == 1)
-	{
-		if ((access(exec->cmd[0], F_OK) == -1)
-			|| (access(exec->cmd[0], X_OK) == -1))
-			return (NULL);
-		else
-		{
-			path = ft_strdup(exec->cmd[0]);
-			if (!path)
-				return (NULL);
-			return (path);
-		}
-	}
-	return (NULL);
-}
-
-static char	**find_path_first(t_data *data, t_exec *node)
-{
-	char	**cmd;
-	int		j;
-
-	j = find_path_line(data);
-	if (j == -1)
-	{
-		ft_dprintf(2, "minishell: %s: No such file or directory\n",
-			node->cmd[0]);
-		free_all(data, true, 127);
-	}
-	cmd = ft_split(data->envp[j], ':');
-	if (!cmd)
-		free_all_msg(data, 0, "split fail path last command\n");
-	return (cmd);
 }
 
 char	*find_path(t_exec *node, t_data *data)
@@ -112,4 +83,37 @@ char	*find_path(t_exec *node, t_data *data)
 	}
 	free_tab(allpath);
 	return (NULL);
+}
+
+static char	**find_path_first(t_data *data, t_exec *node)
+{
+	char	**cmd;
+	int		j;
+
+	j = find_path_line(data);
+	if (j == -1)
+	{
+		ft_dprintf(2, "minishell: %s: No such file or directory\n",
+				node->cmd[0]);
+		free_all(data, true, 127);
+	}
+	cmd = ft_split(data->envp[j], ':');
+	if (!cmd)
+		free_all_msg(data, 0, "split fail path last command\n");
+	return (cmd);
+}
+
+static int	find_path_line(t_data *data)
+{
+	int	i;
+
+	i = 1;
+	while (data->envp[i])
+	{
+		if (ft_strncmp(data->envp[i], "PATH=", 5) == 0)
+			return (i);
+		i++;
+	}
+	i = 0;
+	return (-1);
 }

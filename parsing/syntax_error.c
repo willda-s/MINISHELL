@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:23:20 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/11 20:31:49 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/27 21:00:48 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	syntax_error(int type)
 {
-	static const char	*op_type[] = {
+	static const char	*const op_type[] = {
 	[PIPE] = "|",
 	[DOUBLE_PIPE] = "||",
 	[REDIR_IN] = "<",

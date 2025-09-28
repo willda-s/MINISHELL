@@ -1,4 +1,3 @@
-
 NAME = minishell
 
 INCLUDE = -Iincludes
@@ -6,7 +5,6 @@ INCLUDE = -Iincludes
 SIG_DIR = signals/
 
 SIG_FILES = setup_signal.c\
-			setup_heredoc_signals.c\
 			setup_child_parent_signals.c\
 			setup_sigint_main_signals.c
 
