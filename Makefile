@@ -51,6 +51,7 @@ BUILTINS_DIR = builtins/
 
 BUILTINS_FILES = 	builtin_pwd.c\
 					builtin_cd.c\
+					builtin_cd_utils.c\
 					builtin_exit.c\
 					builtin_export.c\
 					builtin_unset.c\
