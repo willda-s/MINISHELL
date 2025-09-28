@@ -6,7 +6,7 @@
 /*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/28 20:53:25 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/28 22:45:31 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int	builtin_export(t_exec *exec, t_data *data)
 				new_var->next = NULL;
 			}
 		}
+		i++;
 	}
-	i++;
 	return (EXIT_SUCCESS);
 }
