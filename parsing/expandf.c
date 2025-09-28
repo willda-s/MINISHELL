@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/28 22:46:32 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/28 23:48:21 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,18 @@ char	*ft_expand_word(t_data *data, char *word)
 	return (dup);
 }
 
+bool is_only_dollars(char *word)
+{
+	int i = 0;
+	while (word && word[i])
+	{
+		if (word[i] != '$')
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
 int	expand_exec_list(t_data *data)
 {
 	char	*new_word;
@@ -126,7 +138,14 @@ int	expand_exec_list(t_data *data)
 		i = -1;
 		while (exec->cmd && exec->cmd[++i])
 		{
-			new_word = ft_expand_word(data, exec->cmd[i]);
+			if (is_only_dollars(exec->cmd[i]))
+			{
+				new_word = ft_strdup(exec->cmd[i]);
+				if (!new_word)
+					free_all_msg(data, 12, "Malloc fail in expand_exec_list");
+			}
+			else
+				new_word = ft_expand_word(data, exec->cmd[i]);
 			if (data->syntax_error_flag)
 			{
 				free_tmpall(data);

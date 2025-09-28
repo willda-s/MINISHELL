@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 18:14:13 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/28 23:12:56 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/28 23:26:25 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ static int	is_expand_err(char *word, t_data *data)
 		data->i++;
 		return (1);
 	}
-	if (word[data->i] == '"' || word[data->i] == '\'')
-		return (2);
 	if (!word[data->i] || (!is_var_char(word[data->i]) && word[data->i] != '"'
 			&& word[data->i] != '\''))
 		return (2);

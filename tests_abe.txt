@@ -4,13 +4,14 @@
 FIXED
 ------------------------------------------
 
-2 - unset doit prend N parametres
+2 - (unset doit prend N parametres)    need fixe UNSET LEAK
 
 FIXED
 ------------------------------------------
 
 3 -getpid() interdit
 
+FIXED
 ------------------------------------------
 
 4 - $ > out | cat | cat | ls
