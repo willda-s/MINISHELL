@@ -6,7 +6,7 @@
 /*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:50:00 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/28 21:47:15 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/28 23:06:25 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "builtins.h"
-
-// static char	*get_env_value(t_env *env, char *key)
-// {
-// 	t_env	*tmp;
-
-// 	tmp = env;
-// 	while (tmp)
-// 	{
-// 		if (ft_strcmp(tmp->key, key) == 0)
-// 			return (tmp->value);
-// 		tmp = tmp->next;
-// 	}
-// 	return (NULL);
-// }
 
 static char	*handle_null_path(t_data *data, char *path, char *old_pwd)
 {
