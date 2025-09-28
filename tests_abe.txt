@@ -18,17 +18,20 @@ FIXED
 
 ==> bloque dans cat
 
+FIXED
 ------------------------------------------
 
 5 -fork() pete => fd leaks
 et aussi
 6 - Nieme fork() qui pete => process zombie
 
+FIXED
 ------------------------------------------
 
 7 - pipe() qui pete => memory leaks 
 et aussi
 8 - Nieme pipe() qui pete => fd leaks
+
 
 ------------------------------------------
 

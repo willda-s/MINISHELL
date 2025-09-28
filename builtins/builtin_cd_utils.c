@@ -6,11 +6,11 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 20:55:04 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/28 23:20:45 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/29 00:37:00 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "env.h"
 #include "libft.h"
 
 static void	add_last_env_var(t_env **env, t_env *node)
