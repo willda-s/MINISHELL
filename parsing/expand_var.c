@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 18:14:13 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/28 04:39:27 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/28 23:12:56 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-static int	is_expand_err(char *word, t_data *data);
-static int	handle_errcode(char *res, int j);
-static int	handle_pid(char *res, int j);
-static void	get_var_name(char *word, t_data *data, char *var);
-static int	copy_env_value(char *res, int j, char *val);
+static int		is_expand_err(char *word, t_data *data);
+static int		handle_errcode(char *res, int j);
+static void		get_var_name(char *word, t_data *data, char *var);
+static size_t	get_var_name_len(char *word, int start_pos);
+static int		copy_env_value(char *res, int j, char *val);
 
 int	ft_expand_var(char *res, int j, char *word, t_data *data)
 {
@@ -34,13 +34,13 @@ int	ft_expand_var(char *res, int j, char *word, t_data *data)
 	if (err == 1)
 		return (handle_errcode(res, j));
 	if (err == 3)
-		return (handle_pid(res, j));
+		return (j);
 	if (err == 2)
 	{
 		res[j++] = '$';
 		return (j);
 	}
-	var_len = max_len_in_env(data->env);
+	var_len = get_var_name_len(word, data->i);
 	var = malloc(var_len + 1);
 	if (!var)
 		return (j);
@@ -49,6 +49,21 @@ int	ft_expand_var(char *res, int j, char *word, t_data *data)
 	j = copy_env_value(res, j, val);
 	free(var);
 	return (j);
+}
+
+static size_t	get_var_name_len(char *word, int start_pos)
+{
+	size_t	len;
+	int		i;
+
+	len = 0;
+	i = start_pos;
+	while (word[i] && is_var_char(word[i]) && word[i] != '"' && word[i] != '\'')
+	{
+		len++;
+		i++;
+	}
+	return (len);
 }
 
 static int	is_expand_err(char *word, t_data *data)
@@ -80,23 +95,6 @@ static int	handle_errcode(char *res, int j)
 	size_t	len;
 
 	str = ft_itoa(g_signal_status);
-	if (!str)
-		return (j);
-	len = ft_strlen(str);
-	i = 0;
-	while (i < len)
-		res[j++] = str[i++];
-	free(str);
-	return (j);
-}
-
-static int	handle_pid(char *res, int j)
-{
-	char	*str;
-	size_t	i;
-	size_t	len;
-
-	str = ft_itoa(getpid());
 	if (!str)
 		return (j);
 	len = ft_strlen(str);

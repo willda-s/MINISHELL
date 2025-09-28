@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/28 04:39:06 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/28 22:46:32 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ int	max_len_in_env(t_env *env)
 
 char	*ft_expand_word(t_data *data, char *word)
 {
-	size_t	max_len;
+	ssize_t	max_len;
 	char	*res;
 	char	*dup;
-	size_t	j;
+	ssize_t	j;
 
 	max_len = ft_strlen(word) + max_len_in_env(data->env);
 	res = malloc(max_len + 1);

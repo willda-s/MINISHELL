@@ -1,9 +1,12 @@
 1 - tentative d'expand sans env => invlaid write
 
+
+FIXED
 ------------------------------------------
 
 2 - unset doit prend N parametres
 
+FIXED
 ------------------------------------------
 
 3 -getpid() interdit
