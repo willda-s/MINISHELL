@@ -6,7 +6,7 @@
 /*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 18:00:01 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/28 22:57:32 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/29 21:39:15 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,4 @@ int		builtin_cd(t_exec *exec, t_data *data);
 
 int		ensure_pwd_var(t_env **env);
 
-void	update_pwd_vars(t_env *env, char *old_pwd);
+int		update_pwd_vars(t_env *env, char *old_pwd);

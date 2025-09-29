@@ -6,7 +6,7 @@
 /*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:50:00 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/28 23:06:25 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/29 21:38:57 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int	builtin_cd(t_exec *exec, t_data *data)
 		free(old_pwd);
 		return (EXIT_FAILURE);
 	}
-	update_pwd_vars(data->env, old_pwd);
+	if (update_pwd_vars(data->env, old_pwd) != 0)
+		return (EXIT_FAILURE);
 	free(old_pwd);
 	return (EXIT_SUCCESS);
 }

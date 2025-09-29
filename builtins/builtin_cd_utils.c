@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 20:55:04 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/29 00:37:00 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/29 21:38:03 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	ensure_pwd_var(t_env **env)
 	return (0);
 }
 
-void	update_pwd_vars(t_env *env, char *old_pwd)
+int	update_pwd_vars(t_env *env, char *old_pwd)
 {
 	char	*new_pwd;
 	t_env	*tmp;
@@ -110,7 +110,10 @@ void	update_pwd_vars(t_env *env, char *old_pwd)
 		{
 			free(tmp->value);
 			tmp->value = ft_strdup(old_pwd);
+			if (!tmp->value)
+				return (EXIT_FAILURE);
 		}
 		tmp = tmp->next;
 	}
+	return (EXIT_SUCCESS);
 }

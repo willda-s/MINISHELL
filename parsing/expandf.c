@@ -6,7 +6,7 @@
 /*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/29 21:17:31 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/29 21:42:43 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,11 @@ char	*ft_expand_word(t_data *data, char *word)
 	return (dup);
 }
 
-bool is_only_dollars(char *word)
+bool	is_only_dollars(char *word)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (word && word[i])
 	{
 		if (word[i] != '$')
