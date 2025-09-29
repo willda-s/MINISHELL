@@ -6,14 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:55:51 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/27 05:38:22 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/29 21:47:09 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parsing.h"
 
-t_redir		*ft_lstlast_redir(t_redir *redir);
 static int	lstsize_redir(t_redir *redir);
 
 int	add_back_redir(t_redir **redir)

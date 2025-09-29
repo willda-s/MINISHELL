@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_unset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:16 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/24 01:51:20 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/29 02:18:11 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,39 @@ static void	unset_free(t_env *current)
 	free(current);
 }
 
-int	builtin_unset(char *var, t_data *data)
+int	builtin_unset(t_exec *exec, t_data *data)
 {
 	t_env	*current;
 	t_env	*prev;
+	size_t	i;
+	bool	key_found;
 
-	current = data->env;
 	prev = NULL;
-	if (!var)
+	if (!exec->cmd[1])
 		return (0);
-	while (current != NULL)
+	i = 1;
+	while (exec->cmd[i])
 	{
-		if (ft_strcmp(current->key, var) == 0)
+		current = data->env;
+		key_found = false;
+		while (current != NULL && !key_found)
 		{
-			if (prev == NULL)
-				data->env = current->next;
-			else
-				prev->next = current->next;
-			unset_free(current);
-			return (EXIT_SUCCESS);
+			if (ft_strcmp(current->key, exec->cmd[i]) == 0)
+			{
+				if (prev == NULL)
+					data->env = current->next;
+				else
+					prev->next = current->next;
+				unset_free(current);
+				key_found = true;
+			}
+			if (!key_found)
+			{
+				prev = current;
+				current = current->next;
+			}
 		}
-		prev = current;
-		current = current->next;
+		i++;
 	}
 	return (EXIT_SUCCESS);
 }

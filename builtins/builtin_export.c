@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/26 04:42:43 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/28 23:02:11 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,23 @@ static t_env	*extract_key_value(t_exec *exec, size_t index)
 	return (env);
 }
 
+static void	export_free(t_env *new_var, t_env *tmp)
+{
+	if (new_var->value)
+	{
+		free(tmp->value);
+		tmp->value = new_var->value;
+	}
+	free(new_var->key);
+	free(new_var);
+}
+
 int	builtin_export(t_exec *exec, t_data *data)
 {
 	t_env	*new_var;
 	t_env	*tmp;
 	size_t	i;
 
-	tmp = data->env;
 	if (!exec->cmd[1])
 	{
 		builtin_env(data, true);
@@ -108,13 +118,7 @@ int	builtin_export(t_exec *exec, t_data *data)
 			{
 				if (ft_strcmp(tmp->key, new_var->key) == 0)
 				{
-					if (new_var->value)
-					{
-						free(tmp->value);
-						tmp->value = new_var->value;
-					}
-					free(new_var->key);
-					free(new_var);
+					export_free(new_var, tmp);
 					break ;
 				}
 				tmp = tmp->next;

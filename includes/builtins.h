@@ -6,23 +6,23 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 18:00:01 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/27 19:27:30 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/30 00:14:01 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int	builtin_unset(char *var, t_data *data);
+int		builtin_unset(t_exec *exec, t_data *data);
 
-int	builtin_pwd(void);
+int		builtin_pwd(void);
 
-int	builtin_export(t_exec *exec, t_data *data);
+int		builtin_export(t_exec *exec, t_data *data);
 
-int	builtin_exit(t_exec *exec, t_data *data);
+int		builtin_exit(t_exec *exec, t_data *data);
 
-int	builtin_env(t_data *data, bool export);
+int		builtin_env(t_data *data, bool export);
 
-int	builtin_echo(t_exec *exec);
+int		builtin_echo(t_exec *exec);
 
 int	builtin_cd(t_exec *exec, t_data *data);
 

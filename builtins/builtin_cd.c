@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:50:00 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/27 19:28:27 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/30 00:13:19 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
-// static char	*get_env_value(t_env *env, char *key)
-// {
-// 	t_env	*tmp;
-
-// 	tmp = env;
-// 	while (tmp)
-// 	{
-// 		if (ft_strcmp(tmp->key, key) == 0)
-// 			return (tmp->value);
-// 		tmp = tmp->next;
-// 	}
-// 	return (NULL);
-// }
+#include "builtins.h"
 
 static bool wrapper_chdir(char *path, char *old_pwd)
 {
@@ -43,23 +30,32 @@ static bool wrapper_chdir(char *path, char *old_pwd)
 	}
 	return (true);
 }
+static char	*handle_null_path(t_data *data, char *path, char *old_pwd)
+{
+	path = get_env_value(data->env, "HOME");
+	if (path == (void *)1)
+	{
+		write(2, "cd: HOME not set\n", 17);
+		free(old_pwd);
+		return (NULL);
+	}
+	return (path);
+}
+
 int	builtin_cd(t_exec *exec, t_data *data)
 {
 	char	*path;
 	char	*old_pwd;
 
+	path = NULL;
 	if (ensure_pwd_var(&data->env) < 0)
 		return (EXIT_FAILURE);
 	old_pwd = getcwd(NULL, 0);
 	if (!exec->cmd[1])
 	{
-		path = get_env_value(data->env, "HOME");
-		if (path == (void *)1)
-		{
-			write(2, "cd: HOME not set\n", 17);
-			free(old_pwd);
+		path = handle_null_path(data, path, old_pwd);
+		if (!path)
 			return (EXIT_FAILURE);
-		}
 	}
 	else
 		path = exec->cmd[1];

@@ -6,11 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/09/27 18:03:41 by willda-s         ###   ########.fr       */
-=======
-/*   Updated: 2025/09/27 23:47:52 by akarapkh         ###   ########.fr       */
->>>>>>> akra_merge_three
+/*   Updated: 2025/09/30 00:13:33 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +15,9 @@
 #include "signals.h"
 #include <errno.h>
 #include <stdio.h>
-#include <stdlib.h>
 
 static int	exec_loop(t_data *data, t_exec *prev);
-static void	init_pipe(t_exec *node);
+static void	init_pipe(t_exec *node, t_data *data);
 static void	exec_cmd(t_exec *node, t_data *data);
 
 void	execc(t_data *data)
@@ -44,17 +39,28 @@ static int	exec_loop(t_data *data, t_exec *prev)
 	while (tmp)
 	{
 		if (tmp->next)
-			init_pipe(tmp);
+			init_pipe(tmp, data);
 		else if (!prev && is_builtins_exec(tmp))
 		{
 			handle_builtins_in_parent(tmp, data);
 			return (-1);
 		}
 		data->pid = fork();
+		if (data->pid == -1)
+		{
+			close_allfd_struct(data);
+			return (-1);
+		}
 		if (data->pid == 0)
 		{
 			close_fd(tmp->next);
-			dup_fd(tmp, data);
+			data->errcode = dup_fd(tmp, data);
+			if (data->errcode == -1)
+			{
+				if (tmp->fd_in != -1)
+					close(tmp->fd_in);
+				free_all(data, true, errno);
+			}
 			exec_cmd(tmp, data);
 		}
 		else if (data->pid < 0)
@@ -62,21 +68,21 @@ static int	exec_loop(t_data *data, t_exec *prev)
 			setup_main_signals();
 			free_all(data, true, errno);
 		}
+		close_fd(tmp);
 		prev = tmp;
 		tmp = tmp->next;
 	}
-	close_allfd_struct(data);
 	return (data->pid);
 }
 
-static void	init_pipe(t_exec *node)
+static void	init_pipe(t_exec *node, t_data *data)
 {
 	int		fd[2];
 	t_exec	*next;
 
 	next = node->next;
 	if (pipe(fd) == -1)
-		exit(errno);
+		free_all(data, true, errno);
 	node->fd_out = fd[1];
 	next->fd_in = fd[0];
 }
@@ -113,6 +119,7 @@ static void	exec_cmd(t_exec *node, t_data *data)
 			}
 		}
 	}
+	close_fd(node);
 	close_allfd_struct(data);
 	free_all(data, true, data->errcode);
 }

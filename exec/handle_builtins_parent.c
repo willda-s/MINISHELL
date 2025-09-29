@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 18:28:33 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/27 23:45:12 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/29 20:09:50 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,13 @@ static void	wrapper_dup2(int oldfd, int newfd, t_data *data, int fd_other);
 
 void	handle_builtins_in_parent(t_exec *node, t_data *data)
 {
+	int	dup_secure;
+
+	dup_secure = 0;
 	wrapper_dup(STDIN_FILENO, &data->fd_backup_in, data->fd_backup_out, data);
 	wrapper_dup(STDOUT_FILENO, &data->fd_backup_out, data->fd_backup_in, data);
 	data->errcode = dup_fd(node, data);
+	dup_secure = data->errcode;
 	if (data->errcode >= 0)
 		exec_builtins(node, data, data->fd_backup_in, data->fd_backup_out);
 	wrapper_dup2(data->fd_backup_in, STDIN_FILENO, data, data->fd_backup_out);
@@ -31,6 +35,8 @@ void	handle_builtins_in_parent(t_exec *node, t_data *data)
 	close(data->fd_backup_in);
 	close(data->fd_backup_out);
 	close_fd(node);
+	if (dup_secure == -1)
+		free_all_msg(data, data->errcode, "dup2 Failed in dup_fd");
 	data->errcode = g_signal_status;
 }
 

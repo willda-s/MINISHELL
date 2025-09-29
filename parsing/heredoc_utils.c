@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 23:56:37 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/27 05:28:59 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/29 21:39:45 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	open_heredoc_out(t_redir *redir, t_data *data, int i)
 	char	*file;
 
 	file = file_create(i);
+	if (!file)
+		free_all(data, true, 1);
 	fd[1] = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0600);
 	if (fd[1] == -1)
 	{
@@ -39,18 +41,23 @@ void	open_heredoc_out(t_redir *redir, t_data *data, int i)
 	redir->filename = ft_strdup(file);
 	close(fd[1]);
 	free(file);
+	if (!redir->filename)
+		free_all(data, true, 1);
 }
 
 static char	*file_create(int i)
 {
-	char	*tmpfile;
-	char	*index;
-	char	*buffer;
+	static const char	*tmpfile = "/tmp/heredoc";
+	char				*index;
+	char				*buffer;
 
-	tmpfile = "/tmp/heredoc";
 	index = ft_itoa(i);
+	if (!index)
+		return (NULL);
 	buffer = ft_strjoin(tmpfile, index);
 	free(index);
+	if (!buffer)
+		return (NULL);
 	return (buffer);
 }
 
