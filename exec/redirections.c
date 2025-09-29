@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 19:04:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 01:01:27 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/30 01:37:29 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ int	open_all_file(t_exec *node, t_data *data)
 		else if (tmp && tmp->token == REDIR_APPEND)
 			data->errcode = open_redir_append(node, data, filename);
 		else if (tmp && tmp->token == HEREDOC)
+		{
 			data->errcode = open_heredoc_in(node, data, filename);
-		unlink(filename);
+			unlink(filename);
+		}
 		free(filename);
 		if (data->errcode < 0)
 			return (-1);
