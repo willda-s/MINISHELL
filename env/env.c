@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:53:49 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/28 02:02:58 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/30 01:08:06 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	init_envp(t_data *data)
 	i = count_env(data);
 	data->envp = ft_calloc((i + 1), sizeof(char *));
 	if (!data->envp)
-		free_all_msg(data, 12, "Error\nMalloc fail in init_envp\n");
+		free_all_msg(data, 1, "Error\nMalloc fail in init_envp\n");
 	i = 0;
 	tmp = data->env;
 	while (tmp)
 	{
 		str = ft_strjoin(tmp->key, "=");
 		if (!str)
-			free_all_msg(data, 12, "Error\nMalloc fail in init_envp\n");
+			free_all_msg(data, 1, "Error\nMalloc fail in init_envp\n");
 		if (tmp->value)
 		{
 			data->envp[i] = ft_strjoin(str, tmp->value);
@@ -42,7 +42,7 @@ void	init_envp(t_data *data)
 		else
 			data->envp[i] = str;
 		if (!data->envp || !data->envp[i])
-			free_all_msg(data, 12, "Error\nMalloc fail in init_envp\n");
+			free_all_msg(data, 1, "Error\nMalloc fail in init_envp\n");
 		i++;
 		tmp = tmp->next;
 	}

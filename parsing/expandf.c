@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 00:14:26 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/30 01:08:32 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ int	expand_exec_list(t_data *data)
 			{
 				new_word = ft_strdup(exec->cmd[i]);
 				if (!new_word)
-					free_all_msg(data, 12, "Malloc fail in expand_exec_list");
+					free_all_msg(data, 1, "Malloc fail in expand_exec_list");
 			}
 			else
 				new_word = ft_expand_word(data, exec->cmd[i]);

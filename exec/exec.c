@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 00:13:33 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/30 01:05:59 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <stdio.h>
 
 static int	exec_loop(t_data *data, t_exec *prev);
-static void	init_pipe(t_exec *node, t_data *data);
 static void	exec_cmd(t_exec *node, t_data *data);
 
 void	execc(t_data *data)
@@ -28,6 +27,34 @@ void	execc(t_data *data)
 	data->pid = exec_loop(data, prev);
 	g_signal_status = wait_process(data);
 	data->errcode = g_signal_status;
+}
+
+static int	exec_loop_bis(t_data *data, t_exec *tmp)
+{
+	data->pid = fork();
+	if (data->pid == -1)
+	{
+		close_allfd_struct(data);
+		return (-1);
+	}
+	if (data->pid == 0)
+	{
+		close_fd(tmp->next);
+		data->errcode = dup_fd(tmp, data);
+		if (data->errcode == -1)
+		{
+			if (tmp->fd_in != -1)
+				close(tmp->fd_in);
+			free_all(data, true, errno);
+		}
+		exec_cmd(tmp, data);
+	}
+	else if (data->pid < 0)
+	{
+		setup_main_signals();
+		free_all(data, true, errno);
+	}
+	return (0);
 }
 
 static int	exec_loop(t_data *data, t_exec *prev)
@@ -45,29 +72,8 @@ static int	exec_loop(t_data *data, t_exec *prev)
 			handle_builtins_in_parent(tmp, data);
 			return (-1);
 		}
-		data->pid = fork();
-		if (data->pid == -1)
-		{
-			close_allfd_struct(data);
+		if (exec_loop_bis(data, tmp) == -1)
 			return (-1);
-		}
-		if (data->pid == 0)
-		{
-			close_fd(tmp->next);
-			data->errcode = dup_fd(tmp, data);
-			if (data->errcode == -1)
-			{
-				if (tmp->fd_in != -1)
-					close(tmp->fd_in);
-				free_all(data, true, errno);
-			}
-			exec_cmd(tmp, data);
-		}
-		else if (data->pid < 0)
-		{
-			setup_main_signals();
-			free_all(data, true, errno);
-		}
 		close_fd(tmp);
 		prev = tmp;
 		tmp = tmp->next;
@@ -75,16 +81,19 @@ static int	exec_loop(t_data *data, t_exec *prev)
 	return (data->pid);
 }
 
-static void	init_pipe(t_exec *node, t_data *data)
+static void	exec_cmd_bis(t_exec *node, t_data *data)
 {
-	int		fd[2];
-	t_exec	*next;
-
-	next = node->next;
-	if (pipe(fd) == -1)
-		free_all(data, true, errno);
-	node->fd_out = fd[1];
-	next->fd_in = fd[0];
+	if (node->cmd[0] && node->cmd[0][0] != '\0')
+	{
+		ft_dprintf(2, "minishell: %s: command not found\n",
+			node->cmd[0]);
+		data->errcode = 127;
+	}
+	else
+	{
+		ft_dprintf(2, "minishell: : command not found\n");
+		data->errcode = 127;
+	}
 }
 
 static void	exec_cmd(t_exec *node, t_data *data)
@@ -104,19 +113,7 @@ static void	exec_cmd(t_exec *node, t_data *data)
 				data->errcode = 126;
 			}
 			else
-			{
-				if (node->cmd[0] && node->cmd[0][0] != '\0')
-				{
-					ft_dprintf(2, "minishell: %s: command not found\n",
-							node->cmd[0]);
-					data->errcode = 127;
-				}
-				else
-				{
-					ft_dprintf(2, "minishell: : command not found\n");
-					data->errcode = 127;
-				}
-			}
+				exec_cmd_bis(node, data);
 		}
 	}
 	close_fd(node);

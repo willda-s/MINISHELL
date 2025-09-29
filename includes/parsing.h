@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 00:14:08 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/30 01:09:25 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,8 +164,6 @@ void				init_lst_redir(t_exec **exec, t_pars *pars, t_data *data);
 
 ////////////////SCRATCH_NODE.C////////////////////////////
 
-void				remove_empty_line(t_data *data);
-
 void				init_envp(t_data *data);
 
 ////////////////VALIDATE_SYNTAX.C////////////////////////////
@@ -205,6 +203,8 @@ int					dup_fd(t_exec *node, t_data *data);
 
 void				ft_close(int *fd);
 
+void				init_pipe(t_exec *node, t_data *data);
+
 void				dup_lastcmd(t_exec *node, t_data *data);
 
 pid_t				execfirstcmd(t_data *data, int *fd);
@@ -216,6 +216,12 @@ void				close_last_fd(t_exec *node);
 void				close_first_fd(t_exec *node);
 
 void				close_fd(t_exec *node);
+
+//////////////////PATH.C && PATH_UTILS.C////////////////////////////
+
+int					is_slash(t_exec *exec);
+
+int					find_path_line(t_data *data);
 
 char				*path_in_arg(t_exec *exec);
 

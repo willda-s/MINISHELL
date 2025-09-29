@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 21:13:24 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/29 21:17:17 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/30 00:19:37 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	close_fd(t_exec *node)
 
 int	dup_fd(t_exec *node, t_data *data)
 {
-	int i;
+	int	i;
 
 	i = open_all_file(node, data);
 	if (i == -1)

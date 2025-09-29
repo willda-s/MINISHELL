@@ -38,12 +38,14 @@ PARSING_FILES = init_data_and_pars.c\
 
 EXEC_DIR = exec/
 
-EXEC_FILES = path.c\
-			exec.c\
-			ft_fd.c\
-			redirections.c\
-			handle_builtins_parent.c\
-			exec_utils.c
+EXEC_FILES = 	path.c\
+				path_utils.c\
+				exec.c\
+				ft_fd.c\
+				redirections.c\
+				handle_builtins_parent.c\
+				exec_utils.c\
+				wait_process.c
 
 BUILTINS_DIR = builtins/
 
@@ -54,8 +56,7 @@ BUILTINS_FILES = 	builtin_pwd.c\
 					builtin_export.c\
 					builtin_unset.c\
 					builtin_echo.c\
-					builtin_env.c\
-					cd_utils.c
+					builtin_env.c
 UTILS = main.c\
 		main_utils.c
 
