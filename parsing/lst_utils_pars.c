@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_utils_pars.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:55:03 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/12 23:57:57 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/29 21:45:25 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,34 +75,4 @@ int	add_back_pars(t_pars **pars)
 		tmp->next = node;
 	}
 	return (0);
-}
-
-void	print_lst_pars(t_pars *pars)
-{
-	while (pars)
-	{
-		if (pars->type == PIPE)
-			printf("\033[33mWORD == %s \033[;32m|||||||||| \033[35mTYPE == PIPE\033[0m\n", pars->word);
-		else if (pars->type == HEREDOC)
-			printf("\033[33mWORD == %s \033[;32m|||||||||| \033[35mTYPE == HEREDOC\033[0m\n", pars->word);
-		else if (pars->type == REDIR_APPEND)
-			printf("\033[33mWORD == %s \033[;32m|||||||||| \033[35mTYPE == REDIR_APPEND\033[0m\n", pars->word);
-		else if (pars->type == REDIR_TRUNC)
-			printf("\033[33mWORD == %s \033[;32m|||||||||| \033[35mTYPE == REDIR_TRUNC\033[0m\n", pars->word);
-		else if (pars->type == REDIR_IN)
-			printf("\033[33mWORD == %s \033[;32m|||||||||| \033[35mTYPE == REDIR_IN\033[0m\n", pars->word);
-		else if (pars->type == COMMANDS)
-			printf("\033[33mWORD == %s \033[;32m|||||||||| \033[35mTYPE == COMMANDS\033[0m\n", pars->word);
-		else if (pars->type == ARGS)
-			printf("\033[33mWORD == %s \033[;32m|||||||||| \033[35mTYPE == ARGS\033[0m\n", pars->word);
-		else if (pars->type == BUILTINS)
-			printf("\033[33mWORD == %s \033[;32m|||||||||| \033[35mTYPE == BUILTINS\033[0m\n", pars->word);
-		else if (pars->type == WORD)
-			printf("\033[33mWORD == %s \033[;32m|||||||||| \033[35mTYPE == WORD\033[0m\n", pars->word);
-		else if (pars->type == NUL)
-			printf("\033[33mWORD == %s \033[;32m|||||||||| \033[35mTYPE == NUL\033[0m\n", pars->word);
-		else if (pars->type == TARGETS)
-			printf("\033[33mWORD == %s \033[;32m|||||||||| \033[35mTYPE == TARGET\033[0m\n", pars->word);
-		pars = pars->next;
-	}
 }
