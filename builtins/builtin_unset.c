@@ -6,7 +6,7 @@
 /*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:16 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/28 23:02:04 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/29 01:43:46 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	builtin_unset(t_exec *exec, t_data *data)
 	t_env	*current;
 	t_env	*prev;
 	size_t	i;
+	bool	key_found;
 
 	prev = NULL;
 	if (!exec->cmd[1])
@@ -34,7 +35,8 @@ int	builtin_unset(t_exec *exec, t_data *data)
 	while (exec->cmd[i])
 	{
 		current = data->env;
-		while (current != NULL)
+		key_found = false;
+		while (current != NULL && !key_found)
 		{
 			if (ft_strcmp(current->key, exec->cmd[i]) == 0)
 			{
@@ -43,9 +45,13 @@ int	builtin_unset(t_exec *exec, t_data *data)
 				else
 					prev->next = current->next;
 				unset_free(current);
+				key_found = true;
 			}
-			prev = current;
-			current = current->next;
+			if (!key_found)
+			{
+				prev = current;
+				current = current->next;
+			}
 		}
 		i++;
 	}
