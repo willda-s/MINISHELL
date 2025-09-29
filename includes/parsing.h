@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/29 23:06:43 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/30 00:33:28 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,10 @@ char				*ft_expand_word(t_data *data, char *word);
 
 int					max_len_in_env(t_env *env);
 
+int					is_expand_err(char *word, t_data *data);
+
+int					handle_errcode(char *res, int j);
+
 ////////////////INIT_FILENAME.C//////////////////////////
 
 void				init_lst_redir(t_exec **exec, t_pars *pars, t_data *data);
@@ -231,7 +235,7 @@ void				handle_builtins_in_parent(t_exec *node, t_data *data);
 
 ////////////////heredoc.c////////////////////////////
 
-void				open_heredoc_out(t_redir *redir, t_data *data, int i);
+void				open_heredoc_out(t_redir *redir, t_data *data);
 
 void				handle_heredoc(t_data *data);
 

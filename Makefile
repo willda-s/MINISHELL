@@ -27,6 +27,7 @@ PARSING_FILES = init_data_and_pars.c\
 				expandf.c\
 				expand_utils.c\
 				expand_var.c\
+				expand_var_utils.c\
 				type.c\
 				type_utils.c\
 				functions_free.c\
