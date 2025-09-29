@@ -45,18 +45,21 @@ FIXED
 
 11 - redir in (<) depuis file qui n'existe pas => invalid reads | memory leaks + segfault
 
-
+FIXED
 ------------------------------------------
 
 12 - si ft_strdup dans ft_expand_word() dans expandf.c pete ==> memory leaks
 
+FIXED
 ------------------------------------------
 
 13 - manque de coherence si ft_strdup pete dans check_redirout/redirin dans init_filename ==> quitte le programme alors que dans la plupart des autres cas pas de quittation
 
+
 ------------------------------------------
 
 14 - HD => fichier supprime lorsque l'on est dedans -> blocke comme erreur 4
+
 
 ------------------------------------------
 

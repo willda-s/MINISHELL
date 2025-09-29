@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 21:13:24 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/29 20:23:03 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/29 21:17:17 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,11 @@ void	close_fd(t_exec *node)
 
 int	dup_fd(t_exec *node, t_data *data)
 {
-	open_all_file(node, data);
+	int i;
+
+	i = open_all_file(node, data);
+	if (i == -1)
+		return (-1);
 	if (node->fd_out != -1)
 	{
 		if (dup2(node->fd_out, STDOUT_FILENO) == -1)

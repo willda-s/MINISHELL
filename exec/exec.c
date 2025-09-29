@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/29 20:07:26 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/29 21:19:08 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ static int	exec_loop(t_data *data, t_exec *prev)
 			data->errcode = dup_fd(tmp, data);
 			if (data->errcode == -1)
 			{
-				close(tmp->fd_in);
+				if (tmp->fd_in != -1)
+					close(tmp->fd_in);
 				free_all(data, true, errno);
 			}
 			exec_cmd(tmp, data);

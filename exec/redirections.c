@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 19:04:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/29 20:22:50 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/29 21:13:02 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	open_redir_in(t_exec *node, t_data *data, const char *filename)
 	if (node->fd_in == -1)
 	{
 		close_allfd_struct(data);
-		ft_dprintf(STDERR_FILENO, "%s: No such file or directory\n", *filename);
+		ft_dprintf(STDERR_FILENO, "%s: No such file or directory\n", filename);
 		return (-1);
 	}
 	return (0);
