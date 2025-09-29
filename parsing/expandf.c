@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expandf.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/28 23:48:21 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/29 21:17:31 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,9 @@ char	*ft_expand_word(t_data *data, char *word)
 	}
 	res[j] = '\0';
 	dup = ft_strdup(res);
+	free(res);
 	if (!dup)
 		return (NULL);
-	free(res);
 	return (dup);
 }
 
