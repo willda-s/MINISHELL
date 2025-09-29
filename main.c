@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 23:43:26 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/28 03:03:35 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/29 22:34:21 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,9 +186,6 @@ static int	handle_exec(t_data *data)
 // 			if (expand_exec_list(&data) != 0)
 // 				continue ;
 // 			init_envp(&data);
-// 			// remove_empty_line(&data);
-// 			// print_lst_exec(data.exec);
-// 			// print_lst_pars(data.pars);
 // 			handle_heredoc(&data);
 // 			execc(&data);
 // 			free_tmpall(&data);
