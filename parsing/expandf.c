@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 01:08:32 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/30 01:23:49 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,32 +74,71 @@ int	max_len_in_env(t_env *env)
 	return (len);
 }
 
-char	*ft_expand_word(t_data *data, char *word)
-{
-	ssize_t	max_len;
-	char	*res;
-	char	*dup;
-	ssize_t	j;
+// char	*ft_expand_word(t_data *data, char *word)
+// {
+// 	ssize_t	max_len;
+// 	char	*res;
+// 	char	*dup;
+// 	ssize_t	j;
 
-	max_len = ft_strlen(word) + max_len_in_env(data->env);
-	res = malloc(max_len + 1);
-	if (!res)
-		return (NULL);
+// 	max_len = ft_strlen(word) + max_len_in_env(data->env);
+// 	res = malloc(max_len + 1);
+// 	if (!res)
+// 		return (NULL);
+// 	j = 0;
+// 	data->i = 0;
+// 	while (word[data->i])
+// 	{
+// 		if (word[data->i] == '\'')
+// 			j = ft_handle_squotes(res, j, word, data);
+// 		else if (word[data->i] == '"')
+// 			j = ft_handle_dquotes(res, j, word, data);
+// 		else if (word[data->i] == '$')
+// 			j = ft_expand_var(res, j, word, data);
+// 		if (j < 0 || j >= max_len)
+// 		{
+// 			free(res);
+// 			return (NULL);
+// 		}
+// 		if (!word[data->i])
+// 			break ;
+// 		if (word[data->i] != '\'' && word[data->i] != '"'
+// 			&& word[data->i] != '$')
+// 			res[j++] = word[data->i++];
+// 	}
+// 	res[j] = '\0';
+// 	dup = ft_strdup(res);
+// 	if (!dup)
+// 		return (NULL);
+// 	free(res);
+// 	return (dup);
+// }
+
+static int	handle_quote_or_dollar(char *word, char *res, ssize_t j,
+		t_data *data)
+{
+	if (word[data->i] == '\'')
+		j = ft_handle_squotes(res, j, word, data);
+	else if (word[data->i] == '"')
+		j = ft_handle_dquotes(res, j, word, data);
+	else if (word[data->i] == '$')
+		j = ft_expand_var(res, j, word, data);
+	return (j);
+}
+
+static int	process_expansion(char *word, char *res, t_data *data)
+{
+	ssize_t	j;
+	ssize_t	max_len;
+
 	j = 0;
 	data->i = 0;
+	max_len = ft_strlen(word) + max_len_in_env(data->env);
 	while (word[data->i])
 	{
-		if (word[data->i] == '\'')
-			j = ft_handle_squotes(res, j, word, data);
-		else if (word[data->i] == '"')
-			j = ft_handle_dquotes(res, j, word, data);
-		else if (word[data->i] == '$')
-			j = ft_expand_var(res, j, word, data);
-		if (j >= max_len)
-		{
-			free(res);
-			return (NULL);
-		}
+		j = handle_quote_or_dollar(word, res, j, data);
+		if (j < 0 || j >= max_len)
+			return (-1);
 		if (!word[data->i])
 			break ;
 		if (word[data->i] != '\'' && word[data->i] != '"'
@@ -107,6 +146,24 @@ char	*ft_expand_word(t_data *data, char *word)
 			res[j++] = word[data->i++];
 	}
 	res[j] = '\0';
+	return (j);
+}
+
+char	*ft_expand_word(t_data *data, char *word)
+{
+	ssize_t	max_len;
+	char	*res;
+	char	*dup;
+
+	max_len = ft_strlen(word) + max_len_in_env(data->env);
+	res = malloc(max_len + 1);
+	if (!res)
+		return (NULL);
+	if (process_expansion(word, res, data) < 0)
+	{
+		free(res);
+		return (NULL);
+	}
 	dup = ft_strdup(res);
 	if (!dup)
 		return (NULL);
@@ -114,30 +171,11 @@ char	*ft_expand_word(t_data *data, char *word)
 	return (dup);
 }
 
-static int	set_exec_cmd(t_data *data, t_exec *exec, char *new_word, int i)
+bool	is_only_dollars(char *word)
 {
-	if (new_word)
-	{
-		free(exec->cmd[i]);
-		exec->cmd[i] = new_word;
-		return (0);
-	}
-	else
-	{
-		free(exec->cmd[i]);
-		exec->cmd[i] = ft_strdup("");
-		if (!exec->cmd[i])
-		{
-			free_tmpall(data);
-			return (127);
-		}
-		return (0);
-	}
-}
+	int	i;
 
-bool is_only_dollars(char *word)
-{
-	int i = 0;
+	i = 0;
 	while (word && word[i])
 	{
 		if (word[i] != '$')

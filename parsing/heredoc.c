@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 22:57:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/15 19:59:04 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/30 00:38:50 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@ void	handle_heredoc(t_data *data)
 {
 	t_exec	*tmp;
 	t_redir	*redir;
-	int		i;
-
+	
 	tmp = data->exec;
 	redir = NULL;
-	i = 0;
 	while (tmp)
 	{
 		redir = tmp->redir;
@@ -29,8 +27,7 @@ void	handle_heredoc(t_data *data)
 		{
 			if (redir->delimiter)
 			{
-				open_heredoc_out(redir, data, i);
-				i++;
+				open_heredoc_out(redir, data);
 			}
 			redir = redir->next;
 		}
