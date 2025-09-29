@@ -32,7 +32,7 @@ FIXED
 et aussi
 8 - Nieme pipe() qui pete => fd leaks
 
-
+FIXED
 ------------------------------------------
 
 dup_fd() dans ft_fd.c
@@ -40,9 +40,11 @@ dup_fd() dans ft_fd.c
 9 - dup2 STDOUT qui pete => fd leak
 10 - dup2 STDIN qui pete => bloque dans le cat + fd leaks
 
+FIXED
 ------------------------------------------
 
 11 - redir in (<) depuis file qui n'existe pas => invalid reads | memory leaks + segfault
+
 
 ------------------------------------------
 
