@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 23:43:26 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/29 22:31:34 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/29 23:08:32 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,19 +136,3 @@ static int	handle_exec(t_data *data)
 	execc(data);
 	return (0);
 }
-
-
-/*A SUPPRIMER DU .H ET DU .C :
-			- print_lst_env(t_env *envd);
-			- print_envp(char **envp);
-			- Function_print.c
-			- print_lst_exec(data.exec);
-			- print_lst_pars(data.pars);
-			- remove_empty_line.c
-
-			REGLER INPUT_CHECK LORSQUE ECHO QVEC " "
-			- EXIT CODE
-
-			EXPORT/UNSET ONLY 1ST VALUE
-			export t ------> t=      (not good)
-*/

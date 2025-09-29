@@ -21,7 +21,6 @@ PARSING_FILES = init_data_and_pars.c\
 				lst_utils_exec.c\
 				lst_utils_pars.c\
 				lst_utils_redir.c\
-				functions_print.c\
 				split_quotes.c\
 				heredoc.c\
 				heredoc_utils.c\
@@ -30,7 +29,6 @@ PARSING_FILES = init_data_and_pars.c\
 				expand_var.c\
 				type.c\
 				type_utils.c\
-				remove_line.c\
 				functions_free.c\
 				validate_syntax.c\
 				syntax_error.c\

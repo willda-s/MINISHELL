@@ -60,7 +60,7 @@ FIXED
 
 14 - HD => fichier supprime lorsque l'on est dedans -> blocke comme erreur 4
 
-
+FIXED ?
 ------------------------------------------
 
 15 - file_create() - echec du strjoin ou du itoa, vous essayez d'open qd meme avant de quitter le programme completement
@@ -70,7 +70,7 @@ FIXED
 
 16 - HD => pour une protec maximale et eviter tout probleme, besoin d'open hd_in et hd_out au meme moment, puis directement unlink le fichier. Ainsi il ne sera ni corruptible ni supprimable (ce qui pourrait generer des erreurs voire des leaks/crash/invalid syscall open...)
 
-
+?
 ------------------------------------------
 
 17 - HD => heredoc_utils.c
