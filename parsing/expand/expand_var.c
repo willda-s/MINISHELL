@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 18:14:13 by akarapkh          #+#    #+#             */
-/*   Updated: 2025/09/29 23:40:09 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/30 22:05:09 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-#include <stddef.h>
+
 #include <stdlib.h>
 
 static void		get_var_name(char *word, t_data *data, char *var);

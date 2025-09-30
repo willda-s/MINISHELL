@@ -6,14 +6,14 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 03:00:24 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 03:03:09 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/30 22:27:13 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parsing.h"
-#include <sys/wait.h>
 #include "signals.h"
+#include <sys/wait.h>
 
 int	wait_process(t_data *data)
 {

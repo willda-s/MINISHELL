@@ -6,16 +6,16 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 22:47:42 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 03:49:45 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/10/01 00:15:37 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "libft.h"
 #include "signals.h"
+#include <errno.h>
 #include <stdbool.h>
 #include <sys/wait.h>
-#include <errno.h>
 
 static void	wich_builtins(t_exec *node, t_data *data, int *val)
 {
@@ -31,6 +31,16 @@ static void	wich_builtins(t_exec *node, t_data *data, int *val)
 		*val = builtin_unset(node, data);
 }
 
+static void	close_and_free(t_data *data, int fd_backup_in, int fd_backup_out)
+{
+	if (data->pid == -1)
+	{
+		close(fd_backup_in);
+		close(fd_backup_out);
+	}
+	free_all(data, true, 1);
+}
+
 bool	exec_builtins(t_exec *node, t_data *data, int fd_backup_in,
 		int fd_backup_out)
 {
@@ -38,7 +48,7 @@ bool	exec_builtins(t_exec *node, t_data *data, int fd_backup_in,
 
 	if (!node->cmd || !(*node->cmd))
 		return (-1);
-	val = 1;
+	val = -1;
 	if (!node->cmd || !(*node->cmd))
 		return (-1);
 	if (node->cmd && ft_strcmp(node->cmd[0], "echo") == 0)
@@ -54,6 +64,8 @@ bool	exec_builtins(t_exec *node, t_data *data, int fd_backup_in,
 	}
 	else
 		wich_builtins(node, data, &val);
+	if (val == 2)
+		close_and_free(data, fd_backup_in, fd_backup_out);
 	return (val);
 }
 
@@ -77,7 +89,10 @@ void	init_pipe(t_exec *node, t_data *data)
 
 	next = node->next;
 	if (pipe(fd) == -1)
+	{
+		close_allfd_struct(data);
 		free_all(data, true, errno);
+	}
 	node->fd_out = fd[1];
 	next->fd_in = fd[0];
 }

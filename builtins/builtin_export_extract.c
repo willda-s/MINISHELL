@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export_extract.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 01:39:38 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/30 01:49:05 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/10/01 00:07:07 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static char	*extract_key(char *cmd_arg)
 
 	i = 0;
 	key = malloc(ft_strlen(cmd_arg) + 1);
+	if (!key)
+		return (NULL);
 	while (cmd_arg[i] && cmd_arg[i] != '=')
 	{
 		key[i] = cmd_arg[i];
@@ -58,8 +60,21 @@ t_env	*extract_key_value(t_exec *exec, size_t index)
 	if (!env)
 		return (NULL);
 	env->key = extract_key(exec->cmd[index]);
+	if (!env->key)
+	{
+		free(env);
+		return (NULL);
+	}
 	if (ft_strchr(exec->cmd[index], '='))
+	{
 		env->value = extract_value(exec->cmd[index]);
+		if (!env->value)
+		{
+			free(env->key);
+			free(env);
+			return (NULL);
+		}
+	}
 	else
 		env->value = NULL;
 	env->next = NULL;

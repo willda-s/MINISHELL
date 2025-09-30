@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 20:11:38 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/30 22:49:29 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,8 +149,6 @@ char				*get_env_value(t_env *envd, char *key);
 
 int					is_var_char(char c);
 
-int					max_len_in_env(t_env *env);
-
 char				*ft_expand_word(t_data *data, char *word);
 
 int					is_expand_err(char *word, t_data *data);
@@ -187,7 +185,7 @@ int					update_quote_state(char c, int current_state);
 
 /////////////EXEC.C/////////////////////
 
-void				execc(t_data *data);
+void				exec(t_data *data);
 
 bool				exec_builtins(t_exec *node, t_data *data, int fd_backup_in,
 						int fd_backup_out);
@@ -195,19 +193,23 @@ bool				exec_builtins(t_exec *node, t_data *data, int fd_backup_in,
 
 int					wait_process(t_data *data);
 
-int				wait_one_process(int *flag, pid_t pid);
+int					wait_one_process(int *flag, pid_t pid);
 
-void	print_wait_error(int flag);
+void				print_wait_error(int flag);
 
 /////////////redirections_utils.c///////////////
 
-int	open_redir_in(t_exec *node, t_data *data, const char *filename);
+int					open_redir_in(t_exec *node, t_data *data,
+						const char *filename);
 
-int	open_redir_trunc(t_exec *node, t_data *data, const char *filename);
+int					open_redir_trunc(t_exec *node, t_data *data,
+						const char *filename);
 
-int	open_redir_append(t_exec *node, t_data *data, const char *filename);
+int					open_redir_append(t_exec *node, t_data *data,
+						const char *filename);
 
-int	open_heredoc_in(t_exec *node, t_data *data, const char *filename);
+int					open_heredoc_in(t_exec *node, t_data *data,
+						const char *filename);
 
 int					dup_fd(t_exec *node, t_data *data);
 
@@ -215,7 +217,7 @@ void				close_fd(t_exec *node);
 
 char				*path_in_arg(t_exec *exec);
 
-void	init_pipe(t_exec *node, t_data *data);
+void				init_pipe(t_exec *node, t_data *data);
 
 char				*find_path(t_exec *node, t_data *data);
 
@@ -232,5 +234,25 @@ void				handle_builtins_in_parent(t_exec *node, t_data *data);
 void				open_heredoc_out(t_redir *redir, t_data *data);
 
 void				handle_heredoc(t_data *data);
+
+int					handle_input(t_data *data);
+
+int					process_input(t_data *data);
+
+int					handle_parsing(t_data *data);
+
+int					handle_exec(t_data *data);
+
+int					ft_expand_var(char *res, int j, char *word, t_data *data);
+
+bool				is_only_dollars(char *word);
+
+int					expand_exec_list(t_data *data);
+
+int					ft_handle_squotes(char *res, int j, char *word,
+						t_data *data);
+
+int					ft_handle_dquotes(char *res, int j, char *word,
+						t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:56:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 03:48:04 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/10/01 00:09:57 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 static int	exec_loop(t_data *data, t_exec *prev);
 static void	exec_cmd(t_exec *node, t_data *data);
 
-void	execc(t_data *data)
+void	exec(t_data *data)
 {
 	t_exec	*prev;
 
@@ -48,11 +48,6 @@ static int	handle_fork(t_data *data, t_exec *tmp)
 			free_all(data, true, errno);
 		}
 		exec_cmd(tmp, data);
-	}
-	else if (data->pid < 0)
-	{
-		setup_main_signals();
-		free_all(data, true, errno);
 	}
 	return (0);
 }
@@ -85,8 +80,7 @@ static void	cmd_not_found(t_exec *node, t_data *data)
 {
 	if (node->cmd[0] && node->cmd[0][0] != '\0')
 	{
-		ft_dprintf(2, "minishell: %s: command not found\n",
-			node->cmd[0]);
+		ft_dprintf(2, "minishell: %s: command not found\n", node->cmd[0]);
 		data->errcode = 127;
 	}
 	else

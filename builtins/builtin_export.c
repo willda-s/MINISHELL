@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/30 01:49:55 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/10/01 00:05:15 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "libft.h"
 #include "parsing.h"
-#include <stddef.h>
+
 #include <stdio.h>
 
 static int	parsing_export(t_exec *exec, size_t index)
@@ -82,7 +82,9 @@ int	builtin_export(t_exec *exec, t_data *data)
 	{
 		if (parsing_export(exec, i))
 			return (EXIT_FAILURE);
-		new_var = extract_key_value(exec, i);
+		new_var = extract_key_value(exec, i, data);
+		if (!new_var)
+			return (2);
 		existing = find_env_var(data->env, new_var->key);
 		handle_export_var(existing, new_var, data);
 	}

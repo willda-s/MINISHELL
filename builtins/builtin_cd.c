@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:50:00 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/30 01:00:06 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/10/01 00:01:25 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	builtin_cd(t_exec *exec, t_data *data)
 
 	path = NULL;
 	if (ensure_pwd_var(&data->env) < 0)
-		return (EXIT_FAILURE);
+		return (2);
 	old_pwd = getcwd(NULL, 0);
 	if (!exec->cmd[1])
 	{

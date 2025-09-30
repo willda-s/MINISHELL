@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data_and_pars.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:46 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/29 23:04:04 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/30 22:46:38 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ void	init_data(t_data *data, t_env **envd, char **dst)
 	if (init_lst_pars(&pars, data->dst) == 1)
 	{
 		free_lst_pars(&pars);
-		free_tab(dst);
-		data->errcode = 1;
-		return ;
+		free_all_msg(data, 1, "malloc fail in init_lst_pars");
 	}
 	data->pars = pars;
 	data->exec = exec;

@@ -6,57 +6,14 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 20:11:50 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/30 22:51:44 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parsing.h"
-#include <stddef.h>
+
 #include <stdlib.h>
-
-static int	ft_handle_squotes(char *res, int j, char *word, t_data *data)
-{
-	size_t	word_len;
-
-	word_len = ft_strlen(word);
-	data->i++;
-	while (word[data->i] && word[data->i] != '\'')
-		res[j++] = word[data->i++];
-	if (word[data->i] == '\'' && data->i < word_len)
-		data->i++;
-	else
-	{
-		syntax_error(SIMPLE_QUOTE);
-		data->syntax_error_flag = 1;
-		return (-1);
-	}
-	return (j);
-}
-
-static int	ft_handle_dquotes(char *res, int j, char *word, t_data *data)
-{
-	size_t	word_len;
-
-	word_len = ft_strlen(word);
-	data->i++;
-	while (word[data->i] && word[data->i] != '"')
-	{
-		if (word[data->i] == '$')
-			j = ft_expand_var(res, j, word, data);
-		else
-			res[j++] = word[data->i++];
-	}
-	if (word[data->i] == '"' && data->i < word_len)
-		data->i++;
-	else
-	{
-		data->syntax_error_flag = 1;
-		syntax_error(DOUBLE_QUOTE);
-		return (-1);
-	}
-	return (j);
-}
 
 static int	max_len_in_env(t_env *env)
 {
@@ -125,9 +82,9 @@ char	*ft_expand_word(t_data *data, char *word)
 		return (NULL);
 	}
 	dup = ft_strdup(res);
+	free(res);
 	if (!dup)
 		return (NULL);
-	free(res);
 	return (dup);
 }
 

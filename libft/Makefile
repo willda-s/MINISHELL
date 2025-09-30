@@ -101,26 +101,26 @@ all: ${NAME}
 -include ${OBJS:.o=.d}
 
 ${NAME}: ${OBJDIR} ${OBJS}
-	@echo "${BLUE}Creating ${RED}${NAME} ${NC}"
-	@ar -rsc ${NAME} ${OBJS}
+# 	@echo "${BLUE}Creating ${RED}${NAME} ${NC}"
+	ar -rsc ${NAME} ${OBJS}
 
 ${OBJDIR}:
-	@echo "${MAGENTA}Creating ${OBJDIR} files ${NC}"
+# 	@echo "${MAGENTA}Creating ${OBJDIR} files ${NC}"
 	@mkdir -p ${OBJDIR}
 
 $(OBJDIR)/%.o: %.c
-	@echo "$(YELLOW)Compiling$(WHITE) $<...$(NC)"
+# 	@echo "$(YELLOW)Compiling$(WHITE) $<...$(NC)"
 	@mkdir -p $(dir $@)
-	@${CC} ${CFLAGS} -c $< -o $@
+	${CC} ${CFLAGS} -c $< -o $@
 
 .PHONY: clean
 clean:
-	@echo "$(RED)Cleaning object files...$(NC)"
+# 	@echo "$(RED)Cleaning object files...$(NC)"
 	@rm -rf ${OBJDIR}
 
 .PHONY: fclean
 fclean: clean
-	@echo "$(RED)Cleaning library $(NAME) $(NC)"
+# 	@echo "$(RED)Cleaning library $(NAME) $(NC)"
 	@rm -f ${NAME}
 
 .PHONY: re

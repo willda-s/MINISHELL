@@ -4,50 +4,51 @@ INCLUDE = -Iincludes
 
 SIG_DIR = signals/
 
-SIG_FILES = setup_signal.c\
-			setup_child_parent_signals.c\
-			setup_sigint_main_signals.c
+SIG_FILES = 		setup_signal.c\
+					setup_child_parent_signals.c\
+					setup_sigint_main_signals.c
 
 ENV_DIR = env/
 
-ENV_FILES = env.c\
-			lst_utils_env.c
+ENV_FILES = 		env.c\
+					lst_utils_env.c
 
 PARSING_DIR = parsing/
 
-PARSING_FILES = init_data_and_pars.c\
-				init_filename.c\
-				init_lst_exec.c\
-				lst_utils_exec.c\
-				lst_utils_pars.c\
-				lst_utils_redir.c\
-				split_quotes.c\
-				heredoc.c\
-				heredoc_utils.c\
-				expandf.c\
-				expandf_utils.c\
-				expand_utils.c\
-				expand_var.c\
-				expand_var_utils.c\
-				type.c\
-				type_utils.c\
-				functions_free.c\
-				validate_syntax.c\
-				syntax_error.c\
-				check_input.c\
-				check_input_utils.c\
-				check_input_quotes.c
+PARSING_FILES = 	init_data_and_pars.c\
+					init_filename.c\
+					init_lst_exec.c\
+					lst_utils_exec.c\
+					lst_utils_pars.c\
+					lst_utils_redir.c\
+					split_quotes.c\
+					heredoc/heredoc.c\
+					heredoc/heredoc_utils.c\
+					expand/expandf.c\
+					expand/expandf_utils.c\
+					expand/expand_utils.c\
+					expand/expand_var.c\
+					expand/expand_var_utils.c\
+					token/type.c\
+					token/type_utils.c\
+					functions_free.c\
+					validate_syntax.c\
+					check_input/syntax_error.c\
+					check_input/check_input.c\
+					check_input/check_input_utils.c\
+					check_input/check_input_quotes.c
 
 EXEC_DIR = exec/
 
-EXEC_FILES = path.c\
-			exec.c\
-			ft_fd.c\
-			redirections.c\
-			redirections_utils.c\
-			handle_builtins_parent.c\
-			exec_utils.c\
-			wait_process.c
+EXEC_FILES = 		path/path.c\
+					path/path_utils.c\
+					exec.c\
+					redirections/ft_fd.c\
+					redirections/redirections.c\
+					redirections/redirections_utils.c\
+					handle_builtins_parent.c\
+					exec_utils.c\
+					wait_process.c
 
 BUILTINS_DIR = builtins/
 
@@ -61,6 +62,7 @@ BUILTINS_FILES = 	builtin_pwd.c\
 					builtin_echo.c\
 					builtin_env.c
 UTILS = main.c\
+		main_utils.c
 
 MAKEFLAGS += --no-print-directory
 
@@ -93,11 +95,11 @@ all: banner lib $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
 		$(CC) $(CFLAGS) -lreadline $(OBJ) -o $(NAME) $(LIBFT) $(LIBS)
-	@echo "$(PURPLE)👾 Minishell compilation done ! $(RESET)"
+# 	@echo "$(PURPLE)👾 Minishell compilation done ! $(RESET)"
 
 $(OBJ_DIR)%.o: %.c Makefile
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 -include $(DEPD)
 
@@ -116,10 +118,10 @@ fclean:	clean
 	rm -f $(NAME)      
 
 lib:
-	@echo "$(GREEN)🦀 Compiling libft in progress... $(RESET)"
+# 	@echo "$(GREEN)🦀 Compiling libft in progress... $(RESET)"
 	$(MAKE) -C $(LIBFT_DIR)
-	@echo "$(GREEN)🦀 Libft compilation done ! $(RESET)"
-	@echo "$(PURPLE)👾 Compiling Minishell in progress ... $(RESET)"
+# 	@echo "$(GREEN)🦀 Libft compilation done ! $(RESET)"
+# 	@echo "$(PURPLE)👾 Compiling Minishell in progress ... $(RESET)"
 
 re: fclean all
 
@@ -137,7 +139,7 @@ banner:
 
 .PHONY: all clean fclean re lib banner
 
-.SILENT:
+# .SILENT:
 
 BLUE = \033[34m
 GREEN = \033[32m

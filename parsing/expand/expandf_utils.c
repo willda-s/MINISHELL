@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expandf_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 02:56:30 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/30 03:09:06 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/30 22:51:24 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static char	*process_word_expansion(t_exec *exec, t_data *data, int i)
 	{
 		new_word = ft_strdup(exec->cmd[i]);
 		if (!new_word)
-			free_all_msg(data, 12, "Malloc fail in expand_exec_list");
+			free_all_msg(data, 1, "Malloc fail in expand_exec_list");
 	}
 	else
 		new_word = ft_expand_word(data, exec->cmd[i]);
@@ -91,10 +91,7 @@ static int	expand_single_word(t_exec *exec, t_data *data, int i)
 		free(exec->cmd[i]);
 		exec->cmd[i] = ft_strdup("");
 		if (!exec->cmd[i])
-		{
-			free_tmpall(data);
-			return (127);
-		}
+			free_all(data, true, 127);
 	}
 	return (0);
 }

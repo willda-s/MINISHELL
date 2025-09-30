@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:53:49 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/28 02:02:58 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/30 22:25:50 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,38 @@
 
 static int	count_env(t_data *data);
 
+static void	init_data_envp(t_data *data, t_env *tmp, int i)
+{
+	char	*str;
+
+	str = ft_strjoin(tmp->key, "=");
+	if (!str)
+		free_all_msg(data, 1, "Error\nMalloc fail in init_envp");
+	if (tmp->value)
+	{
+		data->envp[i] = ft_strjoin(str, tmp->value);
+		free(str);
+	}
+	else
+		data->envp[i] = str;
+	if (!data->envp || !data->envp[i])
+		free_all_msg(data, 1, "Error\nMalloc fail in init_envp");
+}
+
 void	init_envp(t_data *data)
 {
 	t_env	*tmp;
-	char	*str;
 	int		i;
 
 	i = count_env(data);
 	data->envp = ft_calloc((i + 1), sizeof(char *));
 	if (!data->envp)
-		free_all_msg(data, 12, "Error\nMalloc fail in init_envp\n");
+		free_all_msg(data, 1, "Error\nMalloc fail in init_envp");
 	i = 0;
 	tmp = data->env;
 	while (tmp)
 	{
-		str = ft_strjoin(tmp->key, "=");
-		if (!str)
-			free_all_msg(data, 12, "Error\nMalloc fail in init_envp\n");
-		if (tmp->value)
-		{
-			data->envp[i] = ft_strjoin(str, tmp->value);
-			free(str);
-		}
-		else
-			data->envp[i] = str;
-		if (!data->envp || !data->envp[i])
-			free_all_msg(data, 12, "Error\nMalloc fail in init_envp\n");
+		init_data_envp(data, tmp, i);
 		i++;
 		tmp = tmp->next;
 	}
