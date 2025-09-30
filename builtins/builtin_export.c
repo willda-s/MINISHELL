@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/28 23:02:11 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/30 23:56:15 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,14 @@ int	builtin_export(t_exec *exec, t_data *data)
 	if (!exec->cmd[1])
 	{
 		builtin_env(data, true);
-		return (EXIT_SUCCESS);
+		return (0);
 	}
 	i = 1;
 	while (exec->cmd[i])
 	{
 		tmp = data->env;
 		if (parsing_export(exec, i))
-			return (EXIT_FAILURE);
+			return (-1);
 		else
 		{
 			new_var = extract_key_value(exec, i);
@@ -134,5 +134,5 @@ int	builtin_export(t_exec *exec, t_data *data)
 		}
 		i++;
 	}
-	return (EXIT_SUCCESS);
+	return (0);
 }
