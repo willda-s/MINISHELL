@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expandf.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 00:40:40 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/30 03:02:11 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,6 @@
 #include "parsing.h"
 #include <stddef.h>
 #include <stdlib.h>
-
-static int	ft_handle_squotes(char *res, int j, char *word, t_data *data)
-{
-	size_t	word_len;
-
-	word_len = ft_strlen(word);
-	data->i++;
-	while (word[data->i] && word[data->i] != '\'')
-		res[j++] = word[data->i++];
-	if (word[data->i] == '\'' && data->i < word_len)
-		data->i++;
-	else
-	{
-		syntax_error(SIMPLE_QUOTE);
-		data->syntax_error_flag = 1;
-		return (-1);
-	}
-	return (j);
-}
-
-static int	ft_handle_dquotes(char *res, int j, char *word, t_data *data)
-{
-	size_t	word_len;
-
-	word_len = ft_strlen(word);
-	data->i++;
-	while (word[data->i] && word[data->i] != '"')
-	{
-		if (word[data->i] == '$')
-			j = ft_expand_var(res, j, word, data);
-		else
-			res[j++] = word[data->i++];
-	}
-	if (word[data->i] == '"' && data->i < word_len)
-		data->i++;
-	else
-	{
-		data->syntax_error_flag = 1;
-		syntax_error(DOUBLE_QUOTE);
-		return (-1);
-	}
-	return (j);
-}
 
 int	max_len_in_env(t_env *env)
 {
@@ -73,46 +30,6 @@ int	max_len_in_env(t_env *env)
 	}
 	return (len);
 }
-
-// char	*ft_expand_word(t_data *data, char *word)
-// {
-// 	ssize_t	max_len;
-// 	char	*res;
-// 	char	*dup;
-// 	ssize_t	j;
-
-// 	max_len = ft_strlen(word) + max_len_in_env(data->env);
-// 	res = malloc(max_len + 1);
-// 	if (!res)
-// 		return (NULL);
-// 	j = 0;
-// 	data->i = 0;
-// 	while (word[data->i])
-// 	{
-// 		if (word[data->i] == '\'')
-// 			j = ft_handle_squotes(res, j, word, data);
-// 		else if (word[data->i] == '"')
-// 			j = ft_handle_dquotes(res, j, word, data);
-// 		else if (word[data->i] == '$')
-// 			j = ft_expand_var(res, j, word, data);
-// 		if (j < 0 || j >= max_len)
-// 		{
-// 			free(res);
-// 			return (NULL);
-// 		}
-// 		if (!word[data->i])
-// 			break ;
-// 		if (word[data->i] != '\'' && word[data->i] != '"'
-// 			&& word[data->i] != '$')
-// 			res[j++] = word[data->i++];
-// 	}
-// 	res[j] = '\0';
-// 	dup = ft_strdup(res);
-// 	if (!dup)
-// 		return (NULL);
-// 	free(res);
-// 	return (dup);
-// }
 
 static int	handle_quote_or_dollar(char *word, char *res, ssize_t j,
 		t_data *data)
@@ -183,50 +100,4 @@ bool	is_only_dollars(char *word)
 		i++;
 	}
 	return (true);
-}
-
-int	expand_exec_list(t_data *data)
-{
-	char	*new_word;
-	t_exec	*exec;
-	int		i;
-
-	exec = data->exec;
-	while (exec)
-	{
-		i = -1;
-		while (exec->cmd && exec->cmd[++i])
-		{
-			if (is_only_dollars(exec->cmd[i]))
-			{
-				new_word = ft_strdup(exec->cmd[i]);
-				if (!new_word)
-					free_all_msg(data, 12, "Malloc fail in expand_exec_list");
-			}
-			else
-				new_word = ft_expand_word(data, exec->cmd[i]);
-			if (data->syntax_error_flag)
-			{
-				free_tmpall(data);
-				return (2);
-			}
-			else if (new_word)
-			{
-				free(exec->cmd[i]);
-				exec->cmd[i] = new_word;
-			}
-			else
-			{
-				free(exec->cmd[i]);
-				exec->cmd[i] = ft_strdup("");
-				if (!exec->cmd[i])
-				{
-					free_tmpall(data);
-					return (127);
-				}
-			}
-		}
-		exec = exec->next;
-	}
-	return (0);
 }

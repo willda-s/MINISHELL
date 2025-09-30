@@ -25,6 +25,7 @@ PARSING_FILES = init_data_and_pars.c\
 				heredoc.c\
 				heredoc_utils.c\
 				expandf.c\
+				expandf_utils.c\
 				expand_utils.c\
 				expand_var.c\
 				expand_var_utils.c\

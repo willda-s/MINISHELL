@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 22:57:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 00:38:50 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/30 03:10:08 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	handle_heredoc(t_data *data)
 {
 	t_exec	*tmp;
 	t_redir	*redir;
-	
+
 	tmp = data->exec;
 	redir = NULL;
 	while (tmp)
