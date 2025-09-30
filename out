@@ -1,0 +1,17 @@
+builtins
+env
+exec
+in
+in2
+includes
+leak.supp
+libft
+main.c
+Makefile
+minishell
+out
+parsing
+signals
+tests_abe.txt
+test.txt
+text.txt

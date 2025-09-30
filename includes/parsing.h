@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 00:33:28 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/30 03:47:55 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,12 +198,23 @@ void				execc(t_data *data);
 
 bool				exec_builtins(t_exec *node, t_data *data, int fd_backup_in,
 						int fd_backup_out);
+////////////wait_process.c/////////////////
 
 int					wait_process(t_data *data);
 
-int					wait_one_process(int *n, pid_t pid);
+int				wait_one_process(int *flag, pid_t pid);
 
-void				print_wait_error(int n);
+void	print_wait_error(int flag);
+
+/////////////redirections_utils.c///////////////
+
+int	open_redir_in(t_exec *node, t_data *data, const char *filename);
+
+int	open_redir_trunc(t_exec *node, t_data *data, const char *filename);
+
+int	open_redir_append(t_exec *node, t_data *data, const char *filename);
+
+int	open_heredoc_in(t_exec *node, t_data *data, const char *filename);
 
 int					dup_fd(t_exec *node, t_data *data);
 
@@ -222,6 +233,8 @@ void				close_first_fd(t_exec *node);
 void				close_fd(t_exec *node);
 
 char				*path_in_arg(t_exec *exec);
+
+void	init_pipe(t_exec *node, t_data *data);
 
 char				*find_path(t_exec *node, t_data *data);
 

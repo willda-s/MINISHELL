@@ -43,8 +43,10 @@ EXEC_FILES = path.c\
 			exec.c\
 			ft_fd.c\
 			redirections.c\
+			redirections_utils.c\
 			handle_builtins_parent.c\
-			exec_utils.c
+			exec_utils.c\
+			wait_process.c
 
 BUILTINS_DIR = builtins/
 
