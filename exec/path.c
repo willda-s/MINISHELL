@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 19:44:48 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 02:43:49 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/30 02:59:24 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	**find_path_first(t_data *data, t_exec *node);
 static int	is_slash(t_exec *exec);
 static int	find_path_line(t_data *data);
 static char	*search_in_paths(char **allpath, char *cmd);
-static char	*try_path(char *dir, char *cmd, char **allpath);
+static char	*try_path(char *dir, char *cmd);
 
 char	*path_in_arg(t_exec *exec)
 {
@@ -108,14 +108,14 @@ static char	*search_in_paths(char **allpath, char *cmd)
 	j = 0;
 	while (allpath[++j])
 	{
-		result = try_path(allpath[j], cmd, allpath);
+		result = try_path(allpath[j], cmd);
 		if (result)
 			return (result);
 	}
 	return (NULL);
 }
 
-static char	*try_path(char *dir, char *cmd, char **allpath)
+static char	*try_path(char *dir, char *cmd)
 {
 	char	*buff;
 	char	*path;
@@ -128,10 +128,7 @@ static char	*try_path(char *dir, char *cmd, char **allpath)
 	if (!path)
 		return (NULL);
 	if (access(path, F_OK && X_OK) == 0)
-	{
-		free_tab(allpath);
 		return (path);
-	}
 	free(path);
 	return (NULL);
 }
