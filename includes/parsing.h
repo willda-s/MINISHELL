@@ -6,14 +6,13 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 03:56:23 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/30 20:11:38 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
-# include <stddef.h>
 # define SYNTAX_ERR "minishell: syntax error near unexpected token `%s'\n"
 
 # include "env.h"
@@ -154,20 +153,6 @@ int					max_len_in_env(t_env *env);
 
 char				*ft_expand_word(t_data *data, char *word);
 
-bool				is_only_dollars(char *word);
-
-int					ft_handle_squotes(char *res, int j, char *word,
-						t_data *data);
-
-int					ft_handle_dquotes(char *res, int j, char *word,
-						t_data *data);
-
-int					expand_exec_list(t_data *data);
-
-////////////////EXPAND_VAR.C && EXPAND_VAR_UTILS.c////////////////
-
-int					ft_expand_var(char *res, int j, char *word, t_data *data);
-
 int					is_expand_err(char *word, t_data *data);
 
 int					handle_errcode(char *res, int j);
@@ -176,9 +161,7 @@ int					handle_errcode(char *res, int j);
 
 void				init_lst_redir(t_exec **exec, t_pars *pars, t_data *data);
 
-////////////////SCRATCH_NODE.C////////////////////////////
-
-void				remove_empty_line(t_data *data);
+////////////////INIT_ENV.C////////////////////////////
 
 void				init_envp(t_data *data);
 
@@ -227,18 +210,6 @@ int	open_redir_append(t_exec *node, t_data *data, const char *filename);
 int	open_heredoc_in(t_exec *node, t_data *data, const char *filename);
 
 int					dup_fd(t_exec *node, t_data *data);
-
-void				ft_close(int *fd);
-
-void				dup_lastcmd(t_exec *node, t_data *data);
-
-pid_t				execfirstcmd(t_data *data, int *fd);
-
-pid_t				execlastcmd(t_data *data, int *fd);
-
-void				close_last_fd(t_exec *node);
-
-void				close_first_fd(t_exec *node);
 
 void				close_fd(t_exec *node);
 

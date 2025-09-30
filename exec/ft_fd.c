@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 21:13:24 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 02:48:49 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/30 20:11:17 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	close_allfd_struct(t_data *data)
 	}
 }
 
-void	close_last_fd(t_exec *node)
+static void	close_last_fd(t_exec *node)
 {
 	if (node && node->fd_out != -1)
 	{
@@ -35,7 +35,7 @@ void	close_last_fd(t_exec *node)
 	}
 }
 
-void	close_first_fd(t_exec *node)
+static void	close_first_fd(t_exec *node)
 {
 	if (node && node->fd_in != -1)
 	{
