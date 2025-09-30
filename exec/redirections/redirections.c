@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 19:04:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 22:05:09 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/10/01 00:25:21 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -36,7 +35,6 @@ int	open_all_file(t_exec *node, t_data *data)
 	char	*filename;
 
 	tmp = node->redir;
-	filename = NULL;
 	while (tmp)
 	{
 		filename = ft_expand_word(data, tmp->filename);

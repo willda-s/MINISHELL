@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 20:55:04 by cafabre           #+#    #+#             */
-/*   Updated: 2025/10/01 00:07:49 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/10/01 00:20:03 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static int	add_env_var(t_env **env, const char *key, const char *value)
 {
 	t_env	*node;
 
-	(void)key;
 	node = malloc(sizeof(t_env));
 	if (!node)
 		return (-1);

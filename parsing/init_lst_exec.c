@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_lst_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:54 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 22:24:32 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/10/01 00:31:06 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	init_lst_exec(t_data *data)
 	t_exec	*node;
 	t_pars	*tmp;
 
-	node = NULL;
 	tmp = data->pars;
 	while (tmp)
 	{

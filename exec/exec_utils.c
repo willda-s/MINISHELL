@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 22:47:42 by willda-s          #+#    #+#             */
-/*   Updated: 2025/10/01 00:15:37 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/10/01 00:25:30 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "libft.h"
-#include "signals.h"
 #include <errno.h>
 #include <stdbool.h>
 #include <sys/wait.h>

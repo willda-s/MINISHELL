@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:50:00 by cafabre           #+#    #+#             */
-/*   Updated: 2025/10/01 00:01:25 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/10/01 00:19:52 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
-#include "libft.h"
+#include <stdlib.h>
 #include "parsing.h"
 #include <stdio.h>
 #include <unistd.h>

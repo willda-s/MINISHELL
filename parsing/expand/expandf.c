@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   expandf.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 22:51:44 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/10/01 00:28:23 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parsing.h"
-
 #include <stdlib.h>
 
 static int	max_len_in_env(t_env *env)

@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:08:08 by cafabre           #+#    #+#             */
-/*   Updated: 2025/10/01 00:05:15 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/10/01 00:20:57 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include "libft.h"
 #include "parsing.h"
-
-#include <stdio.h>
 
 static int	parsing_export(t_exec *exec, size_t index)
 {

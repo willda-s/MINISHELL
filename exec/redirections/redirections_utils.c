@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   redirections_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 03:44:21 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 03:46:16 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/10/01 00:23:40 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "parsing.h"
 #include <fcntl.h>
 #include "ft_dprintf.h"
