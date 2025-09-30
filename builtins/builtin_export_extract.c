@@ -6,7 +6,7 @@
 /*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 01:39:38 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/30 01:49:05 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/30 20:39:02 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static char	*extract_key(char *cmd_arg)
 
 	i = 0;
 	key = malloc(ft_strlen(cmd_arg) + 1);
+	if (!key)
+		return (NULL);
 	while (cmd_arg[i] && cmd_arg[i] != '=')
 	{
 		key[i] = cmd_arg[i];
