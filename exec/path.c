@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 19:44:48 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/27 23:43:39 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/30 02:43:49 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 static char	**find_path_first(t_data *data, t_exec *node);
 static int	is_slash(t_exec *exec);
 static int	find_path_line(t_data *data);
+static char	*search_in_paths(char **allpath, char *cmd);
+static char	*try_path(char *dir, char *cmd, char **allpath);
 
 char	*path_in_arg(t_exec *exec)
 {
@@ -54,34 +56,83 @@ static int	is_slash(t_exec *exec)
 	return (0);
 }
 
+// char	*find_path(t_exec *node, t_data *data)
+// {
+// 	char	**allpath;
+// 	char	*buff;
+// 	char	*path;
+// 	int		j;
+
+// 	j = 0;
+// 	if (!node->cmd || !node->cmd[0] || ft_strcmp(node->cmd[0], "") == 0)
+// 		return (NULL);
+// 	allpath = find_path_first(data, node);
+// 	while (allpath[++j])
+// 	{
+// 		buff = ft_strjoin(allpath[j], "/");
+// 		if (!buff)
+// 			return (NULL);
+// 		path = ft_strjoin(buff, node->cmd[0]);
+// 		free(buff);
+// 		if (!path)
+// 			return (NULL);
+// 		if (access(path, F_OK && X_OK) == 0)
+// 		{
+// 			free_tab(allpath);
+// 			return (path);
+// 		}
+// 		free(path);
+// 	}
+// 	free_tab(allpath);
+// 	return (NULL);
+// }
+
 char	*find_path(t_exec *node, t_data *data)
 {
 	char	**allpath;
-	char	*buff;
 	char	*path;
-	int		j;
 
-	j = 0;
 	if (!node->cmd || !node->cmd[0] || ft_strcmp(node->cmd[0], "") == 0)
 		return (NULL);
 	allpath = find_path_first(data, node);
+	path = search_in_paths(allpath, node->cmd[0]);
+	free_tab(allpath);
+	return (path);
+}
+
+static char	*search_in_paths(char **allpath, char *cmd)
+{
+	char	*result;
+	int		j;
+
+	j = 0;
 	while (allpath[++j])
 	{
-		buff = ft_strjoin(allpath[j], "/");
-		if (!buff)
-			return (NULL);
-		path = ft_strjoin(buff, node->cmd[0]);
-		free(buff);
-		if (!path)
-			return (NULL);
-		if (access(path, F_OK && X_OK) == 0)
-		{
-			free_tab(allpath);
-			return (path);
-		}
-		free(path);
+		result = try_path(allpath[j], cmd, allpath);
+		if (result)
+			return (result);
 	}
-	free_tab(allpath);
+	return (NULL);
+}
+
+static char	*try_path(char *dir, char *cmd, char **allpath)
+{
+	char	*buff;
+	char	*path;
+
+	buff = ft_strjoin(dir, "/");
+	if (!buff)
+		return (NULL);
+	path = ft_strjoin(buff, cmd);
+	free(buff);
+	if (!path)
+		return (NULL);
+	if (access(path, F_OK && X_OK) == 0)
+	{
+		free_tab(allpath);
+		return (path);
+	}
+	free(path);
 	return (NULL);
 }
 
