@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 19:44:48 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 02:59:24 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/30 03:12:36 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,3 +165,4 @@ static int	find_path_line(t_data *data)
 	i = 0;
 	return (-1);
 }
+ 

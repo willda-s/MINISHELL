@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 18:28:33 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/29 20:09:50 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/30 03:33:15 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void	handle_builtins_in_parent(t_exec *node, t_data *data)
 	dup_secure = 0;
 	wrapper_dup(STDIN_FILENO, &data->fd_backup_in, data->fd_backup_out, data);
 	wrapper_dup(STDOUT_FILENO, &data->fd_backup_out, data->fd_backup_in, data);
-	data->errcode = dup_fd(node, data);
-	dup_secure = data->errcode;
+	dup_secure = dup_fd(node, data);
 	if (data->errcode >= 0)
 		exec_builtins(node, data, data->fd_backup_in, data->fd_backup_out);
 	wrapper_dup2(data->fd_backup_in, STDIN_FILENO, data, data->fd_backup_out);
