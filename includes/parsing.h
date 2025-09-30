@@ -6,7 +6,7 @@
 /*   By: willda-s <willda-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 03:47:55 by willda-s         ###   ########.fr       */
+/*   Updated: 2025/09/30 03:56:23 by willda-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,19 +144,29 @@ void				is_builtins(t_pars **tmp);
 
 bool				is_redirection(t_pars **tmp);
 
-////////////////EXPANDF.C  && EXPAND_UTILS.C////////////////////
+////////////////EXPANDF.C, EXPANDF_UTILS.C && EXPAND_UTILS.C////////////////////
 
 char				*get_env_value(t_env *envd, char *key);
 
 int					is_var_char(char c);
 
-int					ft_expand_var(char *res, int j, char *word, t_data *data);
-
-int					expand_exec_list(t_data *data);
+int					max_len_in_env(t_env *env);
 
 char				*ft_expand_word(t_data *data, char *word);
 
-int					max_len_in_env(t_env *env);
+bool				is_only_dollars(char *word);
+
+int					ft_handle_squotes(char *res, int j, char *word,
+						t_data *data);
+
+int					ft_handle_dquotes(char *res, int j, char *word,
+						t_data *data);
+
+int					expand_exec_list(t_data *data);
+
+////////////////EXPAND_VAR.C && EXPAND_VAR_UTILS.c////////////////
+
+int					ft_expand_var(char *res, int j, char *word, t_data *data);
 
 int					is_expand_err(char *word, t_data *data);
 

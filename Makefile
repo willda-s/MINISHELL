@@ -25,6 +25,7 @@ PARSING_FILES = init_data_and_pars.c\
 				heredoc.c\
 				heredoc_utils.c\
 				expandf.c\
+				expandf_utils.c\
 				expand_utils.c\
 				expand_var.c\
 				expand_var_utils.c\
@@ -55,6 +56,7 @@ BUILTINS_FILES = 	builtin_pwd.c\
 					builtin_cd_utils.c\
 					builtin_exit.c\
 					builtin_export.c\
+					builtin_export_extract.c\
 					builtin_unset.c\
 					builtin_echo.c\
 					builtin_env.c

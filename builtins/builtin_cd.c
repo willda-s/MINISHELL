@@ -6,7 +6,7 @@
 /*   By: cafabre <camille.fabre003@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 14:50:00 by cafabre           #+#    #+#             */
-/*   Updated: 2025/09/28 23:06:25 by cafabre          ###   ########.fr       */
+/*   Updated: 2025/09/30 01:00:06 by cafabre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "libft.h"
 #include "parsing.h"
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
 #include "builtins.h"
 
