@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:58 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/27 05:39:25 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/29 23:35:15 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,35 +81,4 @@ int	add_back_exec(t_exec **exec)
 		tmp->next = node;
 	}
 	return (0);
-}
-
-void	print_lst_exec(t_exec *exec)
-{
-	int		j;
-	int		i;
-	t_redir	*tmp;
-
-	j = 0;
-	while (exec)
-	{
-		i = 0;
-		dprintf(STDERR_FILENO, "-------------noeud [%d]---------------------\n",
-				j++);
-		dprintf(STDERR_FILENO, "fd_in = %d\n", exec->fd_in);
-		dprintf(STDERR_FILENO, "fd_out = %d\n", exec->fd_out);
-		while (exec->cmd && exec->cmd[i])
-		{
-			dprintf(STDERR_FILENO, "cmd[%d] = %s\n", i, exec->cmd[i]);
-			i++;
-		}
-		tmp = exec->redir;
-		while (tmp)
-		{
-			dprintf(STDERR_FILENO, "token = %u\n", tmp->token);
-			dprintf(STDERR_FILENO, "filename = %s\n", tmp->filename);
-			dprintf(STDERR_FILENO, "delimiter = %s\n", tmp->delimiter);
-			tmp = tmp->next;
-		}
-		exec = exec->next;
-	}
 }

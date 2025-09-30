@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:46 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/27 05:43:44 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/29 23:04:04 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,13 @@ void	init_data(t_data *data, t_env **envd, char **dst)
 	if (!data->env)
 		data->env = *envd;
 	data->envp = NULL;
-	// if (!data->input)
-	// 	data->input = NULL;
 	data->i = 0;
-	// data->errcode = 0;
 	data->fd_backup_in = -1;
 	data->fd_backup_out = -1;
 	if (init_lst_pars(&pars, data->dst) == 1)
 	{
 		free_lst_pars(&pars);
 		free_tab(dst);
-		// free_lst_env(envd, true, 0);
 		data->errcode = 1;
 		return ;
 	}

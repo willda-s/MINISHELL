@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 19:04:53 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/29 20:22:50 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/30 01:37:29 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ int	open_all_file(t_exec *node, t_data *data)
 		else if (tmp && tmp->token == REDIR_APPEND)
 			data->errcode = open_redir_append(node, data, filename);
 		else if (tmp && tmp->token == HEREDOC)
+		{
 			data->errcode = open_heredoc_in(node, data, filename);
+			unlink(filename);
+		}
 		free(filename);
 		if (data->errcode < 0)
 			return (-1);
@@ -57,7 +60,7 @@ static int	open_redir_in(t_exec *node, t_data *data, const char *filename)
 	if (node->fd_in == -1)
 	{
 		close_allfd_struct(data);
-		ft_dprintf(STDERR_FILENO, "%s: No such file or directory\n", *filename);
+		ft_dprintf(STDERR_FILENO, "%s: No such file or directory\n", filename);
 		return (-1);
 	}
 	return (0);
@@ -96,7 +99,6 @@ static int	open_heredoc_in(t_exec *node, t_data *data, const char *filename)
 	if (node->fd_in > 2)
 		close(node->fd_in);
 	node->fd_in = open(filename, O_RDONLY);
-	unlink(filename);
 	if (node->fd_in == -1)
 	{
 		close_allfd_struct(data);

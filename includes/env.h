@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akarapkh <akarapkh@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:22:27 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/11 20:06:30 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/29 23:05:27 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,5 @@ t_env				*ft_lstlast_env(t_env *envd);
 void				free_lst_env(t_env **envd, bool ext, int errcode);
 
 void				init_lst_env(t_env **envd, char **env);
-
-void				print_lst_env(t_env *envd);
-void				print_envp(char **envp);
 
 #endif
