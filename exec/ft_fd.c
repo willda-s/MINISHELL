@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 21:13:24 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/29 21:17:17 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/30 19:02:43 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	close_allfd_struct(t_data *data)
 	}
 }
 
-void	close_last_fd(t_exec *node)
+static void	close_last_fd(t_exec *node)
 {
 	if (node && node->fd_out != -1)
 	{
@@ -35,7 +35,7 @@ void	close_last_fd(t_exec *node)
 	}
 }
 
-void	close_first_fd(t_exec *node)
+static void	close_first_fd(t_exec *node)
 {
 	if (node && node->fd_in != -1)
 	{
@@ -52,7 +52,7 @@ void	close_fd(t_exec *node)
 
 int	dup_fd(t_exec *node, t_data *data)
 {
-	int i;
+	int	i;
 
 	i = open_all_file(node, data);
 	if (i == -1)

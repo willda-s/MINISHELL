@@ -6,14 +6,13 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:21:55 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 00:33:28 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/30 19:03:58 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
-# include <stddef.h>
 # define SYNTAX_ERR "minishell: syntax error near unexpected token `%s'\n"
 
 # include "env.h"
@@ -156,8 +155,6 @@ int					expand_exec_list(t_data *data);
 
 char				*ft_expand_word(t_data *data, char *word);
 
-int					max_len_in_env(t_env *env);
-
 int					is_expand_err(char *word, t_data *data);
 
 int					handle_errcode(char *res, int j);
@@ -166,9 +163,7 @@ int					handle_errcode(char *res, int j);
 
 void				init_lst_redir(t_exec **exec, t_pars *pars, t_data *data);
 
-////////////////SCRATCH_NODE.C////////////////////////////
-
-void				remove_empty_line(t_data *data);
+////////////////INIT_ENV.C////////////////////////////
 
 void				init_envp(t_data *data);
 
@@ -206,18 +201,6 @@ int					wait_one_process(int *n, pid_t pid);
 void				print_wait_error(int n);
 
 int					dup_fd(t_exec *node, t_data *data);
-
-void				ft_close(int *fd);
-
-void				dup_lastcmd(t_exec *node, t_data *data);
-
-pid_t				execfirstcmd(t_data *data, int *fd);
-
-pid_t				execlastcmd(t_data *data, int *fd);
-
-void				close_last_fd(t_exec *node);
-
-void				close_first_fd(t_exec *node);
 
 void				close_fd(t_exec *node);
 

@@ -6,7 +6,7 @@
 /*   By: akarapkh <akarapkh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 13:54:32 by willda-s          #+#    #+#             */
-/*   Updated: 2025/09/30 00:40:40 by akarapkh         ###   ########.fr       */
+/*   Updated: 2025/09/30 18:56:07 by akarapkh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	ft_handle_dquotes(char *res, int j, char *word, t_data *data)
 	return (j);
 }
 
-int	max_len_in_env(t_env *env)
+static int	max_len_in_env(t_env *env)
 {
 	size_t	len;
 
